@@ -1,12 +1,80 @@
 <!DOCTYPE html>
 <html lang="pl">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>G_Words_diff</title>
+    <title>G_Words</title>
+    <!-- <link rel="stylesheet" href="/css/style.css"> -->
+    <script>document.write('<link rel="stylesheet" href="/css/style.css?ver=' + Math.floor(Math.random() * 1000) + '"\>');</script>
 </head>
+
 <body>
-<script src="/app/game.js" type="text/javascript"></script>
+    <section id="gWords" class="g-words">
+        <div id="titleGame" class="title-game">
+            <!-- <h1>WHAT IS THE WARD</h1> -->
+            <h1>JAKIE TO SŁOWO?</h1>
+        </div>
+        <div id="description" class="description">
+            <p class="discription">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Et, dolor.</p>
+        </div>
+        <div id="wordGame" class="word-game">
+            <div class="line round1">
+                <div class="one-letter curr-letter"></div>
+                <div class="one-letter curr-letter"></div>
+                <div class="one-letter curr-letter"></div>
+                <div class="one-letter curr-letter"></div>
+                <div class="one-letter curr-letter"></div>
+            </div>
+            <div class="line round2">
+                    <div class="one-letter"></div>
+                    <div class="one-letter"></div>
+                    <div class="one-letter"></div>
+                    <div class="one-letter"></div>
+                    <div class="one-letter"></div>
+            </div>
+            <div class="line round3">
+                <div class="one-letter"></div>
+                <div class="one-letter"></div>
+                <div class="one-letter"></div>
+                <div class="one-letter"></div>
+                <div class="one-letter"></div>
+            </div>
+            <div class="line round4">
+                <div class="one-letter"></div>
+                <div class="one-letter"></div>
+                <div class="one-letter"></div>
+                <div class="one-letter"></div>
+                <div class="one-letter"></div>
+            </div>
+            <div class="line round5">
+                <div class="one-letter"></div>
+                <div class="one-letter"></div>
+                <div class="one-letter"></div>
+                <div class="one-letter"></div>
+                <div class="one-letter"></div>
+            </div>
+            <div class="line round6">
+                <div class="one-letter"></div>
+                <div class="one-letter"></div>
+                <div class="one-letter"></div>
+                <div class="one-letter"></div>
+                <div class="one-letter"></div>
+            </div>
+        </div>
+        <div id="category" class="category">
+            <p>Lorem, ipsum dolor.</p>
+        </div>
+        <div id="letters" class="letters"></div>
+    </section>
+
+    <!-- <script src="/app/game.js" type="text/javascript"></script> -->
+    <script>document.write('<script src="/app/game.js?ver=' + Math.floor(Math.random() * 1000) + '"\><\/script>');</script>
+    <script>
+        const game = new Game();
+        game.run();
+    </script>
 </body>
+
 </html>

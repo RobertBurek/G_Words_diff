@@ -16,9 +16,81 @@
 body,
 html {
   font-family: "Roboto", sans-serif;
-  color: #474550;
+  color: white;
   margin: 0;
   font-size: 10px;
   scroll-behavior: smooth;
+  background-color: #474550;
+}
+
+.g-words {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.title-game {
+  text-align: center;
+  font-size: 2rem;
+  letter-spacing: 2px;
+  padding: 20px 0;
+}
+
+.description {
+  text-align: center;
+  padding: 10px;
+  font-size: 1.2rem;
+  letter-spacing: 1px;
+}
+
+.word-game {
+  width: 80%;
+  margin: 20px auto;
+}
+
+.line {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.one-letter {
+  height: 30px;
+  width: 30px;
+  min-width: 20px;
+  border-radius: 3px;
+  border: 2px solid gray;
+  margin: 5px;
+}
+
+.curr-letter {
+  border: 2px solid white;
+}
+
+.category {
+  text-align: center;
+}
+
+.letters {
+  width: 90%;
+  height: 150px;
+  margin: 20px 0;
+  border: 2px solid gray;
 }
 /*# sourceMappingURL=style.css.map */
