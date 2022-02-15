@@ -1,7 +1,6 @@
 class Game {
-    constructor({ lettersWrapper, lettersQWERTYWrapper, categoryWrapper, wordGameWrapper, keybourdScheme }) {
+    constructor({ lettersWrapper, categoryWrapper, wordGameWrapper, keybourdScheme }) {
       this.lettersWrapper = lettersWrapper;
-      this.lettersQWERTYWrapper = lettersQWERTYWrapper;
       this.categoryWrapper = categoryWrapper;
       this.wordGameWrapper = wordGameWrapper;
       this.keybourdScheme = keybourdScheme;
