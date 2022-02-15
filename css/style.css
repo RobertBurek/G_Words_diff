@@ -93,4 +93,19 @@ html {
   margin: 20px 0;
   border: 2px solid gray;
 }
+
+.keybourd-scheme {
+  height: 20px;
+  width: 100px;
+  background-color: burlywood;
+  line-height: 20px;
+  text-align: center;
+  border-radius: 5px;
+}
+
+.keybourd-scheme:hover {
+  background-color: #66662e;
+  color: black;
+  cursor: pointer;
+}
 /*# sourceMappingURL=style.css.map */
