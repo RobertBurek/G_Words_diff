@@ -5,14 +5,14 @@ class Game {
       this.wordGameWrapper = wordGameWrapper;
       this.keybourdScheme = keybourdScheme;
       this.alphabet = [65, 260, 66, 67, 262,  68, 69, 280, 70, 71, 72, 73, 74, 75, 76, 321, 77, 78, 323, 79, 211,
-        80, 81, 82, 83, 346, 84, 85, 86, 87, 88, 89, 90, 377, 379];
+        80, 81, 82, 83, 346, 8678, 84, 85, 86, 87, 88, 89, 90, 377, 379];
       this.qwerty = [81, 87, 69, 82, 84, 89, 85, 73, 79, 80, 65, 83, 68, 70, 71, 72, 74, 75, 76, 90, 88, 67, 86,
-        66, 78, 77, 260, 262, 280, 321, 323, 211, 346, 377, 379];
+        66, 78, 77, 260, 262, 8678, 280, 321, 323, 211, 346, 377, 379];
       this.currentlyKeybourd = this.alphabet;
     }
     
     writeLetter(letter) {
-        console.log(letter);
+        console.log(letter.charCodeAt());
     }
 
     changeKeybourd() {
@@ -30,6 +30,17 @@ class Game {
         wrapper.appendChild(button);
       }
     }
+
+    charsListing(wrapper) {
+      wrapper.innerHTML = "";
+     for (let i = 8650; i < 8890; i++) {
+       const letter = String.fromCharCode(i);
+       const button = document.createElement("button");
+       button.innerHTML = letter;
+       button.addEventListener('click', () => this.writeLetter(letter));
+       wrapper.appendChild(button);
+     }
+   }
   
     run() {
       this.createKeyboard(this.currentlyKeybourd, this.lettersWrapper);
@@ -38,8 +49,7 @@ class Game {
           this.createKeyboard(this.currentlyKeybourd, this.lettersWrapper);
       })
       console.log("wystartowałem grę!!!");
-      // this.createKeyboard(this.currentlyKeybourd, this.lettersWrapper);
-      // this.createKeyboard(this.qwerty, this.lettersQWERTYWrapper);
+      // this.charsListing(this.lettersWrapper);
     }
 
   }
