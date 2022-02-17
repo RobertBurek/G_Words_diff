@@ -70,13 +70,14 @@
             <p>Lorem, ipsum dolor.</p>
         </div>
         <div id="keybourdScheme" class="keybourd-scheme">
-            <i class="fa-regular fa-keyboard"></i>
-            <i class="fa-solid fa-keyboard"></i>
-            <i class="fa-light fa-keyboard"></i>
-            <i class="fas fa-info-circle"></i>
-            <i class="fa-solid fa-keyboard"></i>
+            <i class="fas fa-keyboard"></i>
         </div>
-        <div id="letters" class="letters"></div>
+        <div id="letters" class="letters">
+            <div id="keybourd1" class="keybourd1"></div>
+            <div id="keybourd2" class="keybourd2"></div>
+            <div id="keybourd3" class="keybourd3"></div>
+            <div id="keybourd4" class="keybourd4"></div>
+        </div>
     </section>
 
     <!-- <script src="/app/game.js" type="text/javascript"></script> -->
@@ -87,6 +88,10 @@
             categoryWrapper: document.getElementById("category"),
             wordGameWrapper: document.getElementById("wordGame"),
             keybourdScheme: document.getElementById("keybourdScheme"),
+            keybourd1: document.getElementById("keybourd1"),
+            keybourd2: document.getElementById("keybourd2"),
+            keybourd3: document.getElementById("keybourd3"),
+            keybourd4: document.getElementById("keybourd4"),
         });
         game.run();
     </script>

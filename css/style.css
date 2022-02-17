@@ -95,12 +95,13 @@ html {
 }
 
 .keybourd-scheme {
-  height: 20px;
+  height: 30px;
   width: 100px;
   background-color: burlywood;
-  line-height: 20px;
+  line-height: 30px;
   text-align: center;
   border-radius: 5px;
+  font-size: 25px;
 }
 
 .keybourd-scheme:hover {
@@ -110,9 +111,10 @@ html {
 }
 
 button {
-  height: 27px;
-  width: 27px;
-  margin: 5px;
+  height: 25px;
+  width: 25px;
+  margin: 4px;
+  border-top: 3px solid #c1c1c1;
 }
 
 .letters {
