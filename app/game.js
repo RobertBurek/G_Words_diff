@@ -97,6 +97,7 @@ class Game {
       this.currentlyKeyboard = this.alphabet;
 
       this.level = 5;
+      this.currentWord = [];
       const {word, category} = this.words5[Math.floor(Math.random()*this.words5.length)];
       this.categoryWrapper.innerHTML = 'KATEGORIA:  ' + category;
       this.guessWord = new GuessWord(word, this.level);
@@ -175,7 +176,15 @@ class Game {
       }
     }
 
-    createStartPlaceGame(level, wrapper) {
+
+    changeLetter(element) {
+      this.currentWord.forEach(element => {
+        element.classList.remove('current-letter')
+      });
+      element.classList.add('current-letter');
+    }
+
+    createStartPlaceGame(level, wrapper, currentRound) {
         for ( let i = 0; i < level + 1; i++){
             const divLine = document.createElement("div");
             if (i ==0) divLine.className = 'line current-round';
@@ -184,6 +193,10 @@ class Game {
                 const divLetter = document.createElement("div");
                 if ((j == 0) && (i == 0)) divLetter.className = 'one-letter current-letter';
                 else divLetter.className = 'one-letter';
+                if (i == currentRound) {
+                  divLetter.addEventListener('click', () => this.changeLetter(divLetter));
+                  this.currentWord.push(divLetter);
+                }
                 divLine.appendChild(divLetter);
             }
             wrapper.appendChild(divLine);
@@ -192,7 +205,7 @@ class Game {
 
     run() {
         this.createKeyboard(this.currentlyKeyboard, this.keyboard1, this.keyboard2, this.keyboard3, this.keyboard4);
-        console.log(this.wordGameWrapper);
-        this.createStartPlaceGame(this.level, this.wordGameWrapper);
+        // console.log(this.wordGameWrapper);
+        this.createStartPlaceGame(this.level, this.wordGameWrapper, 0);
     }
 }
