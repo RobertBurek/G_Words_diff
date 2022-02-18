@@ -1,3 +1,5 @@
+// import { GuessWord } from "./guessWord.js";
+
 class CharKeyboard {
       constructor(numberChar, stateChar) {
         this.numberChar = numberChar;
@@ -7,6 +9,13 @@ class CharKeyboard {
       changeStateChar() {
 
       }
+}
+
+class GuessWord {
+    constructor (word, level) {
+        this.word = word;
+        this.level = level;
+    }
 }
 
 
