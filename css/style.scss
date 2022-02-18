@@ -67,12 +67,16 @@ html {
 	margin: 5px;
 }
 
-.curr-letter{
+// .curr-letter{
+// 	border: 2px solid white;
+// }
+
+.current-round .one-letter{
 	border: 2px solid white;
 }
 
-.curr-letter:first-child {
-	border: 2px solid yellow;
+.current-letter {
+	border: 2px solid yellow !important;
 }
 
 .category {
