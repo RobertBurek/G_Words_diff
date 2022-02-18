@@ -11,6 +11,53 @@ class CharKeyboard {
 
 
 class Game {
+
+    words5 = [{
+        word: 'BALON',
+        category: 'Rzecz'
+    },{
+        word: 'MOTYL',
+        category: 'Przyroda'
+    },{
+        word: 'MUCHA',
+        category: 'Przyroda'
+    },{
+        word: 'MAZAK',
+        category: 'Rzecz'
+    },{
+        word: 'BANAN',
+        category: 'Jedzenie'
+    },{
+        word: 'POTOK',
+        category: 'Przyroda'
+    },{
+        word: 'FARBA',
+        category: 'Rzecz'
+    }]
+
+    words6 = [{
+        word: 'ANTENA',
+        category: 'Rzecz'
+    },{
+        word: 'KAŁUŻA',
+        category: 'Przyroda'
+    },{
+        word: 'KALINA',
+        category: 'Przyroda'
+    },{
+        word: 'AMULET',
+        category: 'Rzecz'
+    },{
+        word: 'AGREST',
+        category: 'Jedzenie'
+    },{
+        word: 'BAMBUS',
+        category: 'Przyroda'
+    },{
+        word: 'FORINT',
+        category: 'Rzecz'
+    }]
+
     constructor({ lettersWrapper, categoryWrapper, wordGameWrapper, keyboardScheme, keyboard1, keyboard2, keyboard3, keyboard4 }) {
       this.lettersWrapper = lettersWrapper;
       this.categoryWrapper = categoryWrapper;
@@ -39,6 +86,12 @@ class Game {
                 this.charsObject[13], this.charsObject[12], this.charsObject[27], this.charsObject[28], this.charsObject[29], this.charsObject[30], this.charsObject[31], this.charsObject[26],
                 this.charsObject[32], this.charsObject[33], this.charsObject[34]]
       this.currentlyKeyboard = this.alphabet;
+
+      this.level = 5;
+      const {word, category} = this.words5[Math.floor(Math.random()*this.words5.length)];
+      console.log(word);
+      console.log(category);
+      this.categoryWrapper.innerHTML = 'KATEGORIA:  ' + category;
     }
     
     writeLetter(letter, element, index) {
