@@ -112,13 +112,8 @@ html {
   display: inline-block;
   height: 36px;
   width: 42px;
-  /* background-color: burlywood; */
   line-height: 30px;
-  /* text-align: center; */
-  /* border-radius: 5px; */
   font-size: 29px;
-  /* line-height: 30px; */
-  /* padding-top: 2px; */
   position: relative;
   top: 5px;
 }
@@ -135,16 +130,8 @@ button {
 }
 
 .backspace {
-  /* display: inline-block; */
-  /* height: 29px; */
-  /* width: 42px; */
-  /* background-color: burlywood; */
   line-height: 22px;
-  /* text-align: center; */
-  /* border-radius: 5px; */
   font-size: 16px;
-  /* line-height: 30px; */
-  /* padding-top: 2px; */
   position: relative;
   top: -1px;
   width: 34px;
@@ -153,6 +140,7 @@ button {
   border-radius: 2px;
   height: 22px;
   font-weight: 700;
+  color: #474550;
 }
 
 .letters {
