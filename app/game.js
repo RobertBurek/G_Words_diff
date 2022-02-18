@@ -98,9 +98,10 @@ class Game {
 
       this.level = 5;
       const {word, category} = this.words5[Math.floor(Math.random()*this.words5.length)];
-      console.log(word);
-      console.log(category);
       this.categoryWrapper.innerHTML = 'KATEGORIA:  ' + category;
+      this.guessWord = new GuessWord(word, this.level);
+      console.log(this.guessWord.word);
+      console.log(this.guessWord.level);
     }
     
     writeLetter(letter, element, index) {
