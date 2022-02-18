@@ -103,12 +103,13 @@ class Game {
         button.addEventListener('click', () => this.writeLetter(letter, button, i));
         keyboard3.appendChild(button);
       }
-      const letter = String.fromCharCode(8678);
-      const button = document.createElement("button");
-      button.className = 'backspace';
-      button.innerHTML = letter;
-      button.addEventListener('click', () => this.writeLetter(letter, button, i));
-      keyboard3.appendChild(button);
+      // const letter = String.fromCharCode(8678);   <i class="fal fa-arrow-alt-left"></i>
+      const divBackspace = document.createElement("div");
+      // divBackspace.setAttribute("id", "backSpace");
+      divBackspace.className = 'back-space';
+      divBackspace.innerHTML = '<i class="fas fa-long-arrow-alt-left"></i>';
+      divBackspace.addEventListener('click', () => this.writeLetter(letter, divBackspace, 10));
+      keyboard3.appendChild(divBackspace);
 
 
       // const divBackspace = document.createElement("div");
