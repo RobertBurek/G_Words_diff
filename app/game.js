@@ -38,18 +38,12 @@ class Game {
                 this.charsObject[9], this.charsObject[10], this.charsObject[11], this.charsObject[25], this.charsObject[23], this.charsObject[2], this.charsObject[21], this.charsObject[1],
                 this.charsObject[13], this.charsObject[12], this.charsObject[27], this.charsObject[28], this.charsObject[29], this.charsObject[30], this.charsObject[31], this.charsObject[26],
                 this.charsObject[32], this.charsObject[33], this.charsObject[34]]
-      
-      
-      // 260, 66, 67, 262,  68, 69, 280, 70, 71, 72, 73, 74, 75, 76, 321, 77, 78, 323, 79, 211,
-        // 80, 81, 82, 83, 346, 8678, 84, 85, 86, 87, 88, 89, 90, 377, 379];
-      // this.qwerty = [81, 87, 69, 82, 84, 89, 85, 73, 79, 80, 65, 83, 68, 70, 71, 72, 74, 75, 76, 90, 88, 67, 86,
-      //   66, 78, 77, 8678, 260, 262, 280, 321, 323, 211, 346, 377, 379];
       this.currentlyKeyboard = this.alphabet;
     }
     
     writeLetter(letter, element, index) {
         // console.log(letter.charCodeAt());
-        // console.log(letter);
+        console.log(letter);
         // console.log(element);
         if (index%2 == 1) {
         this.currentlyKeyboard[index].stateChar = 'red';
@@ -103,21 +97,11 @@ class Game {
         button.addEventListener('click', () => this.writeLetter(letter, button, i));
         keyboard3.appendChild(button);
       }
-      // const letter = String.fromCharCode(8678);   <i class="fal fa-arrow-alt-left"></i>
       const divBackspace = document.createElement("div");
-      // divBackspace.setAttribute("id", "backSpace");
       divBackspace.className = 'back-space';
       divBackspace.innerHTML = '<i class="fas fa-long-arrow-alt-left"></i>';
       divBackspace.addEventListener('click', () => this.writeLetter(letter, divBackspace, 10));
       keyboard3.appendChild(divBackspace);
-
-
-      // const divBackspace = document.createElement("div");
-      // divBackspace.className = 'backspace';
-      // divBackspace.innerHTML = letter;
-      // divBackspace.addEventListener('click', () => this.writeLetter(letter, divBackspace, i));
-      // keyboard3.appendChild(divBackspace);
-
       for (let i = 26; i < 35; i++) {
         const letter = String.fromCharCode(lettersCheme[i].numberChar);
         const button = document.createElement("button");
@@ -128,30 +112,8 @@ class Game {
       }
     }
 
-  //   charsListing(wrapper) {
-  //     wrapper.innerHTML = "";
-  //    for (let i = 8650; i < 8890; i++) {
-  //      const letter = String.fromCharCode(i);
-  //     //  8678  8674  8801  8811 8688
-  //      const button = document.createElement("button");
-  //      button.innerHTML = letter;
-  //      button.addEventListener('click', () => this.writeLetter(letter));
-  //      wrapper.appendChild(button);
-  //    }
-  //  }
-  
     run() {
-
-        // for (let i = 0; i < this.numbersChar.length; i++ ){
-        //   this.charsObject.push(new CharKeyboard(this.numbersChar[i], "normal"));
-        // }
-        // console.log(this.alphabet[0]);
       this.createKeyboard(this.currentlyKeyboard, this.keyboard1, this.keyboard2, this.keyboard3, this.keyboard4);
-      // this.keyboardScheme.addEventListener('click', () =>{
-      //     this.changeKeyboard();
-      //     this.createKeyboard(this.currentlyKeyboard, this.keyboard1, this.keyboard2, this.keyboard3, this.keyboard4);
-      // })
-      // this.charsListing(this.lettersWrapper);
     }
 
   }
