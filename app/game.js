@@ -114,7 +114,7 @@ class Game {
         const activeLetter = document.querySelector('div.current-letter');
         let position = this.currentWord.indexOf(activeLetter); 
         if (this.currentWord[position].innerHTML == "") this.leftEmpty -= 1;
-        console.log(this.leftEmpty);
+        // console.log(this.leftEmpty);
         activeLetter.innerHTML = letter;
         // if (this.currentWord[position].innerHTML != "") this.leftEmpty -= 1;
         // let position = this.currentWord.indexOf(activeLetter); 
@@ -131,6 +131,9 @@ class Game {
             // console.log(position);
             activeLetter.classList.remove('current-letter');
             this.currentWord[position].classList.add('current-letter');
+      } else {
+        activeLetter.classList.remove('current-letter');
+        this.createActiveRound();
       }
         // this.leftEmpty -= 1;
         // console.log(this.leftEmpty);
@@ -210,16 +213,16 @@ class Game {
       element.classList.add('current-letter');
     }
 
-    createStartPlaceGame(level, wrapper, currentRound) {
+    createStartPlaceGame(level, wrapper) {
         for ( let i = 0; i < level + 1; i++){
             const divLine = document.createElement("div");
-            if (i ==0) divLine.className = 'line current-round';
+            if (i == 0) divLine.className = 'line current-round';
             else divLine.className = 'line';
             for ( let j = 0; j < level; j++){
                 const divLetter = document.createElement("div");
                 if ((j == 0) && (i == 0)) divLetter.className = 'one-letter current-letter';
                 else divLetter.className = 'one-letter';
-                if (i == currentRound) {
+                if (i == 0) {
                   divLetter.addEventListener('click', () => this.changeLetter(divLetter));
                   this.currentWord.push(divLetter);
                 }
@@ -229,9 +232,80 @@ class Game {
         }
     }
 
+    removeListenerLetter(element) {
+    if (element.removeEventListener) {
+        element.removeEventListener ('click', () => this.changeLetter(element));
+        } else if (element.detachEvent) {
+            element.detachEvent ('click', () => this.changeLetter(element));
+        }
+    }
+
+    createActiveRound() {
+        this.currentWord.forEach(element => {
+            element.removeEventListener('click', () => this.changeLetter(element));
+        });
+        let listRounds = document.querySelectorAll('#wordGame .line');
+        listRounds = [...listRounds];
+        // console.log(listRounds[0]);
+        for (let i = 0; i < listRounds.length; i++) {
+            if (listRounds[i].className == "line current-round") {
+                listRounds[i].classList.remove("current-round");
+                listRounds[i].classList.remove("current-round");
+                listRounds[i + 1].classList.add("current-round");
+                listRounds[i + 1].firstChild.classList.add("current-letter");
+                this.currentWord = document.querySelectorAll('.current-round .one-letter');
+                // console.log(this.currentWord);
+                this.currentWord = [...this.currentWord];
+                this.currentWord.forEach(element => {
+                    element.addEventListener('click', () => this.changeLetter(element));
+                });
+                this.leftEmpty = this.level;
+                // console.log(this.currentWord);
+                break;
+            }
+        }
+        // for ( let i = 0; i < level + 1; i++){
+        //     const divLine = document.createElement("div");
+        //     if (i == 0) divLine.className = 'line current-round';
+        //     else divLine.className = 'line';
+        //     for ( let j = 0; j < level; j++){
+        //         const divLetter = document.createElement("div");
+        //         if ((j == 0) && (i == 0)) divLetter.className = 'one-letter current-letter';
+        //         else divLetter.className = 'one-letter';
+        //         if (i == 0) {
+        //           divLetter.addEventListener('click', () => this.changeLetter(divLetter));
+        //           this.currentWord.push(divLetter);
+        //         }
+        //         divLine.appendChild(divLetter);
+        //     }
+        //     wrapper.appendChild(divLine);
+        // }
+    }
+
+    // createStartPlaceGame(level, wrapper, currentRound) {
+    //     for ( let i = 0; i < level + 1; i++){
+    //         const divLine = document.createElement("div");
+    //         if (i == currentRound) divLine.className = 'line current-round';
+    //         else divLine.className = 'line';
+    //         for ( let j = 0; j < level; j++){
+    //             const divLetter = document.createElement("div");
+    //             if ((j == 0) && (i == currentRound)) divLetter.className = 'one-letter current-letter';
+    //             else divLetter.className = 'one-letter';
+    //             if (i == currentRound) {
+    //               divLetter.addEventListener('click', () => this.changeLetter(divLetter));
+    //               this.currentWord.push(divLetter);
+    //             }
+    //             divLine.appendChild(divLetter);
+    //         }
+    //         wrapper.appendChild(divLine);
+    //     }
+    // }
+
     run() {
         this.createKeyboard(this.currentlyKeyboard, this.keyboard1, this.keyboard2, this.keyboard3, this.keyboard4);
         // console.log(this.wordGameWrapper);
-        this.createStartPlaceGame(this.level, this.wordGameWrapper, 0);
+        // this.createStartPlaceGame(this.level, this.wordGameWrapper, 5);
+        this.createStartPlaceGame(this.level, this.wordGameWrapper);
+        // this.createActiveRound();
     }
 }

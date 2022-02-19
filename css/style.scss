@@ -67,7 +67,7 @@ html {
     margin: 5px;
     font-size: 20px;
     text-align: center;
-    line-height: 27px;
+    line-height: 25px;
 	font-weight: 600;
 }
 
@@ -79,7 +79,7 @@ html {
 	border: 2px solid white;
 }
 
-.current-letter {
+.current-round .current-letter {
 	border: 3px solid yellow !important;
 	cursor: pointer;
 }
