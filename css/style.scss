@@ -68,6 +68,7 @@ html {
     font-size: 20px;
     text-align: center;
     line-height: 27px;
+	font-weight: 600;
 }
 
 // .curr-letter{
@@ -79,7 +80,7 @@ html {
 }
 
 .current-letter {
-	border: 2px solid yellow !important;
+	border: 3px solid yellow !important;
 	cursor: pointer;
 }
 
@@ -104,7 +105,7 @@ html {
     line-height: 30px;
     font-size: 29px;
     position: relative;
-    top: 6px;
+    top: 5px;
 	color: aliceblue;
 }
 
@@ -117,6 +118,7 @@ button {
 	width: 25px;
 	margin: 4px;
 	border-top: 3px solid #c1c1c1;
+	font-size: 15px;
 }
 
 button:hover {
@@ -128,7 +130,7 @@ button:hover {
     line-height: 22px;
     font-size: 22px;
     position: relative;
-    top: 3px;
+    top: 2px;
     width: 32px;
     border-top: none;
     border: none;
