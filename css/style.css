@@ -77,6 +77,9 @@ html {
   border-radius: 3px;
   border: 2px solid gray;
   margin: 5px;
+  font-size: 20px;
+  text-align: center;
+  line-height: 27px;
 }
 
 .current-round .one-letter {

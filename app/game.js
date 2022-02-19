@@ -97,25 +97,51 @@ class Game {
       this.currentlyKeyboard = this.alphabet;
 
       this.level = 5;
+      this.leftEmpty = this.level;
       this.currentWord = [];
       const {word, category} = this.words5[Math.floor(Math.random()*this.words5.length)];
       this.categoryWrapper.innerHTML = 'KATEGORIA:  ' + category;
       this.guessWord = new GuessWord(word, this.level);
-      console.log(this.guessWord.word);
-      console.log(this.guessWord.level);
+      // console.log(this.guessWord.word);
+      // console.log(this.guessWord.level);
     }
     
     writeLetter(letter, element, index) {
         // console.log(letter.charCodeAt());
-        console.log(letter);
+        // console.log(letter);
         // console.log(element);
-        if (index%2 == 1) {
-        this.currentlyKeyboard[index].stateChar = 'red';
-        element.classList.add('red'); 
-      } else {
-        this.currentlyKeyboard[index].stateChar = 'green';
-        element.classList.add('green');
-        }
+        // console.log(index);
+        const activeLetter = document.querySelector('div.current-letter');
+        let position = this.currentWord.indexOf(activeLetter); 
+        if (this.currentWord[position].innerHTML == "") this.leftEmpty -= 1;
+        console.log(this.leftEmpty);
+        activeLetter.innerHTML = letter;
+        // if (this.currentWord[position].innerHTML != "") this.leftEmpty -= 1;
+        // let position = this.currentWord.indexOf(activeLetter); 
+        // if (this.currentWord[position].innerHTML != "") this.leftEmpty -= 1;
+        if (this.leftEmpty > 0) {
+            if (position == this.level - 1) position = 0;
+
+            while (this.currentWord[position].innerHTML != "") {
+              // console.log(this.leftEmpty);
+              position += 1;
+              if (position == this.level) position = 0;
+              // position += 1;
+            }
+            // console.log(position);
+            activeLetter.classList.remove('current-letter');
+            this.currentWord[position].classList.add('current-letter');
+      }
+        // this.leftEmpty -= 1;
+        // console.log(this.leftEmpty);
+        // console.log(this.currentWord[position]);
+      //   if (index%2 == 1) {
+      //   this.currentlyKeyboard[index].stateChar = 'red';
+      //   element.classList.add('red'); 
+      // } else {
+      //   this.currentlyKeyboard[index].stateChar = 'green';
+      //   element.classList.add('green');
+      //   }
     }
 
     changeKeyboard() {
