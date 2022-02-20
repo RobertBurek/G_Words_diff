@@ -158,7 +158,7 @@ class Game {
         this.createKeyboard(this.currentlyKeyboard, this.keyboard1, this.keyboard2, this.keyboard3, this.keyboard4);
     }
     
-    writeLetter(oneChar, index) {
+    writeLetter(oneChar) {
         // console.log(letter.charCodeAt());
         // console.log(letter);
         // console.log(element);
@@ -218,7 +218,7 @@ class Game {
         const button = document.createElement("button");
         button.className = lettersCheme[i].stateChar;
         button.innerHTML = String.fromCharCode(lettersCheme[i].numberChar);
-        button.addEventListener('click', () => this.writeLetter(lettersCheme[i], i));
+        button.addEventListener('click', () => this.writeLetter(lettersCheme[i]));
         keyboard1.appendChild(button);
       }
       for (let i = 10; i < 19; i++) {
@@ -226,7 +226,7 @@ class Game {
         const button = document.createElement("button");
         button.className = lettersCheme[i].stateChar;
         button.innerHTML = String.fromCharCode(lettersCheme[i].numberChar);
-        button.addEventListener('click', () => this.writeLetter(lettersCheme[i], i));
+        button.addEventListener('click', () => this.writeLetter(lettersCheme[i]));
         keyboard2.appendChild(button);
       }
       const divKeyboard = document.createElement("div");
@@ -243,20 +243,20 @@ class Game {
         const button = document.createElement("button");
         button.className = lettersCheme[i].stateChar;
         button.innerHTML = String.fromCharCode(lettersCheme[i].numberChar);
-        button.addEventListener('click', () => this.writeLetter(lettersCheme[i], i));
+        button.addEventListener('click', () => this.writeLetter(lettersCheme[i]));
         keyboard3.appendChild(button);
       }
       const divBackspace = document.createElement("div");
       divBackspace.className = 'back-space';
       divBackspace.innerHTML = '<i class="fas fa-long-arrow-alt-left"></i>';
-      divBackspace.addEventListener('click', () => this.writeLetter(divBackspace, 10));
+      divBackspace.addEventListener('click', () => this.writeLetter(new CharKeyboard(32, 'normal')));
       keyboard3.appendChild(divBackspace);
       for (let i = 26; i < 35; i++) {
         // const letter = String.fromCharCode(lettersCheme[i].numberChar);
         const button = document.createElement("button");
         button.className = lettersCheme[i].stateChar;
         button.innerHTML = String.fromCharCode(lettersCheme[i].numberChar);
-        button.addEventListener('click', () => this.writeLetter(lettersCheme[i], i));
+        button.addEventListener('click', () => this.writeLetter(lettersCheme[i]));
         keyboard4.appendChild(button);
       }
     }
