@@ -98,31 +98,43 @@ class Game {
 
       this.level = 5;
       this.leftEmpty = this.level;
-      this.currentWord = [];
+      this.currentLine = [];
       const {word, category} = this.words5[Math.floor(Math.random()*this.words5.length)];
       this.categoryWrapper.innerHTML = 'KATEGORIA:  ' + category;
       this.guessWord = new GuessWord(word, this.level);
+      this.currentWord = new Array(this.level);
       // console.log(this.guessWord.word);
       // console.log(this.guessWord.level);
     }
+
+    checkWord() {
+      console.log(this.currentLine);
+      this.currentWord.forEach(element => {
+        element.stateChar = 'red';
+      });
+      this.createKeyboard(this.currentlyKeyboard, this.keyboard1, this.keyboard2, this.keyboard3, this.keyboard4);
+    }
     
-    writeLetter(letter, element, index) {
+    writeLetter(oneChar, index) {
         // console.log(letter.charCodeAt());
         // console.log(letter);
         // console.log(element);
         // console.log(index);
         const activeLetter = document.querySelector('div.current-letter');
-        let position = this.currentWord.indexOf(activeLetter); 
-        if (this.currentWord[position].innerHTML == "") this.leftEmpty -= 1;
+        let position = this.currentLine.indexOf(activeLetter); 
+        if (this.currentLine[position].innerHTML == "") this.leftEmpty -= 1;
         // console.log(this.leftEmpty);
-        activeLetter.innerHTML = letter;
-        // if (this.currentWord[position].innerHTML != "") this.leftEmpty -= 1;
-        // let position = this.currentWord.indexOf(activeLetter); 
-        // if (this.currentWord[position].innerHTML != "") this.leftEmpty -= 1;
+        activeLetter.innerHTML = String.fromCharCode(oneChar.numberChar);
+        this.currentWord[position] = oneChar;
+        // oneChar.stateChar = 'red';
+        // console.log(this.currentWord);
+        // if (this.currentLine[position].innerHTML != "") this.leftEmpty -= 1;
+        // let position = this.currentLine.indexOf(activeLetter); 
+        // if (this.currentLine[position].innerHTML != "") this.leftEmpty -= 1;
         if (this.leftEmpty > 0) {
             if (position == this.level - 1) position = 0;
 
-            while (this.currentWord[position].innerHTML != "") {
+            while (this.currentLine[position].innerHTML != "") {
               // console.log(this.leftEmpty);
               position += 1;
               if (position == this.level) position = 0;
@@ -130,14 +142,15 @@ class Game {
             }
             // console.log(position);
             activeLetter.classList.remove('current-letter');
-            this.currentWord[position].classList.add('current-letter');
+            this.currentLine[position].classList.add('current-letter');
       } else {
         activeLetter.classList.remove('current-letter');
+        this.checkWord();
         this.createActiveRound();
       }
         // this.leftEmpty -= 1;
         // console.log(this.leftEmpty);
-        // console.log(this.currentWord[position]);
+        // console.log(this.currentLine[position]);
       //   if (index%2 == 1) {
       //   this.currentlyKeyboard[index].stateChar = 'red';
       //   element.classList.add('red'); 
@@ -158,19 +171,19 @@ class Game {
       keyboard3.innerHTML = "";
       keyboard4.innerHTML = "";
       for (let i = 0; i < 10; i++) {
-        const letter = String.fromCharCode(lettersCheme[i].numberChar);
+        // const letter = String.fromCharCode(lettersCheme[i].numberChar);
         const button = document.createElement("button");
         button.className = lettersCheme[i].stateChar;
-        button.innerHTML = letter;
-        button.addEventListener('click', () => this.writeLetter(letter, button, i));
+        button.innerHTML = String.fromCharCode(lettersCheme[i].numberChar);
+        button.addEventListener('click', () => this.writeLetter(lettersCheme[i], i));
         keyboard1.appendChild(button);
       }
       for (let i = 10; i < 19; i++) {
-        const letter = String.fromCharCode(lettersCheme[i].numberChar);
+        // const letter = String.fromCharCode(lettersCheme[i].numberChar);
         const button = document.createElement("button");
         button.className = lettersCheme[i].stateChar;
-        button.innerHTML = letter;
-        button.addEventListener('click', () => this.writeLetter(letter, button, i));
+        button.innerHTML = String.fromCharCode(lettersCheme[i].numberChar);
+        button.addEventListener('click', () => this.writeLetter(lettersCheme[i], i));
         keyboard2.appendChild(button);
       }
       const divKeyboard = document.createElement("div");
@@ -183,32 +196,32 @@ class Game {
       });
       keyboard3.appendChild(divKeyboard);
       for (let i = 19; i < 26; i++) {
-        const letter = String.fromCharCode(lettersCheme[i].numberChar);
+        // const letter = String.fromCharCode(lettersCheme[i].numberChar);
         const button = document.createElement("button");
         button.className = lettersCheme[i].stateChar;
-        button.innerHTML = letter;
-        button.addEventListener('click', () => this.writeLetter(letter, button, i));
+        button.innerHTML = String.fromCharCode(lettersCheme[i].numberChar);
+        button.addEventListener('click', () => this.writeLetter(lettersCheme[i], i));
         keyboard3.appendChild(button);
       }
       const divBackspace = document.createElement("div");
       divBackspace.className = 'back-space';
       divBackspace.innerHTML = '<i class="fas fa-long-arrow-alt-left"></i>';
-      divBackspace.addEventListener('click', () => this.writeLetter(letter, divBackspace, 10));
+      divBackspace.addEventListener('click', () => this.writeLetter(divBackspace, 10));
       keyboard3.appendChild(divBackspace);
       for (let i = 26; i < 35; i++) {
-        const letter = String.fromCharCode(lettersCheme[i].numberChar);
+        // const letter = String.fromCharCode(lettersCheme[i].numberChar);
         const button = document.createElement("button");
         button.className = lettersCheme[i].stateChar;
-        button.innerHTML = letter;
-        button.addEventListener('click', () => this.writeLetter(letter, button, i));
+        button.innerHTML = String.fromCharCode(lettersCheme[i].numberChar);
+        button.addEventListener('click', () => this.writeLetter(lettersCheme[i], i));
         keyboard4.appendChild(button);
       }
     }
 
-
+    
     changeLetter(element) {
-      this.currentWord.forEach(element => {
-        element.classList.remove('current-letter')
+      this.currentLine.forEach(el => {
+        el.classList.remove('current-letter')
       });
       element.classList.add('current-letter');
     }
@@ -224,7 +237,7 @@ class Game {
                 else divLetter.className = 'one-letter';
                 if (i == 0) {
                   divLetter.addEventListener('click', () => this.changeLetter(divLetter));
-                  this.currentWord.push(divLetter);
+                  this.currentLine.push(divLetter);
                 }
                 divLine.appendChild(divLetter);
             }
@@ -240,27 +253,26 @@ class Game {
         }
     }
 
+
     createActiveRound() {
-        this.currentWord.forEach(element => {
-            element.removeEventListener('click', () => this.changeLetter(element));
-        });
         let listRounds = document.querySelectorAll('#wordGame .line');
         listRounds = [...listRounds];
         // console.log(listRounds[0]);
         for (let i = 0; i < listRounds.length; i++) {
             if (listRounds[i].className == "line current-round") {
+
                 listRounds[i].classList.remove("current-round");
                 listRounds[i].classList.remove("current-round");
                 listRounds[i + 1].classList.add("current-round");
                 listRounds[i + 1].firstChild.classList.add("current-letter");
-                this.currentWord = document.querySelectorAll('.current-round .one-letter');
-                // console.log(this.currentWord);
-                this.currentWord = [...this.currentWord];
-                this.currentWord.forEach(element => {
+                this.currentLine = document.querySelectorAll('.current-round .one-letter');
+                // console.log(this.currentLine);
+                this.currentLine = [...this.currentLine];
+                this.currentLine.forEach(element => {
                     element.addEventListener('click', () => this.changeLetter(element));
                 });
                 this.leftEmpty = this.level;
-                // console.log(this.currentWord);
+                // console.log(this.currentLine);
                 break;
             }
         }
@@ -274,7 +286,7 @@ class Game {
         //         else divLetter.className = 'one-letter';
         //         if (i == 0) {
         //           divLetter.addEventListener('click', () => this.changeLetter(divLetter));
-        //           this.currentWord.push(divLetter);
+        //           this.currentLine.push(divLetter);
         //         }
         //         divLine.appendChild(divLetter);
         //     }
@@ -293,7 +305,7 @@ class Game {
     //             else divLetter.className = 'one-letter';
     //             if (i == currentRound) {
     //               divLetter.addEventListener('click', () => this.changeLetter(divLetter));
-    //               this.currentWord.push(divLetter);
+    //               this.currentLine.push(divLetter);
     //             }
     //             divLine.appendChild(divLetter);
     //         }

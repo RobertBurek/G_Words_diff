@@ -79,12 +79,13 @@ html {
   margin: 5px;
   font-size: 20px;
   text-align: center;
-  line-height: 25px;
+  line-height: 28px;
   font-weight: 600;
 }
 
 .current-round .one-letter {
   border: 2px solid white;
+  cursor: pointer;
 }
 
 .current-round .current-letter {
