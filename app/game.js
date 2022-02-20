@@ -155,10 +155,7 @@ class Game {
     
 
   writeLetter(oneChar) {
-    // console.log(oneChar);
     const activeLetter = document.querySelector('div.current-letter');
-    // let position = this.currentLine.indexOf(activeLetter); 
-    if (oneChar.numberChar != 0) {
       let position = this.currentLine.indexOf(activeLetter); 
       if (this.currentLine[position].innerHTML == "") this.leftEmpty -= 1;
       activeLetter.innerHTML = String.fromCharCode(oneChar.numberChar);
@@ -176,11 +173,8 @@ class Game {
           this.checkWord();
           this.createActiveRound();
         }
-    } else {
-      if (activeLetter.innerHTML != "") this.leftEmpty += 1;
-        activeLetter.innerHTML = String.fromCharCode(oneChar.numberChar);
-      }
     }
+
 
     delLetter() {
       const activeLetter = document.querySelector('div.current-letter');
