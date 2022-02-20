@@ -172,3 +172,18 @@ button:hover {
 	background-color: gray;
 	color: #c1c1c1;
 }
+
+.settings {
+	font-size: 17px;
+	font-weight: 600;
+	letter-spacing: 2px;
+}
+
+.setting-letter {
+ margin: 5px;
+}
+
+.setting-letter:hover {
+	cursor: pointer;
+	color: #959499;
+}

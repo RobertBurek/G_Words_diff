@@ -1,4 +1,17 @@
 // import { GuessWord } from "./guessWord.js";
+const setting5Letters = document.getElementById('5letters');
+const setting6Letters = document.getElementById('6letters');
+console.log(setting5Letters);
+console.log(setting6Letters);
+setting5Letters.addEventListener('click', ()=> {
+  game.level = 5;
+  game.run(5);
+});
+setting6Letters.addEventListener('click', ()=> {
+  game.level = 6;
+  game.run(6);
+});
+
 
 class CharKeyboard {
       constructor(numberChar, stateChar) {
@@ -264,6 +277,7 @@ class Game {
     }
 
     createStartPlaceGame(level, wrapper) {
+      wrapper.innerHTML = "";
         for ( let i = 0; i < level + 1; i++){
             const divLine = document.createElement("div");
             if (i == 0) divLine.className = 'line current-round';
@@ -350,7 +364,8 @@ class Game {
     //     }
     // }
 
-    run() {
+    run(quantity) {
+      this.level = quantity;
         this.createKeyboard(this.currentlyKeyboard, this.keyboard1, this.keyboard2, this.keyboard3, this.keyboard4);
         // console.log(this.wordGameWrapper);
         // this.createStartPlaceGame(this.level, this.wordGameWrapper, 5);
