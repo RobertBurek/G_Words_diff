@@ -155,7 +155,12 @@ class Game {
       this.currentlyKeyboard = this.alphabet;
       this.currentWord = new Array(level);
       // console.log(this.currentWord);
-
+    //   $.ajax({
+    //     url: "http://robertburek.pl/words/sendFrom.php"
+    //     });
+    // $.get("http://robertburek.pl/words/sendFrom.php").done(res => {
+    //       console.log(res);
+    //   });
     }
 
     checkWord() {
