@@ -182,6 +182,25 @@ class Game {
       }
     }
 
+    delLetter() {
+      const activeLetter = document.querySelector('div.current-letter');
+      if (activeLetter.innerHTML != "") {
+        this.leftEmpty += 1;
+        activeLetter.innerHTML = String.fromCharCode(0);
+      } else {
+        let position = this.currentLine.indexOf(activeLetter);
+        if (position == 0) position = this.level - 1;
+        else position -= 1;
+        activeLetter.classList.remove('current-letter');
+        this.currentLine[position].classList.add('current-letter');
+        if (this.currentLine[position].innerHTML != "") {
+          this.leftEmpty += 1;
+          this.currentLine[position].innerHTML = String.fromCharCode(0);
+        }
+      }
+    }
+
+
 
     changeKeyboard() {
         if (this.currentlyKeyboard == this.alphabet) this.currentlyKeyboard = this.qwerty;
@@ -230,7 +249,7 @@ class Game {
       const divBackspace = document.createElement("div");
       divBackspace.className = 'back-space';
       divBackspace.innerHTML = '<i class="fas fa-long-arrow-alt-left"></i>';
-      divBackspace.addEventListener('click', () => this.writeLetter(new CharKeyboard(0, 'normal')));
+      divBackspace.addEventListener('click', () => this.delLetter());
       keyboard3.appendChild(divBackspace);
       for (let i = 26; i < 35; i++) {
         // const letter = String.fromCharCode(lettersCheme[i].numberChar);
