@@ -119,7 +119,6 @@ class Game {
         const charWord = this.guessWord.word.split("");
         const parentLine = this.currentLine[0].parentNode;
         this.clearLine(this.currentLine);
-
         for (let i = 0; i < this.level; i++) {
             this.currentWord[i].stateChar = 'not-char';
             let answer = "";
@@ -130,9 +129,8 @@ class Game {
                 divLetter.innerHTML = this.currentLine[i].innerHTML;
                 parentLine.appendChild(divLetter);
                 answer = 'success';
-                console.log(`${this.currentLine[i].innerHTML} - ${charWord[i]}  ==>  ${answer}`);
+                // console.log(`${this.currentLine[i].innerHTML} - ${charWord[i]}  ==>  ${answer}`);
                 continue;
-                // console.log(`${this.currentLine[i].innerHTML} - ${charWord[i]}    są równe`);
                 } else {
                     for (let j = 0; j < this.level; j++) {
                         if (this.currentLine[i].innerHTML == charWord[j]) {
@@ -150,33 +148,37 @@ class Game {
                     divLetter.innerHTML = this.currentLine[i].innerHTML;
                     parentLine.appendChild(divLetter);
                 }
-            console.log(`${this.currentLine[i].innerHTML} - ${charWord[i]}  ==>  ${answer}`);
+            // console.log(`${this.currentLine[i].innerHTML} - ${charWord[i]}  ==>  ${answer}`);
         }
-        //  this.currentWord.forEach(element => {
-        //     element.stateChar = 'half-success';
-        // });
         this.createKeyboard(this.currentlyKeyboard, this.keyboard1, this.keyboard2, this.keyboard3, this.keyboard4);
     }
     
-    
-    writeLetter(oneChar) {
-        const activeLetter = document.querySelector('div.current-letter');
-        let position = this.currentLine.indexOf(activeLetter); 
-        if (this.currentLine[position].innerHTML == "") this.leftEmpty -= 1;
-        activeLetter.innerHTML = String.fromCharCode(oneChar.numberChar);
-        this.currentWord[position] = oneChar;
-        if (this.leftEmpty > 0) {
-            if (position == this.level - 1) position = 0;
-            while (this.currentLine[position].innerHTML != "") {
-              position += 1;
-              if (position == this.level) position = 0;
-            }
-            activeLetter.classList.remove('current-letter');
-            this.currentLine[position].classList.add('current-letter');
-      } else {
+
+  writeLetter(oneChar) {
+    // console.log(oneChar);
+    const activeLetter = document.querySelector('div.current-letter');
+    // let position = this.currentLine.indexOf(activeLetter); 
+    if (oneChar.numberChar != 0) {
+      let position = this.currentLine.indexOf(activeLetter); 
+      if (this.currentLine[position].innerHTML == "") this.leftEmpty -= 1;
+      activeLetter.innerHTML = String.fromCharCode(oneChar.numberChar);
+      this.currentWord[position] = oneChar;
+      if (this.leftEmpty > 0) {
+        if (position == this.level - 1) position = 0;
+        while (this.currentLine[position].innerHTML != "") {
+          position += 1;
+          if (position == this.level) position = 0;
+        }
         activeLetter.classList.remove('current-letter');
-        this.checkWord();
-        this.createActiveRound();
+        this.currentLine[position].classList.add('current-letter');
+      } else {
+          activeLetter.classList.remove('current-letter');
+          this.checkWord();
+          this.createActiveRound();
+        }
+    } else {
+      if (activeLetter.innerHTML != "") this.leftEmpty += 1;
+        activeLetter.innerHTML = String.fromCharCode(oneChar.numberChar);
       }
     }
 
@@ -228,7 +230,7 @@ class Game {
       const divBackspace = document.createElement("div");
       divBackspace.className = 'back-space';
       divBackspace.innerHTML = '<i class="fas fa-long-arrow-alt-left"></i>';
-      divBackspace.addEventListener('click', () => this.writeLetter(new CharKeyboard(32, 'normal')));
+      divBackspace.addEventListener('click', () => this.writeLetter(new CharKeyboard(0, 'normal')));
       keyboard3.appendChild(divBackspace);
       for (let i = 26; i < 35; i++) {
         // const letter = String.fromCharCode(lettersCheme[i].numberChar);
