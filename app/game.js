@@ -158,32 +158,19 @@ class Game {
         this.createKeyboard(this.currentlyKeyboard, this.keyboard1, this.keyboard2, this.keyboard3, this.keyboard4);
     }
     
+    
     writeLetter(oneChar) {
-        // console.log(letter.charCodeAt());
-        // console.log(letter);
-        // console.log(element);
-        // console.log(index);
         const activeLetter = document.querySelector('div.current-letter');
         let position = this.currentLine.indexOf(activeLetter); 
         if (this.currentLine[position].innerHTML == "") this.leftEmpty -= 1;
-        // console.log(this.leftEmpty);
         activeLetter.innerHTML = String.fromCharCode(oneChar.numberChar);
         this.currentWord[position] = oneChar;
-        // oneChar.stateChar = 'red';
-        // console.log(this.currentWord);
-        // if (this.currentLine[position].innerHTML != "") this.leftEmpty -= 1;
-        // let position = this.currentLine.indexOf(activeLetter); 
-        // if (this.currentLine[position].innerHTML != "") this.leftEmpty -= 1;
         if (this.leftEmpty > 0) {
             if (position == this.level - 1) position = 0;
-
             while (this.currentLine[position].innerHTML != "") {
-              // console.log(this.leftEmpty);
               position += 1;
               if (position == this.level) position = 0;
-              // position += 1;
             }
-            // console.log(position);
             activeLetter.classList.remove('current-letter');
             this.currentLine[position].classList.add('current-letter');
       } else {
@@ -191,22 +178,14 @@ class Game {
         this.checkWord();
         this.createActiveRound();
       }
-        // this.leftEmpty -= 1;
-        // console.log(this.leftEmpty);
-        // console.log(this.currentLine[position]);
-      //   if (index%2 == 1) {
-      //   this.currentlyKeyboard[index].stateChar = 'red';
-      //   element.classList.add('red'); 
-      // } else {
-      //   this.currentlyKeyboard[index].stateChar = 'green';
-      //   element.classList.add('green');
-      //   }
     }
+
 
     changeKeyboard() {
         if (this.currentlyKeyboard == this.alphabet) this.currentlyKeyboard = this.qwerty;
         else this.currentlyKeyboard = this.alphabet;
     }
+
 
      createKeyboard(lettersCheme, keyboard1, keyboard2, keyboard3, keyboard4) {
       keyboard1.innerHTML = "";
