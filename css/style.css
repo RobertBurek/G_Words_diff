@@ -95,6 +95,9 @@ html {
 
 .category {
   text-align: center;
+  font-size: 17px;
+  font-weight: 600;
+  letter-spacing: 1px;
 }
 
 .letters {
@@ -166,17 +169,22 @@ button:hover {
   text-align: center;
 }
 
-.red {
-  background-color: tomato;
+.half-success {
+  background-color: yellow;
   color: #252527;
 }
 
-.green {
+.success {
   background-color: lime;
   color: #252527;
 }
 
 .normal {
   background-color: none;
+}
+
+.not-char {
+  background-color: gray;
+  color: #c1c1c1;
 }
 /*# sourceMappingURL=style.css.map */

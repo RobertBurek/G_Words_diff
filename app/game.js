@@ -100,19 +100,62 @@ class Game {
       this.leftEmpty = this.level;
       this.currentLine = [];
       const {word, category} = this.words5[Math.floor(Math.random()*this.words5.length)];
+    //   const {word, category} = {word:'BANAN', category: 'Jedzenie'};
       this.categoryWrapper.innerHTML = 'KATEGORIA:  ' + category;
+    //   this.categoryWrapper.innerHTML = 'KATEGORIA:  ' + word;
       this.guessWord = new GuessWord(word, this.level);
       this.currentWord = new Array(this.level);
       // console.log(this.guessWord.word);
       // console.log(this.guessWord.level);
     }
 
+    clearLine(line) {
+        line.forEach(el => {
+           el.style.display = 'none';
+        });
+    }
+
     checkWord() {
-      console.log(this.currentLine);
-      this.currentWord.forEach(element => {
-        element.stateChar = 'red';
-      });
-      this.createKeyboard(this.currentlyKeyboard, this.keyboard1, this.keyboard2, this.keyboard3, this.keyboard4);
+        const charWord = this.guessWord.word.split("");
+        const parentLine = this.currentLine[0].parentNode;
+        this.clearLine(this.currentLine);
+
+        for (let i = 0; i < this.level; i++) {
+            this.currentWord[i].stateChar = 'not-char';
+            let answer = "";
+            if (this.currentLine[i].innerHTML == charWord[i]) {
+                this.currentWord[i].stateChar = 'success';
+                const divLetter = document.createElement("div");
+                divLetter.className = 'one-letter success';
+                divLetter.innerHTML = this.currentLine[i].innerHTML;
+                parentLine.appendChild(divLetter);
+                answer = 'success';
+                console.log(`${this.currentLine[i].innerHTML} - ${charWord[i]}  ==>  ${answer}`);
+                continue;
+                // console.log(`${this.currentLine[i].innerHTML} - ${charWord[i]}    są równe`);
+                } else {
+                    for (let j = 0; j < this.level; j++) {
+                        if (this.currentLine[i].innerHTML == charWord[j]) {
+                            // console.log('half-success');
+                            answer = 'half-success';
+                            this.currentWord[i].stateChar = 'half-success';
+                            break;
+                        } else {
+                            // console.log('not-char');
+                            answer = 'not-char';
+                        }
+                    }
+                    const divLetter = document.createElement("div");
+                    divLetter.className = `one-letter ${answer}`;
+                    divLetter.innerHTML = this.currentLine[i].innerHTML;
+                    parentLine.appendChild(divLetter);
+                }
+            console.log(`${this.currentLine[i].innerHTML} - ${charWord[i]}  ==>  ${answer}`);
+        }
+        //  this.currentWord.forEach(element => {
+        //     element.stateChar = 'half-success';
+        // });
+        this.createKeyboard(this.currentlyKeyboard, this.keyboard1, this.keyboard2, this.keyboard3, this.keyboard4);
     }
     
     writeLetter(oneChar, index) {
