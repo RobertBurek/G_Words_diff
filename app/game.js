@@ -19,13 +19,6 @@ class CharKeyboard {
       }
 }
 
-// class GuessWord {
-//   constructor (word, level) {
-//       this.word = word;
-//       this.level = level;
-//   }
-// }
-
 
 class Game {
 
@@ -48,23 +41,23 @@ class Game {
         word: 'POTOK',
         category: 'Przyroda'
     },{
-      word: 'WANNA',
-      category: 'Rzecz'
+        word: 'WANNA',
+        category: 'Rzecz'
     },{
-      word: 'WÓZEK',
-      category: 'Rzecz'
+        word: 'WÓZEK',
+        category: 'Rzecz'
     },{
-      word: 'PAJĄK',
-      category: 'Przyroda'
+        word: 'PAJĄK',
+        category: 'Przyroda'
     },{
-      word: 'PERŁA',
-      category: 'Rzecz'
+        word: 'PERŁA',
+        category: 'Rzecz'
     },{
-      word: 'TORBA',
-      category: 'Rzecz'
+        word: 'TORBA',
+        category: 'Rzecz'
     },{
-      word: 'TRAWA',
-      category: 'Przyroda'
+        word: 'TRAWA',
+        category: 'Przyroda'
     },{
         word: 'FARBA',
         category: 'Rzecz'
@@ -107,36 +100,17 @@ class Game {
         80, 81, 82, 83,  84, 85, 86, 87, 88, 89, 90, 211, 260, 262, 280, 321, 323, 346, 377, 379];
       //15  16   17  18   19 20   21 22  23  24  25   26   27   28   29   30   31  32  33    34  
       this.charsObject;
-      //  = [];
-      // for (let i = 0; i < this.numbersChar.length; i++ ){
-      //   this.charsObject.push(new CharKeyboard(this.numbersChar[i], 'normal'));
-      // }
-      this.alphabet; //= [this.charsObject[0],  this.charsObject[27], this.charsObject[1], this.charsObject[2], this.charsObject[28], this.charsObject[3], this.charsObject[4], this.charsObject[29], 
-                  // this.charsObject[5], this.charsObject[6], this.charsObject[7], this.charsObject[8], this.charsObject[9], this.charsObject[10], this.charsObject[11], this.charsObject[30], 
-                  // this.charsObject[12], this.charsObject[13], this.charsObject[31], this.charsObject[14], this.charsObject[26], this.charsObject[15], this.charsObject[16], this.charsObject[17], 
-                  // this.charsObject[18], this.charsObject[32], this.charsObject[19], this.charsObject[20], this.charsObject[21], this.charsObject[22], this.charsObject[23], this.charsObject[24], 
-                  // this.charsObject[25], this.charsObject[33], this.charsObject[34]]
-      this.qwerty; //= [this.charsObject[16],  this.charsObject[22], this.charsObject[4], this.charsObject[17], this.charsObject[19], this.charsObject[24], this.charsObject[20], this.charsObject[8], 
-                // this.charsObject[14], this.charsObject[15], this.charsObject[0], this.charsObject[18], this.charsObject[3], this.charsObject[5],this.charsObject[6], this.charsObject[7], 
-                // this.charsObject[9], this.charsObject[10], this.charsObject[11], this.charsObject[25], this.charsObject[23], this.charsObject[2], this.charsObject[21], this.charsObject[1],
-                // this.charsObject[13], this.charsObject[12], this.charsObject[27], this.charsObject[28], this.charsObject[29], this.charsObject[30], this.charsObject[31], this.charsObject[26],
-                // this.charsObject[32], this.charsObject[33], this.charsObject[34]]
-      this.currentlyKeyboard;// = this.alphabet;
-
+      this.alphabet;
+      this.qwerty;
+      this.currentlyKeyboard;
       this.level;
-      // this.leftEmpty = this.level;
       this.leftEmpty;
       this.currentLine = [];
-    //   const {word, category} = this.words5[Math.floor(Math.random()*this.words5.length)];
-    //   const {word, category} = {word:'BANAN', category: 'Jedzenie'};
-      // this.categoryWrapper.innerHTML = 'KATEGORIA:  ' + category;
-    //   this.categoryWrapper.innerHTML = 'KATEGORIA:  ' + word;
-      this.guessWord;// = new GuessWord(word, this.level);
-      this.guessWordChars;// = new GuessWord(word, this.level);
-      this.currentWord;// = new Array(this.level);
-      // console.log(this.guessWord.word);
-      // console.log(this.guessWord.level);
+      this.guessWord;
+      this.guessWordChars;
+      this.currentWord;
     }
+
 
     clearLine(line) {
         line.forEach(el => {
@@ -144,22 +118,16 @@ class Game {
         });
     }
 
+
     startParameters(level) {
       this.level = level;
       this.leftEmpty = level;
       let words;
-      if (level == 5) words = this.words5[Math.floor(Math.random()*this.words5.length)];  //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-      // if (level == 5) words = {word:'BANAN', category:'nic'}; //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
+      if (level == 5) words = this.words5[Math.floor(Math.random()*this.words5.length)];
       if (level == 6) words = this.words6[Math.floor(Math.random()*this.words6.length)];
 
       this.guessWord = words.word;
-      // this.guessWordChars = words.word.split('');
-      // console.log(words);
-      //   const {word, category} = {word:'BANAN', category: 'Jedzenie'};
       this.categoryWrapper.innerHTML = 'KATEGORIA:  ' + words.category;
-      //   this.categoryWrapper.innerHTML = 'KATEGORIA:  ' + word;
-      // this.guessWord = new GuessWord(words.word, level);
 
       this.charsObject = [];
       for (let i = 0; i < this.numbersChar.length; i++ ){
@@ -177,14 +145,8 @@ class Game {
                     this.charsObject[32], this.charsObject[33], this.charsObject[34]]
       this.currentlyKeyboard = this.alphabet;
       this.currentWord = new Array(level);
-      // console.log(this.currentWord);
-    //   $.ajax({
-    //     url: 'http://robertburek.pl/words/sendFrom.php'
-    //     });
-    // $.get('http://robertburek.pl/words/sendFrom.php').done(res => {
-    //       console.log(res);
-    //   });
     }
+
 
     checkWord() {
         let resultCheckedChars = new Array(this.level);
@@ -192,16 +154,7 @@ class Game {
         this.currentLine.forEach(el => {
             tempCurrentLine.push(el.innerHTML);
         });
-        // console.log(tempCurrentLine);
-
-        // let tempCurrentWord = [];
-        // this.currentWord.forEach(el => {
-        //     tempCurrentWord.push(el.stateChar);
-        // });
-        // console.log(tempCurrentWord);
         let guessWordChars = this.guessWord.split('');
-        // console.log(guessWordChars);
-        // const parentLine = this.currentLine[0].parentNode; 
         this.clearLine(this.currentLine);
         for (let i = 0; i < this.level; i++) {
             if (tempCurrentLine[i] == guessWordChars[i]) {
@@ -210,7 +163,6 @@ class Game {
                 resultCheckedChars[i] = 'success';
                 this.currentWord[i].stateChar = 'success';
             }}
-
         for (let i = 0; i < this.level; i++) {
             if (tempCurrentLine[i] != '!') {
                 for (let j = 0; j < this.level; j++) {
@@ -221,30 +173,29 @@ class Game {
                         break;
                     } else {
                         resultCheckedChars[i] = 'not-char';
-                        // if ((this.currentWord[i].stateChar != 'success')||(this.currentWord[i].stateChar != 'half-success')) this.currentWord[i].stateChar = 'not-char';
                     }
                 }
-            // console.log(`${this.currentLine[i].innerHTML} - ${guessWordchars[i]}  ==>  ${answer}`);
             }
         }
-        // console.log(resultCheckedChars);
-        // console.log(this.currentWord);
-        const parentLine = this.currentLine[0].parentNode;
-        for (let i = 0; i < this.level; i++) {
-        if (this.currentWord[i].stateChar != 'success')
-          if (this.currentWord[i].stateChar != 'half-success') {
-            this.currentWord[i].stateChar = 'not-char';
-        } 
-        // this.currentWord[i].stateChar = resultCheckedChars[i];
-        const divLetter = document.createElement('div');
-        divLetter.className = `one-letter ${resultCheckedChars[i]}`;
-        divLetter.innerHTML = this.currentLine[i].innerHTML;
-        parentLine.appendChild(divLetter);
-        }
-
+        this.newViewLine(resultCheckedChars);
         this.createKeyboard(this.currentlyKeyboard, this.keyboard1, this.keyboard2, this.keyboard3, this.keyboard4);
     }
     
+
+  newViewLine(resultCheckedChars) {
+    const parentLine = this.currentLine[0].parentNode;
+    for (let i = 0; i < this.level; i++) {
+      if (this.currentWord[i].stateChar != 'success')
+        if (this.currentWord[i].stateChar != 'half-success') {
+          this.currentWord[i].stateChar = 'not-char';
+        }
+      const divLetter = document.createElement('div');
+      divLetter.className = `one-letter ${resultCheckedChars[i]}`;
+      divLetter.innerHTML = this.currentLine[i].innerHTML;
+      parentLine.appendChild(divLetter);
+    }
+  }
+
 
   writeLetter(oneChar) {
     const activeLetter = document.querySelector('div.current-letter');
@@ -354,6 +305,7 @@ class Game {
       });
       element.classList.add('current-letter');
     }
+
 
     createStartPlaceGame(level, wrapper) {
       wrapper.innerHTML = '';
