@@ -1,4 +1,4 @@
-// import { GuessWord } from "./guessWord.js";
+// import { GuessWord } from './guessWord.js';
 const setting5Letters = document.getElementById('5letters');
 const setting6Letters = document.getElementById('6letters');
 setting5Letters.addEventListener('click', ()=> {
@@ -92,7 +92,7 @@ class Game {
       this.charsObject;
       //  = [];
       // for (let i = 0; i < this.numbersChar.length; i++ ){
-      //   this.charsObject.push(new CharKeyboard(this.numbersChar[i], "normal"));
+      //   this.charsObject.push(new CharKeyboard(this.numbersChar[i], 'normal'));
       // }
       this.alphabet; //= [this.charsObject[0],  this.charsObject[27], this.charsObject[1], this.charsObject[2], this.charsObject[28], this.charsObject[3], this.charsObject[4], this.charsObject[29], 
                   // this.charsObject[5], this.charsObject[6], this.charsObject[7], this.charsObject[8], this.charsObject[9], this.charsObject[10], this.charsObject[11], this.charsObject[30], 
@@ -110,11 +110,11 @@ class Game {
       // this.leftEmpty = this.level;
       this.leftEmpty;
       this.currentLine = [];
-      const {word, category} = this.words5[Math.floor(Math.random()*this.words5.length)];
+    //   const {word, category} = this.words5[Math.floor(Math.random()*this.words5.length)];
     //   const {word, category} = {word:'BANAN', category: 'Jedzenie'};
       // this.categoryWrapper.innerHTML = 'KATEGORIA:  ' + category;
     //   this.categoryWrapper.innerHTML = 'KATEGORIA:  ' + word;
-      this.guessWord = new GuessWord(word, this.level);
+      this.guessWord;// = new GuessWord(word, this.level);
       this.currentWord;// = new Array(this.level);
       // console.log(this.guessWord.word);
       // console.log(this.guessWord.level);
@@ -130,7 +130,9 @@ class Game {
       this.level = level;
       this.leftEmpty = level;
       let words;
-      if (level == 5) words = this.words5[Math.floor(Math.random()*this.words5.length)];
+    //   if (level == 5) words = this.words5[Math.floor(Math.random()*this.words5.length)];  //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+      if (level == 5) words = {word:'BANAN', category:'nic'}; //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
       if (level == 6) words = this.words6[Math.floor(Math.random()*this.words6.length)];
       // console.log(words);
       //   const {word, category} = {word:'BANAN', category: 'Jedzenie'};
@@ -140,7 +142,7 @@ class Game {
 
       this.charsObject = [];
       for (let i = 0; i < this.numbersChar.length; i++ ){
-        this.charsObject.push(new CharKeyboard(this.numbersChar[i], "normal"));
+        this.charsObject.push(new CharKeyboard(this.numbersChar[i], 'normal'));
       }
       this.alphabet = [this.charsObject[0],  this.charsObject[27], this.charsObject[1], this.charsObject[2], this.charsObject[28], this.charsObject[3], this.charsObject[4], this.charsObject[29], 
                       this.charsObject[5], this.charsObject[6], this.charsObject[7], this.charsObject[8], this.charsObject[9], this.charsObject[10], this.charsObject[11], this.charsObject[30], 
@@ -156,48 +158,64 @@ class Game {
       this.currentWord = new Array(level);
       // console.log(this.currentWord);
     //   $.ajax({
-    //     url: "http://robertburek.pl/words/sendFrom.php"
+    //     url: 'http://robertburek.pl/words/sendFrom.php'
     //     });
-    // $.get("http://robertburek.pl/words/sendFrom.php").done(res => {
+    // $.get('http://robertburek.pl/words/sendFrom.php').done(res => {
     //       console.log(res);
     //   });
     }
 
     checkWord() {
-        const charWord = this.guessWord.word.split("");
-        const parentLine = this.currentLine[0].parentNode;
+        let resultCheckedChars = new Array(this.level);
+        let tempCurrentLine = [];
+        this.currentLine.forEach(el => {
+            tempCurrentLine.push(el.innerHTML);
+        });
+        // let tempCurrentWord = [];
+        // this.currentWord.forEach(el => {
+        //     tempCurrentWord.push(el.stateChar);
+        // });
+        // console.log(tempCurrentWord);
+        let guessWordchars = this.guessWord.word.split('');
+        const parentLine = this.currentLine[0].parentNode; //usun
         this.clearLine(this.currentLine);
         for (let i = 0; i < this.level; i++) {
-            this.currentWord[i].stateChar = 'not-char';
-            let answer = "";
-            if (this.currentLine[i].innerHTML == charWord[i]) {
+
+            if (tempCurrentLine[i] == guessWordchars[i]) {
+                guessWordchars[i] = '-';
+                tempCurrentLine[i] = '!'
+                resultCheckedChars[i] = 'success';
                 this.currentWord[i].stateChar = 'success';
-                const divLetter = document.createElement("div");
-                divLetter.className = 'one-letter success';
-                divLetter.innerHTML = this.currentLine[i].innerHTML;
-                parentLine.appendChild(divLetter);
-                answer = 'success';
-                // console.log(`${this.currentLine[i].innerHTML} - ${charWord[i]}  ==>  ${answer}`);
-                continue;
-                } else {
-                    for (let j = 0; j < this.level; j++) {
-                        if (this.currentLine[i].innerHTML == charWord[j]) {
-                            // console.log('half-success');
-                            answer = 'half-success';
-                            this.currentWord[i].stateChar = 'half-success';
-                            break;
-                        } else {
-                            // console.log('not-char');
-                            answer = 'not-char';
-                        }
+                // this.currentWord[i] = new CharKeyboard(0, 'another');
+            }}
+
+        for (let i = 0; i < this.level; i++) {
+            if (tempCurrentLine[i] != '!') {
+                for (let j = 0; j < this.level; j++) {
+                    if (tempCurrentLine[i] == guessWordchars[j]) {
+                        guessWordchars[j] = '-';
+                        resultCheckedChars[i] = 'half-success';
+                        if ((this.currentWord[j].stateChar != 'success')) this.currentWord[j].stateChar = 'half-success';
+                        break;
+                    } else {
+                        resultCheckedChars[i] = 'not-char';
+                        if ((this.currentWord[j].stateChar != 'success')||(this.currentWord[j].stateChar != 'half-success')) this.currentWord[j].stateChar = 'not-char';
                     }
-                    const divLetter = document.createElement("div");
-                    divLetter.className = `one-letter ${answer}`;
-                    divLetter.innerHTML = this.currentLine[i].innerHTML;
-                    parentLine.appendChild(divLetter);
                 }
-            // console.log(`${this.currentLine[i].innerHTML} - ${charWord[i]}  ==>  ${answer}`);
+            // console.log(`${this.currentLine[i].innerHTML} - ${guessWordchars[i]}  ==>  ${answer}`);
+            }
         }
+        console.log(resultCheckedChars);
+        console.log(this.currentWord);
+        for (let i = 0; i < this.level; i++) {
+        // if (this.currentWord[i].stateChar != 'normal') 
+        // this.currentWord[i].stateChar = resultCheckedChars[i];
+        const divLetter = document.createElement('div');
+        divLetter.className = `one-letter ${resultCheckedChars[i]}`;
+        divLetter.innerHTML = this.currentLine[i].innerHTML;
+        parentLine.appendChild(divLetter);
+        }
+
         this.createKeyboard(this.currentlyKeyboard, this.keyboard1, this.keyboard2, this.keyboard3, this.keyboard4);
     }
     
@@ -205,12 +223,12 @@ class Game {
   writeLetter(oneChar) {
     const activeLetter = document.querySelector('div.current-letter');
       let position = this.currentLine.indexOf(activeLetter); 
-      if (this.currentLine[position].innerHTML == "") this.leftEmpty -= 1;
+      if (this.currentLine[position].innerHTML == '') this.leftEmpty -= 1;
       activeLetter.innerHTML = String.fromCharCode(oneChar.numberChar);
       this.currentWord[position] = oneChar;
       if (this.leftEmpty > 0) {
         if (position == this.level - 1) position = 0;
-        while (this.currentLine[position].innerHTML != "") {
+        while (this.currentLine[position].innerHTML != '') {
           position += 1;
           if (position == this.level) position = 0;
         }
@@ -226,7 +244,7 @@ class Game {
 
     delLetter() {
       const activeLetter = document.querySelector('div.current-letter');
-      if (activeLetter.innerHTML != "") {
+      if (activeLetter.innerHTML != '') {
         this.leftEmpty += 1;
         activeLetter.innerHTML = String.fromCharCode(0);
       } else {
@@ -235,7 +253,7 @@ class Game {
         else position -= 1;
         activeLetter.classList.remove('current-letter');
         this.currentLine[position].classList.add('current-letter');
-        if (this.currentLine[position].innerHTML != "") {
+        if (this.currentLine[position].innerHTML != '') {
           this.leftEmpty += 1;
           this.currentLine[position].innerHTML = String.fromCharCode(0);
         }
@@ -251,13 +269,13 @@ class Game {
 
 
      createKeyboard(lettersCheme, keyboard1, keyboard2, keyboard3, keyboard4) {
-      keyboard1.innerHTML = "";
-      keyboard2.innerHTML = "";
-      keyboard3.innerHTML = "";
-      keyboard4.innerHTML = "";
+      keyboard1.innerHTML = '';
+      keyboard2.innerHTML = '';
+      keyboard3.innerHTML = '';
+      keyboard4.innerHTML = '';
       for (let i = 0; i < 10; i++) {
         // const letter = String.fromCharCode(lettersCheme[i].numberChar);
-        const button = document.createElement("button");
+        const button = document.createElement('button');
         button.className = lettersCheme[i].stateChar;
         button.innerHTML = String.fromCharCode(lettersCheme[i].numberChar);
         if (lettersCheme[i].stateChar != 'not-char') button.addEventListener('click', () => this.writeLetter(lettersCheme[i]));
@@ -265,14 +283,14 @@ class Game {
       }
       for (let i = 10; i < 19; i++) {
         // const letter = String.fromCharCode(lettersCheme[i].numberChar);
-        const button = document.createElement("button");
+        const button = document.createElement('button');
         button.className = lettersCheme[i].stateChar;
         button.innerHTML = String.fromCharCode(lettersCheme[i].numberChar);
         if (lettersCheme[i].stateChar != 'not-char') button.addEventListener('click', () => this.writeLetter(lettersCheme[i]));
         keyboard2.appendChild(button);
       }
-      const divKeyboard = document.createElement("div");
-      divKeyboard.setAttribute("id", "keyboardScheme");
+      const divKeyboard = document.createElement('div');
+      divKeyboard.setAttribute('id', 'keyboardScheme');
       divKeyboard.className='keyboard-scheme';
       divKeyboard.innerHTML = '<i class="fas fa-keyboard"></i>';
       divKeyboard.addEventListener('click', () =>{
@@ -282,20 +300,20 @@ class Game {
       keyboard3.appendChild(divKeyboard);
       for (let i = 19; i < 26; i++) {
         // const letter = String.fromCharCode(lettersCheme[i].numberChar);
-        const button = document.createElement("button");
+        const button = document.createElement('button');
         button.className = lettersCheme[i].stateChar;
         button.innerHTML = String.fromCharCode(lettersCheme[i].numberChar);
         if (lettersCheme[i].stateChar != 'not-char') button.addEventListener('click', () => this.writeLetter(lettersCheme[i]));
         keyboard3.appendChild(button);
       }
-      const divBackspace = document.createElement("div");
+      const divBackspace = document.createElement('div');
       divBackspace.className = 'back-space';
       divBackspace.innerHTML = '<i class="fas fa-long-arrow-alt-left"></i>';
       divBackspace.addEventListener('click', () => this.delLetter());
       keyboard3.appendChild(divBackspace);
       for (let i = 26; i < 35; i++) {
         // const letter = String.fromCharCode(lettersCheme[i].numberChar);
-        const button = document.createElement("button");
+        const button = document.createElement('button');
         button.className = lettersCheme[i].stateChar;
         button.innerHTML = String.fromCharCode(lettersCheme[i].numberChar);
         if (lettersCheme[i].stateChar != 'not-char') button.addEventListener('click', () => this.writeLetter(lettersCheme[i]));
@@ -312,13 +330,13 @@ class Game {
     }
 
     createStartPlaceGame(level, wrapper) {
-      wrapper.innerHTML = "";
+      wrapper.innerHTML = '';
         for ( let i = 0; i < level + 1; i++){
-            const divLine = document.createElement("div");
+            const divLine = document.createElement('div');
             if (i == 0) divLine.className = 'line current-round';
             else divLine.className = 'line';
             for ( let j = 0; j < level; j++){
-                const divLetter = document.createElement("div");
+                const divLetter = document.createElement('div');
                 if ((j == 0) && (i == 0)) divLetter.className = 'one-letter current-letter';
                 else divLetter.className = 'one-letter';
                 if (i == 0) {
@@ -359,10 +377,10 @@ class Game {
         listRounds = [...listRounds];
         // console.log(listRounds[0]);
         for (let i = 0; i < listRounds.length; i++) {
-            if (listRounds[i].className == "line current-round") {
-                listRounds[i].classList.remove("current-round");
-                listRounds[i + 1].classList.add("current-round");
-                listRounds[i + 1].firstChild.classList.add("current-letter");
+            if (listRounds[i].className == 'line current-round') {
+                listRounds[i].classList.remove('current-round');
+                listRounds[i + 1].classList.add('current-round');
+                listRounds[i + 1].firstChild.classList.add('current-letter');
                 this.currentLine = document.querySelectorAll('.current-round .one-letter');
                 // console.log(this.currentLine);
                 this.currentLine = [...this.currentLine];
@@ -376,11 +394,11 @@ class Game {
             }
         }
         // for ( let i = 0; i < level + 1; i++){
-        //     const divLine = document.createElement("div");
+        //     const divLine = document.createElement('div');
         //     if (i == 0) divLine.className = 'line current-round';
         //     else divLine.className = 'line';
         //     for ( let j = 0; j < level; j++){
-        //         const divLetter = document.createElement("div");
+        //         const divLetter = document.createElement('div');
         //         if ((j == 0) && (i == 0)) divLetter.className = 'one-letter current-letter';
         //         else divLetter.className = 'one-letter';
         //         if (i == 0) {
@@ -395,11 +413,11 @@ class Game {
 
     // createStartPlaceGame(level, wrapper, currentRound) {
     //     for ( let i = 0; i < level + 1; i++){
-    //         const divLine = document.createElement("div");
+    //         const divLine = document.createElement('div');
     //         if (i == currentRound) divLine.className = 'line current-round';
     //         else divLine.className = 'line';
     //         for ( let j = 0; j < level; j++){
-    //             const divLetter = document.createElement("div");
+    //             const divLetter = document.createElement('div');
     //             if ((j == 0) && (i == currentRound)) divLetter.className = 'one-letter current-letter';
     //             else divLetter.className = 'one-letter';
     //             if (i == currentRound) {
@@ -417,7 +435,7 @@ class Game {
       // this.leftEmpty = quantity;
       // this.charsObject = [];
       // for (let i = 0; i < this.numbersChar.length; i++ ){
-      //   this.charsObject.push(new CharKeyboard(this.numbersChar[i], "normal"));
+      //   this.charsObject.push(new CharKeyboard(this.numbersChar[i], 'normal'));
       // }
     this.startParameters(quantity);
     this.createKeyboard(this.currentlyKeyboard, this.keyboard1, this.keyboard2, this.keyboard3, this.keyboard4);
