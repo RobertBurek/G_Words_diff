@@ -204,7 +204,8 @@ class Game {
             this.currentWord[i].stateChar = 'not-char';
           }
         const divLetter = document.createElement('div');
-        divLetter.className = `one-letter ${resultCheckedChars[i]}`;
+        if (this.victory) divLetter.className = `one-letter ${resultCheckedChars[i]} heartly`;
+          else divLetter.className = `one-letter ${resultCheckedChars[i]}`;
         divLetter.innerHTML = this.currentLine[i].innerHTML;
         parentLine.appendChild(divLetter);
       }
@@ -228,11 +229,8 @@ class Game {
       } else {
           activeLetter.classList.remove('current-letter');
           this.checkWord();
-          if (this.victory) {
-
-          }else{
-            this.createActiveRound();
-          }
+          // console.log(this.currentLine);
+          if (!this.victory) this.createActiveRound();
         }
     }
 
