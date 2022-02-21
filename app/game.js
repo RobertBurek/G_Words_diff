@@ -16,16 +16,15 @@ class CharKeyboard {
       }
 
       changeStateChar() {
-
       }
 }
 
-class GuessWord {
-  constructor (word, level) {
-      this.word = word;
-      this.level = level;
-  }
-}
+// class GuessWord {
+//   constructor (word, level) {
+//       this.word = word;
+//       this.level = level;
+//   }
+// }
 
 
 class Game {
@@ -48,6 +47,24 @@ class Game {
     },{
         word: 'POTOK',
         category: 'Przyroda'
+    },{
+      word: 'WANNA',
+      category: 'Rzecz'
+    },{
+      word: 'WÓZEK',
+      category: 'Rzecz'
+    },{
+      word: 'PAJĄK',
+      category: 'Przyroda'
+    },{
+      word: 'PERŁA',
+      category: 'Rzecz'
+    },{
+      word: 'TORBA',
+      category: 'Rzecz'
+    },{
+      word: 'TRAWA',
+      category: 'Przyroda'
     },{
         word: 'FARBA',
         category: 'Rzecz'
@@ -115,6 +132,7 @@ class Game {
       // this.categoryWrapper.innerHTML = 'KATEGORIA:  ' + category;
     //   this.categoryWrapper.innerHTML = 'KATEGORIA:  ' + word;
       this.guessWord;// = new GuessWord(word, this.level);
+      this.guessWordChars;// = new GuessWord(word, this.level);
       this.currentWord;// = new Array(this.level);
       // console.log(this.guessWord.word);
       // console.log(this.guessWord.level);
@@ -130,15 +148,18 @@ class Game {
       this.level = level;
       this.leftEmpty = level;
       let words;
-    //   if (level == 5) words = this.words5[Math.floor(Math.random()*this.words5.length)];  //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-      if (level == 5) words = {word:'BANAN', category:'nic'}; //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+      if (level == 5) words = this.words5[Math.floor(Math.random()*this.words5.length)];  //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+      // if (level == 5) words = {word:'BANAN', category:'nic'}; //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
       if (level == 6) words = this.words6[Math.floor(Math.random()*this.words6.length)];
+
+      this.guessWord = words.word;
+      // this.guessWordChars = words.word.split('');
       // console.log(words);
       //   const {word, category} = {word:'BANAN', category: 'Jedzenie'};
       this.categoryWrapper.innerHTML = 'KATEGORIA:  ' + words.category;
       //   this.categoryWrapper.innerHTML = 'KATEGORIA:  ' + word;
-      this.guessWord = new GuessWord(words.word, level);
+      // this.guessWord = new GuessWord(words.word, level);
 
       this.charsObject = [];
       for (let i = 0; i < this.numbersChar.length; i++ ){
@@ -171,44 +192,49 @@ class Game {
         this.currentLine.forEach(el => {
             tempCurrentLine.push(el.innerHTML);
         });
+        // console.log(tempCurrentLine);
+
         // let tempCurrentWord = [];
         // this.currentWord.forEach(el => {
         //     tempCurrentWord.push(el.stateChar);
         // });
         // console.log(tempCurrentWord);
-        let guessWordchars = this.guessWord.word.split('');
-        const parentLine = this.currentLine[0].parentNode; //usun
+        let guessWordChars = this.guessWord.split('');
+        // console.log(guessWordChars);
+        // const parentLine = this.currentLine[0].parentNode; 
         this.clearLine(this.currentLine);
         for (let i = 0; i < this.level; i++) {
-
-            if (tempCurrentLine[i] == guessWordchars[i]) {
-                guessWordchars[i] = '-';
-                tempCurrentLine[i] = '!'
+            if (tempCurrentLine[i] == guessWordChars[i]) {
+                guessWordChars[i] = '-';
+                tempCurrentLine[i] = '!';
                 resultCheckedChars[i] = 'success';
                 this.currentWord[i].stateChar = 'success';
-                // this.currentWord[i] = new CharKeyboard(0, 'another');
             }}
 
         for (let i = 0; i < this.level; i++) {
             if (tempCurrentLine[i] != '!') {
                 for (let j = 0; j < this.level; j++) {
-                    if (tempCurrentLine[i] == guessWordchars[j]) {
-                        guessWordchars[j] = '-';
+                    if (tempCurrentLine[i] == guessWordChars[j]) {
+                      guessWordChars[j] = '-';
                         resultCheckedChars[i] = 'half-success';
-                        if ((this.currentWord[j].stateChar != 'success')) this.currentWord[j].stateChar = 'half-success';
+                        if ((this.currentWord[i].stateChar != 'success')) this.currentWord[i].stateChar = 'half-success';
                         break;
                     } else {
                         resultCheckedChars[i] = 'not-char';
-                        if ((this.currentWord[j].stateChar != 'success')||(this.currentWord[j].stateChar != 'half-success')) this.currentWord[j].stateChar = 'not-char';
+                        // if ((this.currentWord[i].stateChar != 'success')||(this.currentWord[i].stateChar != 'half-success')) this.currentWord[i].stateChar = 'not-char';
                     }
                 }
             // console.log(`${this.currentLine[i].innerHTML} - ${guessWordchars[i]}  ==>  ${answer}`);
             }
         }
-        console.log(resultCheckedChars);
-        console.log(this.currentWord);
+        // console.log(resultCheckedChars);
+        // console.log(this.currentWord);
+        const parentLine = this.currentLine[0].parentNode;
         for (let i = 0; i < this.level; i++) {
-        // if (this.currentWord[i].stateChar != 'normal') 
+        if (this.currentWord[i].stateChar != 'success')
+          if (this.currentWord[i].stateChar != 'half-success') {
+            this.currentWord[i].stateChar = 'not-char';
+        } 
         // this.currentWord[i].stateChar = resultCheckedChars[i];
         const divLetter = document.createElement('div');
         divLetter.className = `one-letter ${resultCheckedChars[i]}`;
