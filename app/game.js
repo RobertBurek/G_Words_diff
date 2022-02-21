@@ -260,7 +260,7 @@ class Game {
         const button = document.createElement("button");
         button.className = lettersCheme[i].stateChar;
         button.innerHTML = String.fromCharCode(lettersCheme[i].numberChar);
-        button.addEventListener('click', () => this.writeLetter(lettersCheme[i]));
+        if (lettersCheme[i].stateChar != 'not-char') button.addEventListener('click', () => this.writeLetter(lettersCheme[i]));
         keyboard1.appendChild(button);
       }
       for (let i = 10; i < 19; i++) {
@@ -268,7 +268,7 @@ class Game {
         const button = document.createElement("button");
         button.className = lettersCheme[i].stateChar;
         button.innerHTML = String.fromCharCode(lettersCheme[i].numberChar);
-        button.addEventListener('click', () => this.writeLetter(lettersCheme[i]));
+        if (lettersCheme[i].stateChar != 'not-char') button.addEventListener('click', () => this.writeLetter(lettersCheme[i]));
         keyboard2.appendChild(button);
       }
       const divKeyboard = document.createElement("div");
@@ -285,7 +285,7 @@ class Game {
         const button = document.createElement("button");
         button.className = lettersCheme[i].stateChar;
         button.innerHTML = String.fromCharCode(lettersCheme[i].numberChar);
-        button.addEventListener('click', () => this.writeLetter(lettersCheme[i]));
+        if (lettersCheme[i].stateChar != 'not-char') button.addEventListener('click', () => this.writeLetter(lettersCheme[i]));
         keyboard3.appendChild(button);
       }
       const divBackspace = document.createElement("div");
@@ -298,7 +298,7 @@ class Game {
         const button = document.createElement("button");
         button.className = lettersCheme[i].stateChar;
         button.innerHTML = String.fromCharCode(lettersCheme[i].numberChar);
-        button.addEventListener('click', () => this.writeLetter(lettersCheme[i]));
+        if (lettersCheme[i].stateChar != 'not-char') button.addEventListener('click', () => this.writeLetter(lettersCheme[i]));
         keyboard4.appendChild(button);
       }
     }
