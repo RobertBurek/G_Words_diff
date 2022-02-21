@@ -109,6 +109,7 @@ class Game {
       this.guessWord;
       this.guessWordChars;
       this.currentWord;
+      this.victory = false;
     }
 
 
@@ -124,6 +125,7 @@ class Game {
       this.leftEmpty = level;
       let words;
       if (level == 5) words = this.words5[Math.floor(Math.random()*this.words5.length)];
+      // if (level == 5) words = {word:'BANAN', category:'nic'};
       if (level == 6) words = this.words6[Math.floor(Math.random()*this.words6.length)];
 
       this.guessWord = words.word;
@@ -145,6 +147,7 @@ class Game {
                     this.charsObject[32], this.charsObject[33], this.charsObject[34]]
       this.currentlyKeyboard = this.alphabet;
       this.currentWord = new Array(level);
+      this.victory = false;
     }
 
 
@@ -177,18 +180,20 @@ class Game {
               }
           }
       }
-      this.orVictory(resultCheckedChars);
+      this.isVictory(resultCheckedChars);
       this.newViewLine(resultCheckedChars);
       this.createKeyboard(this.currentlyKeyboard, this.keyboard1, this.keyboard2, this.keyboard3, this.keyboard4);
     }
     
 
-    orVictory(resultCheckedChars) {
+    isVictory(resultCheckedChars) {
       let i = 0;
-      resultCheckedChars.forEach(oneLetter => {
-        if (oneLetter == 'success') i++;
-        if (i == this.level) console.log('Zwycięstwo !!!');
+      resultCheckedChars.forEach(char => {
+        if (char == 'success') i++;
+        // if (i == this.level) return true;
       });
+      // console.log('jessssstttttt');
+      if (i == this.level) this.victory = true;
     }
 
     newViewLine(resultCheckedChars) {
@@ -223,7 +228,11 @@ class Game {
       } else {
           activeLetter.classList.remove('current-letter');
           this.checkWord();
-          this.createActiveRound();
+          if (this.victory) {
+
+          }else{
+            this.createActiveRound();
+          }
         }
     }
 
@@ -346,6 +355,17 @@ class Game {
         } else if (element.detachEvent) {
             element.detachEvent ('click', () => this.changeLetter(element));
         }
+    }
+
+
+    createCurrentLine() {
+      this.currentLine = document.querySelectorAll('.current-round .one-letter');
+                // console.log(this.currentLine);
+                this.currentLine = [...this.currentLine];
+                this.currentLine.forEach(element => {
+                    element.addEventListener('click', () => this.changeLetter(element));
+                });
+                this.leftEmpty = this.level;
     }
 
 
