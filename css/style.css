@@ -267,4 +267,14 @@ button:hover {
     top: 5px;
   }
 }
+
+@media (min-width: 768px) {
+  .letters {
+    width: 450px;
+  }
+  .description {
+    max-width: 100%;
+    width: 500px;
+  }
+}
 /*# sourceMappingURL=style.css.map */

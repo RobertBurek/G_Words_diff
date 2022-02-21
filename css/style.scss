@@ -315,7 +315,13 @@ button:hover {
 }
 
 @media (min-width: 768px) {
-
+	.letters {
+	width: 450px;
+	}
+	.description {
+		max-width: 100%;
+		width: 500px;
+	}
 }
 
 @media (min-width: 992px) {
