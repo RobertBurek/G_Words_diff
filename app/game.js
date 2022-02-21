@@ -149,52 +149,61 @@ class Game {
 
 
     checkWord() {
-        let resultCheckedChars = new Array(this.level);
-        let tempCurrentLine = [];
-        this.currentLine.forEach(el => {
-            tempCurrentLine.push(el.innerHTML);
-        });
-        let guessWordChars = this.guessWord.split('');
-        this.clearLine(this.currentLine);
-        for (let i = 0; i < this.level; i++) {
-            if (tempCurrentLine[i] == guessWordChars[i]) {
-                guessWordChars[i] = '-';
-                tempCurrentLine[i] = '!';
-                resultCheckedChars[i] = 'success';
-                this.currentWord[i].stateChar = 'success';
-            }}
-        for (let i = 0; i < this.level; i++) {
-            if (tempCurrentLine[i] != '!') {
-                for (let j = 0; j < this.level; j++) {
-                    if (tempCurrentLine[i] == guessWordChars[j]) {
-                      guessWordChars[j] = '-';
-                        resultCheckedChars[i] = 'half-success';
-                        if ((this.currentWord[i].stateChar != 'success')) this.currentWord[i].stateChar = 'half-success';
-                        break;
-                    } else {
-                        resultCheckedChars[i] = 'not-char';
-                    }
-                }
-            }
-        }
-        this.newViewLine(resultCheckedChars);
-        this.createKeyboard(this.currentlyKeyboard, this.keyboard1, this.keyboard2, this.keyboard3, this.keyboard4);
+      let resultCheckedChars = new Array(this.level);
+      let tempCurrentLine = [];
+      this.currentLine.forEach(el => {
+          tempCurrentLine.push(el.innerHTML);
+      });
+      let guessWordChars = this.guessWord.split('');
+      this.clearLine(this.currentLine);
+      for (let i = 0; i < this.level; i++) {
+          if (tempCurrentLine[i] == guessWordChars[i]) {
+              guessWordChars[i] = '-';
+              tempCurrentLine[i] = '!';
+              resultCheckedChars[i] = 'success';
+              this.currentWord[i].stateChar = 'success';
+          }}
+      for (let i = 0; i < this.level; i++) {
+          if (tempCurrentLine[i] != '!') {
+              for (let j = 0; j < this.level; j++) {
+                  if (tempCurrentLine[i] == guessWordChars[j]) {
+                    guessWordChars[j] = '-';
+                      resultCheckedChars[i] = 'half-success';
+                      if ((this.currentWord[i].stateChar != 'success')) this.currentWord[i].stateChar = 'half-success';
+                      break;
+                  } else {
+                      resultCheckedChars[i] = 'not-char';
+                  }
+              }
+          }
+      }
+      this.orVictory(resultCheckedChars);
+      this.newViewLine(resultCheckedChars);
+      this.createKeyboard(this.currentlyKeyboard, this.keyboard1, this.keyboard2, this.keyboard3, this.keyboard4);
     }
     
 
-  newViewLine(resultCheckedChars) {
-    const parentLine = this.currentLine[0].parentNode;
-    for (let i = 0; i < this.level; i++) {
-      if (this.currentWord[i].stateChar != 'success')
-        if (this.currentWord[i].stateChar != 'half-success') {
-          this.currentWord[i].stateChar = 'not-char';
-        }
-      const divLetter = document.createElement('div');
-      divLetter.className = `one-letter ${resultCheckedChars[i]}`;
-      divLetter.innerHTML = this.currentLine[i].innerHTML;
-      parentLine.appendChild(divLetter);
+    orVictory(resultCheckedChars) {
+      let i = 0;
+      resultCheckedChars.forEach(oneLetter => {
+        if (oneLetter == 'success') i++;
+        if (i == this.level) console.log('Zwycięstwo !!!');
+      });
     }
-  }
+
+    newViewLine(resultCheckedChars) {
+      const parentLine = this.currentLine[0].parentNode;
+      for (let i = 0; i < this.level; i++) {
+        if (this.currentWord[i].stateChar != 'success')
+          if (this.currentWord[i].stateChar != 'half-success') {
+            this.currentWord[i].stateChar = 'not-char';
+          }
+        const divLetter = document.createElement('div');
+        divLetter.className = `one-letter ${resultCheckedChars[i]}`;
+        divLetter.innerHTML = this.currentLine[i].innerHTML;
+        parentLine.appendChild(divLetter);
+      }
+    }
 
 
   writeLetter(oneChar) {
@@ -236,7 +245,6 @@ class Game {
         }
       }
     }
-
 
 
     changeKeyboard() {
@@ -331,6 +339,7 @@ class Game {
         // console.log(this.currentLine);
     }
 
+
     removeListenerLetter(element) {
     if (element.removeEventListener) {
         element.removeEventListener ('click', () => this.changeLetter(element));
@@ -338,6 +347,7 @@ class Game {
             element.detachEvent ('click', () => this.changeLetter(element));
         }
     }
+
 
     createCurrentLine() {
       this.currentLine = document.querySelectorAll('.current-round .one-letter');
