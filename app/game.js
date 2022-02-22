@@ -124,8 +124,8 @@ class Game {
       this.level = level;
       this.leftEmpty = level;
       let words;
-      if (level == 5) words = this.words5[Math.floor(Math.random()*this.words5.length)];
-      // if (level == 5) words = {word:'BANAN', category:'nic'};
+      // if (level == 5) words = this.words5[Math.floor(Math.random()*this.words5.length)];
+      if (level == 5) words = {word:'BANAN', category:'nic'};
       if (level == 6) words = this.words6[Math.floor(Math.random()*this.words6.length)];
 
       this.guessWord = words.word;
@@ -148,11 +148,9 @@ class Game {
       this.currentlyKeyboard = this.alphabet;
       this.currentWord = new Array(level);
       this.victory = false;
+      this.showWord('');
     }
 
-    showWord() {
-      
-    }
 
     checkWord() {
       let resultCheckedChars = new Array(this.level);
@@ -380,6 +378,17 @@ class Game {
                 this.leftEmpty = this.level;
     }
 
+    showWord(word) {
+      const resultDiv = document.getElementById('resultWord');
+      if (word != '') {
+      // const resultDiv = document.getElementById('resultWord');
+      resultDiv.classList.add('result-word');
+      resultDiv.innerHTML = `Szukane słowo: <p>${word}</p>`;
+      } else {
+        resultDiv.innerHTML = ``;
+      }
+  }
+
 
     createActiveRound() {
         let listRounds = document.querySelectorAll('#wordGame .line');
@@ -388,15 +397,17 @@ class Game {
         for (let i = 0; i < listRounds.length; i++) {
             if (listRounds[i].className == 'line current-round') {
                 listRounds[i].classList.remove('current-round');
-                listRounds[i + 1].classList.add('current-round');
-                listRounds[i + 1].firstChild.classList.add('current-letter');
-                this.currentLine = document.querySelectorAll('.current-round .one-letter');
-                // console.log(this.currentLine);
-                this.currentLine = [...this.currentLine];
-                this.currentLine.forEach(element => {
-                    element.addEventListener('click', () => this.changeLetter(element));
-                });
-                this.leftEmpty = this.level;
+                if (i < listRounds.length -1) {
+                    listRounds[i + 1].classList.add('current-round');
+                    listRounds[i + 1].firstChild.classList.add('current-letter');
+                    this.currentLine = document.querySelectorAll('.current-round .one-letter');
+                    // console.log(this.currentLine);
+                    this.currentLine = [...this.currentLine];
+                    this.currentLine.forEach(element => {
+                        element.addEventListener('click', () => this.changeLetter(element));
+                    });
+                    this.leftEmpty = this.level;
+                } else this.showWord(this.guessWord);
                 // console.log(this.currentLine);
                 // console.log(this.leftEmpty);
                 break;
