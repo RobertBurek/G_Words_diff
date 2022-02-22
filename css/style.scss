@@ -70,7 +70,9 @@ html {
 
 .word-game {
 	width: 80%;
-    margin: 25px auto;
+    // margin: 25px auto;
+	margin-top: 25px;
+	margin-bottom: 10px;
 }
 
 .line {
@@ -104,6 +106,12 @@ html {
 .current-round .current-letter {
 	border: 3px solid yellow !important;
 	cursor: pointer;
+}
+
+.result-word {
+	font-size: 1.8rem;
+    padding: 15px;
+    font-weight: 600;
 }
 
 .category {

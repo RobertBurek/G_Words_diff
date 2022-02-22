@@ -150,6 +150,9 @@ class Game {
       this.victory = false;
     }
 
+    showWord() {
+      
+    }
 
     checkWord() {
       let resultCheckedChars = new Array(this.level);
