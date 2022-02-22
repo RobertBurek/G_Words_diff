@@ -109,6 +109,28 @@ html {
   letter-spacing: 1px;
 }
 
+.implementation {
+  height: 300px;
+  text-align: center;
+  padding-top: 270px;
+  font-size: 1.6rem;
+}
+
+.footer-section {
+  background-color: #fff;
+  text-align: center;
+}
+
+.footer-text {
+  font-size: 1.3rem;
+}
+
+.footer-text a {
+  color: #474550;
+  font-weight: 500;
+  text-decoration: none;
+}
+
 .letters {
   width: 90%;
   height: 150px;
