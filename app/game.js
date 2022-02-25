@@ -124,8 +124,8 @@ class Game {
       this.level = level;
       this.leftEmpty = level;
       let words;
-      // if (level == 5) words = this.words5[Math.floor(Math.random()*this.words5.length)];
-      if (level == 5) words = {word:'BANAN', category:'nic'};
+      if (level == 5) words = this.words5[Math.floor(Math.random()*this.words5.length)];
+      // if (level == 5) words = {word:'BANAN', category:'nic'};
       if (level == 6) words = this.words6[Math.floor(Math.random()*this.words6.length)];
 
       this.guessWord = words.word;

@@ -46,12 +46,6 @@ html {
     font-size: 1.2rem;
     letter-spacing: 1px;
     max-width: 90%;
-
-	// text-align: center;
-    // padding: 10px;
-    // font-size: 1.6rem;
-    // letter-spacing: 1px;
-    // max-width: 90%;
 }
 
 .title-div {
@@ -61,17 +55,10 @@ html {
     position: relative;
     top: 3px;
 	border: 2px solid #c2c2c2;
-
-	// height: 20px;
-    // width: 20px;
-    // display: inline-block;
-    // position: relative;
-    // top: 5px;
 }
 
 .word-game {
 	width: 80%;
-    // margin: 25px auto;
 	margin-top: 25px;
 	margin-bottom: 20px;
 }
@@ -94,10 +81,6 @@ html {
     line-height: 28px;
 	font-weight: 600;
 }
-
-// .curr-letter{
-// 	border: 2px solid white;
-// }
 
 .current-round .one-letter{
 	border: 2px solid white;
@@ -130,7 +113,6 @@ html {
 .implementation {
     height: 300px;
     text-align: center;
-    // line-height: 300px;
     padding-top: 270px;
     font-size: 1.6rem;
 }
@@ -150,32 +132,24 @@ html {
 
 .letters {
 	width: 90%;
-	height: 150px;
 	margin: 20px 0;
 	border: 2px solid gray;
 	display: flex;
     flex-direction: column;
     justify-content: center;
+	padding-top: 10px;
+    padding-bottom: 10px;
+	text-align: center;
 }
 
 .keyboard-scheme {
 	display: inline-block;
     height: 18px;
     width: 38px;
-    /* line-height: 8px; */
     font-size: 24px;
     position: relative;
     top: 3px;
     color: aliceblue;
-
-    // display: inline-block;
-    // height: 36px;
-    // width: 42px;
-    // line-height: 30px;
-    // font-size: 29px;
-    // position: relative;
-    // top: 5px;
-	// color: aliceblue;
 }
 
 .keyboard-scheme:hover {
@@ -188,13 +162,6 @@ button {
     margin: 3px;
     border-top: 2px solid #c1c1c1;
     font-size: 15px;
-
-
-	// height: 25px;
-	// width: 25px;
-	// margin: 4px;
-	// border-top: 3px solid #c1c1c1;
-	// font-size: 15px;
 }
 
 button:hover {
@@ -203,7 +170,6 @@ button:hover {
 
 .back-space {
 	display: inline-block;
-    /* line-height: 9px; */
     font-size: 19px;
     position: relative;
     top: 3px;
@@ -216,30 +182,10 @@ button:hover {
     color: #474550;
     background-color: aliceblue;
     margin-left: 3px;
-
-
-	// display: inline-block;
-    // line-height: 22px;
-    // font-size: 22px;
-    // position: relative;
-    // top: 2px;
-    // width: 32px;
-    // border-top: none;
-    // border: none;
-    // border-radius: 2px;
-    // height: 22px;
-    // font-weight: 900;
-    // color: #474550;
-    // background-color: aliceblue;
-	// margin-left: 3px;
 }
 
 .back-space:hover {
 	cursor: pointer;
-}
-
-.letters {
-  text-align: center;
 }
 
 .half-success {
@@ -263,9 +209,10 @@ button:hover {
 
 .settings {
 	font-size: 14px;
-	// font-size: 17px;
 	font-weight: 600;
 	letter-spacing: 2px;
+	width: 100%;
+    text-align: center;
 }
 
 .setting-letter {
@@ -308,33 +255,20 @@ button:hover {
 		width: 25px;
 		margin: 4px;
 		border-top: 3px solid #c1c1c1;
-		font-size: 15px;
 	}
 	.back-space {
-		display: inline-block;
 		line-height: 22px;
 		font-size: 22px;
-		position: relative;
 		top: 2px;
 		width: 32px;
-		border-top: none;
-		border: none;
-		border-radius: 2px;
 		height: 22px;
-		font-weight: 900;
-		color: #474550;
-		background-color: aliceblue;
-		margin-left: 3px;
 	}
 	.keyboard-scheme {
-		display: inline-block;
 		height: 36px;
 		width: 42px;
 		line-height: 30px;
 		font-size: 29px;
-		position: relative;
 		top: 5px;
-		color: aliceblue;
 	}
 	.settings {
 		font-size: 17px;
@@ -343,28 +277,26 @@ button:hover {
 		font-size: 17px;
 	}
 	.description {
-		text-align: center;
 		padding: 10px;
 		font-size: 1.6rem;
-		letter-spacing: 1px;
-		max-width: 90%;
 	}
 	.title-div {
 		height: 20px;
 		width: 20px;
-		display: inline-block;
-		position: relative;
 		top: 5px;
 	}
 }
 
-@media (min-width: 576px) {
-
+@media (min-width: 500px) {
+	button {
+		height: 28px;
+    	width: 28px;
+	}
 }
 
 @media (min-width: 768px) {
 	.letters {
-	width: 450px;
+		width: 450px;
 	}
 	.description {
 		max-width: 100%;
