@@ -1,10 +1,14 @@
 // import { GuessWord } from './guessWord.js';
 const setting5Letters = document.getElementById('5letters');
 const setting6Letters = document.getElementById('6letters');
-setting5Letters.addEventListener('click', ()=> {
+const onceAgainSection = document.querySelector('section.once-again');
+setting5Letters.addEventListener('click', ()=> {        
+  onceAgainSection.classList.add('hide');
   game.run(5);
 });
 setting6Letters.addEventListener('click', ()=> {
+  onceAgainSection.classList.add('hide');
+  onceAgainSection.style.height = '645px';
   game.run(6);
 });
 
@@ -110,6 +114,7 @@ class Game {
       this.guessWordChars;
       this.currentWord;
       this.victory = false;
+
     }
 
 
@@ -124,9 +129,10 @@ class Game {
       this.level = level;
       this.leftEmpty = level;
       let words;
-      if (level == 5) words = this.words5[Math.floor(Math.random()*this.words5.length)];
-      // if (level == 5) words = {word:'BANAN', category:'nic'};
-      if (level == 6) words = this.words6[Math.floor(Math.random()*this.words6.length)];
+      // if (level == 5) words = this.words5[Math.floor(Math.random()*this.words5.length)];
+      if (level == 5) words = {word:'BANAN', category:'TestBanan'};
+      // if (level == 6) words = this.words6[Math.floor(Math.random()*this.words6.length)];
+      if (level == 6) words = {word:'AGREST', category:'TestAgrest'};
 
       this.guessWord = words.word;
       this.categoryWrapper.innerHTML = 'KATEGORIA:  ' + words.category;
@@ -184,6 +190,7 @@ class Game {
       this.isVictory(resultCheckedChars);
       this.newViewLine(resultCheckedChars);
       this.createKeyboard(this.currentlyKeyboard, this.keyboard1, this.keyboard2, this.keyboard3, this.keyboard4);
+      // if () onceAgain(this.level);
     }
     
 
@@ -194,7 +201,10 @@ class Game {
         // if (i == this.level) return true;
       });
       // console.log('jessssstttttt');
-      if (i == this.level) this.victory = true;
+      if (i == this.level) {
+        this.victory = true;
+        this.onceAgain(this.level);
+      }
     }
 
     newViewLine(resultCheckedChars) {
@@ -232,6 +242,8 @@ class Game {
           this.checkWord();
           // console.log(this.currentLine);
           if (!this.victory) this.createActiveRound();
+          // else this.onceAgain(this.level);
+          // this.onceAgain(this.level);
         }
     }
 
@@ -368,15 +380,15 @@ class Game {
     }
 
 
-    createCurrentLine() {
-      this.currentLine = document.querySelectorAll('.current-round .one-letter');
-                // console.log(this.currentLine);
-                this.currentLine = [...this.currentLine];
-                this.currentLine.forEach(element => {
-                    element.addEventListener('click', () => this.changeLetter(element));
-                });
-                this.leftEmpty = this.level;
-    }
+    // createCurrentLine() {
+    //   this.currentLine = document.querySelectorAll('.current-round .one-letter');
+    //             // console.log(this.currentLine);
+    //             this.currentLine = [...this.currentLine];
+    //             this.currentLine.forEach(element => {
+    //                 element.addEventListener('click', () => this.changeLetter(element));
+    //             });
+    //             this.leftEmpty = this.level;
+    // }
 
     showWord(word) {
       const resultDiv = document.getElementById('resultWord');
@@ -407,11 +419,15 @@ class Game {
                         element.addEventListener('click', () => this.changeLetter(element));
                     });
                     this.leftEmpty = this.level;
-                } else this.showWord(this.guessWord);
+                } else {
+                  this.showWord(this.guessWord);
+                  this.onceAgain(this.level);
+                  }
                 // console.log(this.currentLine);
                 // console.log(this.leftEmpty);
                 break;
             }
+            // if (this.leftEmpty == this.level) this.onceAgain(this.level);
         }
         // for ( let i = 0; i < level + 1; i++){
         //     const divLine = document.createElement('div');
@@ -449,6 +465,18 @@ class Game {
     //         wrapper.appendChild(divLine);
     //     }
     // }
+
+    onceAgain(quantity) {      
+      onceAgainSection.classList.remove('hide');
+      if (!this.victory) onceAgainSection.style.height = '640px';
+      const onceAgainDiv = document.getElementById('onceAgain');
+      console.log(onceAgainDiv);
+      onceAgainDiv.addEventListener('click', () =>{
+        onceAgainSection.classList.add('hide');
+        onceAgainSection.style.height = '600px';
+        this.run(quantity);
+      });
+    }
 
     run(quantity) {
       // this.level = quantity;
