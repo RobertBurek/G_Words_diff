@@ -189,10 +189,10 @@ button:hover {
 }
 
 .once-again {
-    height: 600px;
+	height: 0px;
     width: 100%;
-    position: absolute;
-    top: 0;
+    position: relative;
+    top: 88px;
     display: flex;
     align-items: flex-end;
     justify-content: center;
@@ -217,13 +217,19 @@ button:hover {
 	letter-spacing: 2px;
 }
 
+// .two-again {
+// 	height: 0px;
+// 	width: 0px;
+// 	position: inherit;
+// 	top:50px;
+// }
+// .two-again div {
+// 	height: 40px;
+// 	width: 200px;
+// }
+
 .hide {
 	display: none;
-}
-
-.once-again p {
-	color: #fff;
-	z-index: 1000;
 }
 
 .half-success {
