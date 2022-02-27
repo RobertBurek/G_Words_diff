@@ -1,8 +1,10 @@
 // import { GuessWord } from './guessWord.js';
+import { words5Letters } from '../src/5-literowe.js';
+// console.log(words5Letters);
 const setting5Letters = document.getElementById('5letters');
 const setting6Letters = document.getElementById('6letters');
 const onceAgainSection = document.getElementById('onceAgain');
-setting5Letters.addEventListener('click', ()=> {        
+setting5Letters.addEventListener('click', ()=> {
   onceAgainSection.classList.add('hide');
   game.run(5);
 });
@@ -89,7 +91,7 @@ class Game {
         category: 'Rzecz'
     }]
 
-    constructor({ lettersWrapper, categoryWrapper, wordGameWrapper, keyboardScheme, keyboard1, keyboard2, keyboard3, keyboard4 }) {
+    constructor({ lettersWrapper, categoryWrapper, wordGameWrapper, keyboardScheme, keyboard1, keyboard2, keyboard3, keyboard4, dataLetters }) {
       this.lettersWrapper = lettersWrapper;
       this.categoryWrapper = categoryWrapper;
       this.wordGameWrapper = wordGameWrapper;
@@ -98,6 +100,7 @@ class Game {
       this.keyboard2 = keyboard2;
       this.keyboard3 = keyboard3;
       this.keyboard4 = keyboard4;
+      this.dataLetters = dataLetters;
       this.numbersChar = [65,  66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76,  77, 78, 79, 
         //                 0   1   2    3   4   5   6   7  8    9   10  11  12  13   14
         80, 81, 82, 83,  84, 85, 86, 87, 88, 89, 90, 211, 260, 262, 280, 321, 323, 346, 377, 379];
@@ -113,7 +116,10 @@ class Game {
       this.guessWordChars;
       this.currentWord;
       this.victory = false;
-
+      dataLetters.forEach(element => {
+        if (element.game) this.words5.push(element);
+        });
+        console.log(this.words5);
     }
 
 
@@ -129,6 +135,7 @@ class Game {
       this.leftEmpty = level;
       let words;
       if (level == 5) words = this.words5[Math.floor(Math.random()*this.words5.length)];
+    //   console.log(this.words5.length);
       // if (level == 5) words = {word:'BANAN', category:'TestBanan'};
       if (level == 6) words = this.words6[Math.floor(Math.random()*this.words6.length)];
       // if (level == 6) words = {word:'AGREST', category:'TestAgrest'};
@@ -404,7 +411,7 @@ class Game {
     onceAgain(quantity) {
       onceAgainSection.classList.remove('hide');
       const onceAgainDiv = document.querySelector('#onceAgain div');
-      console.log(onceAgainDiv);
+    //   console.log(onceAgainDiv);
       onceAgainDiv.addEventListener('click', () =>{
         onceAgainSection.classList.add('hide');
         this.run(quantity);
@@ -416,4 +423,19 @@ class Game {
     this.createKeyboard(this.currentlyKeyboard, this.keyboard1, this.keyboard2, this.keyboard3, this.keyboard4);
     this.createStartPlaceGame(quantity, this.wordGameWrapper);
     }
+
+
 }
+
+const game = new Game({
+    lettersWrapper: document.getElementById("letters"),
+    categoryWrapper: document.getElementById("category"),
+    wordGameWrapper: document.getElementById("wordGame"),
+    keyboardScheme: document.getElementById("keyboardScheme"),
+    keyboard1: document.getElementById("keyboard1"),
+    keyboard2: document.getElementById("keyboard2"),
+    keyboard3: document.getElementById("keyboard3"),
+    keyboard4: document.getElementById("keyboard4"),
+    dataLetters: words5Letters
+});
+game.run(5);
