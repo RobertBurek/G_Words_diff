@@ -1,16 +1,19 @@
 // import { GuessWord } from './guessWord.js';
-import { words5Letters } from '../src/5-literowe.js';
-// console.log(words5Letters);
+import { words5Letters } from '../src/5-letters.js';
+import { words6Letters } from '../src/6-letters.js';
+let wordsLetters = words5Letters;
 const setting5Letters = document.getElementById('5letters');
 const setting6Letters = document.getElementById('6letters');
 const onceAgainSection = document.getElementById('onceAgain');
 setting5Letters.addEventListener('click', ()=> {
-  onceAgainSection.classList.add('hide');
-  game.run(5);
+    onceAgainSection.classList.add('hide');
+    wordsLetters = words5Letters;
+    game.run(5);
 });
 setting6Letters.addEventListener('click', ()=> {
-  onceAgainSection.classList.add('hide');
-  game.run(6);
+    onceAgainSection.classList.add('hide');
+    wordsLetters = words6Letters;
+    game.run(6);
 });
 
 
@@ -28,67 +31,15 @@ class CharKeyboard {
 class Game {
 
     words5 = [{
-        word: 'BALON',
-        category: 'Rzecz'
-    },{
-        word: 'MOTYL',
-        category: 'Przyroda'
-    },{
-        word: 'MUCHA',
-        category: 'Przyroda'
-    },{
-        word: 'MAZAK',
-        category: 'Rzecz'
-    },{
-        word: 'BANAN',
-        category: 'Jedzenie'
-    },{
-        word: 'POTOK',
-        category: 'Przyroda'
-    },{
-        word: 'WANNA',
-        category: 'Rzecz'
-    },{
-        word: 'WÓZEK',
-        category: 'Rzecz'
-    },{
-        word: 'PAJĄK',
-        category: 'Przyroda'
-    },{
-        word: 'PERŁA',
-        category: 'Rzecz'
-    },{
-        word: 'TORBA',
-        category: 'Rzecz'
-    },{
-        word: 'TRAWA',
-        category: 'Przyroda'
-    },{
-        word: 'FARBA',
-        category: 'Rzecz'
+        word: '',
+        category: '',
+        game: false
     }]
 
     words6 = [{
-        word: 'ANTENA',
-        category: 'Rzecz'
-    },{
-        word: 'KAŁUŻA',
-        category: 'Przyroda'
-    },{
-        word: 'KALINA',
-        category: 'Przyroda'
-    },{
-        word: 'AMULET',
-        category: 'Rzecz'
-    },{
-        word: 'AGREST',
-        category: 'Jedzenie'
-    },{
-        word: 'BAMBUS',
-        category: 'Przyroda'
-    },{
-        word: 'FORINT',
-        category: 'Rzecz'
+        word: '',
+        category: '',
+        game: false
     }]
 
     constructor({ lettersWrapper, categoryWrapper, wordGameWrapper, keyboardScheme, keyboard1, keyboard2, keyboard3, keyboard4, dataLetters }) {
@@ -116,12 +67,8 @@ class Game {
       this.guessWordChars;
       this.currentWord;
       this.victory = false;
-      dataLetters.forEach(element => {
-        if (element.game) this.words5.push(element);
-        });
-        console.log(this.words5);
-    }
 
+    }
 
     clearLine(line) {
         line.forEach(el => {
@@ -130,14 +77,33 @@ class Game {
     }
 
 
+    createDataLetters(startData, dataL) {
+        startData = [];
+        // console.log(this.dataLetters);
+        dataL.forEach(element => {
+            if (element.game) startData.push(element);
+            });
+            console.log(startData.length);
+            console.log(startData);
+    }
+
+
     startParameters(level) {
       this.level = level;
       this.leftEmpty = level;
       let words;
-      if (level == 5) words = this.words5[Math.floor(Math.random()*this.words5.length)];
+      if (level == 5) {
+        // this.dataLetters = words5Letters;
+        this.createDataLetters(this.words5,  words5Letters);
+        words = this.words5[Math.floor(Math.random()*this.words5.length)];
+      }
     //   console.log(this.words5.length);
       // if (level == 5) words = {word:'BANAN', category:'TestBanan'};
-      if (level == 6) words = this.words6[Math.floor(Math.random()*this.words6.length)];
+      if (level == 6) {
+        // this.dataLetters = words6Letters;
+        this.createDataLetters(this.words6, words6Letters);
+        words = this.words6[Math.floor(Math.random()*this.words6.length)];
+      }
       // if (level == 6) words = {word:'AGREST', category:'TestAgrest'};
 
       this.guessWord = words.word;
@@ -418,6 +384,7 @@ class Game {
       });
     }
 
+
     run(quantity) {
     this.startParameters(quantity);
     this.createKeyboard(this.currentlyKeyboard, this.keyboard1, this.keyboard2, this.keyboard3, this.keyboard4);
@@ -436,6 +403,7 @@ const game = new Game({
     keyboard2: document.getElementById("keyboard2"),
     keyboard3: document.getElementById("keyboard3"),
     keyboard4: document.getElementById("keyboard4"),
-    dataLetters: words5Letters
+    dataLetters: wordsLetters,
 });
+
 game.run(5);

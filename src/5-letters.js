@@ -1,4 +1,44 @@
 export let words5Letters = [
+    {
+        word: 'BALON',
+        category: 'Rzecz',game:true
+    },{
+        word: 'MOTYL',
+        category: 'Przyroda',game:true
+    },{
+        word: 'MUCHA',
+        category: 'Przyroda',game:true
+    },{
+        word: 'MAZAK',
+        category: 'Rzecz',game:true
+    },{
+        word: 'BANAN',
+        category: 'Jedzenie',game:true
+    },{
+        word: 'POTOK',
+        category: 'Przyroda',game:true
+    },{
+        word: 'WANNA',
+        category: 'Rzecz',game:true
+    },{
+        word: 'WÓZEK',
+        category: 'Rzecz',game:true
+    },{
+        word: 'PAJĄK',
+        category: 'Przyroda',game:true
+    },{
+        word: 'PERŁA',
+        category: 'Rzecz',game:true
+    },{
+        word: 'TORBA',
+        category: 'Rzecz',game:true
+    },{
+        word: 'TRAWA',
+        category: 'Przyroda',game:true
+    },{
+        word: 'FARBA',
+        category: 'Rzecz',game:true
+    },
     {word:'BABCE',category:'?',game:false},
     {word:'BABCI',category:'?',game:false},
     {word:'BABEK',category:'?',game:false},
