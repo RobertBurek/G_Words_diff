@@ -77,14 +77,15 @@ class Game {
     }
 
 
-    createDataLetters(startData, dataL) {
-        startData = [];
+    createDataLetters(dataLetters) {
+        let startData = [];
         // console.log(this.dataLetters);
-        dataL.forEach(element => {
+        dataLetters.forEach(element => {
             if (element.game) startData.push(element);
             });
-            console.log(startData.length);
-            console.log(startData);
+            // console.log(startData.length);
+            // console.log(startData);
+            return startData;
     }
 
 
@@ -94,20 +95,23 @@ class Game {
       let words;
       if (level == 5) {
         // this.dataLetters = words5Letters;
-        this.createDataLetters(this.words5,  words5Letters);
+        // this.createDataLetters(this.words5,  words5Letters);
+        this.words5 = this.createDataLetters(words5Letters);
         words = this.words5[Math.floor(Math.random()*this.words5.length)];
       }
     //   console.log(this.words5.length);
       // if (level == 5) words = {word:'BANAN', category:'TestBanan'};
       if (level == 6) {
         // this.dataLetters = words6Letters;
-        this.createDataLetters(this.words6, words6Letters);
+        // this.createDataLetters(this.words6, words6Letters);
+        this.words6 = this.createDataLetters(words6Letters);
         words = this.words6[Math.floor(Math.random()*this.words6.length)];
       }
       // if (level == 6) words = {word:'AGREST', category:'TestAgrest'};
 
       this.guessWord = words.word;
       this.categoryWrapper.innerHTML = 'KATEGORIA:  ' + words.category;
+    //   console.log(words);
 
       this.charsObject = [];
       for (let i = 0; i < this.numbersChar.length; i++ ){
@@ -193,44 +197,48 @@ class Game {
     }
 
 
-  writeLetter(oneChar) {
-    const activeLetter = document.querySelector('div.current-letter');
-      let position = this.currentLine.indexOf(activeLetter); 
-      if (this.currentLine[position].innerHTML == '') this.leftEmpty -= 1;
-      activeLetter.innerHTML = String.fromCharCode(oneChar.numberChar);
-      this.currentWord[position] = oneChar;
-      if (this.leftEmpty > 0) {
-        if (position == this.level - 1) position = 0;
-        while (this.currentLine[position].innerHTML != '') {
-          position += 1;
-          if (position == this.level) position = 0;
-        }
-        activeLetter.classList.remove('current-letter');
-        this.currentLine[position].classList.add('current-letter');
-      } else {
-          activeLetter.classList.remove('current-letter');
-          this.checkWord();
-          if (!this.victory) this.createActiveRound();
+    writeLetter(oneChar) {
+        const activeLetter = document.querySelector('div.current-letter');
+        if (activeLetter) {
+            let position = this.currentLine.indexOf(activeLetter); 
+            if (this.currentLine[position].innerHTML == '') this.leftEmpty -= 1;
+            activeLetter.innerHTML = String.fromCharCode(oneChar.numberChar);
+            this.currentWord[position] = oneChar;
+            if (this.leftEmpty > 0) {
+              if (position == this.level - 1) position = 0;
+              while (this.currentLine[position].innerHTML != '') {
+                position += 1;
+                if (position == this.level) position = 0;
+              }
+              activeLetter.classList.remove('current-letter');
+              this.currentLine[position].classList.add('current-letter');
+            } else {
+                activeLetter.classList.remove('current-letter');
+                this.checkWord();
+                if (!this.victory) this.createActiveRound();
+              }
         }
     }
 
 
     delLetter() {
-      const activeLetter = document.querySelector('div.current-letter');
-      if (activeLetter.innerHTML != '') {
-        this.leftEmpty += 1;
-        activeLetter.innerHTML = String.fromCharCode(0);
-      } else {
-        let position = this.currentLine.indexOf(activeLetter);
-        if (position == 0) position = this.level - 1;
-        else position -= 1;
-        activeLetter.classList.remove('current-letter');
-        this.currentLine[position].classList.add('current-letter');
-        if (this.currentLine[position].innerHTML != '') {
-          this.leftEmpty += 1;
-          this.currentLine[position].innerHTML = String.fromCharCode(0);
+        const activeLetter = document.querySelector('div.current-letter');
+        if (activeLetter) {
+            if (activeLetter.innerHTML != '') {
+              this.leftEmpty += 1;
+              activeLetter.innerHTML = String.fromCharCode(0);
+            } else {
+              let position = this.currentLine.indexOf(activeLetter);
+              if (position == 0) position = this.level - 1;
+              else position -= 1;
+              activeLetter.classList.remove('current-letter');
+              this.currentLine[position].classList.add('current-letter');
+              if (this.currentLine[position].innerHTML != '') {
+                this.leftEmpty += 1;
+                this.currentLine[position].innerHTML = String.fromCharCode(0);
+              }
+            }
         }
-      }
     }
 
 
