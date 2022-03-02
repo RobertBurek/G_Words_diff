@@ -2,19 +2,37 @@
 import { words5Letters } from '../src/5-letters.js';
 import { words6Letters } from '../src/6-letters.js';
 let wordsLetters = words5Letters;
+
 const setting5Letters = document.getElementById('5letters');
 const setting6Letters = document.getElementById('6letters');
 const onceAgainSection = document.getElementById('onceAgain');
 setting5Letters.addEventListener('click', ()=> {
     onceAgainSection.classList.add('hide');
     wordsLetters = words5Letters;
+    // console.log(stringWords);
+    stringWords = createStringWords(words5Letters);
+    // console.log(stringWords);
     game.run(5);
 });
 setting6Letters.addEventListener('click', ()=> {
     onceAgainSection.classList.add('hide');
     wordsLetters = words6Letters;
+    // console.log(stringWords);
+    stringWords = createStringWords(words6Letters);
+    // console.log(stringWords);
     game.run(6);
 });
+let stringWords = ''; //createStringWords(words5Letters');
+console.log(stringWords);
+
+
+function createStringWords(words) {
+    let tempStringWords = '';
+    words.forEach(el => {
+        tempStringWords += el.word +',';
+    });
+    return tempStringWords;
+}
 
 
 class CharKeyboard {
@@ -43,31 +61,31 @@ class Game {
     }]
 
     constructor({ lettersWrapper, categoryWrapper, wordGameWrapper, keyboardScheme, keyboard1, keyboard2, keyboard3, keyboard4, dataLetters }) {
-      this.lettersWrapper = lettersWrapper;
-      this.categoryWrapper = categoryWrapper;
-      this.wordGameWrapper = wordGameWrapper;
-      this.keyboardScheme = keyboardScheme;
-      this.keyboard1 = keyboard1;
-      this.keyboard2 = keyboard2;
-      this.keyboard3 = keyboard3;
-      this.keyboard4 = keyboard4;
-      this.dataLetters = dataLetters;
-      this.numbersChar = [65,  66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76,  77, 78, 79, 
-        //                 0   1   2    3   4   5   6   7  8    9   10  11  12  13   14
-        80, 81, 82, 83,  84, 85, 86, 87, 88, 89, 90, 211, 260, 262, 280, 321, 323, 346, 377, 379];
-      //15  16   17  18   19 20   21 22  23  24  25   26   27   28   29   30   31  32  33    34  
-      this.charsObject;
-      this.alphabet;
-      this.qwerty;
-      this.currentlyKeyboard;
-      this.level;
-      this.leftEmpty;
-      this.currentLine = [];
-      this.guessWord;
-      this.guessWordChars;
-      this.currentWord;
-      this.victory = false;
-
+        this.lettersWrapper = lettersWrapper;
+        this.categoryWrapper = categoryWrapper;
+        this.wordGameWrapper = wordGameWrapper;
+        this.keyboardScheme = keyboardScheme;
+        this.keyboard1 = keyboard1;
+        this.keyboard2 = keyboard2;
+        this.keyboard3 = keyboard3;
+        this.keyboard4 = keyboard4;
+        this.dataLetters = dataLetters;
+        this.numbersChar = [65,  66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76,  77, 78, 79, 
+          //                 0   1   2    3   4   5   6   7  8    9   10  11  12  13   14
+          80, 81, 82, 83,  84, 85, 86, 87, 88, 89, 90, 211, 260, 262, 280, 321, 323, 346, 377, 379];
+        //15  16   17  18   19 20   21 22  23  24  25   26   27   28   29   30   31  32  33    34  
+        this.charsObject;
+        this.alphabet;
+        this.qwerty;
+        this.currentlyKeyboard;
+        this.level;
+        this.leftEmpty;
+        this.currentLine = [];
+        this.guessWord;
+        this.guessWordChars;
+        this.currentWord;
+        this.victory = false;
+        this.onlyWords = false;
     }
 
     clearLine(line) {
@@ -109,7 +127,14 @@ class Game {
       }
       // if (level == 6) words = {word:'AGREST', category:'TestAgrest'};
 
+      stringWords = createStringWords(wordsLetters);
+
       this.guessWord = words.word;
+
+      if (stringWords.includes(this.guessWord)) console.log(`Jest w bazie: ${this.guessWord}`);
+      else console.log(`Nie ma w bazie: ${this.guessWord}`);
+
+
       this.categoryWrapper.innerHTML = 'KATEGORIA:  ' + words.category;
     //   console.log(words);
 
