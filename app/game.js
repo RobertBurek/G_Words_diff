@@ -175,9 +175,16 @@ class Game {
     checkWord() {
       let resultCheckedChars = new Array(this.level);
       let tempCurrentLine = [];
+      let tempWord = '';
       this.currentLine.forEach(el => {
           tempCurrentLine.push(el.innerHTML);
+          tempWord +=  el.innerHTML;
       });
+      if (stringWords.includes(tempWord)) {
+          console.log('To jest słowo');
+      } else {
+          console.log('NIE - słowo');
+      }
       let guessWordChars = this.guessWord.split('');
       this.clearLine(this.currentLine);
       for (let i = 0; i < this.level; i++) {
