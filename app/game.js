@@ -92,6 +92,7 @@ class Game {
         this.guessWord;
         this.guessWordChars;
         this.currentWord;
+        this.typedWord;
         this.victory = false;
         this.onlyWords = false;
     }
@@ -99,6 +100,13 @@ class Game {
     clearLine(line) {
         line.forEach(el => {
            el.style.display = 'none';
+        });
+    }
+
+    createTypedWord() {
+        this.typedWord = '';
+        this.currentLine.forEach(el => {
+            this.typedWord +=  el.innerHTML;
         });
     }
 
@@ -172,46 +180,59 @@ class Game {
     }
 
 
-    checkWord() {
-      let resultCheckedChars = new Array(this.level);
-      let tempCurrentLine = [];
-      let tempWord = '';
-      this.currentLine.forEach(el => {
-          tempCurrentLine.push(el.innerHTML);
-          tempWord +=  el.innerHTML;
-      });
-      if (stringWords.includes(tempWord)) {
-          console.log('To jest słowo');
-      } else {
-          console.log('NIE - słowo');
-      }
-      let guessWordChars = this.guessWord.split('');
-      this.clearLine(this.currentLine);
-      for (let i = 0; i < this.level; i++) {
-          if (tempCurrentLine[i] == guessWordChars[i]) {
-              guessWordChars[i] = '-';
-              tempCurrentLine[i] = '!';
-              resultCheckedChars[i] = 'success';
-              this.currentWord[i].stateChar = 'success';
-          }}
-      for (let i = 0; i < this.level; i++) {
-          if (tempCurrentLine[i] != '!') {
-              for (let j = 0; j < this.level; j++) {
-                  if (tempCurrentLine[i] == guessWordChars[j]) {
-                    guessWordChars[j] = '-';
-                      resultCheckedChars[i] = 'half-success';
-                      if ((this.currentWord[i].stateChar != 'success')) this.currentWord[i].stateChar = 'half-success';
-                      break;
-                  } else {
-                      resultCheckedChars[i] = 'not-char';
-                  }
-              }
-          }
-      }
-      this.isVictory(resultCheckedChars);
-      this.newViewLine(resultCheckedChars);
-      this.createKeyboard(this.currentlyKeyboard, this.keyboard1, this.keyboard2, this.keyboard3, this.keyboard4);
+    isOnlyWords(){
+        this.createTypedWord();
+        if (stringWords.includes(this.typedWord)) {
+            console.log('To jest słowo');
+            this.checkWord();
+        } else {
+            console.log('NIE - słowo');
+            this.checkWord();
+        }
     }
+
+
+    checkWord() {
+        // this.createTypedWord();
+        let resultCheckedChars = new Array(this.level);
+        let tempCurrentLine = [];
+        // let tempWord = '';
+        this.currentLine.forEach(el => {
+            tempCurrentLine.push(el.innerHTML);
+            // tempWord +=  el.innerHTML;
+        });
+        // if (stringWords.includes(tempWord)) {
+        //     console.log('To jest słowo');
+        // } else {
+        //     console.log('NIE - słowo');
+        // }
+        let guessWordChars = this.guessWord.split('');
+        this.clearLine(this.currentLine);
+        for (let i = 0; i < this.level; i++) {
+            if (tempCurrentLine[i] == guessWordChars[i]) {
+                guessWordChars[i] = '-';
+                tempCurrentLine[i] = '!';
+                resultCheckedChars[i] = 'success';
+                this.currentWord[i].stateChar = 'success';
+            }}
+        for (let i = 0; i < this.level; i++) {
+            if (tempCurrentLine[i] != '!') {
+                for (let j = 0; j < this.level; j++) {
+                    if (tempCurrentLine[i] == guessWordChars[j]) {
+                      guessWordChars[j] = '-';
+                        resultCheckedChars[i] = 'half-success';
+                        if ((this.currentWord[i].stateChar != 'success')) this.currentWord[i].stateChar = 'half-success';
+                        break;
+                    } else {
+                        resultCheckedChars[i] = 'not-char';
+                    }
+                }
+            }
+        }
+        this.isVictory(resultCheckedChars);
+        this.newViewLine(resultCheckedChars);
+        this.createKeyboard(this.currentlyKeyboard, this.keyboard1, this.keyboard2, this.keyboard3, this.keyboard4);
+    }   
     
 
     isVictory(resultCheckedChars) {
@@ -259,7 +280,8 @@ class Game {
               this.currentLine[position].classList.add('current-letter');
             } else {
                 activeLetter.classList.remove('current-letter');
-                this.checkWord();
+                // this.checkWord();
+                this.isOnlyWords();
                 if (!this.victory) this.createActiveRound();
               }
         }
