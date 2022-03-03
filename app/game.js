@@ -112,7 +112,8 @@ class Game {
 
     changeOnlyWords(param) {
         this.onlyWords = param;
-        // console.log(this.onlyWords);
+        if (this.onlyWords) console.log('Tylko istniejące słowa');
+        else console.log('Dowolny ciąg znaków');
     }
 
 
@@ -182,14 +183,19 @@ class Game {
 
     isOnlyWords(){
         this.createTypedWord();
-        if (stringWords.includes(this.typedWord)) {
-            console.log('To jest słowo');
-            this.checkWord();
+        if (this.onlyWords) {
+            if (stringWords.includes(this.typedWord)) {
+                console.log('To jest słowo');
+                this.checkWord();
+            } else {
+                console.log('NIE - słowo');
+                this.checkWord();
+            }
         } else {
             console.log('NIE - słowo');
             this.checkWord();
         }
-    }
+    }   
 
 
     checkWord() {
