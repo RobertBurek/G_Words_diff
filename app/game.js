@@ -5,6 +5,8 @@ let wordsLetters = words5Letters;
 
 const setting5Letters = document.getElementById('5letters');
 const setting6Letters = document.getElementById('6letters');
+const onlyWords = document.getElementById('onlyWords');
+const stringChars = document.getElementById('stringChars');
 const onceAgainSection = document.getElementById('onceAgain');
 setting5Letters.addEventListener('click', ()=> {
     onceAgainSection.classList.add('hide');
@@ -23,7 +25,13 @@ setting6Letters.addEventListener('click', ()=> {
     game.run(6);
 });
 let stringWords = ''; //createStringWords(words5Letters');
-console.log(stringWords);
+// console.log(stringWords);
+onlyWords.addEventListener('click', ()=> {
+    game.changeOnlyWords(true);
+});
+stringChars.addEventListener('click', ()=> {
+    game.changeOnlyWords(false);
+});
 
 
 function createStringWords(words) {
@@ -94,6 +102,11 @@ class Game {
         });
     }
 
+    changeOnlyWords(param) {
+        this.onlyWords = param;
+        // console.log(this.onlyWords);
+    }
+
 
     createDataLetters(dataLetters) {
         let startData = [];
@@ -131,8 +144,8 @@ class Game {
 
       this.guessWord = words.word;
 
-      if (stringWords.includes(this.guessWord)) console.log(`Jest w bazie: ${this.guessWord}`);
-      else console.log(`Nie ma w bazie: ${this.guessWord}`);
+    //   if (stringWords.includes(this.guessWord)) console.log(`Jest w bazie: ${this.guessWord}`);
+    //   else console.log(`Nie ma w bazie: ${this.guessWord}`);
 
 
       this.categoryWrapper.innerHTML = 'KATEGORIA:  ' + words.category;
