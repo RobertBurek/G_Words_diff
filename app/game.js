@@ -188,14 +188,14 @@ class Game {
         this.createTypedWord();
         if (this.onlyWords) {
             if (stringWords.includes(this.typedWord)) {
-                console.log('To jest słowo');
+                console.log('SŁOWO ISTNIEJE');
                 this.checkWord();
             } else {
                 console.log('NIE - słowo');
                 this.checkWord();
             }
         } else {
-            console.log('NIE - słowo');
+            console.log('Dowolny ciąg znaków');
             this.checkWord();
         }
     }   
