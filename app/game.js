@@ -26,11 +26,14 @@ setting6Letters.addEventListener('click', ()=> {
 });
 let stringWords = ''; //createStringWords(words5Letters');
 // console.log(stringWords);
+
 onlyWords.addEventListener('click', ()=> {
     game.changeOnlyWords(true);
+    // console.log(document.querySelector('#onlyWords p'));
 });
 stringChars.addEventListener('click', ()=> {
     game.changeOnlyWords(false);
+    // console.log(document.querySelector('#onlyWords p'));
 });
 
 
@@ -112,8 +115,8 @@ class Game {
 
     changeOnlyWords(param) {
         this.onlyWords = param;
-        if (this.onlyWords) console.log('Tylko istniejące słowa');
-        else console.log('Dowolny ciąg znaków');
+        if (this.onlyWords) document.querySelector('.obove.only-words p').innerHTML = 'Tylko istniejące słowa';
+        else document.querySelector('.obove.only-words p').innerHTML = 'Dowolny ciąg znaków';
     }
 
 

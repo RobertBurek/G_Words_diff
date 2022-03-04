@@ -210,11 +210,10 @@ button:hover {
   cursor: pointer;
 }
 
-.once-again {
+.obove {
   height: 0px;
   width: 100%;
   position: relative;
-  top: 88px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -226,7 +225,27 @@ button:hover {
           justify-content: center;
 }
 
-.once-again div {
+.obove.only-words {
+  height: 20px;
+  top: 10px;
+}
+
+.obove.once-again {
+  top: 98px;
+}
+
+.obove p {
+  width: 200px;
+  height: 40px;
+  text-align: center;
+  line-height: 34px;
+  font-size: 1rem;
+  color: red;
+  letter-spacing: 2px;
+  z-index: 100;
+}
+
+.obove div {
   width: 200px;
   height: 40px;
   text-align: center;
