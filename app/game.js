@@ -115,8 +115,8 @@ class Game {
 
     changeOnlyWords(param) {
         this.onlyWords = param;
-        if (this.onlyWords) document.querySelector('.obove.only-words p').innerHTML = 'Tylko istniejące słowa';
-        else document.querySelector('.obove.only-words p').innerHTML = 'Dowolny ciąg znaków';
+        if (this.onlyWords) document.querySelector('.above.only-words p').innerHTML = 'Tylko istniejące słowa';
+        else document.querySelector('.above.only-words p').innerHTML = 'Dowolny ciąg znaków';
     }
 
 

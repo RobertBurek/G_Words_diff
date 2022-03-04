@@ -210,7 +210,7 @@ button:hover {
   cursor: pointer;
 }
 
-.obove {
+.above {
   height: 0px;
   width: 100%;
   position: relative;
@@ -225,16 +225,16 @@ button:hover {
           justify-content: center;
 }
 
-.obove.only-words {
+.above.only-words {
   height: 20px;
   top: 10px;
 }
 
-.obove.once-again {
+.above.once-again {
   top: 94px;
 }
 
-.obove p {
+.above p {
   width: 200px;
   height: 40px;
   text-align: center;
@@ -245,7 +245,7 @@ button:hover {
   z-index: 100;
 }
 
-.obove div {
+.above div {
   width: 200px;
   height: 40px;
   text-align: center;
