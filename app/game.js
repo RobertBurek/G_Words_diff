@@ -386,7 +386,7 @@ class Game {
       wrapper.innerHTML = '';
         for ( let i = 0; i < level + 1; i++){
             const divLine = document.createElement('div');
-            createInfoOnlyWords(divLine);
+            // this.createInfoOnlyWords();
             if (i == 0) divLine.className = 'line current-round';
             else divLine.className = 'line';
             for ( let j = 0; j < level; j++){
@@ -402,14 +402,24 @@ class Game {
         }
         this.createCurrentLine();
 
-      function createInfoOnlyWords(divLine) {
-        const divOnlyWords = document.createElement('div');
-        divOnlyWords.className = 'not-word hide';
-        const pInfo = document.createElement('p');
-        pInfo.innerHTML = 'Nie ma takiego słowa'
-        divOnlyWords.appendChild(pInfo);
-        divLine.appendChild(divOnlyWords);
-      }
+      // function createInfoOnlyWords(divLine) {
+      //   const divOnlyWords = document.createElement('div');
+      //   divOnlyWords.className = 'not-word hide';
+      //   const pInfo = document.createElement('p');
+      //   pInfo.innerHTML = 'Nie ma takiego słowa'
+      //   divOnlyWords.appendChild(pInfo);
+      //   divLine.appendChild(divOnlyWords);
+      // }
+    }
+
+    
+    createInfoOnlyWords() {
+      const divOnlyWords = document.createElement('div');
+      divOnlyWords.className = 'not-word hide';
+      const pInfo = document.createElement('p');
+      pInfo.innerHTML = 'Nie ma takiego słowa'
+      divOnlyWords.appendChild(pInfo);
+      document.querySelector('.only-words').appendChild(divOnlyWords);
     }
 
 
@@ -490,7 +500,8 @@ class Game {
 
 const game = new Game({
     lettersWrapper: document.getElementById("letters"),
-    categoryWrapper: document.getElementById("category"),
+    // categoryWrapper: document.getElementById("category"),
+    categoryWrapper: document.querySelector("#category p"),
     wordGameWrapper: document.getElementById("wordGame"),
     keyboardScheme: document.getElementById("keyboardScheme"),
     keyboard1: document.getElementById("keyboard1"),

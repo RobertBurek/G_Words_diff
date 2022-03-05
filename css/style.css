@@ -107,8 +107,8 @@ html {
 
 .not-word {
   position: relative;
-  left: 0px;
-  top: 20px;
+  left: -39px;
+  top: -30px;
 }
 
 .not-word p {
@@ -309,10 +309,6 @@ button:hover {
   background-color: gray;
   color: #c1c1c1;
   border: 3px solid;
-  border-top-color: currentcolor;
-  border-right-color: currentcolor;
-  border-bottom-color: currentcolor;
-  border-left-color: currentcolor;
   border-color: #2a2a2a #9a9a9a #9a9a9a #2a2a2a;
   cursor: default !important;
   opacity: 0.7;
