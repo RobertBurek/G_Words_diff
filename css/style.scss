@@ -2,7 +2,7 @@
 
 $font-size-title: 2.5rem;
 $font-size-subtitle: 1.8rem;
-$background-color: #252527;
+$background-color: #474550;
 
 *,
 *::before,
@@ -91,6 +91,26 @@ html {
 .current-round .current-letter {
 	border: 3px solid yellow !important;
 	cursor: pointer;
+}
+
+.not-word {
+	position: relative;
+    left: 0px;
+    top: 20px;
+}
+
+.not-word p {
+	position: absolute;
+    height: 40px;
+    width: 200px;
+    border: 4px solid red;
+    text-align: center;
+    color: red;
+    font-size: 1.6rem;
+    line-height: 33px;
+    background-color: $background-color;
+    font-weight: 900;
+    letter-spacing: 1px;
 }
 
 .result-word {

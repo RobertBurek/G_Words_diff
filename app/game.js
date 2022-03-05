@@ -386,6 +386,7 @@ class Game {
       wrapper.innerHTML = '';
         for ( let i = 0; i < level + 1; i++){
             const divLine = document.createElement('div');
+            createInfoOnlyWords(divLine);
             if (i == 0) divLine.className = 'line current-round';
             else divLine.className = 'line';
             for ( let j = 0; j < level; j++){
@@ -400,6 +401,15 @@ class Game {
             wrapper.appendChild(divLine);
         }
         this.createCurrentLine();
+
+      function createInfoOnlyWords(divLine) {
+        const divOnlyWords = document.createElement('div');
+        divOnlyWords.className = 'not-word hide';
+        const pInfo = document.createElement('p');
+        pInfo.innerHTML = 'Nie ma takiego słowa'
+        divOnlyWords.appendChild(pInfo);
+        divLine.appendChild(divOnlyWords);
+      }
     }
 
 
