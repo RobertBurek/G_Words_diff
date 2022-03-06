@@ -207,6 +207,7 @@ class Game {
             console.log('Dowolny ciąg znaków');
             this.checkWord();
         }
+        if (!this.victory) this.createActiveRound();
     }   
 
 
@@ -300,7 +301,7 @@ class Game {
                 activeLetter.classList.remove('current-letter');
                 // this.checkWord();
                 this.isOnlyWords();
-                if (!this.victory) this.createActiveRound();
+                // if (!this.victory) this.createActiveRound();
               }
         }
     }
