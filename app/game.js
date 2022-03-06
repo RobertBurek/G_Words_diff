@@ -9,6 +9,8 @@ const onlyWords = document.getElementById('onlyWords');
 const notWord = document.querySelector('.not-word');
 const stringChars = document.getElementById('stringChars');
 const onceAgainSection = document.getElementById('onceAgain');
+const divOnlyWords = document.querySelector('.above.only-words');
+const pOnlyWords = document.querySelector('.above.only-words p');
 setting5Letters.addEventListener('click', ()=> {
     onceAgainSection.classList.add('hide');
     wordsLetters = words5Letters;
@@ -187,8 +189,19 @@ class Game {
       this.currentLine.forEach(el => {
           this.typedWord +=  el.innerHTML;
       });
-  }
+    }
 
+
+    stopCurrentLine(){
+      console.log(notWord);
+      notWord.classList.remove('hide');
+      // const infoOnlyWords = document.querySelector('above only-words');
+      divOnlyWords.classList.add('curtain-only-words');
+      pOnlyWords.classList.add('curtain');
+      this.currentLine.forEach(el => {
+        el.classList.add('curtain-char');
+      });
+    }
 
     isOnlyWords(){
         this.createTypedWord();
@@ -196,18 +209,21 @@ class Game {
             if (stringWords.includes(this.typedWord)) {
                 console.log('SŁOWO ISTNIEJE');
                 this.checkWord();
+                if (!this.victory) this.createActiveRound();
             } else {
                 console.log('NIE - słowo');
                 // const notWord = document.querySelector('.not-word');
-                console.log(notWord);
-                notWord.classList.remove('hide');
-                this.checkWord();
+                // console.log(notWord);
+                // notWord.classList.remove('hide');
+                // this.checkWord();
+                this.stopCurrentLine();
             }
         } else {
             console.log('Dowolny ciąg znaków');
             this.checkWord();
+            if (!this.victory) this.createActiveRound();
         }
-        if (!this.victory) this.createActiveRound();
+        // if (!this.victory) this.createActiveRound();
     }   
 
 

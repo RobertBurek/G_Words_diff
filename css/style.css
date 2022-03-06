@@ -241,6 +241,16 @@ button:hover {
   width: 380px !important;
 }
 
+.curtain-char {
+  border: 3px solid red !important;
+  color: red;
+}
+
+.curtain-back-space {
+  border: 3px solid red;
+  color: red;
+}
+
 .above {
   height: 0px;
   width: 100%;
