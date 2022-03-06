@@ -210,6 +210,16 @@ button:hover {
 	cursor: pointer;
 }
 
+.curtain-only-words {
+	top: 155px;
+}
+
+.curtain {
+	border: 2px solid blue;
+    height: 181px !important;
+    width: 380px !important;
+}
+
 .above {
 	height: 0px;
     width: 100%;
@@ -221,7 +231,7 @@ button:hover {
 
 .above.only-words {
 	height: 20px;
-	top: 10px;
+	// top: 10px;
 }
 
 .above.once-again {
@@ -231,7 +241,7 @@ button:hover {
 
 .above p {
 	width: 200px;
-	height: 40px;
+	height: 30px;
 	text-align: center;
 	line-height: 34px;
 	font-size: 1rem;
@@ -357,6 +367,7 @@ h2 {
 		top: 2px;
 		width: 32px;
 		height: 22px;
+		z-index: 200;
 	}
 	.keyboard-scheme {
 		height: 36px;

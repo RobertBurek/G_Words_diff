@@ -283,6 +283,7 @@ class Game {
 
 
     writeLetter(oneChar) {
+      // console.log(oneChar);
         const activeLetter = document.querySelector('div.current-letter');
         if (activeLetter) {
             let position = this.currentLine.indexOf(activeLetter); 
