@@ -6,6 +6,7 @@ let wordsLetters = words5Letters;
 const setting5Letters = document.getElementById('5letters');
 const setting6Letters = document.getElementById('6letters');
 const onlyWords = document.getElementById('onlyWords');
+const notWord = document.querySelector('.not-word');
 const stringChars = document.getElementById('stringChars');
 const onceAgainSection = document.getElementById('onceAgain');
 setting5Letters.addEventListener('click', ()=> {
@@ -98,6 +99,7 @@ class Game {
         this.typedWord;
         this.victory = false;
         this.onlyWords = false;
+        this.isWord = true;
     }
 
     clearLine(line) {
@@ -106,12 +108,7 @@ class Game {
         });
     }
 
-    createTypedWord() {
-        this.typedWord = '';
-        this.currentLine.forEach(el => {
-            this.typedWord +=  el.innerHTML;
-        });
-    }
+ 
 
     changeOnlyWords(param) {
         this.onlyWords = param;
@@ -135,6 +132,7 @@ class Game {
     startParameters(level) {
       this.level = level;
       this.leftEmpty = level;
+      notWord.classList.add('hide');
       let words;
       if (level == 5) {
         // this.dataLetters = words5Letters;
@@ -184,6 +182,14 @@ class Game {
     }
 
 
+    createTypedWord() {
+      this.typedWord = '';
+      this.currentLine.forEach(el => {
+          this.typedWord +=  el.innerHTML;
+      });
+  }
+
+
     isOnlyWords(){
         this.createTypedWord();
         if (this.onlyWords) {
@@ -192,6 +198,9 @@ class Game {
                 this.checkWord();
             } else {
                 console.log('NIE - słowo');
+                // const notWord = document.querySelector('.not-word');
+                console.log(notWord);
+                notWord.classList.remove('hide');
                 this.checkWord();
             }
         } else {
@@ -424,29 +433,29 @@ class Game {
 
 
     removeListenerLetter(element) {
-    if (element.removeEventListener) {
-        element.removeEventListener ('click', () => this.changeLetter(element));
-        } else if (element.detachEvent) {
-            element.detachEvent ('click', () => this.changeLetter(element));
-        }
+      if (element.removeEventListener) {
+          element.removeEventListener ('click', () => this.changeLetter(element));
+          } else if (element.detachEvent) {
+              element.detachEvent ('click', () => this.changeLetter(element));
+          }
     }
 
 
     createCurrentLine() {
       this.currentLine = document.querySelectorAll('.current-round .one-letter');
-                this.currentLine = [...this.currentLine];
-                this.currentLine.forEach(element => {
-                    element.addEventListener('click', () => this.changeLetter(element));
-                });
-                this.leftEmpty = this.level;
+      this.currentLine = [...this.currentLine];
+      this.currentLine.forEach(element => {
+          element.addEventListener('click', () => this.changeLetter(element));
+      });
+      this.leftEmpty = this.level;
     }
 
 
     showWord(word) {
       const resultDiv = document.getElementById('resultWord');
       if (word != '') {
-      resultDiv.classList.add('result-word');
-      resultDiv.innerHTML = `Szukane słowo: <p>${word}</p>`;
+        resultDiv.classList.add('result-word');
+        resultDiv.innerHTML = `Szukane słowo: <p>${word}</p>`;
       } else {
         resultDiv.innerHTML = ``;
       }
@@ -458,16 +467,21 @@ class Game {
         listRounds = [...listRounds];
         for (let i = 0; i < listRounds.length; i++) {
             if (listRounds[i].className == 'line current-round') {
-                listRounds[i].classList.remove('current-round');
-                if (i < listRounds.length -1) {
-                    listRounds[i + 1].classList.add('current-round');
-                    listRounds[i + 1].firstChild.classList.add('current-letter');
-                    this.currentLine = document.querySelectorAll('.current-round .one-letter');
-                    this.currentLine = [...this.currentLine];
-                    this.currentLine.forEach(element => {
-                        element.addEventListener('click', () => this.changeLetter(element));
-                    });
-                    this.leftEmpty = this.level;
+
+
+              listRounds[i].classList.remove('current-round');
+              if (i < listRounds.length -1) {
+
+
+                listRounds[i + 1].classList.add('current-round');
+                listRounds[i + 1].firstChild.classList.add('current-letter');
+                this.createCurrentLine();
+                    // this.currentLine = document.querySelectorAll('.current-round .one-letter');
+                    // this.currentLine = [...this.currentLine];
+                    // this.currentLine.forEach(element => {
+                    //     element.addEventListener('click', () => this.changeLetter(element));
+                    // });
+                    // this.leftEmpty = this.level;
                 } else {
                   this.showWord(this.guessWord);
                   this.onceAgain(this.level);
