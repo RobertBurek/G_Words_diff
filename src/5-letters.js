@@ -10883,6 +10883,7 @@ export let words5Letters = [
     {word:'MALLU',category:'?',game:false},
     {word:'MALMU',category:'?',game:false},
     {word:'MALMY',category:'?',game:false},
+    {word:'MALTA',category:'?',game:true},
     {word:'MALUJ',category:'?',game:false},
     {word:'MALWA',category:'?',game:false},
     {word:'MALWĄ',category:'?',game:false},

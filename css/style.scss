@@ -204,6 +204,7 @@ button:hover {
     color: #474550;
     background-color: aliceblue;
     margin-left: 3px;
+    z-index: 200;
 }
 
 .back-space:hover {
@@ -215,7 +216,7 @@ button:hover {
 }
 
 .curtain {
-	border: 2px solid blue;
+	// border: 2px solid blue;
     height: 181px !important;
     width: 380px !important;
 }
@@ -226,8 +227,8 @@ button:hover {
 }
 
 .curtain-back-space {
-	border: 3px solid red;
-	color: red;
+	background-color: red;
+    color: white;
 }
 
 .above {

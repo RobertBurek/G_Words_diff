@@ -3,6 +3,7 @@ import { words5Letters } from '../src/5-letters.js';
 import { words6Letters } from '../src/6-letters.js';
 let wordsLetters = words5Letters;
 
+// const divBackspace = document.createElement('div');
 const setting5Letters = document.getElementById('5letters');
 const setting6Letters = document.getElementById('6letters');
 const onlyWords = document.getElementById('onlyWords');
@@ -101,7 +102,7 @@ class Game {
         this.typedWord;
         this.victory = false;
         this.onlyWords = false;
-        this.isWord = true;
+        this.isNotWord = false;
     }
 
     clearLine(line) {
@@ -181,6 +182,9 @@ class Game {
       this.currentWord = new Array(level);
       this.victory = false;
       this.showWord('');
+      // this.startCurrentLine();
+      // console.log('ten');
+      // this.returnGame();
     }
 
 
@@ -193,7 +197,8 @@ class Game {
 
 
     stopCurrentLine(){
-      console.log(notWord);
+      this.isNotWord = true;
+      console.log('stopCurrentLine');
       notWord.classList.remove('hide');
       // const infoOnlyWords = document.querySelector('above only-words');
       divOnlyWords.classList.add('curtain-only-words');
@@ -201,7 +206,24 @@ class Game {
       this.currentLine.forEach(el => {
         el.classList.add('curtain-char');
       });
+      document.querySelector('.back-space').classList.add('curtain-back-space');
     }
+
+    startCurrentLine(){
+      this.isNotWord = false;
+      console.log('startCurrentLin');
+      notWord.classList.add('hide');
+      // const infoOnlyWords = document.querySelector('above only-words');
+      divOnlyWords.classList.remove('curtain-only-words');
+      pOnlyWords.classList.remove('curtain');
+      this.currentLine.forEach(el => {
+        el.classList.remove('curtain-char');
+        el.innerHTML = '';
+      });
+      document.querySelector('.back-space').classList.remove('curtain-back-space');
+      // this.createCurrentLine();
+    }
+
 
     isOnlyWords(){
         this.createTypedWord();
@@ -341,9 +363,28 @@ class Game {
                 this.currentLine[position].innerHTML = String.fromCharCode(0);
               }
             }
-        }
+        } 
+        // else {
+          // this.startCurrentLine();
+          // document.querySelector('.current-round').firstChild.classList.add('current-letter');
+        // }
     }
 
+    returnGame() {
+      this.startCurrentLine();
+      this.leftEmpty = this.level;
+      document.querySelector('.current-round').firstChild.classList.add('current-letter');
+    }
+
+    delCurtainOnlyWords() {
+      if (this.isNotWord) {
+        this.returnGame();
+        // this.leftEmpty = this.level;
+        // document.querySelector('.current-round').firstChild.classList.add('current-letter');
+      } else {
+        this.delLetter();
+      }
+    }
 
     changeKeyboard() {
         if (this.currentlyKeyboard == this.alphabet) this.currentlyKeyboard = this.qwerty;
@@ -389,7 +430,7 @@ class Game {
       const divBackspace = document.createElement('div');
       divBackspace.className = 'back-space';
       divBackspace.innerHTML = '<i class="fas fa-long-arrow-alt-left"></i>';
-      divBackspace.addEventListener('click', () => this.delLetter());
+      divBackspace.addEventListener('click', () => this.delCurtainOnlyWords());
       keyboard3.appendChild(divBackspace);
       for (let i = 26; i < 35; i++) {
         const button = document.createElement('button');
@@ -405,7 +446,7 @@ class Game {
       this.currentLine.forEach(el => {
         el.classList.remove('current-letter')
       });
-      element.classList.add('current-letter');
+      if (!this.isNotWord) element.classList.add('current-letter');
     }
 
 
@@ -450,16 +491,18 @@ class Game {
     }
 
 
-    removeListenerLetter(element) {
-      if (element.removeEventListener) {
-          element.removeEventListener ('click', () => this.changeLetter(element));
-          } else if (element.detachEvent) {
-              element.detachEvent ('click', () => this.changeLetter(element));
-          }
-    }
+    // removeListenerLetter(element) {
+    //   if (element.removeEventListener) {
+    //       element.removeEventListener ('click', () => this.changeLetter(element));
+    //       } else if (element.detachEvent) {
+    //           element.detachEvent ('click', () => this.changeLetter(element));
+    //       }
+    // }
 
 
     createCurrentLine() {
+      // console.log(document.querySelector('.current-round'));
+      // document.querySelector('.current-round').firstChild.classList.add('current-letter');
       this.currentLine = document.querySelectorAll('.current-round .one-letter');
       this.currentLine = [...this.currentLine];
       this.currentLine.forEach(element => {
@@ -525,6 +568,8 @@ class Game {
     this.startParameters(quantity);
     this.createKeyboard(this.currentlyKeyboard, this.keyboard1, this.keyboard2, this.keyboard3, this.keyboard4);
     this.createStartPlaceGame(quantity, this.wordGameWrapper);
+    // this.startCurrentLine();
+    this.returnGame();
     }
 
 
