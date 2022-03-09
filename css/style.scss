@@ -78,7 +78,7 @@ html {
     margin: 5px;
     font-size: 20px;
     text-align: center;
-    line-height: 28px;
+    line-height: 27px;
 	font-weight: 600;
 	cursor: default;
 }
@@ -95,7 +95,7 @@ html {
 
 .not-word {
 	position: relative;
-	left: 74px;
+	left: 20px;
     top: -35px;
 }
 
@@ -125,7 +125,7 @@ html {
 }
 
 .category {
-	width: 350px;
+	width: 240px;
 	text-align: center;
 	font-size: 1.4rem;
 	font-weight: 600;
@@ -212,13 +212,15 @@ button:hover {
 }
 
 .curtain-only-words {
-	top: 155px;
+	top: 130px;
 }
 
 .curtain {
 	// border: 2px solid blue;
-    height: 181px !important;
+    height: 160px !important;
     width: 380px !important;
+    background-color: gray;
+	opacity: 0.8;
 }
 
 .curtain-char {
@@ -254,7 +256,7 @@ button:hover {
 	width: 200px;
 	height: 30px;
 	text-align: center;
-	line-height: 34px;
+	line-height: 25px;
 	font-size: 1rem;
 	color: red;
 	letter-spacing: 2px;
@@ -392,6 +394,7 @@ h2 {
 	}
 	.category {
 		font-size: 17px;
+		width: 300px;
 	}
 	.description {
 		padding: 10px;
@@ -402,12 +405,35 @@ h2 {
 		width: 20px;
 		top: 5px;
 	}
+	.not-word {
+		left: 50px;
+	}
+	.curtain-only-words {
+		top: 146px;
+	}
+	.curtain {
+		height: 177px !important;
+		width: 500px !important;
+	}
 }
 
 @media (min-width: 500px) {
 	button {
 		height: 28px;
     	width: 28px;
+	}
+	.category {
+		width: 350px;
+	}
+	.not-word {
+		left: 74px;
+	}
+	.curtain-only-words {
+		top: 158px;
+	}
+	.curtain {
+		height: 188px !important;
+		width: 700px !important;
 	}
 }
 
@@ -418,6 +444,9 @@ h2 {
 	.description {
 		max-width: 100%;
 		width: 500px;
+	}
+	.curtain {
+		width: 670px !important;
 	}
 }
 
