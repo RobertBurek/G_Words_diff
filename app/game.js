@@ -135,7 +135,7 @@ class Game {
         this.words6 = this.createDataLetters(words6Letters);
         words = this.words6[Math.floor(Math.random()*this.words6.length)];
       }
-      // if (level == 6) words = {word:'AGREST', category:'TestAgrest'};
+      if (level == 6) words = {word:'AGREST', category:'TestAgrest'};
 
       stringWords = createStringWords(wordsLetters);
 
@@ -174,7 +174,7 @@ class Game {
 
     stopCurrentLine(){
       this.isNotWord = true;
-      console.log('stopCurrentLine');
+      // console.log('stopCurrentLine');
       notWord.classList.remove('hide');
       divOnlyWords.classList.add('curtain-only-words');
       pOnlyWords.classList.add('curtain');
@@ -186,7 +186,7 @@ class Game {
 
     startCurrentLine(){
       this.isNotWord = false;
-      console.log('startCurrentLin');
+      // console.log('startCurrentLin');
       notWord.classList.add('hide');
       divOnlyWords.classList.remove('curtain-only-words');
       pOnlyWords.classList.remove('curtain');
@@ -327,6 +327,7 @@ class Game {
       this.startCurrentLine();
       this.leftEmpty = this.level;
       document.querySelector('.current-round').firstChild.classList.add('current-letter');
+      pOnlyWords.classList.remove('curtain-z-index');
     }
 
     delCurtainOnlyWords() {
@@ -336,6 +337,7 @@ class Game {
         this.delLetter();
       }
     }
+
 
     changeKeyboard() {
         if (this.currentlyKeyboard == this.alphabet) this.currentlyKeyboard = this.qwerty;
@@ -450,7 +452,7 @@ class Game {
       } else {
         resultDiv.innerHTML = ``;
       }
-  }
+    }
 
 
     createActiveRound() {
@@ -475,11 +477,19 @@ class Game {
 
     onceAgain(quantity) {
       onceAgainSection.classList.remove('hide');
+      divOnlyWords.classList.add('curtain-only-words');
+      pOnlyWords.classList.add('curtain');
+      pOnlyWords.classList.add('curtain-z-index');
+      // document.querySelector('.back-space').classList.add('back-space-z-index');
+      // document.querySelector('.back-space').style.zIndex = '0';
+      // console.log(document.querySelector('.back-space'));
       const onceAgainDiv = document.querySelector('#onceAgain div');
+      // console.log(onceAgainDiv);
       onceAgainDiv.addEventListener('click', () =>{
         onceAgainSection.classList.add('hide');
         this.run(quantity);
       });
+      // document.querySelector('.back-space').classList.add('back-space-z-index');
     }
 
 
