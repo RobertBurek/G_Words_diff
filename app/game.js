@@ -135,7 +135,7 @@ class Game {
         this.words6 = this.createDataLetters(words6Letters);
         words = this.words6[Math.floor(Math.random()*this.words6.length)];
       }
-      if (level == 6) words = {word:'AGREST', category:'TestAgrest'};
+      // if (level == 6) words = {word:'AGREST', category:'TestAgrest'};
 
       stringWords = createStringWords(wordsLetters);
 
