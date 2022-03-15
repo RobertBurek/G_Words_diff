@@ -36,8 +36,11 @@ html {
 .title-game {
 	text-align: center;
 	font-size: 1.8rem;
-	letter-spacing: 2px;
+	// letter-spacing: 2px;
 	padding: 20px 0;
+	// transform: translateX(10px);
+	width: 100%;
+	padding-left: 10px;
 }
 
 .description {
@@ -54,8 +57,84 @@ html {
     display: inline-block;
     position: relative;
     top: 3px;
-	border: 2px solid #c2c2c2;
+	// border: 2px solid #c2c2c2;
 }
+
+.title-letter {
+	// height: 34px;
+    // width: 34px;
+    // display: inline-block;
+    // position: relative;
+    // font-weight: 700;
+    // transform: rotate(45deg);
+    // font-size: 25px;
+
+	height: 22px;
+    width: 22px;
+    display: inline-block;
+    position: relative;
+    font-weight: 700;
+    font-size: 14px;
+    color: black !important;
+
+	// height: 24px;
+    // width: 24px;
+    // display: inline-block;
+    // position: relative;
+    // font-weight: 700;
+    // font-size: 17px;
+	// color: black !important;
+}
+
+.title-letter-space {
+	display: inline-block;
+	width: 0px;
+}
+
+
+.letter-transform-1 {
+	transform: translateX(20px) rotate(20deg);
+}
+.letter-transform-2 {
+	transform: translateX(15px);
+}
+.letter-transform-3 {
+	transform: translateX(5px) rotate(-15deg);
+	z-index: 10;
+}
+.letter-transform-4 {
+	transform: translateX(0px) rotate(10deg);
+}
+.letter-transform-5 {
+	transform: translateX(-10px) rotate(-15deg);
+}
+
+.letter-transform-6 {
+	transform: translateX(-5px) rotate(-10deg);
+	z-index: 10;
+}
+.letter-transform-7 {
+	transform: translateX(-10px) rotate(10deg);
+	// z-index: 1;
+}
+
+.letter-transform-8 {
+	transform: translateX(0px) rotate(-10deg);
+}
+.letter-transform-9 {
+	transform: translateX(-10px) rotate(10deg);
+	z-index: 10;
+}
+.letter-transform-10 {
+	transform: translateX(-20px);
+}
+.letter-transform-11 {
+	transform: translateX(-28px) rotate(-15deg);
+}
+.letter-transform-12 {
+	transform: translateX(-37px) rotate(10deg);
+}
+
 
 .word-game {
 	width: 80%;
@@ -257,7 +336,7 @@ button:hover {
 }
 
 .above.once-again {
-	top: 94px;
+	top: 78px;
 	// top: 88px;
 }
 
@@ -282,10 +361,10 @@ button:hover {
 	font-weight: 700;
 	background-color: #555555;
 	border-radius: 5px;
-	color: yellow;
+	// color: yellow;
 	border: 4px solid ;
 	border-color: #999999 #2b2b2b #2b2b2b #999999;
-	letter-spacing: 2px;
+	letter-spacing: 3px;
 	z-index: 500;
 }
 
@@ -424,6 +503,14 @@ h2 {
 		height: 177px !important;
 		width: 500px !important;
 	}
+	.title-letter {
+	height: 27px;
+    width: 27px;
+    font-size: 20px;
+	}
+	.above.once-again {
+		top: 87px;
+	}
 }
 
 @media (min-width: 500px) {
@@ -443,6 +530,17 @@ h2 {
 	.curtain {
 		height: 188px !important;
 		width: 700px !important;
+	}
+	.title-letter {
+		height: 31px;
+		width: 31px;
+		font-size: 21px;
+		}
+	.title-letter-space {
+		width: 20px;
+	}
+	.above.once-again {
+		top: 94px;
 	}
 }
 
