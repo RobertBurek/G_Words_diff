@@ -15,13 +15,13 @@ setting5Letters.addEventListener('click', ()=> {
     onceAgainSection.classList.add('hide');
     wordsLetters = words5Letters;
     stringWords = createStringWords(words5Letters);
-    game.run(5);
+    game.run(5, 5);
 });
 setting6Letters.addEventListener('click', ()=> {
     onceAgainSection.classList.add('hide');
     wordsLetters = words6Letters;
     stringWords = createStringWords(words6Letters);
-    game.run(6);
+    game.run(6, 5);
 });
 let stringWords = '';
 
@@ -95,6 +95,7 @@ class Game {
         this.victory = false;
         this.onlyWords = false;
         this.isNotWord = false;
+        this.attempts = 5;
     }
 
     clearLine(line) {
@@ -259,7 +260,7 @@ class Game {
       });
       if (i == this.level) {
         this.victory = true;
-        this.onceAgain(this.level);
+        this.onceAgain(this.level, this.attempts);
       }
     }
 
@@ -467,7 +468,7 @@ class Game {
                 this.createCurrentLine();
                 } else {
                   this.showWord(this.guessWord);
-                  this.onceAgain(this.level);
+                  this.onceAgain(this.level, this.attempts);
                   }
                 break;
             }
@@ -475,7 +476,7 @@ class Game {
     }
 
 
-    onceAgain(quantity) {
+    onceAgain(quantity, attempts) {
       onceAgainSection.classList.remove('hide');
       divOnlyWords.classList.add('curtain-only-words');
       pOnlyWords.classList.add('curtain');
@@ -487,13 +488,13 @@ class Game {
       // console.log(onceAgainDiv);
       onceAgainDiv.addEventListener('click', () =>{
         onceAgainSection.classList.add('hide');
-        this.run(quantity);
+        this.run(quantity, attempts);
       });
       // document.querySelector('.back-space').classList.add('back-space-z-index');
     }
 
 
-    run(quantity) {
+    run(quantity, attempts) {
     this.startParameters(quantity);
     this.createKeyboard(this.currentlyKeyboard, this.keyboard1, this.keyboard2, this.keyboard3, this.keyboard4);
     this.createStartPlaceGame(quantity, this.wordGameWrapper);
@@ -516,4 +517,4 @@ const game = new Game({
     dataLetters: wordsLetters,
 });
 
-game.run(5);
+game.run(5, 5);
