@@ -1,10 +1,14 @@
 // import { GuessWord } from './guessWord.js';
 import { words5Letters } from '../src/5-letters.js';
 import { words6Letters } from '../src/6-letters.js';
+import { words7Letters } from '../src/7-letters.js';
 let wordsLetters = words5Letters;
 
 const setting5Letters = document.getElementById('5letters');
 const setting6Letters = document.getElementById('6letters');
+const setting7Letters = document.getElementById('7letters');
+const setting8Letters = document.getElementById('8letters');
+const setting9Letters = document.getElementById('9letters');
 const onlyWords = document.getElementById('onlyWords');
 const notWord = document.querySelector('.not-word');
 const stringChars = document.getElementById('stringChars');
@@ -22,6 +26,12 @@ setting6Letters.addEventListener('click', ()=> {
     wordsLetters = words6Letters;
     stringWords = createStringWords(words6Letters);
     game.run(6, 6);
+});
+setting7Letters.addEventListener('click', ()=> {
+  onceAgainSection.classList.add('hide');
+  wordsLetters = words7Letters;
+  stringWords = createStringWords(words7Letters);
+  game.run(7, 6);
 });
 let stringWords = '';
 
@@ -138,6 +148,11 @@ class Game {
         words = this.words6[Math.floor(Math.random()*this.words6.length)];
       }
       // if (level == 6) words = {word:'AGREST', category:'TestAgrest'};
+      if (level == 7) {
+        this.words7 = this.createDataLetters(words7Letters);
+        words = this.words7[Math.floor(Math.random()*this.words7.length)];
+      }
+      // if (level == 7) words = {word:'APASZKA', category:'TestApaszka'};
 
       stringWords = createStringWords(wordsLetters);
 
