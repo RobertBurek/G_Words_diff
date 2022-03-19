@@ -150,37 +150,60 @@ class Game {
       this.leftEmpty = level;
       notWord.classList.add('hide');
       let words;
+      switch (level) {
+        case 5:
+          words = this.createWordsLevel(words5Letters);
+          break;
+        case 6:
+          words = this.createWordsLevel(words6Letters);
+          break;
+        case 7:
+          words = this.createWordsLevel(words7Letters);
+          break;
+        case 8:
+          words = this.createWordsLevel(words8Letters);
+          break;
+        case 9:
+          words = this.createWordsLevel(words9Letters);
+          break;
+        default:
+          // if (level == 5) words = {word:'BANAN', category:'TestBanan'};
+          // if (level == 6) words = {word:'AGREST', category:'TestAgrest'};
+          // if (level == 7) words = {word:'APASZKA', category:'TestApaszka'};
+          // if (level == 8) words = {word:'TEODOLIT', category:'TestTeodolit'};
+          // if (level == 9) words = {word:'ARCHITEKT', category:'TestArchitekt'};
+      }
 
-      if (level == 5) {
-        // this.words5 = this.createDataLetters(words5Letters);
-        // words = this.words5[Math.floor(Math.random()*this.words5.length)];
-        words = this.createWordsLevel(words5Letters);
+      // if (level == 5) {
+      //   // this.words5 = this.createDataLetters(words5Letters);
+      //   // words = this.words5[Math.floor(Math.random()*this.words5.length)];
+      //   words = this.createWordsLevel(words5Letters);
     
-      }
-      // if (level == 5) words = {word:'BANAN', category:'TestBanan'};
-      if (level == 6) {
-        // this.words6 = this.createDataLetters(words6Letters);
-        // words = this.words6[Math.floor(Math.random()*this.words6.length)];
-        words = this.createWordsLevel(words6Letters);
-      }
-      // if (level == 6) words = {word:'AGREST', category:'TestAgrest'};
-      if (level == 7) {
-        // this.words7 = this.createDataLetters(words7Letters);
-        // words = this.words7[Math.floor(Math.random()*this.words7.length)];
-        words = this.createWordsLevel(words7Letters);
-      }
-      // if (level == 7) words = {word:'APASZKA', category:'TestApaszka'};
-      if (level == 8) {
-        // this.words8 = this.createDataLetters(words8Letters);
-        // words = this.words8[Math.floor(Math.random()*this.words8.length)];
-        words = this.createWordsLevel(words8Letters);
-      }
-      // if (level == 8) words = {word:'TEODOLIT', category:'TestTeodolit'};
-      if (level == 9) {
-        // this.words9 = this.createDataLetters(words9Letters);
-        // words = this.words9[Math.floor(Math.random()*this.words9.length)];
-        words = this.createWordsLevel(words9Letters);
-      }
+      // }
+      // // if (level == 5) words = {word:'BANAN', category:'TestBanan'};
+      // if (level == 6) {
+      //   // this.words6 = this.createDataLetters(words6Letters);
+      //   // words = this.words6[Math.floor(Math.random()*this.words6.length)];
+      //   words = this.createWordsLevel(words6Letters);
+      // }
+      // // if (level == 6) words = {word:'AGREST', category:'TestAgrest'};
+      // if (level == 7) {
+      //   // this.words7 = this.createDataLetters(words7Letters);
+      //   // words = this.words7[Math.floor(Math.random()*this.words7.length)];
+      //   words = this.createWordsLevel(words7Letters);
+      // }
+      // // if (level == 7) words = {word:'APASZKA', category:'TestApaszka'};
+      // if (level == 8) {
+      //   // this.words8 = this.createDataLetters(words8Letters);
+      //   // words = this.words8[Math.floor(Math.random()*this.words8.length)];
+      //   words = this.createWordsLevel(words8Letters);
+      // }
+      // // if (level == 8) words = {word:'TEODOLIT', category:'TestTeodolit'};
+      // if (level == 9) {
+      //   // this.words9 = this.createDataLetters(words9Letters);
+      //   // words = this.words9[Math.floor(Math.random()*this.words9.length)];
+      //   words = this.createWordsLevel(words9Letters);
+      // }
       // if (level == 9) words = {word:'ARCHITEKT', category:'TestArchitekt'};
 
       this.guessWord = words.word;
