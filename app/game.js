@@ -2,6 +2,7 @@
 import { words5Letters } from '../src/5-letters.js';
 import { words6Letters } from '../src/6-letters.js';
 import { words7Letters } from '../src/7-letters.js';
+import { words8Letters } from '../src/8-letters.js';
 let wordsLetters = words5Letters;
 
 const setting5Letters = document.getElementById('5letters');
@@ -32,6 +33,12 @@ setting7Letters.addEventListener('click', ()=> {
   wordsLetters = words7Letters;
   stringWords = createStringWords(words7Letters);
   game.run(7, 6);
+});
+setting8Letters.addEventListener('click', ()=> {
+  onceAgainSection.classList.add('hide');
+  wordsLetters = words8Letters;
+  stringWords = createStringWords(words8Letters);
+  game.run(8, 6);
 });
 let stringWords = '';
 
@@ -153,6 +160,11 @@ class Game {
         words = this.words7[Math.floor(Math.random()*this.words7.length)];
       }
       // if (level == 7) words = {word:'APASZKA', category:'TestApaszka'};
+      if (level == 8) {
+        this.words8 = this.createDataLetters(words8Letters);
+        words = this.words8[Math.floor(Math.random()*this.words8.length)];
+      }
+      // if (level == 8) words = {word:'TEODOLIT', category:'TestTeodolit'};
 
       stringWords = createStringWords(wordsLetters);
 
