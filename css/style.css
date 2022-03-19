@@ -165,7 +165,7 @@ html {
   min-width: 20px;
   border-radius: 3px;
   border: 2px solid gray;
-  margin: 5px;
+  margin: 5px 2px;
   font-size: 20px;
   text-align: center;
   line-height: 27px;
@@ -548,6 +548,9 @@ h2 {
   .above.once-again {
     top: 87px;
   }
+  .one-letter {
+    margin: 5px 3px;
+  }
 }
 
 @media (min-width: 500px) {
@@ -578,6 +581,9 @@ h2 {
   }
   .above.once-again {
     top: 94px;
+  }
+  .one-letter {
+    margin: 5px 5px;
   }
 }
 
