@@ -65,30 +65,44 @@
                         Długość słowa
                     </button>
                     <div class="dropdown-info">
-                        <button class="long-word">5-literowe</button>
+                        <div id="5letters" class="setting-letter">5-literowe</div>
+                        <div id="6letters" class="setting-letter">6-literowe</div>
+                        <div id="7letters" class="setting-letter">7-literowe</div>
+                        <div id="8letters" class="setting-letter">8-literowe</div>
+                        <div id="9letters" class="setting-letter" >9-literowe</div>
+                        <!-- <button class="long-word">5-literowe</button>
                         <button class="long-word">6-literowe</button>
                         <button class="long-word">7-literowe</button>
                         <button class="long-word">8-literowe</button>
-                        <button class="long-word">9-literowe</button>
+                        <button class="long-word">9-literowe</button> -->
                     </div>
                 </div>
                 <div class="dropdown-box">
                     <button class="dropdown-btn">
                         <i class="fas fa-digital-tachograph"></i>
-                        Sposób wypełniania
+                        Wypełnianie
                     </button>
                     <div class="dropdown-info">
-                        <button class="long-word">tylko istniejące słowa</button>
-                        <button class="long-word">dowolny ciąg znaków</button>
+                        <div id="onlyWords" class="setting-letter">tylko istniejące słowa</div>
+                        <div id="stringChars" class="setting-letter">dowolny ciąg liter</div>
+                        <!-- <button class="long-word">tylko istniejące słowa</button>
+                        <button class="long-word">dowolny ciąg znaków</button> -->
                     </div>
                 </div>
                 <div class="dropdown-box">
                     <button class="dropdown-btn">
                         <i class="fas fa-chalkboard-teacher"></i>
-                        Zasady gry
+                        Zasady gry     (instrukcja)  
                     </button>
                     <div class="dropdown-info">
-                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Facilis deserunt provident temporibus qui amet optio!</p>
+                        <p>Gra polega na odgadnięciu kilkuliterowego słowa (np. 5-literowego). Użytkownik dostaje sześć szans, a za każdą nieudaną próbą gra informuje, 
+                            czy użyte w danym podejściu litery:</p>
+                         <p>  - znajdują się w zgadywanym słowie w odpowiednim miejscu (kolor zielony);</p>
+                         <p>  - znajdują się w zgadywanym słowie, ale w innym miejscu (kolor żółty);</p>
+                         <p>  - nie znajdują się w zgadywanym słowie (kolor szary).</p>
+                         <p>  Użytkownik może wybrać sobie długość odgadywanego słowa.
+                            Poza tym gracz może wybrać czy wpisywać będzie tylko istniejące słowa, czy dowolny ciąg liter.
+                        </p>
                     </div>
                 </div>
             </div>

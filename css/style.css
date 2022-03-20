@@ -418,33 +418,23 @@ html {
 }
 
 .dropdown {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
   height: 200px;
   width: 450px;
   max-width: 90%;
 }
 
 .dropdown p {
-  margin-bottom: 0.5em;
-  color: #252527;
+  margin-bottom: 1rem;
+  font-size: 1.4rem;
+  color: white;
 }
 
 .dropdown .fas {
-  margin-right: 20px;
-  color: #f6483b;
+  margin-right: 10px;
+  color: lime;
 }
 
 .dropdown-option {
-  width: 400px;
-  background-color: #fff;
   border-radius: 8px;
 }
 
@@ -453,9 +443,9 @@ html {
 }
 
 .dropdown-btn {
-  padding: 1em;
+  padding: 5px;
   width: 100%;
-  font-size: 2rem;
+  font-size: 1.6rem;
   text-align: left;
   border: none;
   border-radius: 8px;
@@ -466,20 +456,23 @@ html {
 
 .dropdown-btn:hover,
 .dropdown-btn:focus {
-  background-color: #f6483b;
-  color: #fff;
+  background-color: yellow;
+  background-color: lime;
+  font-weight: 600;
+  color: lime;
+  color: yellow;
   outline: none;
 }
 
 .dropdown-btn:hover .fas,
-.dropdown-btn:hover .far,
-.dropdown-btn:focus .fas,
-.dropdown-btn:focus .far {
-  color: #fff;
+.dropdown-btn:focus .fas {
+  color: lime;
+  color: yellow;
+  font-weight: 600;
 }
 
 .dropdown-info {
-  padding: 1em 2em;
+  padding: 10px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -516,7 +509,11 @@ h2 {
 }
 
 .setting-letter {
-  margin: 5px;
+  height: 30px;
+  margin-left: 40%;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 30px;
 }
 
 .setting-letter:hover {
