@@ -18,34 +18,19 @@ const onceAgainSection = document.getElementById('onceAgain');
 const divOnlyWords = document.querySelector('.above.only-words');
 const pOnlyWords = document.querySelector('.above.only-words p');
 setting5Letters.addEventListener('click', ()=> {
-    onceAgainSection.classList.add('hide');
-    wordsLetters = words5Letters;
-    stringWords = createStringWords(words5Letters);
-    game.run(5, 6);
+  listenerLongLetters(5, 6, words5Letters);
 });
 setting6Letters.addEventListener('click', ()=> {
-    onceAgainSection.classList.add('hide');
-    wordsLetters = words6Letters;
-    stringWords = createStringWords(words6Letters);
-    game.run(6, 6);
+  listenerLongLetters(6, 6, words6Letters);
 });
 setting7Letters.addEventListener('click', ()=> {
-  onceAgainSection.classList.add('hide');
-  wordsLetters = words7Letters;
-  stringWords = createStringWords(words7Letters);
-  game.run(7, 6);
+  listenerLongLetters(7, 6, words7Letters);
 });
 setting8Letters.addEventListener('click', ()=> {
-  onceAgainSection.classList.add('hide');
-  wordsLetters = words8Letters;
-  stringWords = createStringWords(words8Letters);
-  game.run(8, 6);
+  listenerLongLetters(8, 6, words8Letters);
 });
 setting9Letters.addEventListener('click', ()=> {
-  onceAgainSection.classList.add('hide');
-  wordsLetters = words9Letters;
-  stringWords = createStringWords(words9Letters);
-  game.run(9, 6);
+  listenerLongLetters(9, 6, words9Letters);
 });
 
 let stringWords = '';
@@ -57,6 +42,13 @@ stringChars.addEventListener('click', ()=> {
     game.changeOnlyWords(false);
 });
 
+
+function listenerLongLetters(quantity, attempts, arrayLongLetters) {
+  onceAgainSection.classList.add('hide');
+  wordsLetters = arrayLongLetters;
+  stringWords = createStringWords(arrayLongLetters);
+  game.run(quantity, attempts);
+}
 
 function createStringWords(words) {
     let tempStringWords = '';
@@ -80,17 +72,17 @@ class CharKeyboard {
 
 class Game {
 
-    words5 = [{
-        word: '',
-        category: '',
-        game: false
-    }]
+    // words5 = [{
+    //     word: '',
+    //     category: '',
+    //     game: false
+    // }]
 
-    words6 = [{
-        word: '',
-        category: '',
-        game: false
-    }]
+    // words6 = [{
+    //     word: '',
+    //     category: '',
+    //     game: false
+    // }]
 
     constructor({ lettersWrapper, categoryWrapper, wordGameWrapper, keyboardScheme, keyboard1, keyboard2, keyboard3, keyboard4, dataLetters }) {
         this.lettersWrapper = lettersWrapper;
@@ -146,6 +138,11 @@ class Game {
             return startData;
     }
 
+    createWordsLevel(arrayLongLetters){
+      const dataWorks = this.createDataLetters(arrayLongLetters);
+      return dataWorks[Math.floor(Math.random()*dataWorks.length)];
+    }
+
 
     startParameters(level, attempts) {
       this.attempts = attempts;
@@ -153,37 +150,70 @@ class Game {
       this.leftEmpty = level;
       notWord.classList.add('hide');
       let words;
-      if (level == 5) {
-        this.words5 = this.createDataLetters(words5Letters);
-        words = this.words5[Math.floor(Math.random()*this.words5.length)];
+      switch (level) {
+        case 5:
+          words = this.createWordsLevel(words5Letters);
+          break;
+        case 6:
+          words = this.createWordsLevel(words6Letters);
+          break;
+        case 7:
+          words = this.createWordsLevel(words7Letters);
+          break;
+        case 8:
+          words = this.createWordsLevel(words8Letters);
+          break;
+        case 9:
+          words = this.createWordsLevel(words9Letters);
+          break;
+        default:
+          // if (level == 5) words = {word:'BANAN', category:'TestBanan'};
+          // if (level == 6) words = {word:'AGREST', category:'TestAgrest'};
+          // if (level == 7) words = {word:'APASZKA', category:'TestApaszka'};
+          // if (level == 8) words = {word:'TEODOLIT', category:'TestTeodolit'};
+          // if (level == 9) words = {word:'ARCHITEKT', category:'TestArchitekt'};
       }
-      // if (level == 5) words = {word:'BANAN', category:'TestBanan'};
-      if (level == 6) {
-        this.words6 = this.createDataLetters(words6Letters);
-        words = this.words6[Math.floor(Math.random()*this.words6.length)];
-      }
-      // if (level == 6) words = {word:'AGREST', category:'TestAgrest'};
-      if (level == 7) {
-        this.words7 = this.createDataLetters(words7Letters);
-        words = this.words7[Math.floor(Math.random()*this.words7.length)];
-      }
-      // if (level == 7) words = {word:'APASZKA', category:'TestApaszka'};
-      if (level == 8) {
-        this.words8 = this.createDataLetters(words8Letters);
-        words = this.words8[Math.floor(Math.random()*this.words8.length)];
-      }
-      // if (level == 8) words = {word:'TEODOLIT', category:'TestTeodolit'};
-      if (level == 9) {
-        this.words9 = this.createDataLetters(words9Letters);
-        words = this.words9[Math.floor(Math.random()*this.words9.length)];
-      }
+
+      // if (level == 5) {
+      //   // this.words5 = this.createDataLetters(words5Letters);
+      //   // words = this.words5[Math.floor(Math.random()*this.words5.length)];
+      //   words = this.createWordsLevel(words5Letters);
+    
+      // }
+      // // if (level == 5) words = {word:'BANAN', category:'TestBanan'};
+      // if (level == 6) {
+      //   // this.words6 = this.createDataLetters(words6Letters);
+      //   // words = this.words6[Math.floor(Math.random()*this.words6.length)];
+      //   words = this.createWordsLevel(words6Letters);
+      // }
+      // // if (level == 6) words = {word:'AGREST', category:'TestAgrest'};
+      // if (level == 7) {
+      //   // this.words7 = this.createDataLetters(words7Letters);
+      //   // words = this.words7[Math.floor(Math.random()*this.words7.length)];
+      //   words = this.createWordsLevel(words7Letters);
+      // }
+      // // if (level == 7) words = {word:'APASZKA', category:'TestApaszka'};
+      // if (level == 8) {
+      //   // this.words8 = this.createDataLetters(words8Letters);
+      //   // words = this.words8[Math.floor(Math.random()*this.words8.length)];
+      //   words = this.createWordsLevel(words8Letters);
+      // }
+      // // if (level == 8) words = {word:'TEODOLIT', category:'TestTeodolit'};
+      // if (level == 9) {
+      //   // this.words9 = this.createDataLetters(words9Letters);
+      //   // words = this.words9[Math.floor(Math.random()*this.words9.length)];
+      //   words = this.createWordsLevel(words9Letters);
+      // }
       // if (level == 9) words = {word:'ARCHITEKT', category:'TestArchitekt'};
+
+      this.guessWord = words.word;
+      this.categoryWrapper.innerHTML = 'KATEGORIA:  ' + words.category;
 
       stringWords = createStringWords(wordsLetters);
 
-      this.guessWord = words.word;
+      // this.guessWord = words.word;
 
-      this.categoryWrapper.innerHTML = 'KATEGORIA:  ' + words.category;
+      // this.categoryWrapper.innerHTML = 'KATEGORIA:  ' + words.category;
 
       this.charsObject = [];
       for (let i = 0; i < this.numbersChar.length; i++ ){
