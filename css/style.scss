@@ -216,10 +216,15 @@ html {
 }
 
 .implementation {
-    height: 300px;
+	height: 275px;
     text-align: center;
-    padding-top: 270px;
-    font-size: 1.6rem;
+    padding-top: 250px;
+    font-size: 1.4rem;
+
+    // height: 300px;
+    // text-align: center;
+    // padding-top: 270px;
+    // font-size: 1.6rem;
 }
 
 .footer-section {
@@ -318,8 +323,9 @@ html {
 }
 
 .curtain-back-space {
-	background-color: $warning-color;
-    color: white;
+	// background-color: $warning-color;
+	background-color: $warning-color !important;
+    color: white !important;
 }
 
 // .back-space-z-index {
@@ -453,7 +459,7 @@ html {
 .dropdown-btn {
 	padding: 5px;
 	width: 100%;
-	font-size: 1.6rem;
+	font-size: 1.4rem;
 	// font-weight: 600;
 	text-align: left;
 	border: none;
@@ -531,7 +537,8 @@ h2 {
 
 .setting-letter:hover {
 	cursor: pointer;
-	color: #959499;
+	// color: #959499;
+	color: yellow;
 }
 
 .heartly {
@@ -636,6 +643,9 @@ h2 {
 	.one-letter {
 		margin: 5px 3px;
 	}
+	.dropdown p {
+		padding: 0 30px;
+	}
 }
 
 @media (min-width: 500px) {
@@ -672,6 +682,16 @@ h2 {
 	}
 	.one-letter {
 		margin: 5px 5px;
+	}
+	.implementation {
+		height: 300px;
+		padding-top: 270px;
+		font-size: 1.6rem;
+	}
+	.dropdown p {
+		margin-bottom: 1.2rem;
+		font-size: 1.6rem;
+		padding: 0 20px;
 	}
 }
 

@@ -1,35 +1,28 @@
-const dropdown = document.querySelector('.dropdown-option')
-const dropdownBtns = document.querySelectorAll('.dropdown-btn')
+const dropdown = document.querySelector('.dropdown-option');
+const dropdownBtns = document.querySelectorAll('.dropdown-btn');
 
 function opendropdownItems() {
-
 	if(this.nextElementSibling.classList.contains('dropdown-active')) {
-		this.nextElementSibling.classList.remove('dropdown-active')
+		this.nextElementSibling.classList.remove('dropdown-active');
 	} else {
-
-		closedropdownItem()
-		this.nextElementSibling.classList.toggle('dropdown-active')
-		
-	}
-	
-}
+		closedropdownItem();
+		this.nextElementSibling.classList.toggle('dropdown-active');
+	};
+};
 
 const closedropdownItem = () => {
-	const allActiveItems = document.querySelectorAll('.dropdown-info')
-	allActiveItems.forEach(item => item.classList.remove('dropdown-active'))
+	const allActiveItems = document.querySelectorAll('.dropdown-info');
+	allActiveItems.forEach(item => item.classList.remove('dropdown-active'));
 }
 
 const clickOutsidedropdown = e => {
-    if (
-		e.target.classList.contains('dropdown-btn') ||
+    if (e.target.classList.contains('dropdown-btn') ||
 		e.target.classList.contains('dropdown-info') ||
 		e.target.classList.contains('dropdown-info-text')
-	)
-		return
+	) return; 
+	closedropdownItem();
+};
 
-	closedropdownItem()
-}
+dropdownBtns.forEach(btn => btn.addEventListener('click', opendropdownItems));
 
-dropdownBtns.forEach(btn => btn.addEventListener('click', opendropdownItems))
-
-window.addEventListener('click', clickOutsidedropdown)
+window.addEventListener('click', clickOutsidedropdown);
