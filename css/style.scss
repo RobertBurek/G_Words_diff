@@ -273,6 +273,7 @@ html {
 	    margin: 3px;
 	    border-top: 2px solid #c1c1c1;
 	    font-size: 12px;
+		font-weight: 600;
 	}
 
 	button:hover {
@@ -442,7 +443,8 @@ html {
 .dropdown {
 	.fas {
 		margin-right: 10px;
-		color: lime;
+		// color: lime;
+		color: yellow;
 	}
 }
 
@@ -458,35 +460,41 @@ html {
 
 .dropdown-btn {
 	padding: 5px;
-	width: 100%;
-	font-size: 1.4rem;
-	// font-weight: 600;
-	text-align: left;
-	border: none;
-	border-radius: 8px;
-	transition: background-color 0.3s;
+    width: 100%;
+    font-size: 1.4rem;
+    text-align: left;
+    border: none;
+    border-radius: 8px;
+    // transition: background-color 0.3s;
+    background-color: #474550;
+    border: 2px solid gray;
+    color: lime;
+    /* font-weight: 600; */
+    letter-spacing: 1px;
 	cursor: pointer;
 }
 
 .dropdown-btn:hover,
 .dropdown-btn:focus {
 	// background-color: #f6483b;
-	background-color: yellow;
-	background-color: lime;
+	// background-color: yellow;
+	// background-color: lime;
 	// opacity: 0.4;
 	// color: #fff;
-	font-weight: 600;
-	color: lime;
+	// font-weight: 600;
+	// color: lime;
 	color: yellow;
+	// color: lime;
 	outline: none;
 }
 
 .dropdown-btn:hover .fas,
 .dropdown-btn:focus .fas {
 	// color: #fff;
+	// color: lime;
+	// color: yellow;
 	color: lime;
-	color: yellow;
-	font-weight: 600;
+	// font-weight: 600;
 }
 
 .dropdown-info {

@@ -17,9 +17,11 @@ const closedropdownItem = () => {
 
 const clickOutsidedropdown = e => {
     if (e.target.classList.contains('dropdown-btn') ||
-		e.target.classList.contains('dropdown-info') ||
-		e.target.classList.contains('dropdown-info-text')
-	) return; 
+		e.target.classList.contains('dropdown-info') //||
+		// e.target.classList.contains('dropdown-info-text')
+	) { console.log(e.path[0]);
+        
+        return; }
 	closedropdownItem();
 };
 

@@ -283,6 +283,7 @@ html {
   margin: 3px;
   border-top: 2px solid #c1c1c1;
   font-size: 12px;
+  font-weight: 600;
 }
 
 .letters button:hover {
@@ -431,7 +432,7 @@ html {
 
 .dropdown .fas {
   margin-right: 10px;
-  color: lime;
+  color: yellow;
 }
 
 .dropdown-option {
@@ -449,17 +450,16 @@ html {
   text-align: left;
   border: none;
   border-radius: 8px;
-  -webkit-transition: background-color 0.3s;
-  transition: background-color 0.3s;
+  background-color: #474550;
+  border: 2px solid gray;
+  color: lime;
+  /* font-weight: 600; */
+  letter-spacing: 1px;
   cursor: pointer;
 }
 
 .dropdown-btn:hover,
 .dropdown-btn:focus {
-  background-color: yellow;
-  background-color: lime;
-  font-weight: 600;
-  color: lime;
   color: yellow;
   outline: none;
 }
@@ -467,8 +467,6 @@ html {
 .dropdown-btn:hover .fas,
 .dropdown-btn:focus .fas {
   color: lime;
-  color: yellow;
-  font-weight: 600;
 }
 
 .dropdown-info {

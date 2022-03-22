@@ -6,6 +6,10 @@ import { words8Letters } from '../src/8-letters.js';
 import { words9Letters } from '../src/9-letters.js';
 let wordsLetters = words5Letters;
 
+let titleButtonLongWord = 'Długość słowa (5-literowe)';
+
+const longWord = document.getElementById('longWord');
+const fillingButton = document.getElementById('filling');
 const setting5Letters = document.getElementById('5letters');
 const setting6Letters = document.getElementById('6letters');
 const setting7Letters = document.getElementById('7letters');
@@ -18,18 +22,24 @@ const onceAgainSection = document.getElementById('onceAgain');
 const divOnlyWords = document.querySelector('.above.only-words');
 const pOnlyWords = document.querySelector('.above.only-words p');
 setting5Letters.addEventListener('click', ()=> {
+  titleButtonLongWord = 'Długość słowa (5-literowe)';
   listenerLongLetters(5, 6, words5Letters);
 });
 setting6Letters.addEventListener('click', ()=> {
+  titleButtonLongWord = 'Długość słowa (6-literowe)';
   listenerLongLetters(6, 6, words6Letters);
 });
 setting7Letters.addEventListener('click', ()=> {
+  titleButtonLongWord = 'Długość słowa (7-literowe)';
+  // longWord.innerHTML = titleButtonLongWord;
   listenerLongLetters(7, 6, words7Letters);
 });
 setting8Letters.addEventListener('click', ()=> {
+  titleButtonLongWord = 'Długość słowa (8-literowe)';
   listenerLongLetters(8, 6, words8Letters);
 });
 setting9Letters.addEventListener('click', ()=> {
+  titleButtonLongWord = 'Długość słowa (9-literowe)';
   listenerLongLetters(9, 6, words9Letters);
 });
 
@@ -44,6 +54,7 @@ stringChars.addEventListener('click', ()=> {
 
 
 function listenerLongLetters(quantity, attempts, arrayLongLetters) {
+  longWord.innerHTML = `<i class="fas fa-sort-amount-down-alt"></i> ${titleButtonLongWord}`;
   onceAgainSection.classList.add('hide');
   wordsLetters = arrayLongLetters;
   stringWords = createStringWords(arrayLongLetters);
@@ -110,7 +121,7 @@ class Game {
         this.currentWord;
         this.typedWord;
         this.victory = false;
-        this.onlyWords = false;
+        this.onlyWords = true;
         this.isNotWord = false;
         this.attempts = 6;
     }
