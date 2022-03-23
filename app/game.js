@@ -7,8 +7,9 @@ import { words9Letters } from '../src/9-letters.js';
 let wordsLetters = words5Letters;
 
 let titleButtonLongWord = 'Długość słowa (5-literowe)';
+let titleButtonFilling = 'Wypełnianie (tylko istniejące słowa)';
 
-const longWord = document.getElementById('longWord');
+const longWordButton = document.getElementById('longWord');
 const fillingButton = document.getElementById('filling');
 const setting5Letters = document.getElementById('5letters');
 const setting6Letters = document.getElementById('6letters');
@@ -26,6 +27,7 @@ setting5Letters.addEventListener('click', ()=> {
   listenerLongLetters(5, 6, words5Letters);
 });
 setting6Letters.addEventListener('click', ()=> {
+  // import words6Letters from '../src/6-letters.js';
   titleButtonLongWord = 'Długość słowa (6-literowe)';
   listenerLongLetters(6, 6, words6Letters);
 });
@@ -46,15 +48,17 @@ setting9Letters.addEventListener('click', ()=> {
 let stringWords = '';
 
 onlyWords.addEventListener('click', ()=> {
-    game.changeOnlyWords(true);
+  titleButtonFilling = 'Wypełnianie (tylko istniejące słowa)';
+  game.changeOnlyWords(true);
 });
 stringChars.addEventListener('click', ()=> {
-    game.changeOnlyWords(false);
+  titleButtonFilling = 'Wypełnianie (dowolny ciąg liter)';
+  game.changeOnlyWords(false);
 });
 
 
 function listenerLongLetters(quantity, attempts, arrayLongLetters) {
-  longWord.innerHTML = `<i class="fas fa-sort-amount-down-alt"></i> ${titleButtonLongWord}`;
+  longWordButton.innerHTML = `<i class="fas fa-sort-amount-down-alt"></i> ${titleButtonLongWord}`;
   onceAgainSection.classList.add('hide');
   wordsLetters = arrayLongLetters;
   stringWords = createStringWords(arrayLongLetters);
@@ -135,9 +139,11 @@ class Game {
  
 
     changeOnlyWords(param) {
-        this.onlyWords = param;
-        if (this.onlyWords) document.querySelector('.above.only-words p').innerHTML = 'Tylko istniejące słowa';
-        else document.querySelector('.above.only-words p').innerHTML = 'Dowolny ciąg znaków';
+      // console.log(fillingButton);
+      fillingButton.innerHTML = `<i class="fas fa-digital-tachograph"></i> ${titleButtonFilling}`;
+      this.onlyWords = param;
+      if (this.onlyWords) document.querySelector('.above.only-words p').innerHTML = 'Tylko istniejące słowa';
+      else document.querySelector('.above.only-words p').innerHTML = 'Dowolny ciąg znaków';
     }
 
 

@@ -1,44 +1,4 @@
-export let words5Letters = [
-    {
-        word: 'BALON',
-        category: 'Rzecz',game:true
-    },{
-        word: 'MOTYL',
-        category: 'Przyroda',game:true
-    },{
-        word: 'MUCHA',
-        category: 'Przyroda',game:true
-    },{
-        word: 'MAZAK',
-        category: 'Rzecz',game:true
-    },{
-        word: 'BANAN',
-        category: 'Jedzenie',game:true
-    },{
-        word: 'POTOK',
-        category: 'Przyroda',game:true
-    },{
-        word: 'WANNA',
-        category: 'Rzecz',game:true
-    },{
-        word: 'WÓZEK',
-        category: 'Rzecz',game:true
-    },{
-        word: 'PAJĄK',
-        category: 'Przyroda',game:true
-    },{
-        word: 'PERŁA',
-        category: 'Rzecz',game:true
-    },{
-        word: 'TORBA',
-        category: 'Rzecz',game:true
-    },{
-        word: 'TRAWA',
-        category: 'Przyroda',game:true
-    },{
-        word: 'FARBA',
-        category: 'Rzecz',game:true
-    },
+export const words5Letters = [
     {word:'ABACE',category:'?',game:false},
     {word:'ABACI',category:'?',game:false},
     {word:'ABAKA',category:'?',game:false},
@@ -4746,7 +4706,7 @@ export let words5Letters = [
     {word:'FANZO',category:'?',game:false},
     {word:'FANZY',category:'?',game:false},
     {word:'FARAD',category:'?',game:false},
-    {word:'FARBA',category:'?',game:false},
+    {word:'FARBA',category:'?',game:true},
     {word:'FARBĄ',category:'?',game:false},
     {word:'FARBĘ',category:'?',game:false},
     {word:'FARBO',category:'?',game:false},
@@ -11945,7 +11905,7 @@ export let words5Letters = [
     {word:'MOTTU',category:'?',game:false},
     {word:'MOTYJ',category:'?',game:false},
     {word:'MOTYK',category:'?',game:false},
-    {word:'MOTYL',category:'?',game:false},
+    {word:'MOTYL',category:'?',game:true},
     {word:'MOTYW',category:'?',game:false},
     {word:'MOWCA',category:'?',game:false},
     {word:'MOWCĄ',category:'?',game:false},
@@ -12043,7 +12003,7 @@ export let words5Letters = [
     {word:'MŚCIŁ',category:'?',game:false},
     {word:'MUCEM',category:'?',game:false},
     {word:'MUCET',category:'?',game:false},
-    {word:'MUCHA',category:'?',game:false},
+    {word:'MUCHA',category:'?',game:true},
     {word:'MUCHĄ',category:'?',game:false},
     {word:'MUCHĘ',category:'?',game:false},
     {word:'MUCHO',category:'?',game:false},
@@ -14990,7 +14950,7 @@ export let words5Letters = [
     {word:'PERLĘ',category:'?',game:false},
     {word:'PERLI',category:'?',game:false},
     {word:'PERLU',category:'?',game:false},
-    {word:'PERŁA',category:'?',game:false},
+    {word:'PERŁA',category:'?',game:true},
     {word:'PERŁĄ',category:'?',game:false},
     {word:'PERŁĘ',category:'?',game:false},
     {word:'PERŁO',category:'?',game:false},
@@ -15945,10 +15905,10 @@ export let words5Letters = [
     {word:'POTNĘ',category:'?',game:false},
     {word:'POTNI',category:'?',game:false},
     {word:'POTNY',category:'?',game:false},
-    {word:'POTOK',category:'?',game:false},
+    {word:'POTOK',category:'?',game:true},
     {word:'POTOM',category:'?',game:false},
     {word:'POTOŃ',category:'?',game:false},
-    {word:'POTOP',category:'?',game:false},
+    {word:'POTOP',category:'?',game:true},
     {word:'POTÓW',category:'?',game:false},
     {word:'POTRĄ',category:'?',game:false},
     {word:'POTRĘ',category:'?',game:false},

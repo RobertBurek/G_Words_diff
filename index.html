@@ -33,19 +33,72 @@
             <div class="title-letter half-success letter-transform-12">O</div>
         </div>
         <div id="description" class="description">
-            <p class="discription">Odgadnij słowo, w którym:<div class="title-div success"></div> - litera na właściwym miejscu, 
-                <div class="title-div half-success"></div> - litera występuje na innym miejscu, 
-                <div class="title-div not-char"></div> - litera nie występuje.</p>
+            <p class="discription">Odgadnij słowo, w którym:
+            <div class="title-div success"></div> - litera na właściwym miejscu,
+            <div class="title-div half-success"></div> - litera występuje na innym miejscu,
+            <div class="title-div not-char"></div> - litera nie występuje.</p>
         </div>
-        <div id="wordGame" class="word-game"></div>
+        <!-- <div id="wordGame" class="word-game"></div> -->
+        <div id="wordGame" class="word-game">
+            <div class="line current-round">
+                <div class="one-letter current-letter"></div>
+                <div class="one-letter"></div>
+                <div class="one-letter"></div>
+                <div class="one-letter"></div>
+                <div class="one-letter"></div>
+            </div>
+            <div class="line">
+                <div class="one-letter"></div>
+                <div class="one-letter"></div>
+                <div class="one-letter"></div>
+                <div class="one-letter"></div>
+                <div class="one-letter"></div>
+            </div>
+            <div class="line">
+                <div class="one-letter"></div>
+                <div class="one-letter"></div>
+                <div class="one-letter"></div>
+                <div class="one-letter"></div>
+                <div class="one-letter"></div>
+            </div>
+            <div class="line">
+                <div class="one-letter"></div>
+                <div class="one-letter"></div>
+                <div class="one-letter"></div>
+                <div class="one-letter"></div>
+                <div class="one-letter"></div>
+            </div>
+            <div class="line">
+                <div class="one-letter"></div>
+                <div class="one-letter"></div>
+                <div class="one-letter"></div>
+                <div class="one-letter"></div>
+                <div class="one-letter"></div>
+            </div>
+            <div class="line">
+                <div class="one-letter"></div>
+                <div class="one-letter"></div>
+                <div class="one-letter"></div>
+                <div class="one-letter"></div>
+                <div class="one-letter"></div>
+            </div>
+        </div>
         <div id="resultWord"></div>
-        <div id="category" class="category">
+        <!-- <div id="category" class="category">
             <p></p>
             <div class="not-word hide">
                 <p>Nie ma takiego słowa</p>
             </div>
+        </div> -->
+
+        <div id="category" class="category">
+            <p>KATEGORIA:  ?</p>
+            <div class="not-word hide">
+                <p>Nie ma takiego słowa</p>
+            </div>
         </div>
-        <div id="letters" class="letters">
+
+        <!-- <div id="letters" class="letters">
             <div class="above only-words">
                 <p>Tylko istniejące słowa</p>
             </div>
@@ -56,7 +109,28 @@
             <div id="keyboard2" class="keyboard2"></div>
             <div id="keyboard3" class="keyboard3"></div>
             <div id="keyboard4" class="keyboard4"></div>
+        </div> -->
+
+        <div id="letters" class="letters">
+            <div class="above only-words">
+                <p>Tylko istniejące słowa</p>
+            </div>
+            <div id="onceAgain" class="above once-again hide">
+                <div>Jeszcze raz?</div>
+            </div>
+            <div id="keyboard1" class="keyboard1">
+                <button class="normal">A</button><button class="normal">Ą</button><button class="normal">B</button><button class="normal">C</button><button class="normal">Ć</button><button class="normal">D</button><button class="normal">E</button><button class="normal">Ę</button><button class="normal">F</button><button class="normal">G</button>
+            </div>
+            <div id="keyboard2" class="keyboard2">
+                <button class="normal">H</button><button class="normal">I</button><button class="normal">J</button><button class="normal">K</button><button class="normal">L</button><button class="normal">Ł</button><button class="normal">M</button><button class="normal">N</button><button class="normal">Ń</button>
+            </div>
+            <div id="keyboard3" class="keyboard3">
+                <div id="keyboardScheme" class="keyboard-scheme"><i class="fas fa-keyboard" aria-hidden="true"></i></div><button class="normal">O</button><button class="normal">Ó</button><button class="normal">P</button><button class="normal">Q</button><button class="normal">R</button><button class="normal">S</button><button class="normal">Ś</button><div class="back-space"><i class="fas fa-long-arrow-alt-left" aria-hidden="true"></i></div>
+            </div>
+            <div id="keyboard4" class="keyboard4"><button class="normal">T</button><button class="normal">U</button><button class="normal">V</button><button class="normal">W</button><button class="normal">X</button><button class="normal">Y</button><button class="normal">Z</button><button class="normal">Ź</button><button class="normal">Ż</button>
+            </div>
         </div>
+
         <div class="dropdown">
             <div class="dropdown-option">
                 <div class="dropdown-box">
@@ -77,8 +151,8 @@
                         <button class="long-word">9-literowe</button> -->
                     </div>
                 </div>
-                <div id='filling' class="dropdown-box">
-                    <button class="dropdown-btn">
+                <div class="dropdown-box">
+                    <button id='filling' class="dropdown-btn">
                         <i class="fas fa-digital-tachograph"></i>
                         Wypełnianie (tylko istniejące słowa)
                     </button>
@@ -92,16 +166,18 @@
                 <div class="dropdown-box">
                     <button class="dropdown-btn">
                         <i class="fas fa-chalkboard-teacher"></i>
-                        Zasady gry (instrukcja)  
+                        Zasady gry (instrukcja)
                     </button>
                     <div class="dropdown-info">
-                        <p>Gra polega na odgadnięciu kilkuliterowego słowa (np. 5-literowego). Użytkownik dostaje sześć szans, a za każdą nieudaną próbą gra informuje, 
+                        <p>Gra polega na odgadnięciu kilkuliterowego słowa (np. 5-literowego). Gracz dostaje sześć
+                            szans, a za każdą nieudaną próbą gra informuje,
                             czy użyte w danym podejściu litery:</p>
-                        <p>  - znajdują się w zgadywanym słowie w odpowiednim miejscu (kolor zielony);</p>
-                        <p>  - znajdują się w zgadywanym słowie, ale w innym miejscu (kolor żółty);</p>
-                        <p>  - nie znajdują się w zgadywanym słowie (kolor szary).</p>
-                        <p>  Użytkownik może wybrać sobie długość odgadywanego słowa.
-                            Poza tym gracz może wybrać czy wpisywać będzie tylko istniejące słowa, czy dowolny ciąg liter.</p>
+                        <p> - znajdują się w odgadywanym słowie w odpowiednim miejscu (kolor zielony);</p>
+                        <p> - znajdują się w odgadywanym słowie, ale w innym miejscu (kolor żółty);</p>
+                        <p> - nie znajdują się w odgadywanym słowie (kolor szary).</p>
+                        <p> Gracz może zmienić długość odgadywanego słowa.
+                            Poza tym może wybrać, czy wpisywać będzie tylko istniejące słowa, czy dowolny ciąg liter.
+                        </p>
                     </div>
                 </div>
             </div>

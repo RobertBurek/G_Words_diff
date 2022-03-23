@@ -1,26 +1,4 @@
-export let words6Letters = [
-    {
-        word: 'ANTENA',
-        category: 'Rzecz',game:true
-    },{
-        word: 'KAŁUŻA',
-        category: 'Przyroda',game:true
-    },{
-        word: 'KALINA',
-        category: 'Przyroda',game:true
-    },{
-        word: 'AMULET',
-        category: 'Rzecz',game:true
-    },{
-        word: 'AGREST',
-        category: 'Jedzenie',game:true
-    },{
-        word: 'BAMBUS',
-        category: 'Przyroda',game:true
-    },{
-        word: 'FORINT',
-        category: 'Rzecz',game:true
-    },
+export const words6Letters = [
     {word:'ABAKAN',category:'?',game:false},
     {word:'ABAKOM',category:'?',game:false},
     {word:'ABAKÓW',category:'?',game:false},
@@ -359,7 +337,7 @@ export let words6Letters = [
     {word:'AGRAFĘ',category:'?',game:false},
     {word:'AGRAFO',category:'?',game:false},
     {word:'AGRAFY',category:'?',game:false},
-    {word:'AGREST',category:'?',game:false},
+    {word:'AGREST',category:'?',game:true},
     {word:'AHIMSA',category:'?',game:false},
     {word:'AHIMSĄ',category:'?',game:false},
     {word:'AHIMSĘ',category:'?',game:false},
@@ -863,7 +841,7 @@ export let words6Letters = [
     {word:'AMRYTO',category:'?',game:false},
     {word:'AMRYTY',category:'?',game:false},
     {word:'AMSTAF',category:'?',game:false},
-    {word:'AMULET',category:'?',game:false},
+    {word:'AMULET',category:'?',game:true},
     {word:'AMUREM',category:'?',game:false},
     {word:'AMUROM',category:'?',game:false},
     {word:'AMURÓW',category:'?',game:false},
@@ -2012,7 +1990,7 @@ export let words6Letters = [
     {word:'BAMBÓW',category:'?',game:false},
     {word:'BAMBRA',category:'?',game:false},
     {word:'BAMBRY',category:'?',game:false},
-    {word:'BAMBUS',category:'?',game:false},
+    {word:'BAMBUS',category:'?',game:true},
     {word:'BANACH',category:'?',game:false},
     {word:'BANALE',category:'?',game:false},
     {word:'BANAŁU',category:'?',game:false},
@@ -2026,7 +2004,7 @@ export let words6Letters = [
     {word:'BANCIE',category:'?',game:false},
     {word:'BANCIK',category:'?',game:false},
     {word:'BANDAN',category:'?',game:false},
-    {word:'BANDAŻ',category:'?',game:false},
+    {word:'BANDAŻ',category:'?',game:true},
     {word:'BANDEM',category:'?',game:false},
     {word:'BANDER',category:'?',game:false},
     {word:'BANDOM',category:'?',game:false},
@@ -2040,7 +2018,7 @@ export let words6Letters = [
     {word:'BANERU',category:'?',game:false},
     {word:'BANERY',category:'?',game:false},
     {word:'BANHOF',category:'?',game:false},
-    {word:'BANIAK',category:'?',game:false},
+    {word:'BANIAK',category:'?',game:true},
     {word:'BANIAN',category:'?',game:false},
     {word:'BANICI',category:'?',game:false},
     {word:'BANIEK',category:'?',game:false},
@@ -16797,7 +16775,7 @@ export let words6Letters = [
 {word:'KAŁUGĘ',category:'?',game:false},
 {word:'KAŁUGI',category:'?',game:false},
 {word:'KAŁUGO',category:'?',game:false},
-{word:'KAŁUŻA',category:'?',game:false},
+{word:'KAŁUŻA',category:'?',game:true},
 {word:'KAŁUŻĄ',category:'?',game:false},
 {word:'KAŁUŻE',category:'?',game:false},
 {word:'KAŁUŻĘ',category:'?',game:false},
