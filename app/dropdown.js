@@ -1,5 +1,6 @@
 const dropdown = document.querySelector('.dropdown-option');
 const dropdownBtns = document.querySelectorAll('.dropdown-btn');
+console.log(dropdownBtns);
 
 function opendropdownItems() {
 	if(this.nextElementSibling.classList.contains('dropdown-active')) {
@@ -17,7 +18,7 @@ const closedropdownItem = () => {
 
 const clickOutsidedropdown = e => {
     if (e.target.classList.contains('dropdown-btn') ||
-		e.target.classList.contains('dropdown-info') //||
+		e.target.classList.contains('dropdown-click') //||
 		// e.target.classList.contains('dropdown-info-text')
 	) { console.log(e.path[0]);
         

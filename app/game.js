@@ -6,7 +6,7 @@ import { words8Letters } from '../src/8-letters.js';
 import { words9Letters } from '../src/9-letters.js';
 let wordsLetters = words5Letters;
 
-let titleButtonLongWord = 'Długość słowa (5-literowe)';
+let titleButtonLongWord = 'Długość słowa <div class="dropdown-note dropdown-click">(5-literowe)</div>';
 let titleButtonFilling = 'Wypełnianie (tylko istniejące słowa)';
 
 const longWordButton = document.getElementById('longWord');
@@ -23,36 +23,36 @@ const onceAgainSection = document.getElementById('onceAgain');
 const divOnlyWords = document.querySelector('.above.only-words');
 const pOnlyWords = document.querySelector('.above.only-words p');
 setting5Letters.addEventListener('click', ()=> {
-  titleButtonLongWord = 'Długość słowa (5-literowe)';
+  titleButtonLongWord = 'Długość słowa <div class="dropdown-note dropdown-click">(5-literowe)</div>';
   listenerLongLetters(5, 6, words5Letters);
 });
 setting6Letters.addEventListener('click', ()=> {
   // import words6Letters from '../src/6-letters.js';
-  titleButtonLongWord = 'Długość słowa (6-literowe)';
+  titleButtonLongWord = 'Długość słowa <div class="dropdown-note dropdown-click">(6-literowe)</div>';
   listenerLongLetters(6, 6, words6Letters);
 });
 setting7Letters.addEventListener('click', ()=> {
-  titleButtonLongWord = 'Długość słowa (7-literowe)';
+  titleButtonLongWord = 'Długość słowa <div class="dropdown-note dropdown-click">(7-literowe)</div>';
   // longWord.innerHTML = titleButtonLongWord;
   listenerLongLetters(7, 6, words7Letters);
 });
 setting8Letters.addEventListener('click', ()=> {
-  titleButtonLongWord = 'Długość słowa (8-literowe)';
+  titleButtonLongWord = 'Długość słowa <div class="dropdown-note dropdown-click">(8-literowe)</div>';
   listenerLongLetters(8, 6, words8Letters);
 });
 setting9Letters.addEventListener('click', ()=> {
-  titleButtonLongWord = 'Długość słowa (9-literowe)';
+  titleButtonLongWord = 'Długość słowa <div class="dropdown-note dropdown-click">(9-literowe)</div>';
   listenerLongLetters(9, 6, words9Letters);
 });
 
 let stringWords = '';
 
 onlyWords.addEventListener('click', ()=> {
-  titleButtonFilling = 'Wypełnianie (tylko istniejące słowa)';
+  titleButtonFilling = 'Wypełnianie <div class="dropdown-note dropdown-click">(tylko istniejące słowa)</div>';
   game.changeOnlyWords(true);
 });
 stringChars.addEventListener('click', ()=> {
-  titleButtonFilling = 'Wypełnianie (dowolny ciąg liter)';
+  titleButtonFilling = 'Wypełnianie <div class="dropdown-note dropdown-click">(dowolny ciąg liter)</div>';
   game.changeOnlyWords(false);
 });
 
