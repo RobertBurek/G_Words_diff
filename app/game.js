@@ -58,8 +58,8 @@ stringChars.addEventListener('click', ()=> {
 
 
 function listenerLongLetters(quantity, attempts, arrayLongLetters) {
-  longWordButton.innerHTML = `<i class="fas fa-sort-amount-down-alt"></i> 
-  Długość słowa <div class="dropdown-note dropdown-click">${titleButtonLongWord}</div>`;
+  longWordButton.innerHTML = `<i class="fas fa-sort-amount-down-alt" dropdown></i> 
+  Długość słowa <div class="dropdown-note" dropdown>${titleButtonLongWord}</div>`;
   onceAgainSection.classList.add('hide');
   wordsLetters = arrayLongLetters;
   stringWords = createStringWords(arrayLongLetters);
@@ -141,8 +141,8 @@ class Game {
 
     changeOnlyWords(param) {
       // console.log(fillingButton);
-      fillingButton.innerHTML = `<i class="fas fa-digital-tachograph"></i> 
-      Wypełnianie <div class="dropdown-note dropdown-click">${titleButtonFilling}</div>`;
+      fillingButton.innerHTML = `<i class="fas fa-digital-tachograph" dropdown></i> 
+      Wypełnianie <div class="dropdown-note" dropdown>${titleButtonFilling}</div>`;
       this.onlyWords = param;
       if (this.onlyWords) document.querySelector('.above.only-words p').innerHTML = 'Tylko istniejące słowa';
       else document.querySelector('.above.only-words p').innerHTML = 'Dowolny ciąg znaków';

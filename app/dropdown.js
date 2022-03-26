@@ -1,6 +1,6 @@
 const dropdown = document.querySelector('.dropdown-option');
 const dropdownBtns = document.querySelectorAll('.dropdown-btn');
-console.log(dropdownBtns);
+// console.log(dropdownBtns);
 
 function opendropdownItems() {
 	if(this.nextElementSibling.classList.contains('dropdown-active')) {
@@ -18,10 +18,11 @@ const closedropdownItem = () => {
 
 const clickOutsidedropdown = e => {
     if (e.target.classList.contains('dropdown-btn') ||
-		e.target.classList.contains('dropdown-click') //||
-		// e.target.classList.contains('dropdown-info-text')
-	) { console.log(e.path[0]);
-        
+		e.target.hasAttribute('dropdown')
+	) { 
+        // console.log(e);
+	    // console.log(document.querySelector('[dropdown]').attributes[1]);
+
         return; }
 	closedropdownItem();
 };
