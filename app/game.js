@@ -293,15 +293,15 @@ class Game {
         this.createTypedWord();
         if (this.onlyWords) {
             if (stringWords.includes(this.typedWord)) {
-                console.log('SŁOWO ISTNIEJE');
+                // console.log('SŁOWO ISTNIEJE');
                 this.checkWord();
                 if (!this.victory) this.createActiveRound();
             } else {
-                console.log('NIE - słowo');
+                // console.log('NIE - słowo');
                 this.stopCurrentLine();
             }
         } else {
-            console.log('Dowolny ciąg znaków');
+            // console.log('Dowolny ciąg znaków');
             this.checkWord();
             if (!this.victory) this.createActiveRound();
         }
