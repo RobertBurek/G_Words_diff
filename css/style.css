@@ -222,6 +222,32 @@ html {
   letter-spacing: 1px;
 }
 
+.what-category {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  margin-top: 10px;
+}
+
+.what-category-btn {
+  width: 25%;
+  text-align: center;
+  padding: 5px;
+  border: 1px solid gray;
+  letter-spacing: 1px;
+  cursor: pointer;
+  background-color: #474550;
+  color: wheat;
+  font-weight: 600;
+}
+
+.what-category-btn:hover {
+  background-color: wheat;
+  color: #474550;
+}
+
 .implementation {
   height: 275px;
   text-align: center;

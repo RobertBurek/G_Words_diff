@@ -20,7 +20,7 @@ const clickOutsidedropdown = e => {
     if (e.target.classList.contains('dropdown-btn') ||
 		e.target.hasAttribute('dropdown')
 	) { 
-        // console.log(e);
+        console.log(e.target);
 	    // console.log(document.querySelector('[dropdown]').attributes[1]);
 
         return; }

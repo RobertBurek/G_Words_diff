@@ -215,6 +215,32 @@ html {
 	letter-spacing: 1px;
 }
 
+
+.what-category{
+	display: flex;
+	// flex-direction: row;
+	flex-wrap: wrap;
+	margin-top: 10px;
+}
+
+.what-category-btn {
+	width: 25%;
+	text-align: center;
+	padding: 5px;
+	border: 1px solid gray;
+    letter-spacing: 1px;
+	cursor: pointer;
+	background-color: $background-color;
+	color: wheat;
+	font-weight: 600;
+}
+
+.what-category-btn:hover {
+	background-color: wheat;
+	color: $background-color;
+	// font-weight: 600;
+}
+
 .implementation {
 	height: 275px;
     text-align: center;
