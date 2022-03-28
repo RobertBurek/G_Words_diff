@@ -57,6 +57,27 @@ stringChars.addEventListener('click', ()=> {
 });
 
 
+
+
+const whatCategoryElements = document.querySelectorAll('[category]');
+whatCategoryElements.forEach(element => {
+  element.addEventListener('click', ()=>{
+    console.log(element);
+    disableWhatCategory();
+    element.classList.remove('what-category-disabled');
+    element.classList.add('what-category-focus');
+  });
+})
+
+
+function disableWhatCategory() {
+  whatCategoryElements.forEach(el => {
+    el.classList.add('what-category-disabled');
+  })
+}
+
+
+
 function listenerLongLetters(quantity, attempts, arrayLongLetters) {
   longWordButton.innerHTML = `<i class="fas fa-sort-amount-down-alt" dropdown></i> 
   Długość słowa <div class="dropdown-note" dropdown>${titleButtonLongWord}</div>`;

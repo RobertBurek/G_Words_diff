@@ -248,6 +248,19 @@ html {
   color: #474550;
 }
 
+.what-category-disabled {
+  background-color: wheat;
+  color: #474550;
+  opacity: 0.3;
+  cursor: default;
+}
+
+.what-category-focus {
+  background-color: wheat;
+  color: #474550;
+  cursor: default;
+}
+
 .implementation {
   height: 275px;
   text-align: center;

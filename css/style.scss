@@ -241,6 +241,21 @@ html {
 	// font-weight: 600;
 }
 
+.what-category-disabled {
+	background-color: wheat;
+    color: $background-color;
+    opacity: 0.3;
+    cursor: default;
+}
+
+.what-category-focus {
+	background-color: wheat;
+	color: $background-color;
+	cursor: default;
+}
+
+
+
 .implementation {
 	height: 275px;
     text-align: center;
