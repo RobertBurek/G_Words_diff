@@ -79,6 +79,10 @@ whatCategoryElements.forEach(element => {
             alert( "error" );
           });
     whatCategoryDiv.classList.add('hide');
+    document.querySelector("#category p").innerHTML = 'KATEGORIA:  ' + element.innerHTML;
+    document.querySelector("#category").addEventListener('click', ()=>{
+      whatCategoryDiv.classList.remove('hide');
+    })
   });
 })
 

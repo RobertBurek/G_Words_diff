@@ -20,3 +20,6 @@
 5{word:'ŚLIWA',category:'POJĘCIA',game:true},
 9{word:'OPIERUNEK',category:'ZJAWISKA',game:true},
 7{word:'AFORYZM',category:'RZECZY',game:true},
+5{word:'RUSZT',category:'CZYNNOŚCI',game:true},
+5{word:'ZAPIS',category:'ZJAWISKA',game:true},
+5{word:'ZAPIS',category:'RZECZY',game:true},
