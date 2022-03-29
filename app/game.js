@@ -5,7 +5,7 @@ import { words7Letters } from '../src/7-letters.js';
 import { words8Letters } from '../src/8-letters.js';
 import { words9Letters } from '../src/9-letters.js';
 let wordsLetters = words5Letters;
-let words;
+let words = {word:'',category:'?',game:false};
 
 let titleButtonLongWord = '(5-literowe)';
 let titleButtonFilling = 'Wypełnianie (tylko istniejące słowa)';
@@ -96,6 +96,14 @@ const changeCategoryStyle = function changeCategoryStyle() {
 function disableWhatCategory() {
   whatCategoryElements.forEach(el => {
     el.classList.add('what-category-disabled');
+  })
+}
+
+function startSelectionCategory() {
+  whatCategoryDiv.classList.remove('hide');
+  whatCategoryElements.forEach(el => {
+    el.classList.remove('what-category-disabled');
+    el.classList.remove('what-category-focus');
   })
 }
 
@@ -198,11 +206,14 @@ class Game {
         dataLetters.forEach(element => {
             if (element.game) startData.push(element);
             });
+            // console.log(startData);
             return startData;
     }
 
     createWordsLevel(arrayLongLetters){
       const dataWorks = this.createDataLetters(arrayLongLetters);
+      // console.log(dataWorks);
+      // console.log(dataWorks[Math.floor(Math.random()*dataWorks.length)]);
       return dataWorks[Math.floor(Math.random()*dataWorks.length)];
     }
 
@@ -239,8 +250,8 @@ class Game {
           // if (level == 8) words = {word:'TEODOLIT', category:'TestTeodolit'};
           // if (level == 9) words = {word:'ARCHITEKT', category:'TestArchitekt'};
       }
-          if (level == 5) words = {word:'BANAN', category:'TestBanan'};
-          if (level == 5) words = {word:'BANAN', category:'?'};
+          // if (level == 5) words = {word:'BANAN', category:'TestBanan'};
+          // if (level == 5) words = {word:'BANAN', category:'?'};
           // if (level == 6) words = {word:'AGREST', category:'TestAgrest'};
           // if (level == 7) words = {word:'APASZKA', category:'TestApaszka'};
           // if (level == 8) words = {word:'TEODOLIT', category:'TestTeodolit'};
@@ -404,7 +415,8 @@ class Game {
       if (i == this.level) {
         this.victory = true;
         this.onceAgain(this.level, this.attempts);
-        if (words.category == "?") whatCategoryDiv.classList.remove('hide');
+        // if (words.category == "?") whatCategoryDiv.classList.remove('hide');
+        if (words.category == "?") startSelectionCategory();
       }
     }
 
@@ -614,6 +626,8 @@ class Game {
                 } else {
                   this.showWord(this.guessWord);
                   this.onceAgain(this.level, this.attempts);
+                  // if (words.category == "?") whatCategoryDiv.classList.remove('hide');
+                  if (words.category == "?") startSelectionCategory();
                   }
                 break;
             }

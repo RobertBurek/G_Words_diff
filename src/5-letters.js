@@ -101,7 +101,7 @@ export const words5Letters = [
     {word:'AGARY',category:'?',game:false},
     {word:'AGATU',category:'?',game:false},
     {word:'AGATY',category:'?',game:false},
-    {word:'AGAWA',category:'Przyroda',game:true},
+    {word:'AGAWA',category:'Rośliny',game:true},
     {word:'AGAWĄ',category:'?',game:false},
     {word:'AGAWĘ',category:'?',game:false},
     {word:'AGAWO',category:'?',game:false},
