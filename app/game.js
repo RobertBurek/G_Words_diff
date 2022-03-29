@@ -5,6 +5,7 @@ import { words7Letters } from '../src/7-letters.js';
 import { words8Letters } from '../src/8-letters.js';
 import { words9Letters } from '../src/9-letters.js';
 let wordsLetters = words5Letters;
+let words;
 
 let titleButtonLongWord = '(5-literowe)';
 let titleButtonFilling = 'Wypełnianie (tylko istniejące słowa)';
@@ -59,6 +60,7 @@ stringChars.addEventListener('click', ()=> {
 
 
 
+const whatCategoryDiv = document.querySelector('.what-category');
 const whatCategoryElements = document.querySelectorAll('[category]');
 whatCategoryElements.forEach(element => {
   element.addEventListener('click', ()=>{
@@ -66,6 +68,17 @@ whatCategoryElements.forEach(element => {
     disableWhatCategory();
     element.classList.remove('what-category-disabled');
     element.classList.add('what-category-focus');
+        var dataWord = { category: element.innerHTML, word: words.word, longWord: words.word.length }
+        $.post( "./php/category.php", dataWord, function() {
+          alert( "success" );
+        })
+          .done(function() {
+            alert( "second success" );
+          })
+          .fail(function() {
+            alert( "error" );
+          });
+    whatCategoryDiv.classList.add('hide');
   });
 })
 
@@ -189,7 +202,7 @@ class Game {
       this.level = level;
       this.leftEmpty = level;
       notWord.classList.add('hide');
-      let words;
+      // let words;
       switch (level) {
         case 5:
           words = this.createWordsLevel(words5Letters);
