@@ -69,22 +69,28 @@ whatCategoryElements.forEach(element => {
     element.classList.remove('what-category-disabled');
     element.classList.add('what-category-focus');
         var dataWord = { category: element.innerHTML, word: words.word, longWord: words.word.length }
-        $.post( "./php/category.php", dataWord, function() {
-          alert( "success" );
-        })
-          .done(function() {
-            alert( "second success" );
-          })
-          .fail(function() {
-            alert( "error" );
-          });
+        $.post( "./php/category.php", dataWord
+        // , function() {
+        //   alert( "success" );
+        // })
+        //   .done(function() {
+        //     alert( "second success" );
+        //   })
+        //   .fail(function() {
+        //     alert( "error" );
+        //   }
+        );
     whatCategoryDiv.classList.add('hide');
     document.querySelector("#category p").innerHTML = 'KATEGORIA:  ' + element.innerHTML;
-    document.querySelector("#category").addEventListener('click', ()=>{
-      whatCategoryDiv.classList.remove('hide');
-    })
+    document.querySelector("#category").style.cursor = "pointer";
+    document.querySelector("#category").addEventListener('click', changeCategoryStyle);
   });
 })
+
+const changeCategoryStyle = function changeCategoryStyle() {
+  whatCategoryDiv.classList.remove('hide');
+  document.querySelector("#category").style.cursor = "default";
+}
 
 
 function disableWhatCategory() {
@@ -202,6 +208,9 @@ class Game {
 
 
     startParameters(level, attempts) {
+      whatCategoryDiv.classList.add('hide');
+      document.querySelector("#category").removeEventListener('click', changeCategoryStyle);
+      document.querySelector("#category").style.cursor = "default";
       this.attempts = attempts;
       this.level = level;
       this.leftEmpty = level;
@@ -223,13 +232,19 @@ class Game {
         case 9:
           words = this.createWordsLevel(words9Letters);
           break;
-        default:
+        // default:
           // if (level == 5) words = {word:'BANAN', category:'TestBanan'};
           // if (level == 6) words = {word:'AGREST', category:'TestAgrest'};
           // if (level == 7) words = {word:'APASZKA', category:'TestApaszka'};
           // if (level == 8) words = {word:'TEODOLIT', category:'TestTeodolit'};
           // if (level == 9) words = {word:'ARCHITEKT', category:'TestArchitekt'};
       }
+          if (level == 5) words = {word:'BANAN', category:'TestBanan'};
+          if (level == 5) words = {word:'BANAN', category:'?'};
+          // if (level == 6) words = {word:'AGREST', category:'TestAgrest'};
+          // if (level == 7) words = {word:'APASZKA', category:'TestApaszka'};
+          // if (level == 8) words = {word:'TEODOLIT', category:'TestTeodolit'};
+          // if (level == 9) words = {word:'ARCHITEKT', category:'TestArchitekt'};
 
       // if (level == 5) {
       //   // this.words5 = this.createDataLetters(words5Letters);
@@ -389,6 +404,7 @@ class Game {
       if (i == this.level) {
         this.victory = true;
         this.onceAgain(this.level, this.attempts);
+        if (words.category == "?") whatCategoryDiv.classList.remove('hide');
       }
     }
 
