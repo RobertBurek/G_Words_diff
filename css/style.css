@@ -736,4 +736,15 @@ h2 {
     width: 670px !important;
   }
 }
+
+@media (min-width: 992px) {
+  .title-letter {
+    height: 50px;
+    width: 50px;
+    font-size: 38px;
+  }
+  .title-game {
+    padding: 58px 0;
+  }
+}
 /*# sourceMappingURL=style.css.map */

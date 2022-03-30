@@ -58,7 +58,12 @@ stringChars.addEventListener('click', ()=> {
 });
 
 
-
+function convertTextCategory(text) {
+  text = text.toLowerCase();
+  const tab = [...text];
+  tab[0] = tab[0].toUpperCase();
+  return tab.join("");
+}
 
 const whatCategoryDiv = document.querySelector('.what-category');
 const whatCategoryElements = document.querySelectorAll('[category]');
@@ -68,7 +73,7 @@ whatCategoryElements.forEach(element => {
     disableWhatCategory();
     element.classList.remove('what-category-disabled');
     element.classList.add('what-category-focus');
-        var dataWord = { category: element.innerHTML, word: words.word, longWord: words.word.length }
+        var dataWord = { category: convertTextCategory(element.innerHTML), word: words.word, longWord: words.word.length }
         $.post( "./php/category.php", dataWord
         // , function() {
         //   alert( "success" );
@@ -81,7 +86,7 @@ whatCategoryElements.forEach(element => {
         //   }
         );
     whatCategoryDiv.classList.add('hide');
-    document.querySelector("#category p").innerHTML = 'KATEGORIA:  ' + element.innerHTML;
+    document.querySelector("#category p").innerHTML = 'KATEGORIA:  ' + convertTextCategory(element.innerHTML);
     document.querySelector("#category").style.cursor = "pointer";
     document.querySelector("#category").addEventListener('click', changeCategoryStyle);
   });

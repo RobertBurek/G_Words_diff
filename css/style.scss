@@ -764,7 +764,14 @@ h2 {
 }
 
 @media (min-width: 992px) {
-
+	.title-letter {
+		height: 50px;
+		width: 50px;
+		font-size: 38px;
+	}
+	.title-game {
+		padding: 58px 0;
+	}
 }
 
 @media (min-width: 1200px) {
