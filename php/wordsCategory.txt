@@ -1,2 +1,2 @@
-7{word:'ADAPTER',category:'Rzecz',game:true},
-5{word:'KASZA',category:'Rzecz',game:true},
+7ADAPTERRzecz
+5KASZARzecz
