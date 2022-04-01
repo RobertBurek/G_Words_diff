@@ -1,7 +1,7 @@
 <?php
     // session_start();
 
-    $name_file_new_data = 'wordsCategory.txt';
+    $name_file_new_data = 'wordsCategory.js';
     $results = [];
     if (file_exists($name_file_new_data)) {
         $fp = fopen($name_file_new_data, "rb");
@@ -34,8 +34,10 @@
     <!-- <script>document.write('<link rel="stylesheet" href="style/menu.css?dev=' + Math.floor(Math.random() * 1000) + '"\>');</script> -->
 
     <script type="text/javascript">
-    let new_data = eval('<?php echo json_encode($results);?>');
-    console.log(new_data);
+    // let new_data = eval('
+    <?php //echo json_encode($results);?>
+    // ');
+    // console.log(new_data);
     // console.log(words_5L[Math.floor(Math.random()*words_5L.length)]);
     </script>
 </head>
@@ -46,6 +48,8 @@
     </div>
 
     <!--     php/createData.php -->
+
+    <script src="../app/createData.js" type="module"></script>
 
     <!-- <script src="js/menu.js"></script> -->
     <!-- <script>document.write('<script src="js/menu.js?dev=' + Math.floor(Math.random() * 1000) + '"\><\/script>');</script> -->

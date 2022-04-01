@@ -35,7 +35,7 @@ sendInfoMail($category, $longWord, $word);
 // echo "gsgsgsgrsrgsrdhshsrhsrhdg";
 
 
-    $name_file = 'wordsCategory.txt';
+    $name_file = 'wordsCategory.js';
     $results = [];
     // $thisLevel = false;
     // $changePlayer = false;
@@ -49,18 +49,20 @@ sendInfoMail($category, $longWord, $word);
             if ($line <> "") array_push($results, $line);
             }
             fclose($fp);
-            // unset($results[count($results)-1]);
+            unset($results[count($results)-1]);
             echo $results;
-            $newRecord = $longWord."{word:'".$word."',category:'".$category."',game:true},";
+            $newRecord = "{word:'".$word."',category:'".$category."',game:true},";
             array_push($results, $newRecord);
+            array_push($results, "]");
             foreach ($results as $result) {
                  $tresc = $tresc.$result."\n";
+            }
                 //  $tresc = $tresc.$result;
             $f=fopen($name_file, "a");
             ftruncate($f, 0);
             fputs($f, $tresc);
             fclose($f);
-            };
+            // };
         } ;
 
 
