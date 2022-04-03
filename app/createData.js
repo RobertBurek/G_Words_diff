@@ -5,14 +5,50 @@ import { words8Letters } from '../src/8-letters.js';
 import { words9Letters } from '../src/9-letters.js';
 import { wordsCategory } from '../php/wordsCategory.js';
 
-console.log(wordsCategory);
 
-function createData(record) {
-    // console.log(record);
-    const level = record.word;
-    console.log(level);
-    // console.log(level);
-    // console.log(data);
-}
+let groupsLettersCategory = [[], [], [], [],[]];
+wordsCategory.forEach(el => {
+    switch (el.word.length) {
+        case 5:
+            groupsLettersCategory[0].push(el)
+          break;
+        case 6:
+            groupsLettersCategory[1].push(el)
+        break;
+        case 7:
+            groupsLettersCategory[2].push(el)
+          break;
+        case 8:
+            groupsLettersCategory[3].push(el)
+        break;
+        case 9:
+            groupsLettersCategory[4].push(el)
+        break;
+    }
+});
 
-createData(wordsCategory[1]);
+
+// let sortGroupsLettersCategory = groupsLettersCategory[0].sort((a,b)=>a.word.localeCompare(b.word));
+let sortGroupsLettersCategory = words9Letters.sort((a,b)=>a.word.localeCompare(b.word));
+// console.log(sortGroupsLettersCategory);
+
+var dataCategory = "export const words9Letters = [\n"
+sortGroupsLettersCategory.forEach(el=>{
+    dataCategory += `{word: '${el.word}', category: '${el.category}', game: ${el.game}},\n`
+});
+dataCategory += "]";
+
+// console.log(dataCategory);
+
+dataCategory = {content: dataCategory};
+
+console.log(dataCategory);
+
+$.post( "../php/saveData.php", dataCategory
+    , function() {
+          alert( "success" );
+    })
+    .fail(function() {
+        alert( "error" );
+    }
+);
