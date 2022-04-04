@@ -1,0 +1,40 @@
+.word {
+  border: 2px solid gray;
+  height: 130px;
+  width: 90%;
+  font-size: 4rem;
+  text-align: center;
+  line-height: 115px;
+  border-radius: 10px;
+  margin: 15px 0;
+  letter-spacing: 2px;
+  font-weight: 600;
+}
+
+.choice-word {
+  display: flex;
+  width: 90%;
+  cursor: pointer;
+}
+
+.yes-data {
+  background-color: lime;
+}
+
+.no-data {
+  background-color: tomato;
+}
+
+.next-data {
+  cursor: pointer;
+  height: 80px;
+  line-height: 73px;
+}
+
+.title-word {
+  font-size: 3rem;
+  padding: 14px;
+  font-weight: 600;
+  letter-spacing: 4px;
+  color: bisque;
+}

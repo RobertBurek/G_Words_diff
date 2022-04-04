@@ -5,4 +5,6 @@ export let wordsCategory = [
 {word:'AUTOPILOT',category:'Rzecz',game:true},
 {word:'ARBUZ',category:'Rośliny',game:true},
 {word:'BANAN',category:'Rośliny',game:true},
+{word:'IDEAŁ',category:'Pojęcia',game:true},
+{word:'WINDA',category:'Rzecz',game:true},
 ]

@@ -1,0 +1,100 @@
+    <!-- // session_start(); -->
+
+    <!-- $name_file_new_data = 'wordsCategory.js';
+    $results = [];
+    if (file_exists($name_file_new_data)) {
+        $fp = fopen($name_file_new_data, "rb");
+        while(!feof($fp)) {
+            $line = str_replace("\n", "", fgets($fp));
+            $line = str_replace("\r", "", $line);
+            array_push($results, $line);
+        };
+        fclose($fp);
+        unset($results[count($results)-1]);
+        print_r($results);
+    }
+    else {
+      echo 'Nie znaleziono pliku!';
+    //   require_once $default_file;
+    }; -->
+
+
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Data</title>
+    <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"> -->
+    <script src="https://kit.fontawesome.com/1085229b76.js" crossorigin="anonymous"></script>
+    <!-- <link rel="stylesheet" href="css/style.css"> -->
+    <script>document.write('<link rel="stylesheet" href="css/style.css?ver=' + Math.floor(Math.random() * 1000) + '"\>');</script>
+    <script>document.write('<link rel="stylesheet" href="css/styleData.css?ver=' + Math.floor(Math.random() * 1000) + '"\>');</script>
+    <!-- <script src="https://kit.fontawesome.com/1085229b76.js" crossorigin="anonymous"></script> -->
+
+
+    <script src="./app/jquery.min.js"></script>
+</head>
+<body>
+    <section class="g-words">
+    <div class="dropdown">
+        <div class="dropdown-option">
+            <div class="dropdown-box">
+                <button id='longWord' class="dropdown-btn">
+                    <i class="fas fa-sort-amount-down-alt" dropdown></i>
+                    Długość słowa <div class="dropdown-note" dropdown>(5-literowe)</div>
+                </button>
+                <div class="dropdown-info">
+                    <div id="5letters" class="setting-letter">5-literowe</div>
+                    <div id="6letters" class="setting-letter">6-literowe</div>
+                    <div id="7letters" class="setting-letter">7-literowe</div>
+                    <div id="8letters" class="setting-letter">8-literowe</div>
+                    <div id="9letters" class="setting-letter">9-literowe</div>
+                    <!-- <button class="long-word">5-literowe</button>
+                    <button class="long-word">6-literowe</button>
+                    <button class="long-word">7-literowe</button>
+                    <button class="long-word">8-literowe</button>
+                    <button class="long-word">9-literowe</button> -->
+                </div>
+            </div>
+            <div class="dropdown-box">
+                <button id='filling' class="dropdown-btn">
+                    <i class="fas fa-digital-tachograph" dropdown></i>
+                    Klawiatura <div class="dropdown-note" dropdown>(słowa na literę : )</div>
+                </button>
+
+                <div id="letters" class="letters dropdown-info">
+                    <div id="keyboard1" class="keyboard1">
+                        <button class="normal">A</button><button class="normal">Ą</button><button class="normal">B</button><button class="normal">C</button><button class="normal">Ć</button><button class="normal">D</button><button class="normal">E</button><button class="normal">Ę</button><button class="normal">F</button><button class="normal">G</button>
+                    </div>
+                    <div id="keyboard2" class="keyboard2">
+                        <button class="normal">H</button><button class="normal">I</button><button class="normal">J</button><button class="normal">K</button><button class="normal">L</button><button class="normal">Ł</button><button class="normal">M</button><button class="normal">N</button><button class="normal">Ń</button>
+                    </div>
+                    <div id="keyboard3" class="keyboard3">
+                        <div id="keyboardScheme" class="keyboard-scheme"><i class="fas fa-keyboard" aria-hidden="true"></i></div><button class="normal">O</button><button class="normal">Ó</button><button class="normal">P</button><button class="normal">Q</button><button class="normal">R</button><button class="normal">S</button><button class="normal">Ś</button><div class="back-space"><i class="fas fa-long-arrow-alt-left" aria-hidden="true"></i></div>
+                    </div>
+                    <div id="keyboard4" class="keyboard4"><button class="normal">T</button><button class="normal">U</button><button class="normal">V</button><button class="normal">W</button><button class="normal">X</button><button class="normal">Y</button><button class="normal">Z</button><button class="normal">Ź</button><button class="normal">Ż</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="word">BANAN</div>
+    <p class="title-word">RZECZOWNIK ?</p>
+    <div class="choice-word">
+        <div class="yes-data word">TAK</div>
+        <div class="no-data word">NIE</div>
+    </div>
+    <div class="word next-data">Dalej</div>
+
+</section>
+
+
+    <script>document.write('<script src="app/dropdown.js?ver=' + Math.floor(Math.random() * 10000) + '" type="module"\><\/script>');</script>
+
+    <script>document.write('<script src="./app/createData.js?dev=' + Math.floor(Math.random() * 1000) + '" type="module"\><\/script>');</script>
+
+
+</body>
+</html>
