@@ -2,6 +2,7 @@ export let newDataGame = [
     {word: 'AMBRO', category: '?', game: false},
     {word: 'KUKŁY', category: '?', game: false},
     {word: 'BIGOT', category: '?', game: false},
+    {word: 'ABACE', category: '?', game: false},
     {word: 'DECYL', category: '?', game: false},
     {word: 'OŻYJĘ', category: '?', game: false},
     {word: 'AGGIO', category: '?', game: false},
@@ -460,4 +461,6 @@ export let newDataGame = [
 {word: 'DZIÓB', category: '?', game: true},
 {word: 'OWEGO', category: '?', game: false},
 {word: 'UPNIE', category: '?', game: false},
+{word: 'KAPTAŻOWI', category: '?', game: false},
+{word: 'FARSOWEMU', category: '?', game: false},
 ]
