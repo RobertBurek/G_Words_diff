@@ -8,6 +8,19 @@ import { newDataGame } from '../php/tempNewDataGame.js';
 let copyNewDataGame = [...newDataGame];
 let nameFileLevel = words5Letters;
 let metrics = {varName: 'words5Letters', pathLocation: '../src/5-letters.js'};
+let titleButtonLongWord = '';
+let dataWords = [];
+let numberWords = 0;
+
+function createNewDataWords(nameFile) {
+  dataWords = [];
+  nameFile.forEach(record => {
+      if (record.game == null) dataWords.push(record);
+  })
+  numberWords = dataWords.length;
+};
+
+createNewDataWords(nameFileLevel);
 
 let groupsLettersCategory = [[], [], [], [],[]];
 wordsCategory.forEach(el => {
@@ -33,7 +46,7 @@ wordsCategory.forEach(el => {
 const wordElement = document.querySelector('.word');
 function drawWord(){
   // return wordsLetters[Math.floor(Math.random()*wordsLetters.length)];
-  wordElement.innerHTML = nameFileLevel[Math.floor(Math.random()*nameFileLevel.length)].word;
+  wordElement.innerHTML = dataWords[Math.floor(Math.random()*dataWords.length)].word;
 }
 // const wordElement = document.querySelector('.word');
 // wordElement.innerHTML = drawWord(nameFileLevel).word;
@@ -73,9 +86,7 @@ function exportNewDataGame(newWord, newGame) {
 
 
 const longWordButton = document.getElementById('longWord');
-let titleButtonLongWord = '';
-// let nameFileLevel = words5Letters;
-let dataWords;
+
 
 // const fillingButton = document.getElementById('filling');
 const setting5Letters = document.getElementById('5letters');
@@ -89,68 +100,93 @@ const setting9Letters = document.getElementById('9letters');
 // const onceAgainSection = document.getElementById('onceAgain');
 // const divOnlyWords = document.querySelector('.above.only-words');
 // const pOnlyWords = document.querySelector('.above.only-words p');
+
+
+// numberWords = dataWords.length;
+
+let currentlyLetter = '';
+
+// function geveLetter(el) {
+//     currentlyLetter = el.innerHTML;
+//     console.log(currentlyLetter);
+// }
+
+let titleKeyboard = document.querySelector('#filling div')
+let letters = document.querySelectorAll('.normal');
+
+letters.forEach(letter=>{
+  letter.addEventListener('click', ()=>{
+    currentlyLetter = letter.innerHTML;
+    createNewDataWords(nameFileLevel);
+    console.log(dataWords);
+    let tempDataWords = [];
+    dataWords.forEach(record=>{
+      if (record.word[0] == currentlyLetter) tempDataWords.push(record);
+    })
+    console.log(tempDataWords);
+    dataWords = [];
+    dataWords = [...tempDataWords];
+    // console.log(dataWords);
+    titleKeyboard.innerHTML = `<div class="dropdown-note" dropdown>(słowa na literę : ${currentlyLetter}, ${dataWords.length} słów)</div>`;
+    drawWord();
+  });
+})
+
+titleButtonLongWord = `(5-literowe, ${numberWords} słów)`;
+longWordButton.innerHTML = `<i class="fas fa-sort-amount-down-alt" dropdown></i> 
+Długość słowa <div class="dropdown-note" dropdown>${titleButtonLongWord}</div>`;
+
+
 setting5Letters.addEventListener('click', ()=> {
-  titleButtonLongWord = '(5-literowe)';
-  longWordButton.innerHTML = `<i class="fas fa-sort-amount-down-alt" dropdown></i> 
-  Długość słowa <div class="dropdown-note" dropdown>${titleButtonLongWord}</div>`;
   nameFileLevel = words5Letters;
   createNewDataWords(nameFileLevel);
   drawWord();
   metrics = {varName: 'words5Letters', pathLocation: '../src/5-letters.js'};
+  titleButtonLongWord = `(5-literowe, ${numberWords} słów)`;
+  longWordButton.innerHTML = `<i class="fas fa-sort-amount-down-alt" dropdown></i> 
+  Długość słowa <div class="dropdown-note" dropdown>${titleButtonLongWord}</div>`;
     console.log(dataWords.length);
 });
 setting6Letters.addEventListener('click', ()=> {
-  titleButtonLongWord = '(6-literowe)';  
-  longWordButton.innerHTML = `<i class="fas fa-sort-amount-down-alt" dropdown></i> 
-  Długość słowa <div class="dropdown-note" dropdown>${titleButtonLongWord}</div>`;
   nameFileLevel = words6Letters;
   createNewDataWords(nameFileLevel);
   drawWord();
   metrics = {varName: 'words6Letters', pathLocation: '../src/6-letters.js'};
+  titleButtonLongWord = `(6-literowe, ${numberWords} słów)`;  
+  longWordButton.innerHTML = `<i class="fas fa-sort-amount-down-alt" dropdown></i> 
+  Długość słowa <div class="dropdown-note" dropdown>${titleButtonLongWord}</div>`;
     console.log(dataWords.length);
 });
 setting7Letters.addEventListener('click', ()=> {
-  titleButtonLongWord = '(7-literowe)';
-  longWordButton.innerHTML = `<i class="fas fa-sort-amount-down-alt" dropdown></i> 
-  Długość słowa <div class="dropdown-note" dropdown>${titleButtonLongWord}</div>`;
   nameFileLevel = words7Letters;
   createNewDataWords(nameFileLevel);
   drawWord();
   metrics = {varName: 'words7Letters', pathLocation: '../src/7-letters.js'};
+  titleButtonLongWord = `(7-literowe, ${numberWords} słów)`;
+  longWordButton.innerHTML = `<i class="fas fa-sort-amount-down-alt" dropdown></i> 
+  Długość słowa <div class="dropdown-note" dropdown>${titleButtonLongWord}</div>`;
     console.log(dataWords.length);
 });
 setting8Letters.addEventListener('click', ()=> {
-  titleButtonLongWord = '(8-literowe)';
-  longWordButton.innerHTML = `<i class="fas fa-sort-amount-down-alt" dropdown></i> 
-  Długość słowa <div class="dropdown-note" dropdown>${titleButtonLongWord}</div>`;
   nameFileLevel = words8Letters;
   createNewDataWords(nameFileLevel);
   drawWord();
   metrics = {varName: 'words8Letters', pathLocation: '../src/8-letters.js'};
+  titleButtonLongWord = `(8-literowe, ${numberWords} słów)`;
+  longWordButton.innerHTML = `<i class="fas fa-sort-amount-down-alt" dropdown></i> 
+  Długość słowa <div class="dropdown-note" dropdown>${titleButtonLongWord}</div>`;
     console.log(dataWords.length);
 });
 setting9Letters.addEventListener('click', ()=> {
-  titleButtonLongWord = '(9-literowe)';
-  longWordButton.innerHTML = `<i class="fas fa-sort-amount-down-alt" dropdown></i> 
-  Długość słowa <div class="dropdown-note" dropdown>${titleButtonLongWord}</div>`;
   nameFileLevel = words9Letters;
   createNewDataWords(nameFileLevel);
   drawWord();
   metrics = {varName: 'words9Letters', pathLocation: '../src/9-letters.js'};
+  titleButtonLongWord = `(9-literowe, ${numberWords} słów)`;
+  longWordButton.innerHTML = `<i class="fas fa-sort-amount-down-alt" dropdown></i> 
+  Długość słowa <div class="dropdown-note" dropdown>${titleButtonLongWord}</div>`;
     console.log(dataWords.length);
 });
-
-
-
-function createNewDataWords(nameFile) {
-    dataWords = [];
-    nameFile.forEach(record => {
-        if (record.game == null) dataWords.push(record);
-    })
-};
-
-createNewDataWords(nameFileLevel);
-console.log(dataWords.length);
 
 
 

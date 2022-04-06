@@ -12,6 +12,8 @@
 }
 
 .choice-word {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   width: 90%;
   cursor: pointer;
@@ -50,3 +52,29 @@
   border-radius: 5px;
   font-weight: 600;
 }
+
+.letters-plus {
+  margin: 0px auto;
+  border: none;
+}
+
+.letters button {
+  margin: 2px;
+}
+
+.dropdown-note {
+  margin-left: 4px;
+}
+
+@media (min-width: 450px) {
+  .dropdown-note {
+    margin-left: 10px;
+  }
+}
+
+@media (min-width: 500px) {
+  .dropdown-note {
+    margin-left: 20px;
+  }
+}
+/*# sourceMappingURL=styleData.css.map */
