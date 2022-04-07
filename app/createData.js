@@ -46,7 +46,8 @@ wordsCategory.forEach(el => {
 const wordElement = document.querySelector('.word');
 function drawWord(){
   // return wordsLetters[Math.floor(Math.random()*wordsLetters.length)];
-  wordElement.innerHTML = dataWords[Math.floor(Math.random()*dataWords.length)].word;
+  if (dataWords.length > 0) wordElement.innerHTML = dataWords[Math.floor(Math.random()*dataWords.length)].word;
+  else wordElement.innerHTML = " ";
 }
 // const wordElement = document.querySelector('.word');
 // wordElement.innerHTML = drawWord(nameFileLevel).word;
@@ -85,15 +86,15 @@ function exportNewDataGame(newWord, newGame) {
 }
 
 
-const longWordButton = document.getElementById('longWord');
+const longWordButton = document.getElementById('longWordData');
 
 
 // const fillingButton = document.getElementById('filling');
-const setting5Letters = document.getElementById('5letters');
-const setting6Letters = document.getElementById('6letters');
-const setting7Letters = document.getElementById('7letters');
-const setting8Letters = document.getElementById('8letters');
-const setting9Letters = document.getElementById('9letters');
+const setting5Letters = document.getElementById('5lettersData');
+const setting6Letters = document.getElementById('6lettersData');
+const setting7Letters = document.getElementById('7lettersData');
+const setting8Letters = document.getElementById('8lettersData');
+const setting9Letters = document.getElementById('9lettersData');
 // const onlyWords = document.getElementById('onlyWords');
 // const notWord = document.querySelector('.not-word');
 // const stringChars = document.getElementById('stringChars');
@@ -132,12 +133,18 @@ letters.forEach(letter=>{
   });
 })
 
+
+function cleanTitleNumberLetters() {
+    titleKeyboard.innerHTML = `<div class="dropdown-note" dropdown>(słowa na literę : )</div>`;
+}
+
 titleButtonLongWord = `(5-literowe, ${numberWords} słów)`;
 longWordButton.innerHTML = `<i class="fas fa-sort-amount-down-alt" dropdown></i> 
 Długość słowa <div class="dropdown-note" dropdown>${titleButtonLongWord}</div>`;
 
 
 setting5Letters.addEventListener('click', ()=> {
+  cleanTitleNumberLetters();
   nameFileLevel = words5Letters;
   createNewDataWords(nameFileLevel);
   drawWord();
@@ -148,6 +155,7 @@ setting5Letters.addEventListener('click', ()=> {
     console.log(dataWords.length);
 });
 setting6Letters.addEventListener('click', ()=> {
+  cleanTitleNumberLetters();
   nameFileLevel = words6Letters;
   createNewDataWords(nameFileLevel);
   drawWord();
@@ -158,6 +166,7 @@ setting6Letters.addEventListener('click', ()=> {
     console.log(dataWords.length);
 });
 setting7Letters.addEventListener('click', ()=> {
+  cleanTitleNumberLetters();
   nameFileLevel = words7Letters;
   createNewDataWords(nameFileLevel);
   drawWord();
@@ -168,6 +177,7 @@ setting7Letters.addEventListener('click', ()=> {
     console.log(dataWords.length);
 });
 setting8Letters.addEventListener('click', ()=> {
+  cleanTitleNumberLetters();
   nameFileLevel = words8Letters;
   createNewDataWords(nameFileLevel);
   drawWord();
@@ -178,6 +188,7 @@ setting8Letters.addEventListener('click', ()=> {
     console.log(dataWords.length);
 });
 setting9Letters.addEventListener('click', ()=> {
+  cleanTitleNumberLetters();
   nameFileLevel = words9Letters;
   createNewDataWords(nameFileLevel);
   drawWord();
@@ -202,10 +213,6 @@ function writeToFileDataGame() {
         newDataGameLevel.push(line);
       }
     });
-
-
-
-    // console.log(newDataGameLevel.length);
 
     if(newDataGameLevel.length > 0) {
 
@@ -242,25 +249,27 @@ function writeToFileDataGame() {
 
       $.post( "./php/saveData.php", postData
           , function() {
-                // alert( "success" );
+                console.log(`Zapisano do pliku  ${metrics.pathLocation}  -  ${newData.length} słów!`);
                 let cleanDataGame = [];
                 // newDataGame.forEach(el=>{
                 copyNewDataGame.forEach(el=>{
                   if (el.word.length != sortNewDataGameLevel[0].word.length) cleanDataGame.push(el);
                 });
                 copyNewDataGame = cleanDataGame;
-                let newData = "export let newDataGame = [\n";
+                let newDataRest = "export let newDataGame = [\n";
                 cleanDataGame.forEach(el => {
-                    newData += `{word: '${el.word}', category: '${el.category}', game: ${el.game}},\n`;
+                  newDataRest += `{word: '${el.word}', category: '${el.category}', game: ${el.game}},\n`;
                 });
-                newData += "]";
-                let postData = {content: newData, level: '../php/tempNewDataGame.js'};
+                newDataRest += "]";
+                let postData = {content: newDataRest, level: '../php/tempNewDataGame.js'};
                       // console.log(newData);
                       // console.log( postData.level);
-                $.post( "./php/saveData.php", postData);
+                $.post( "./php/saveData.php", postData, function() {
+                  console.log(`Zostało do zapisania ${newDataRest.length} słów`);
+                });
           })
           .fail(function() {
-              alert( "error" );
+              alert( "Coś poszło nie tak." );
           }
       );
     };
