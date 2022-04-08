@@ -7,4 +7,5 @@ export let wordsCategory = [
 {word:'BANAN',category:'Rośliny',game:true},
 {word:'IDEAŁ',category:'Pojęcia',game:true},
 {word:'WINDA',category:'Rzecz',game:true},
+{word:'PROWADNIK',category:'Rzecz',game:true},
 ]

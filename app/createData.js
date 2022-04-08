@@ -249,23 +249,25 @@ function writeToFileDataGame() {
 
       $.post( "./php/saveData.php", postData
           , function() {
-                console.log(`Zapisano do pliku  ${metrics.pathLocation}  -  ${newData.length} słów!`);
+                // console.log(`Zapisano do pliku  ${metrics.pathLocation}  -  ${newData.length} słów!`);
                 let cleanDataGame = [];
                 // newDataGame.forEach(el=>{
                 copyNewDataGame.forEach(el=>{
                   if (el.word.length != sortNewDataGameLevel[0].word.length) cleanDataGame.push(el);
                 });
-                copyNewDataGame = cleanDataGame;
+                copyNewDataGame = [...cleanDataGame];
+                console.log(`Zapisano do pliku  ${metrics.pathLocation}  -  ${sortNewDataGameLevel.length} słów!`);
                 let newDataRest = "export let newDataGame = [\n";
                 cleanDataGame.forEach(el => {
                   newDataRest += `{word: '${el.word}', category: '${el.category}', game: ${el.game}},\n`;
                 });
                 newDataRest += "]";
-                let postData = {content: newDataRest, level: '../php/tempNewDataGame.js'};
+                let postDataRest = {content: newDataRest, level: 'tempNewDataGame.js'};
                       // console.log(newData);
                       // console.log( postData.level);
-                $.post( "./php/saveData.php", postData, function() {
-                  console.log(`Zostało do zapisania ${newDataRest.length} słów`);
+                $.post( "./php/saveData.php", postDataRest, function() {
+                  console.log(`Zostało do zapisania ${cleanDataGame.length} słów`);
+                  copyNewDataGame = [...cleanDataGame];
                 });
           })
           .fail(function() {

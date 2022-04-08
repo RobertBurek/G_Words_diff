@@ -6,8 +6,9 @@ import { words8Letters } from '../src/8-letters.js';
 import { words9Letters } from '../src/9-letters.js';
 let wordsLetters = words5Letters;
 let words = {word:'',category:'?',game:false};
+let numberWords;
 
-let titleButtonLongWord = '(5-literowe)';
+let titleButtonLongWord = `5-literowe`;
 let titleButtonFilling = 'Wypełnianie (tylko istniejące słowa)';
 
 const longWordButton = document.getElementById('longWord');
@@ -24,25 +25,25 @@ const onceAgainSection = document.getElementById('onceAgain');
 const divOnlyWords = document.querySelector('.above.only-words');
 const pOnlyWords = document.querySelector('.above.only-words p');
 setting5Letters.addEventListener('click', ()=> {
-  titleButtonLongWord = '(5-literowe)';
+  titleButtonLongWord = `5-literowe`;
   listenerLongLetters(5, 6, words5Letters);
 });
 setting6Letters.addEventListener('click', ()=> {
   // import words6Letters from '../src/6-letters.js';
-  titleButtonLongWord = '(6-literowe)';
+  titleButtonLongWord = `6-literowe`;
   listenerLongLetters(6, 6, words6Letters);
 });
 setting7Letters.addEventListener('click', ()=> {
-  titleButtonLongWord = '(7-literowe)';
+  titleButtonLongWord = `7-literowe`;
   // longWord.innerHTML = titleButtonLongWord;
   listenerLongLetters(7, 6, words7Letters);
 });
 setting8Letters.addEventListener('click', ()=> {
-  titleButtonLongWord = '(8-literowe)';
+  titleButtonLongWord = `8-literowe`;
   listenerLongLetters(8, 6, words8Letters);
 });
 setting9Letters.addEventListener('click', ()=> {
-  titleButtonLongWord = '(9-literowe)';
+  titleButtonLongWord = `9-literowe`;
   listenerLongLetters(9, 6, words9Letters);
 });
 
@@ -115,12 +116,14 @@ function startSelectionCategory() {
 
 
 function listenerLongLetters(quantity, attempts, arrayLongLetters) {
-  longWordButton.innerHTML = `<i class="fas fa-sort-amount-down-alt" dropdown></i> 
-  Długość słowa <div class="dropdown-note" dropdown>${titleButtonLongWord}</div>`;
+  // longWordButton.innerHTML = `<i class="fas fa-sort-amount-down-alt" dropdown></i> 
+  // Długość słowa <div class="dropdown-note" dropdown>${titleButtonLongWord}</div>`;
   onceAgainSection.classList.add('hide');
   wordsLetters = [...arrayLongLetters];
   stringWords = createStringWords(arrayLongLetters);
   game.run(quantity, attempts);
+  longWordButton.innerHTML = `<i class="fas fa-sort-amount-down-alt" dropdown></i> 
+  Długość słowa <div class="dropdown-note" dropdown>(${titleButtonLongWord} [${numberWords}])</div>`;
 }
 
 function createStringWords(words) {
@@ -217,7 +220,8 @@ class Game {
 
     createWordsLevel(arrayLongLetters){
       const dataWorks = this.createDataLetters(arrayLongLetters);
-      // console.log(dataWorks);
+      // console.log(dataWorks.length);
+      numberWords = dataWorks.length;
       // console.log(dataWorks[Math.floor(Math.random()*dataWorks.length)]);
       return dataWorks[Math.floor(Math.random()*dataWorks.length)];
     }
@@ -261,6 +265,9 @@ class Game {
           // if (level == 7) words = {word:'APASZKA', category:'TestApaszka'};
           // if (level == 8) words = {word:'TEODOLIT', category:'TestTeodolit'};
           // if (level == 9) words = {word:'ARCHITEKT', category:'TestArchitekt'};
+
+        longWordButton.innerHTML = `<i class="fas fa-sort-amount-down-alt" dropdown></i> 
+        Długość słowa <div class="dropdown-note" dropdown>(${titleButtonLongWord} [${numberWords}])</div>`;
 
       // if (level == 5) {
       //   // this.words5 = this.createDataLetters(words5Letters);
