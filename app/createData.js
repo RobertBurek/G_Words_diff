@@ -12,6 +12,16 @@ let titleButtonLongWord = '';
 let dataWords = [];
 let numberWords = 0;
 
+const sjp = document.querySelector('#sjp');
+const infoWord = document.querySelector('#word');
+infoWord.addEventListener('click', ()=>{
+  const urlSJP = 'https://sjp.pl/' + wordElement.innerHTML;
+  // sjp.innerHTML = `<iframe src="${urlSJP}" height="200" width="600" title="Iframe Example"></iframe>`
+  sjp.innerHTML = `<iframe src="${urlSJP}" class="info-word"></iframe>`;
+  sjp.classList.remove('hide');
+})
+
+
 function createNewDataWords(nameFile) {
   dataWords = [];
   nameFile.forEach(record => {
@@ -48,6 +58,7 @@ function drawWord(){
   // return wordsLetters[Math.floor(Math.random()*wordsLetters.length)];
   if (dataWords.length > 0) wordElement.innerHTML = dataWords[Math.floor(Math.random()*dataWords.length)].word;
   else wordElement.innerHTML = " ";
+  sjp.classList.add('hide');
 }
 // const wordElement = document.querySelector('.word');
 // wordElement.innerHTML = drawWord(nameFileLevel).word;
@@ -215,7 +226,6 @@ function writeToFileDataGame() {
     });
 
     if(newDataGameLevel.length > 0) {
-
       let sortNewDataGameLevel = newDataGameLevel.sort((a,b)=> a.word.localeCompare(b.word));
       // console.log(sortNewDataGameLevel[80]);
       let tempWordsToFile = [];
@@ -274,7 +284,9 @@ function writeToFileDataGame() {
               alert( "Coś poszło nie tak." );
           }
       );
-    };
+    } else {
+      console.log(`Nie ma nic do zapisania. Ilość rekordów: ${newDataGameLevel.length}`);
+    }
 };
 
 function sortData(data) {

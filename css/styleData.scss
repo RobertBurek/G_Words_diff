@@ -11,6 +11,23 @@
     font-weight: 600;
 }
 
+.word:hover {
+    cursor: pointer;
+}
+
+.sjp {
+    width: 90%;
+    height: 0;
+}
+
+.info-word {
+    height: 200px;
+    width: 100%;
+    position: relative;
+    top: -192px;
+    border-radius: 10px;
+} 
+
 .choice-word {
     display: flex;
     width: 90%;
