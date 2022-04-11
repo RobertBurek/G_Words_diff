@@ -17,7 +17,7 @@ const infoWord = document.querySelector('#word');
 infoWord.addEventListener('click', ()=>{
   const urlSJP = 'https://sjp.pl/' + wordElement.innerHTML;
   // sjp.innerHTML = `<iframe src="${urlSJP}" height="200" width="600" title="Iframe Example"></iframe>`
-  sjp.innerHTML = `<iframe src="${urlSJP}" class="info-word"></iframe>`;
+  sjp.innerHTML = `<iframe id="infoWord" src="${urlSJP}" class="info-word"></iframe>`;
   sjp.classList.remove('hide');
 })
 
@@ -277,15 +277,18 @@ function writeToFileDataGame() {
                       // console.log( postData.level);
                 $.post( "./php/saveData.php", postDataRest, function() {
                   console.log(`Zostało do zapisania ${cleanDataGame.length} słów`);
+                  alert(`Zapisano do pliku  ${metrics.pathLocation}  -  ${sortNewDataGameLevel.length} słów!\n
+                  Zostało do zapisania ${cleanDataGame.length} słów`);
                   copyNewDataGame = [...cleanDataGame];
                 });
           })
           .fail(function() {
-              alert( "Coś poszło nie tak." );
+              alert( "Coś poszło nie tak z zapisem do pliku." );
           }
       );
     } else {
       console.log(`Nie ma nic do zapisania. Ilość rekordów: ${newDataGameLevel.length}`);
+      alert(`Nie ma nic do zapisania. Ilość rekordów: ${newDataGameLevel.length}`);
     }
 };
 

@@ -8,4 +8,6 @@ export let wordsCategory = [
 {word:'IDEAŁ',category:'Pojęcia',game:true},
 {word:'WINDA',category:'Rzecz',game:true},
 {word:'PROWADNIK',category:'Rzecz',game:true},
+{word:'AGENDA',category:'Pojęcia',game:true},
+{word:'ANEKS',category:'Pojęcia',game:true},
 ]
