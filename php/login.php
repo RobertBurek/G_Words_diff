@@ -1,6 +1,9 @@
 <?php
 
-	// session_start();
+	if(!isset($_SESSION)) 
+	{ 
+		session_start(); 
+	}
 
 	require_once "connect.php";
 	
@@ -47,7 +50,7 @@
 						// 	echo "$value <br>";
 						//   }
 
-						echo $nick.'   -  istnieje w bazie';
+						// echo $nick.'   -  istnieje w bazie';
 
 					if (password_verify($password, $row['Password']))
 						{
@@ -62,20 +65,20 @@
 						
 						unset($_SESSION['error']);
 						$result->free_result();
-						// header('Location:index.php');
+						header('Location:loginForm.php');
 						echo '<br> jest OK <br>';
 						}
 						else 
 						{
 							$_SESSION['error'] = '<span style="color:red">Nieprawidłowy nick lub hasło!</span>';
-							// header('Location:loginF'orm.php');
+							header('Location: loginForm.php');
 							echo '<br>złe hasło';
 						}
 						
 				} else {
 					
 					$_SESSION['error'] = '<span style="color:red">Nieprawidłowy nick lub hasło!</span>';
-					// header('Location:loginForm.php');
+					header('Location: loginForm.php');
 					echo $nick.'  -  nie ma w bazie!!!';
 				}
 				

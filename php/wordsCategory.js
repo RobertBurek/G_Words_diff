@@ -10,4 +10,5 @@ export let wordsCategory = [
 {word:'PROWADNIK',category:'Rzecz',game:true},
 {word:'AGENDA',category:'Pojęcia',game:true},
 {word:'ANEKS',category:'Pojęcia',game:true},
+{word:'BABKA',category:'Rzecz',game:true},
 ]

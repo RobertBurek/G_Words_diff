@@ -114,17 +114,17 @@
         </div>
         </form> -->
 
-        
-            <div class="what-category hide">
-                    <div class="what-category-btn" category>OSOBA</div>
-                    <div class="what-category-btn" category>RZECZ</div>
-                    <div class="what-category-btn" category>ROŚLINY</div>
-                    <div class="what-category-btn" category>MIEJSCE</div>
-                    <div class="what-category-btn" category>POJĘCIA</div>
-                    <div class="what-category-btn" category>ZWIERZĘTA</div>
-                    <div class="what-category-btn" category>ZJAWISKA</div>
-                    <div class="what-category-btn" category>CZYNNOŚCI</div>
-            </div>
+
+        <div class="what-category hide">
+            <div class="what-category-btn" category>OSOBA</div>
+            <div class="what-category-btn" category>RZECZ</div>
+            <div class="what-category-btn" category>ROŚLINY</div>
+            <div class="what-category-btn" category>MIEJSCE</div>
+            <div class="what-category-btn" category>POJĘCIA</div>
+            <div class="what-category-btn" category>ZWIERZĘTA</div>
+            <div class="what-category-btn" category>ZJAWISKA</div>
+            <div class="what-category-btn" category>CZYNNOŚCI</div>
+        </div>
 
         <!-- <div id="letters" class="letters">
             <div class="above only-words">
@@ -147,15 +147,28 @@
                 <div>Jeszcze raz?</div>
             </div>
             <div id="keyboard1" class="keyboard1">
-                <button class="normal">A</button><button class="normal">Ą</button><button class="normal">B</button><button class="normal">C</button><button class="normal">Ć</button><button class="normal">D</button><button class="normal">E</button><button class="normal">Ę</button><button class="normal">F</button><button class="normal">G</button>
+                <button class="normal">A</button><button class="normal">Ą</button><button
+                    class="normal">B</button><button class="normal">C</button><button class="normal">Ć</button><button
+                    class="normal">D</button><button class="normal">E</button><button class="normal">Ę</button><button
+                    class="normal">F</button><button class="normal">G</button>
             </div>
             <div id="keyboard2" class="keyboard2">
-                <button class="normal">H</button><button class="normal">I</button><button class="normal">J</button><button class="normal">K</button><button class="normal">L</button><button class="normal">Ł</button><button class="normal">M</button><button class="normal">N</button><button class="normal">Ń</button>
+                <button class="normal">H</button><button class="normal">I</button><button
+                    class="normal">J</button><button class="normal">K</button><button class="normal">L</button><button
+                    class="normal">Ł</button><button class="normal">M</button><button class="normal">N</button><button
+                    class="normal">Ń</button>
             </div>
             <div id="keyboard3" class="keyboard3">
-                <div id="keyboardScheme" class="keyboard-scheme"><i class="fas fa-keyboard" aria-hidden="true"></i></div><button class="normal">O</button><button class="normal">Ó</button><button class="normal">P</button><button class="normal">Q</button><button class="normal">R</button><button class="normal">S</button><button class="normal">Ś</button><div class="back-space"><i class="fas fa-long-arrow-alt-left" aria-hidden="true"></i></div>
+                <div id="keyboardScheme" class="keyboard-scheme"><i class="fas fa-keyboard" aria-hidden="true"></i>
+                </div><button class="normal">O</button><button class="normal">Ó</button><button
+                    class="normal">P</button><button class="normal">Q</button><button class="normal">R</button><button
+                    class="normal">S</button><button class="normal">Ś</button>
+                <div class="back-space"><i class="fas fa-long-arrow-alt-left" aria-hidden="true"></i></div>
             </div>
-            <div id="keyboard4" class="keyboard4"><button class="normal">T</button><button class="normal">U</button><button class="normal">V</button><button class="normal">W</button><button class="normal">X</button><button class="normal">Y</button><button class="normal">Z</button><button class="normal">Ź</button><button class="normal">Ż</button>
+            <div id="keyboard4" class="keyboard4"><button class="normal">T</button><button
+                    class="normal">U</button><button class="normal">V</button><button class="normal">W</button><button
+                    class="normal">X</button><button class="normal">Y</button><button class="normal">Z</button><button
+                    class="normal">Ź</button><button class="normal">Ż</button>
             </div>
         </div>
 
@@ -189,6 +202,31 @@
                         <div id="stringChars" class="setting-letter">dowolny ciąg liter</div>
                         <!-- <button class="long-word">tylko istniejące słowa</button>
                         <button class="long-word">dowolny ciąg znaków</button> -->
+                    </div>
+                </div>
+                <div class="dropdown-box">
+                    <button id='logging' class="dropdown-btn">
+                        <i class="fas fa-digital-tachograph" dropdown></i>
+                        Logowanie <div class="dropdown-note" dropdown>(rejestracja)</div>
+                    </button>
+                    <div class="dropdown-info">
+
+                        <form action="login.php" method="POST">
+                            <label for="userlogin">Nazwa (login):</label>
+                            <input type="text" id="userlogin" name="login">
+                            <label for="passwordlogin">Hasło:</label>
+                            <input type="password" id="passwordlogin" name="password">
+                            <div id="lower">
+                    <!--          <input type="checkbox"><label class="check" for="checkbox">Zapamietaj mnie!</label>  -->
+                                <input type="submit" value="Zaloguj">
+                                        <?php
+                                    echo '<input type="button" value="Powrót" onclick="location.href='.$strona.'">'
+                                        ?>
+                            </div>
+                        </form>
+                    
+                        <!-- <div id="onlyWords" class="setting-letter">Nazwa</div>
+                        <div id="stringChars" class="setting-letter">Hasło</div> -->
                     </div>
                 </div>
                 <div class="dropdown-box">
