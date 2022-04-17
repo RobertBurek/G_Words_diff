@@ -24,7 +24,10 @@ const clickOutsidedropdown = e => {
 	    // console.log(document.querySelector('[dropdown]').attributes[1]);
 
         return; }
-	closedropdownItem();
+	if (!e.target.hasAttribute('logging')) { 
+		// console.log('click in label');
+		closedropdownItem();
+	}
 };
 
 dropdownBtns.forEach(btn => btn.addEventListener('click', opendropdownItems));
