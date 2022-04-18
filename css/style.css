@@ -555,6 +555,16 @@ html {
       -ms-flex-direction: column;
           flex-direction: column;
   margin-right: 40px;
+  letter-spacing: 1px;
+}
+
+input {
+  padding: 0 5px;
+  font-weight: bold;
+}
+
+.logging:hover {
+  color: yellow;
 }
 
 h2 {
