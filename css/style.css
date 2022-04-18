@@ -536,11 +536,17 @@ html {
   color: gray;
 }
 
-.dropdown-login {
-  height: 30px;
+.dropdown-login,
+.dropdown-password {
+  height: 35px;
   margin-left: 20px;
   font-size: 14px;
   font-weight: 600;
+}
+
+.dropdown-login:hover,
+.dropdown-password:hover {
+  color: yellow;
 }
 
 .logging {
@@ -554,17 +560,29 @@ html {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  margin-right: 40px;
+  margin-right: 0px;
   letter-spacing: 1px;
 }
 
 input {
-  padding: 0 5px;
+  content: "";
+  outline: none;
+  color: lime;
+  background-color: #474550;
+  /* color: yellow; */
   font-weight: bold;
+  letter-spacing: 1px;
+  padding: 2px 5px;
+  width: 125px;
 }
 
-.logging:hover {
-  color: yellow;
+.login-btn {
+  letter-spacing: 1px;
+  font-weight: bold;
+  background-color: #474550;
+  color: lime;
+  padding: 2px 5px;
+  cursor: pointer;
 }
 
 h2 {
@@ -708,6 +726,12 @@ h2 {
   .dropdown p {
     padding: 0 30px;
   }
+  input {
+    width: 145px;
+  }
+  .logging {
+    margin-right: 20px;
+  }
 }
 
 @media (min-width: 500px) {
@@ -752,6 +776,12 @@ h2 {
     margin-bottom: 1.2rem;
     font-size: 1.6rem;
     padding: 0 20px;
+  }
+  input {
+    width: 165px;
+  }
+  .logging {
+    margin-right: 45px;
   }
 }
 

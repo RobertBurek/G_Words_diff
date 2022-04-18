@@ -561,8 +561,9 @@ html {
 	color: gray;
 }
 
-.dropdown-login {
-	height: 30px;
+.dropdown-login,
+.dropdown-password {
+	height: 35px;
 	// width: 80%;
 	margin-left: 20px;
 	 // margin: 0px;
@@ -570,22 +571,101 @@ html {
 	font-weight: 600;
 }
 
+.dropdown-login:hover,
+.dropdown-password:hover {
+	color: yellow;
+}
+
 .logging {
 	display: flex;
 	align-items: flex-end;
 	flex-direction: column;
-    margin-right: 40px;
+    margin-right: 0px;
 	letter-spacing: 1px;
 }
 
+
+// input::before {
+// 	content: " ";
+// }
+// input::after,
+// input::content,
+// input::part,
+// input::placeholder
+//  {
+// 	content: " ";
+// }
+
+
+
 input {
-	padding: 0 5px;
-	font-weight: bold;
+	content: "";
+	outline: none;
+    color: lime;
+    background-color: $background-color;
+    /* color: yellow; */
+    font-weight: bold;
+    letter-spacing: 1px;
+    padding: 2px 5px;
+	width: 125px;
+    // border-bottom: 2px solid yellow;
+
+
+	// padding: 0 5px;
+	// font-weight: bold;
+	// letter-spacing: 1px;
+	// background-color: $background-color;
+    // // color: #c1c1c1;
+    // // color: lime;
+    // border: 3px solid;
+    // border-color: #2a2a2a #9a9a9a #9a9a9a #2a2a2a;
+    // cursor: default !important;
+    // opacity: 0.7;
+
 }
 
-.logging:hover {
-	color: yellow;
+.login-btn{
+	letter-spacing: 1px;
+    font-weight: bold;
+    background-color: $background-color;
+    color: lime;
+    padding: 2px 5px;
+    cursor: pointer;
 }
+
+// input:visited,
+// input:default
+// input:focus,
+// input:focus-visible,
+// input:active
+//  {
+// 	content: "";
+// 	outline: none;
+//     color: lime;
+//     background-color: $background-color;
+//     /* color: yellow; */
+//     font-weight: bold;
+//     letter-spacing: 1px;
+//     padding: 2px 5px;
+// 	width: 125px;
+//  }
+
+// // input:focus-visible,
+// input:focus,
+// input:visited
+// // input:target,
+// // input:active 
+// {
+//     background-color: $background-color;
+//     color: #c1c1c1;
+//     border: 3px solid;
+//     border-color: #2a2a2a #9a9a9a #9a9a9a #2a2a2a;
+//     cursor: default !important;
+//     opacity: 0.7;
+// 	outline: none;
+// }
+
+
 
 
 
@@ -729,6 +809,12 @@ h2 {
 	.dropdown p {
 		padding: 0 30px;
 	}
+	input {
+		width: 145px;
+	}
+	.logging {
+		margin-right: 20px;
+	}
 }
 
 @media (min-width: 500px) {
@@ -775,6 +861,12 @@ h2 {
 		margin-bottom: 1.2rem;
 		font-size: 1.6rem;
 		padding: 0 20px;
+	}
+	input {
+		width: 165px;
+	}
+	.logging {
+		margin-right: 45px;
 	}
 }
 
