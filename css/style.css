@@ -536,6 +536,27 @@ html {
   color: gray;
 }
 
+.dropdown-login {
+  height: 30px;
+  margin-left: 20px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.logging {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin-right: 40px;
+}
+
 h2 {
   color: #fcfca4;
 }

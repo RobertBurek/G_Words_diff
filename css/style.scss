@@ -561,9 +561,27 @@ html {
 	color: gray;
 }
 
+.dropdown-login {
+	height: 30px;
+	// width: 80%;
+	margin-left: 20px;
+	 // margin: 0px;
+	font-size: 14px;
+	font-weight: 600;
+}
+
+.logging {
+	display: flex;
+	align-items: flex-end;
+	flex-direction: column;
+    margin-right: 40px;
+}
+
 
 
 // ------------------------DROPDOWN----------------------------------------
+
+
 
 h2 {
 	color: rgb(252, 252, 164);
