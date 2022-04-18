@@ -569,7 +569,7 @@ input {
   outline: none;
   color: lime;
   background-color: #474550;
-  /* color: yellow; */
+  /* color: $background-light; */
   font-weight: bold;
   letter-spacing: 1px;
   padding: 2px 5px;

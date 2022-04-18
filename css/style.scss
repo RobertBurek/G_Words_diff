@@ -6,6 +6,9 @@ $background-color: #474550;
 $red-pastel-color: #f6483b;
 $warning-color: red;
 $option-color: rgb(252,252,164);
+$background-light: yellow;
+$background-dark: $background-dark;
+$background-empty: $background-empty;
 
 *,
 *::before,
@@ -156,7 +159,7 @@ html {
     width: 30px;
     min-width: 20px;
     border-radius: 3px;
-    border: 2px solid gray;
+    border: 2px solid $background-empty;
     // margin: 5px;
     margin: 5px 2px;
     font-size: 20px;
@@ -172,7 +175,7 @@ html {
 }
 
 .current-round .current-letter {
-	border: 3px solid yellow !important;
+	border: 3px solid $background-light !important;
 	cursor: pointer;
 }
 
@@ -203,7 +206,7 @@ html {
 }
 
 .result-word p {
-	color: lime;
+	color: $background-dark;
 	display: inline;
 }
 
@@ -227,7 +230,7 @@ html {
 	width: 25%;
 	text-align: center;
 	padding: 5px;
-	border: 1px solid gray;
+	border: 1px solid $background-empty;
     letter-spacing: 1px;
 	cursor: pointer;
 	background-color: $background-color;
@@ -284,7 +287,7 @@ html {
 .letters {
 	width: 90%;
 	margin: 20px 0;
-	border: 2px solid gray;
+	border: 2px solid $background-empty;
 	display: flex;
     flex-direction: column;
     justify-content: center;
@@ -351,7 +354,7 @@ html {
 	// border: 2px solid blue;
     height: 160px !important;
     width: 380px !important;
-    background-color: gray;
+    background-color: $background-empty;
 	opacity: 0.8;
 }
 
@@ -415,7 +418,7 @@ html {
 	font-weight: 700;
 	background-color: #555555;
 	border-radius: 5px;
-	// color: yellow;
+	// color: $background-light;
 	border: 4px solid ;
 	border-color: #999999 #2b2b2b #2b2b2b #999999;
 	letter-spacing: 3px;
@@ -427,14 +430,14 @@ html {
 }
 
 .half-success {
-	background-color: yellow;
+	background-color: $background-light;
 	color: #252527;
 	border: 3px solid;
 	border-color: #9a9a9a #2a2a2a #2a2a2a #9a9a9a;
 }
 
 .success {
-	background-color: lime;
+	background-color: $background-dark;
 	color: #252527;
 	border: 3px solid;
 	border-color: #9a9a9a #2a2a2a #2a2a2a #9a9a9a;
@@ -447,7 +450,7 @@ html {
 }
 
 .not-char {
-	background-color: gray;
+	background-color: $background-empty;
 	color: #c1c1c1;
 	border: 3px solid;
 	//   border-top-color: currentcolor;
@@ -484,8 +487,8 @@ html {
 .dropdown {
 	.fas {
 		margin-right: 10px;
-		// color: lime;
-		color: yellow;
+		// color: $background-dark;
+		color: $background-light;
 	}
 }
 
@@ -507,9 +510,9 @@ html {
     border: none;
     border-radius: 8px;
     // transition: background-color 0.3s;
-    background-color: #474550;
-    border: 2px solid gray;
-    color: lime;
+    background-color: $background-color;
+    border: 2px solid $background-empty;
+    color: $background-dark;
     /* font-weight: 600; */
     letter-spacing: 0.5px;
 	cursor: pointer;
@@ -518,23 +521,23 @@ html {
 .dropdown-btn:hover,
 .dropdown-btn:focus {
 	// background-color: #f6483b;
-	// background-color: yellow;
-	// background-color: lime;
+	// background-color: $background-light;
+	// background-color: $background-dark;
 	// opacity: 0.4;
 	// color: #fff;
 	// font-weight: 600;
-	// color: lime;
-	color: yellow;
-	// color: lime;
+	// color: $background-dark;
+	color: $background-light;
+	// color: $background-dark;
 	outline: none;
 }
 
 .dropdown-btn:hover .fas,
 .dropdown-btn:focus .fas {
 	// color: #fff;
-	// color: lime;
-	// color: yellow;
-	color: lime;
+	// color: $background-dark;
+	// color: $background-light;
+	color: $background-dark;
 	// font-weight: 600;
 }
 
@@ -558,7 +561,7 @@ html {
 .dropdown-note {
 	display: inline-block;
 	margin-left: 20px;
-	color: gray;
+	color: $background-empty;
 }
 
 .dropdown-login,
@@ -573,7 +576,7 @@ html {
 
 .dropdown-login:hover,
 .dropdown-password:hover {
-	color: yellow;
+	color: $background-light;
 }
 
 .logging {
@@ -601,14 +604,14 @@ html {
 input {
 	content: "";
 	outline: none;
-    color: lime;
+    color: $background-dark;
     background-color: $background-color;
-    /* color: yellow; */
+    /* color: $background-light; */
     font-weight: bold;
     letter-spacing: 1px;
     padding: 2px 5px;
 	width: 125px;
-    // border-bottom: 2px solid yellow;
+    // border-bottom: 2px solid $background-light;
 
 
 	// padding: 0 5px;
@@ -616,7 +619,7 @@ input {
 	// letter-spacing: 1px;
 	// background-color: $background-color;
     // // color: #c1c1c1;
-    // // color: lime;
+    // // color: $background-dark;
     // border: 3px solid;
     // border-color: #2a2a2a #9a9a9a #9a9a9a #2a2a2a;
     // cursor: default !important;
@@ -628,7 +631,7 @@ input {
 	letter-spacing: 1px;
     font-weight: bold;
     background-color: $background-color;
-    color: lime;
+    color: $background-dark;
     padding: 2px 5px;
     cursor: pointer;
 }
@@ -641,9 +644,9 @@ input {
 //  {
 // 	content: "";
 // 	outline: none;
-//     color: lime;
+//     color: $background-dark;
 //     background-color: $background-color;
-//     /* color: yellow; */
+//     /* color: $background-light; */
 //     font-weight: bold;
 //     letter-spacing: 1px;
 //     padding: 2px 5px;
@@ -701,7 +704,7 @@ h2 {
 .setting-letter:hover {
 	cursor: pointer;
 	// color: #959499;
-	color: yellow;
+	color: $background-light;
 }
 
 .heartly {
