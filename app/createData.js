@@ -53,12 +53,28 @@ wordsCategory.forEach(el => {
     }
 });
 
+function checkingSJP(word) {
+  let dataPost = {word: word};
+  $.post( "./php/sjp.php", dataPost, function(data) {
+    // alert( "OK - odczyt / zapis do bazy" );
+    // console.log(data.name);
+    // console.log(data);
+    // let element = data.querySelector("a");
+    console.log(data);
+      $( ".result-sjp" ).html( data );
+    })
+      .fail(function() {
+          alert( "Błąd odczytu z bazy" );
+      });
+};
+
 const wordElement = document.querySelector('.word');
 function drawWord(){
   // return wordsLetters[Math.floor(Math.random()*wordsLetters.length)];
   if (dataWords.length > 0) wordElement.innerHTML = dataWords[Math.floor(Math.random()*dataWords.length)].word;
   else wordElement.innerHTML = " ";
   sjp.classList.add('hide');
+  checkingSJP(wordElement.innerHTML);
 }
 // const wordElement = document.querySelector('.word');
 // wordElement.innerHTML = drawWord(nameFileLevel).word;

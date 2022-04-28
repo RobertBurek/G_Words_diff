@@ -1,0 +1,104 @@
+.word {
+  border: 2px solid gray;
+  height: 130px;
+  width: 90%;
+  font-size: 4rem;
+  text-align: center;
+  line-height: 125px;
+  border-radius: 10px;
+  margin: 15px 0;
+  letter-spacing: 2px;
+  font-weight: 600;
+}
+
+.word:hover {
+  cursor: pointer;
+}
+
+.sjp {
+  width: 90%;
+  height: 0;
+}
+
+.info-word {
+  height: 200px;
+  width: 100%;
+  position: relative;
+  top: -192px;
+  border-radius: 10px;
+}
+
+.choice-word {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 90%;
+  cursor: pointer;
+}
+
+.yes-data {
+  background-color: lime;
+}
+
+.no-data {
+  background-color: tomato;
+}
+
+.next-data {
+  cursor: pointer;
+  height: 80px;
+  line-height: 73px;
+}
+
+.title-word {
+  font-size: 3rem;
+  padding: 14px;
+  font-weight: 600;
+  letter-spacing: 4px;
+  color: bisque;
+}
+
+.save-data {
+  padding: 5px 15px;
+  margin-top: 70px;
+  border: 2px solid gray;
+  cursor: pointer;
+  font-size: 2rem;
+  background-color: darkgreen;
+  letter-spacing: 2px;
+  border-radius: 5px;
+  font-weight: 600;
+}
+
+.letters-plus {
+  margin: 0px auto;
+  border: none;
+}
+
+.letters button {
+  margin: 2px;
+  height: 20px;
+  width: 20px;
+}
+
+.dropdown-note {
+  margin-left: 4px;
+}
+
+@media (min-width: 450px) {
+  .dropdown-note {
+    margin-left: 10px;
+  }
+  .letters button {
+    height: 25px;
+    width: 25px;
+    margin: 3px;
+  }
+}
+
+@media (min-width: 500px) {
+  .dropdown-note {
+    margin-left: 20px;
+  }
+}
+/*# sourceMappingURL=styleData.css.map */

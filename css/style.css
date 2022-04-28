@@ -465,7 +465,7 @@ html {
 
 .dropdown p {
   margin-bottom: 1rem;
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   color: white;
 }
 
@@ -574,15 +574,25 @@ input {
   letter-spacing: 1px;
   padding: 2px 5px;
   width: 125px;
+  border: 3px solid;
+  border-color: #2a2a2a #9a9a9a #9a9a9a #2a2a2a;
+  cursor: default !important;
 }
 
-.login-btn {
+.reg-log-btn {
   letter-spacing: 1px;
   font-weight: bold;
   background-color: #474550;
-  color: lime;
   padding: 2px 5px;
   cursor: pointer;
+}
+
+.register-btn {
+  color: yellow;
+}
+
+.login-btn {
+  color: lime;
 }
 
 h2 {

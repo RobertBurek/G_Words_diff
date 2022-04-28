@@ -7,8 +7,8 @@ $red-pastel-color: #f6483b;
 $warning-color: red;
 $option-color: rgb(252,252,164);
 $background-light: yellow;
-$background-dark: $background-dark;
-$background-empty: $background-empty;
+$background-dark: lime;
+$background-empty: gray;
 
 *,
 *::before,
@@ -453,13 +453,8 @@ html {
 	background-color: $background-empty;
 	color: #c1c1c1;
 	border: 3px solid;
-	//   border-top-color: currentcolor;
-	//   border-right-color: currentcolor;
-	//   border-bottom-color: currentcolor;
-	//   border-left-color: currentcolor;
 	border-color: #2a2a2a #9a9a9a #9a9a9a #2a2a2a;
 	cursor: default !important;
-	// border-color: #c6c6c6 #626262 #626262 #c6c6c6;
 	opacity: 0.7;
 }
 
@@ -480,7 +475,7 @@ html {
 
 .dropdown p {
 	margin-bottom: 1rem;
-	font-size: 1.4rem;
+	font-size: 1.2rem;
 	color: white;
 }
 
@@ -612,28 +607,26 @@ input {
     padding: 2px 5px;
 	width: 125px;
     // border-bottom: 2px solid $background-light;
-
-
-	// padding: 0 5px;
-	// font-weight: bold;
-	// letter-spacing: 1px;
-	// background-color: $background-color;
-    // // color: #c1c1c1;
-    // // color: $background-dark;
-    // border: 3px solid;
-    // border-color: #2a2a2a #9a9a9a #9a9a9a #2a2a2a;
-    // cursor: default !important;
-    // opacity: 0.7;
+	border: 3px solid;
+	border-color: #2a2a2a #9a9a9a #9a9a9a #2a2a2a;
+	cursor: default !important;
+	// opacity: 0.7;
 
 }
 
-.login-btn{
+.reg-log-btn {
 	letter-spacing: 1px;
     font-weight: bold;
     background-color: $background-color;
-    color: $background-dark;
     padding: 2px 5px;
     cursor: pointer;
+}
+
+.register-btn {
+    color: $background-light;
+}
+.login-btn {
+    color: $background-dark;
 }
 
 // input:visited,

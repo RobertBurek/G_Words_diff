@@ -5,6 +5,9 @@
 		session_start(); 
 	}
 
+	$nick = $_POST['Nick'];
+    $password = $_POST['Password'];
+
 	require_once "connect.php";
 	
 	$connection = @new mysqli($host,$db_user,$db_password,$db_name);
@@ -13,9 +16,9 @@
 		echo "Error: ".$connection->connect_erno." Opis: ".$connection->connect_error;
 	}
 	else{
-	$nick = str_replace(' ', '_', $_POST['login']);
+	// $nick = str_replace(' ', '_', $nick);
 	// echo $login.' - ';
-	$password=$_POST['password'];
+	// $password=$_POST['password'];
 	// echo $password."<br>";
 
 		$nick = htmlentities($nick, ENT_QUOTES, "UTF-8");
@@ -65,24 +68,29 @@
 						
 						unset($_SESSION['error']);
 						$result->free_result();
-						header('Location:loginForm.php');
-						echo '<br> jest OK <br>';
+						// header('Location:loginForm.php');
+						// echo '<br> jest OK <br>';
+						echo json_encode(array("result"=>$row['ResultTotal']));
 						}
 						else 
 						{
 							$_SESSION['error'] = '<span style="color:red">Nieprawidłowy nick lub hasło!</span>';
-							header('Location: loginForm.php');
-							echo '<br>złe hasło';
+							// header('Location: loginForm.php');
+							// echo '<br>złe hasło';
+							echo json_encode(array("result"=>"złe hasło"));
 						}
 						
 				} else {
 					
 					$_SESSION['error'] = '<span style="color:red">Nieprawidłowy nick lub hasło!</span>';
-					header('Location: loginForm.php');
-					echo $nick.'  -  nie ma w bazie!!!';
+					// header('Location: loginForm.php');
+					// echo $nick.'  -  nie ma w bazie!!!';
+					echo json_encode(array("result"=>"nie ma w bazie"));
 				}
 				
 			}
 	$connection->close();
+	// echo json_encode(array("Nick"=>"Kasia","result5"=>"2"));
 	}
+
 ?>
