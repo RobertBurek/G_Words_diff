@@ -15,7 +15,7 @@
 	{
 		echo "Error: ".$connection->connect_erno." Opis: ".$connection->connect_error;
 	}
-	else{
+	else {
 	// $nick = str_replace(' ', '_', $nick);
 	// echo $login.' - ';
 	// $password=$_POST['password'];
@@ -40,57 +40,6 @@
 		// 						mysqli_real_escape_string($connection,'5')));
 
 // ---------------------------------------------------------------------------------------
-	
-		if ($result = @$connection->query(sprintf("SELECT * FROM users WHERE Nick='%s'",
-										mysqli_real_escape_string($connection,$nick))))
-			{
-				$rows_login = $result->num_rows;
-				if ($rows_login>0) 
-				{
-						$row = $result->fetch_assoc();
-						// echo $row['Result9'];
-						// foreach ($row as $value) {
-						// 	echo "$value <br>";
-						//   }
-
-						// echo $nick.'   -  istnieje w bazie';
-
-					if (password_verify($password, $row['Password']))
-						{
-						
-									
-						$_SESSION['logged']=true;
-
-						// $_SESSION['id'] = $wiersz['id'];
-						$_SESSION['nick'] = $row['Nick'];
-						// $_SESSION['imie'] = $wiersz['imie'];
-						// if ($row['prawa']=="admin") $_SESSION['czyadmin']=true;
-						
-						unset($_SESSION['error']);
-						$result->free_result();
-						// header('Location:loginForm.php');
-						// echo '<br> jest OK <br>';
-						echo json_encode(array("result"=>$row['ResultTotal']));
-						}
-						else 
-						{
-							$_SESSION['error'] = '<span style="color:red">Nieprawidłowy nick lub hasło!</span>';
-							// header('Location: loginForm.php');
-							// echo '<br>złe hasło';
-							echo json_encode(array("result"=>"złe hasło"));
-						}
-						
-				} else {
-					
-					$_SESSION['error'] = '<span style="color:red">Nieprawidłowy nick lub hasło!</span>';
-					// header('Location: loginForm.php');
-					// echo $nick.'  -  nie ma w bazie!!!';
-					echo json_encode(array("result"=>"nie ma w bazie"));
-				}
-				
-			}
-	$connection->close();
-	// echo json_encode(array("Nick"=>"Kasia","result5"=>"2"));
-	}
-
+    }
+    $connection->close();
 ?>

@@ -6,18 +6,23 @@
 	// header('Location:index.php');
 
 $word = $_POST['word'];
-	$ch = curl_init('https://sjp.pl/'.$word);
+$category = $_POST['category'];
+$game = $_POST['game'];
+$description = '';
+
+$ch = curl_init('https://sjp.pl/'.$word);
 curl_setopt($ch, CURLOPT_HEADER, 0);
 curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 30);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 curl_setopt($ch, CURLOPT_HEADER, 0);
+$document = curl_exec($ch);
+curl_close($ch);
 
 function delEndText($text, $selector) {
 	$tempText = strstr($text, $selector);
 	return substr($text, 0, strlen($text) - strlen($tempText));
 }
 
-$document = curl_exec($ch);
 $fragment = strstr($document, '<a class="lc"');
 $fragment = strstr($fragment, 'currentColor');
 // $fragment = strstr($document, 'span>"');
@@ -61,8 +66,7 @@ $cd = substr($toto, 52, 20);
 $wordSJP = substr($cd, 0, strRpos($cd, '/a')-1);
 
 
-// echo $document;
-curl_close($ch);
+// curl_close($ch);
 
 // require 'simple_html_dom_utility.php'; 
 
@@ -71,9 +75,12 @@ curl_close($ch);
 // $ret = $html->find('table[summary=oferta]');
 // echo $ret;
 // echo $fragment;
-echo $wordSJP.' ---> '.$opisWordSJP;
+// echo $wordSJP.' ---> '.$opisWordSJP;
+$description = $opisWordSJP;
 // echo $opisWordSJP;
 // echo $cd.'     '.strRpos($cd, '"');
 // echo $cd2.'     '.strRpos($cd, '"');
 // echo $wordSJP;
+
+echo json_encode(array("word"=>$wordSJP, "category"=>$category, "game"=>$game, "description"=>$description));
 ?>

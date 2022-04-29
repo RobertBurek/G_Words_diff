@@ -53,16 +53,18 @@ wordsCategory.forEach(el => {
     }
 });
 
-function checkingSJP(word) {
-  let dataPost = {word: word};
-  $.post( "./php/sjp.php", dataPost, function(data) {
+function checkingSJP(word, category, game) {
+  let dataPost = {word: word, category: category, game: game};
+  $.post( "./php/sjp.php", dataPost, function( data ) {
     // alert( "OK - odczyt / zapis do bazy" );
     // console.log(data.name);
     // console.log(data);
     // let element = data.querySelector("a");
     console.log(data);
-      $( ".result-sjp" ).html( data );
-    })
+      $( ".result-sjp" ).html( 'word: ' + data.word + ' ,  category: ' + data.category 
+      + ', game: ' + data.game + ', opis: ' + data.description);
+
+    }, "json")
       .fail(function() {
           alert( "Błąd odczytu z bazy" );
       });
@@ -74,7 +76,7 @@ function drawWord(){
   if (dataWords.length > 0) wordElement.innerHTML = dataWords[Math.floor(Math.random()*dataWords.length)].word;
   else wordElement.innerHTML = " ";
   sjp.classList.add('hide');
-  checkingSJP(wordElement.innerHTML);
+  checkingSJP(wordElement.innerHTML, '?', 'true'); //???????????????????????
 }
 // const wordElement = document.querySelector('.word');
 // wordElement.innerHTML = drawWord(nameFileLevel).word;
