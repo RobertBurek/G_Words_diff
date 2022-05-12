@@ -8,79 +8,79 @@
 $word = $_POST['word'];
 $category = $_POST['category'];
 $game = $_POST['game'];
-$description = '';
+// $description = '';
 
-$ch = curl_init('https://sjp.pl/'.$word);
-curl_setopt($ch, CURLOPT_HEADER, 0);
-curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 30);
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-curl_setopt($ch, CURLOPT_HEADER, 0);
-$document = curl_exec($ch);
-curl_close($ch);
+$contentSJP = curl_init('https://sjp.pl/'.$word);
+curl_setopt($contentSJP, CURLOPT_HEADER, 0);
+curl_setopt($contentSJP, CURLOPT_CONNECTTIMEOUT, 30);
+curl_setopt($contentSJP, CURLOPT_RETURNTRANSFER, 1);
+curl_setopt($contentSJP, CURLOPT_HEADER, 0);
+$contentPage = curl_exec($contentSJP);
+curl_close($contentSJP);
 
 function delEndText($text, $selector) {
 	$tempText = strstr($text, $selector);
 	return substr($text, 0, strlen($text) - strlen($tempText));
 }
 
-$fragment = strstr($document, '<a class="lc"');
+$fragment = strstr($contentPage, '<a class="lc"');
 $fragment = strstr($fragment, 'currentColor');
-// $fragment = strstr($document, 'span>"');
-$pocz=strlen($fragment);
+// $fragment = strstr($contentPage, 'span>"');
+$startFragment=strlen($fragment);
 
 				// $opisKoniec = strstr($fragment, '<hr style');
 
 				// $opisKon=strlen($opisKoniec);
-				// $opisWordSJP = substr($fragment, 0, $pocz-$opisKon);
+				// $descriptionWordSJP = substr($fragment, 0, $startFragment-$opisKon);
 
-				$opisWordSJP = delEndText($fragment, '<hr style');
-				// $opisWordSJP = strstr($opisWordSJP,  '<p style="margin: .5em 0; font: medium/1.4 sans-serif; max-width: 34em; ">');
-				// echo $opisWordSJP;
-				// $opisWordSJP = strstr($opisWordSJP,  '<p style="margin');
+				$descriptionWordSJP = delEndText($fragment, '<hr style');
+				// $descriptionWordSJP = strstr($descriptionWordSJP,  '<p style="margin: .5em 0; font: medium/1.4 sans-serif; max-width: 34em; ">');
+				// echo $descriptionWordSJP;
+				// $descriptionWordSJP = strstr($descriptionWordSJP,  '<p style="margin');
 
-				if (strpos($opisWordSJP, '<p style="font-weight: bold; margin: 2em 0 1em;">POWIĄZANE HASŁA:</p>')) {
-					$opisWordSJP = delEndText($fragment, '<p style="font-weight: bold; margin: 2em 0 1em;">POWIĄZANE HASŁA:</p>');
+				if (strpos($descriptionWordSJP, '<p style="font-weight: bold; margin: 2em 0 1em;">POWIĄZANE HASŁA:</p>')) {
+					$descriptionWordSJP = delEndText($fragment, '<p style="font-weight: bold; margin: 2em 0 1em;">POWIĄZANE HASŁA:</p>');
 				}
-				if (strpos($opisWordSJP, '<p><i>Hasło ze słownika wyrazów obcych</i>')) {
-					$opisWordSJP = delEndText($fragment, '<p><i>Hasło ze słownika wyrazów obcych</i>');
+				if (strpos($descriptionWordSJP, '<p><i>Hasło ze słownika wyrazów obcych</i>')) {
+					$descriptionWordSJP = delEndText($fragment, '<p><i>Hasło ze słownika wyrazów obcych</i>');
 				}
 
-				if (strpos($opisWordSJP, '<p style="line-height:')) {
-					$opisWordSJP = delEndText($opisWordSJP, '<p style="line-height:');
-				// $konOpisWordSJP = strstr($opisWordSJP,  'style="line-height:');
-				// $opisWordSJP = substr($opisWordSJP, 0, strlen($opisWordSJP) - strlen($konOpisWordSJP));
-				$opisWordSJP = strstr($opisWordSJP, '</span> </p></div>');
-				$opisWordSJP = substr($opisWordSJP, 93,  strlen($opisWordSJP) - 93);
-				$opisWordSJP = substr($opisWordSJP, 0,  strlen($opisWordSJP) - 5);
+				if (strpos($descriptionWordSJP, '<p style="line-height:')) {
+					$descriptionWordSJP = delEndText($descriptionWordSJP, '<p style="line-height:');
+				// $endFragmentdescriptionWordSJP = strstr($descriptionWordSJP,  'style="line-height:');
+				// $descriptionWordSJP = substr($descriptionWordSJP, 0, strlen($descriptionWordSJP) - strlen($endFragmentdescriptionWordSJP));
+				$descriptionWordSJP = strstr($descriptionWordSJP, '</span> </p></div>');
+				$descriptionWordSJP = substr($descriptionWordSJP, 93,  strlen($descriptionWordSJP) - 93);
+				$descriptionWordSJP = substr($descriptionWordSJP, 0,  strlen($descriptionWordSJP) - 5);
 				} else {
-				$opisWordSJP = strstr($opisWordSJP,  '<p style="margin');
-				$opisWordSJP = substr($opisWordSJP, 74,  strlen($opisWordSJP) - 74);
-				$opisWordSJP = substr($opisWordSJP, 0,  strlen($opisWordSJP) - 5);
+				$descriptionWordSJP = strstr($descriptionWordSJP,  '<p style="margin');
+				$descriptionWordSJP = substr($descriptionWordSJP, 74,  strlen($descriptionWordSJP) - 74);
+				$descriptionWordSJP = substr($descriptionWordSJP, 0,  strlen($descriptionWordSJP) - 5);
 				}
-$reszta = strstr($fragment, '<table');
-// $reszta = strstr($fragment, '"</a');
-$kon=strlen($reszta);
-$toto = substr($fragment, 0, $pocz-$kon);
+$restFragment = strstr($fragment, '<table');
+// $restFragment = strstr($fragment, '"</a');
+$endFragment=strlen($restFragment);
+$newFragment = substr($fragment, 0, $startFragment-$endFragment);
 // $elementA = explode(">", $fragment);
-$cd = substr($toto, 52, 20);
-$wordSJP = substr($cd, 0, strRpos($cd, '/a')-1);
+$fragmentWordSJP = substr($newFragment, 52, 20);
+$wordSJP = substr($fragmentWordSJP, 0, strRpos($fragmentWordSJP, '/a')-1);
 
 
-// curl_close($ch);
+// curl_close($contentSJP);
 
 // require 'simple_html_dom_utility.php'; 
 
-// $html = str_get_html($document);
+// $html = str_get_html($contentPage);
 
 // $ret = $html->find('table[summary=oferta]');
 // echo $ret;
 // echo $fragment;
-// echo $wordSJP.' ---> '.$opisWordSJP;
-$description = $opisWordSJP;
-// echo $opisWordSJP;
-// echo $cd.'     '.strRpos($cd, '"');
-// echo $cd2.'     '.strRpos($cd, '"');
+// echo $wordSJP.' ---> '.$descriptionWordSJP;
+// $description = $descriptionWordSJP;
+// echo $descriptionWordSJP;
+// echo $fragmentWordSJP.'     '.strRpos($fragmentWordSJP, '"');
+// echo $fragmentWordSJP2.'     '.strRpos($fragmentWordSJP, '"');
 // echo $wordSJP;
 
-echo json_encode(array("word"=>$wordSJP, "category"=>$category, "game"=>$game, "description"=>$description));
+echo json_encode(array("word"=>$wordSJP, "category"=>$category, "game"=>$game, "description"=>$descriptionWordSJP));
 ?>

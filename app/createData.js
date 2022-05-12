@@ -70,6 +70,7 @@ function checkingSJP(word, category, game) {
       });
 };
 
+
 const wordElement = document.querySelector('.word');
 function drawWord(){
   // return wordsLetters[Math.floor(Math.random()*wordsLetters.length)];
@@ -81,6 +82,7 @@ function drawWord(){
 // const wordElement = document.querySelector('.word');
 // wordElement.innerHTML = drawWord(nameFileLevel).word;
 drawWord();
+
 
 const yesDataElement = document.querySelector('.yes-data');
 const noDataElement = document.querySelector('.no-data');
