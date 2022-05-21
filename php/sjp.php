@@ -1,10 +1,5 @@
 <?php
 
-	// session_start();
-	// session_unset();
-//	header('Location:index.php');
-	// header('Location:index.php');
-
 $word = $_POST['word'];
 $category = $_POST['category'];
 $game = $_POST['game'];
@@ -24,9 +19,9 @@ function delEndText($text, $selector) {
 
 $fragment = strstr($contentPage, '<a class="lc"');
 $fragment = strstr($fragment, 'currentColor');
-$startFragment=strlen($fragment);
-$descriptionWordSJP = delEndText($fragment, '<hr style');
+$startFragment = strlen($fragment);
 
+$descriptionWordSJP = delEndText($fragment, '<hr style');
 if (strpos($descriptionWordSJP, '<p style="font-weight: bold; margin: 2em 0 1em;">POWIĄZANE HASŁA:</p>')) {
 	$descriptionWordSJP = delEndText($fragment, '<p style="font-weight: bold; margin: 2em 0 1em;">POWIĄZANE HASŁA:</p>');
 }
@@ -37,17 +32,18 @@ if (strpos($descriptionWordSJP, '<p style="line-height:')) {
 	$descriptionWordSJP = delEndText($descriptionWordSJP, '<p style="line-height:');
 	$descriptionWordSJP = strstr($descriptionWordSJP, '</span> </p></div>');
 	$descriptionWordSJP = substr($descriptionWordSJP, 93,  strlen($descriptionWordSJP) - 93);
-	$descriptionWordSJP = substr($descriptionWordSJP, 0,  strlen($descriptionWordSJP) - 5);
+$descriptionWordSJP = substr($descriptionWordSJP, 0,  strlen($descriptionWordSJP) - 5);
 } else {
 	$descriptionWordSJP = strstr($descriptionWordSJP,  '<p style="margin');
 	$descriptionWordSJP = substr($descriptionWordSJP, 74,  strlen($descriptionWordSJP) - 74);
 	$descriptionWordSJP = substr($descriptionWordSJP, 0,  strlen($descriptionWordSJP) - 5);
 }
-$restFragmenstrstr($fragment, '<table');
-$endFragment=strlen($restFragment);
+$restFragment = strstr($fragment, '<table');
+$endFragment = strlen($restFragment);
 $newFragment = substr($fragment, 0, $startFragment-$endFragment);
 $fragmentWordSJP = substr($newFragment, 52, 20);
 $wordSJP = substr($fragmentWordSJP, 0, strRpos($fragmentWordSJP, '/a')-1);
 
 echo json_encode(array("word"=>$wordSJP, "category"=>$category, "game"=>$game, "description"=>$descriptionWordSJP));
+
 ?>
