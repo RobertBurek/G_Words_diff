@@ -30,6 +30,7 @@ function createNewDataWords(nameFile) {
   numberWords = dataWords.length;
 };
 
+
 createNewDataWords(nameFileLevel);
 
 let groupsLettersCategory = [[], [], [], [],[]];
@@ -54,9 +55,9 @@ wordsCategory.forEach(el => {
 });
 
 function writeToDatabase(data){
-  console.log(data.word.toUpperCase() + " - zapisuję do bazy !!!");
+  // console.log(data.word + " - zapisuję do bazy !!!");
   $.post( "./php/saveDataBaseNouns.php", data, function() {
-      
+
   })
   .fail(function() {
     alert( "Błąd zapisu do bazy nouns.sql" );
@@ -72,19 +73,54 @@ function checkingSJP(word, category, game) {
     // console.log(data.name);
     // console.log(data);
     // let element = data.querySelector("a");
-      console.log(data);
-      $( ".result-sjp" ).html( 'word: ' + data.word + ' ,  category: ' + data.category 
-      + ', game: ' + data.game + ', opis: ' + data.description);
+      // console.log(data);
+
+      // -------------------------------------------------------
+      // $( ".result-sjp" ).html( 'word: ' + data.word + ' ,  category: ' + data.category 
+      // + ', game: ' + data.game + ', opis: ' + data.description)
+      // --------------------------------------------------------
+
       // dataSJP = data;
       // console.log(data.word.toUpperCase() + " - " + word);
-      if (word == data.word.toUpperCase()) {
-        // console.log(data.word.toUpperCase() + " - zapisuję do bazy !!!");
-        writeToDatabase(data);
+      if (word.toLowerCase() == data.word) {
+        console.log(word.toLowerCase() + " - zapisuję do bazy !!!");
+        // writeToDatabase(data);
+        $.post( "./php/saveDataBaseNouns.php", data, function() {
+          // console.log(data.word + " - zapisuję do bazy !!!");
+          // $( ".result-sjp" ).html( data.word + ' - zapisuję do bazy !!!');
+        });
       }
     }, "json")
       .fail(function() {
-          alert( "Błąd odczytu z bazy" );
+          // alert( "Błąd odczytu z bazy" );
+          console.log( "Błąd odczytu z sjp.pl" );
       });
+      if (index == nameFileLevel.length) clearInterval(saveBaseInterval);
+};
+// nameFile.length
+
+
+let index = 0;
+let saveBaseInterval;
+function createNewDataWordsMachine(dataBase) {
+  saveBaseInterval = setInterval(() => {
+    let element = dataBase[index];
+    checkingSJP(element.word, element.category, element.game);
+    index++;
+  }, 200);
+  // if (index == dataBase.length) clearInterval(saveBaseInterval);
+
+
+//  console.log(dataBase.length);
+//  let element;
+//  for (let index = 0; index < dataBase.length; index++) {
+//    element = dataBase[index];
+//    // console.log(element.word);
+//    // setTimeout(
+//      checkingSJP(element.word, element.category, element.game)
+//      // , 1000);
+//    // console.log(index);
+//  }
 };
 
 
@@ -203,15 +239,16 @@ setting5Letters.addEventListener('click', ()=> {
     console.log(dataWords.length);
 });
 setting6Letters.addEventListener('click', ()=> {
-  cleanTitleNumberLetters();
+  // cleanTitleNumberLetters();
   nameFileLevel = words6Letters;
-  createNewDataWords(nameFileLevel);
-  drawWord();
-  metrics = {varName: 'words6Letters', pathLocation: '../src/6-letters.js'};
-  titleButtonLongWord = `(6-literowe, ${numberWords} słów)`;  
-  longWordButton.innerHTML = `<i class="fas fa-sort-amount-down-alt" dropdown></i> 
-  Długość słowa <div class="dropdown-note" dropdown>${titleButtonLongWord}</div>`;
-    console.log(dataWords.length);
+  createNewDataWordsMachine(words6Letters);
+  // createNewDataWords(nameFileLevel);
+  // drawWord();
+  // metrics = {varName: 'words6Letters', pathLocation: '../src/6-letters.js'};
+  // titleButtonLongWord = `(6-literowe, ${numberWords} słów)`;  
+  // longWordButton.innerHTML = `<i class="fas fa-sort-amount-down-alt" dropdown></i> 
+  // Długość słowa <div class="dropdown-note" dropdown>${titleButtonLongWord}</div>`;
+  //   console.log(dataWords.length);
 });
 setting7Letters.addEventListener('click', ()=> {
   cleanTitleNumberLetters();
