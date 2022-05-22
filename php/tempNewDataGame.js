@@ -51,4 +51,5 @@ export let newDataGame = [
 {word: 'KONIN', category: '?', game: false},
 {word: 'ŁUGÓW', category: '?', game: false},
 {word: 'KNEBLOWI', category: '?', game: false},
+{word: 'JOJEM', category: '?', game: false},
 ]
