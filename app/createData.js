@@ -53,17 +53,34 @@ wordsCategory.forEach(el => {
     }
 });
 
+function writeToDatabase(data){
+  console.log(data.word.toUpperCase() + " - zapisuję do bazy !!!");
+  $.post( "./php/saveDataBaseNouns.php", data, function() {
+      
+  })
+  .fail(function() {
+    alert( "Błąd zapisu do bazy nouns.sql" );
+  });
+}
+
+
 function checkingSJP(word, category, game) {
   let dataPost = {word: word, category: category, game: game};
+  // let dataSJP = {word: '', category: '', game: false};
   $.post( "./php/sjp.php", dataPost, function( data ) {
     // alert( "OK - odczyt / zapis do bazy" );
     // console.log(data.name);
     // console.log(data);
     // let element = data.querySelector("a");
-    console.log(data);
+      console.log(data);
       $( ".result-sjp" ).html( 'word: ' + data.word + ' ,  category: ' + data.category 
       + ', game: ' + data.game + ', opis: ' + data.description);
-
+      // dataSJP = data;
+      // console.log(data.word.toUpperCase() + " - " + word);
+      if (word == data.word.toUpperCase()) {
+        // console.log(data.word.toUpperCase() + " - zapisuję do bazy !!!");
+        writeToDatabase(data);
+      }
     }, "json")
       .fail(function() {
           alert( "Błąd odczytu z bazy" );
