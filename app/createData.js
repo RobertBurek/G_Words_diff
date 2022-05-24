@@ -251,37 +251,40 @@ setting6Letters.addEventListener('click', ()=> {
   //   console.log(dataWords.length);
 });
 setting7Letters.addEventListener('click', ()=> {
-  cleanTitleNumberLetters();
+  // cleanTitleNumberLetters();
   nameFileLevel = words7Letters;
-  createNewDataWords(nameFileLevel);
-  drawWord();
-  metrics = {varName: 'words7Letters', pathLocation: '../src/7-letters.js'};
-  titleButtonLongWord = `(7-literowe, ${numberWords} słów)`;
-  longWordButton.innerHTML = `<i class="fas fa-sort-amount-down-alt" dropdown></i> 
-  Długość słowa <div class="dropdown-note" dropdown>${titleButtonLongWord}</div>`;
-    console.log(dataWords.length);
+  createNewDataWordsMachine(words7Letters);
+  // createNewDataWords(nameFileLevel);
+  // drawWord();
+  // metrics = {varName: 'words7Letters', pathLocation: '../src/7-letters.js'};
+  // titleButtonLongWord = `(7-literowe, ${numberWords} słów)`;
+  // longWordButton.innerHTML = `<i class="fas fa-sort-amount-down-alt" dropdown></i> 
+  // Długość słowa <div class="dropdown-note" dropdown>${titleButtonLongWord}</div>`;
+  //   console.log(dataWords.length);
 });
 setting8Letters.addEventListener('click', ()=> {
-  cleanTitleNumberLetters();
+  // cleanTitleNumberLetters();
   nameFileLevel = words8Letters;
-  createNewDataWords(nameFileLevel);
-  drawWord();
-  metrics = {varName: 'words8Letters', pathLocation: '../src/8-letters.js'};
-  titleButtonLongWord = `(8-literowe, ${numberWords} słów)`;
-  longWordButton.innerHTML = `<i class="fas fa-sort-amount-down-alt" dropdown></i> 
-  Długość słowa <div class="dropdown-note" dropdown>${titleButtonLongWord}</div>`;
-    console.log(dataWords.length);
+  createNewDataWordsMachine(words8Letters);
+  // createNewDataWords(nameFileLevel);
+  // drawWord();
+  // metrics = {varName: 'words8Letters', pathLocation: '../src/8-letters.js'};
+  // titleButtonLongWord = `(8-literowe, ${numberWords} słów)`;
+  // longWordButton.innerHTML = `<i class="fas fa-sort-amount-down-alt" dropdown></i> 
+  // Długość słowa <div class="dropdown-note" dropdown>${titleButtonLongWord}</div>`;
+  //   console.log(dataWords.length);
 });
 setting9Letters.addEventListener('click', ()=> {
-  cleanTitleNumberLetters();
+  // cleanTitleNumberLetters();
   nameFileLevel = words9Letters;
+  createNewDataWordsMachine(words9Letters);
   createNewDataWords(nameFileLevel);
-  drawWord();
-  metrics = {varName: 'words9Letters', pathLocation: '../src/9-letters.js'};
-  titleButtonLongWord = `(9-literowe, ${numberWords} słów)`;
-  longWordButton.innerHTML = `<i class="fas fa-sort-amount-down-alt" dropdown></i> 
-  Długość słowa <div class="dropdown-note" dropdown>${titleButtonLongWord}</div>`;
-    console.log(dataWords.length);
+  // drawWord();
+  // metrics = {varName: 'words9Letters', pathLocation: '../src/9-letters.js'};
+  // titleButtonLongWord = `(9-literowe, ${numberWords} słów)`;
+  // longWordButton.innerHTML = `<i class="fas fa-sort-amount-down-alt" dropdown></i> 
+  // Długość słowa <div class="dropdown-note" dropdown>${titleButtonLongWord}</div>`;
+  //   console.log(dataWords.length);
 });
 
 
