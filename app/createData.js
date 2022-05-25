@@ -228,15 +228,16 @@ Długość słowa <div class="dropdown-note" dropdown>${titleButtonLongWord}</di
 
 
 setting5Letters.addEventListener('click', ()=> {
-  cleanTitleNumberLetters();
+  // cleanTitleNumberLetters();
   nameFileLevel = words5Letters;
-  createNewDataWords(nameFileLevel);
-  drawWord();
-  metrics = {varName: 'words5Letters', pathLocation: '../src/5-letters.js'};
-  titleButtonLongWord = `(5-literowe, ${numberWords} słów)`;
-  longWordButton.innerHTML = `<i class="fas fa-sort-amount-down-alt" dropdown></i> 
-  Długość słowa <div class="dropdown-note" dropdown>${titleButtonLongWord}</div>`;
-    console.log(dataWords.length);
+  createNewDataWordsMachine(words5Letters);
+  // createNewDataWords(nameFileLevel);
+  // drawWord();
+  // metrics = {varName: 'words5Letters', pathLocation: '../src/5-letters.js'};
+  // titleButtonLongWord = `(5-literowe, ${numberWords} słów)`;
+  // longWordButton.innerHTML = `<i class="fas fa-sort-amount-down-alt" dropdown></i> 
+  // Długość słowa <div class="dropdown-note" dropdown>${titleButtonLongWord}</div>`;
+  //   console.log(dataWords.length);
 });
 setting6Letters.addEventListener('click', ()=> {
   // cleanTitleNumberLetters();
@@ -278,7 +279,7 @@ setting9Letters.addEventListener('click', ()=> {
   // cleanTitleNumberLetters();
   nameFileLevel = words9Letters;
   createNewDataWordsMachine(words9Letters);
-  createNewDataWords(nameFileLevel);
+  // createNewDataWords(nameFileLevel);
   // drawWord();
   // metrics = {varName: 'words9Letters', pathLocation: '../src/9-letters.js'};
   // titleButtonLongWord = `(9-literowe, ${numberWords} słów)`;
