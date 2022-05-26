@@ -95,9 +95,8 @@ function checkingSJP(word, category, game) {
           // alert( "Błąd odczytu z bazy" );
           console.log( "Błąd odczytu z sjp.pl" );
       });
-      if (index == nameFileLevel.length) clearInterval(saveBaseInterval);
+      if (index > nameFileLevel.length) clearInterval(saveBaseInterval);
 };
-// nameFile.length
 
 
 let index = 0;
@@ -108,20 +107,47 @@ function createNewDataWordsMachine(dataBase) {
     checkingSJP(element.word, element.category, element.game);
     index++;
   }, 200);
-  // if (index == dataBase.length) clearInterval(saveBaseInterval);
-
-
-//  console.log(dataBase.length);
-//  let element;
-//  for (let index = 0; index < dataBase.length; index++) {
-//    element = dataBase[index];
-//    // console.log(element.word);
-//    // setTimeout(
-//      checkingSJP(element.word, element.category, element.game)
-//      // , 1000);
-//    // console.log(index);
-//  }
 };
+
+// ------------- START ---------------- Z PLIKU DO BAZY -------------------------------------
+
+function saveWordToBase(word, category, game) {
+  let dataPost = {word: word, category: category, game: game, description: ''};
+  if (game) {
+    dataPost.game = 1;
+    $.post( "./php/sjp.php", dataPost, function( data ) {
+      dataPost.description = data.description;
+      console.log(dataPost);
+      $.post( "./php/saveWordToBaseSQL.php", dataPost, function() {
+        console.log(index + '.  ' + dataPost.word + " - zapisuję do bazy SQL");
+      });
+    }, "json").fail(function() {
+          console.log( "Błąd odczytu z sjp.pl" );
+    });
+  } else {
+    $.post( "./php/saveWordToBaseSQL.php", dataPost, function() {
+      console.log(index + '.  ' + dataPost.word + " - zapisuję do bazy SQL");
+    });
+  }
+  // if (index >= nameFileLevel.length) clearInterval(rewritingToBase);
+};
+
+let intervalWritingToBase = 250;
+let rewritingToBase;
+function rewritingWorksToBase(dataBase) {
+  index = 0;
+  rewritingToBase = setInterval(() => {
+    let element = dataBase[index];
+    if (index == nameFileLevel.length - 1) clearInterval(rewritingToBase);
+    // console.log(element.word + ' - ' + element.game);
+    saveWordToBase(element.word, element.category, element.game);
+    index++;
+    // if (element.game) intervalWritingToBase += 100
+    // else intervalWritingToBase = 100;
+  }, intervalWritingToBase);
+};
+
+// --------------- END -------------- Z PLIKU DO BAZY -------------------------------------
 
 
 const wordElement = document.querySelector('.word');
@@ -230,7 +256,8 @@ Długość słowa <div class="dropdown-note" dropdown>${titleButtonLongWord}</di
 setting5Letters.addEventListener('click', ()=> {
   // cleanTitleNumberLetters();
   nameFileLevel = words5Letters;
-  createNewDataWordsMachine(words5Letters);
+  rewritingWorksToBase(nameFileLevel);
+  // createNewDataWordsMachine(words5Letters);
   // createNewDataWords(nameFileLevel);
   // drawWord();
   // metrics = {varName: 'words5Letters', pathLocation: '../src/5-letters.js'};
@@ -242,7 +269,7 @@ setting5Letters.addEventListener('click', ()=> {
 setting6Letters.addEventListener('click', ()=> {
   // cleanTitleNumberLetters();
   nameFileLevel = words6Letters;
-  createNewDataWordsMachine(words6Letters);
+  // createNewDataWordsMachine(words6Letters);
   // createNewDataWords(nameFileLevel);
   // drawWord();
   // metrics = {varName: 'words6Letters', pathLocation: '../src/6-letters.js'};
@@ -254,7 +281,7 @@ setting6Letters.addEventListener('click', ()=> {
 setting7Letters.addEventListener('click', ()=> {
   // cleanTitleNumberLetters();
   nameFileLevel = words7Letters;
-  createNewDataWordsMachine(words7Letters);
+  // createNewDataWordsMachine(words7Letters);
   // createNewDataWords(nameFileLevel);
   // drawWord();
   // metrics = {varName: 'words7Letters', pathLocation: '../src/7-letters.js'};
@@ -266,7 +293,7 @@ setting7Letters.addEventListener('click', ()=> {
 setting8Letters.addEventListener('click', ()=> {
   // cleanTitleNumberLetters();
   nameFileLevel = words8Letters;
-  createNewDataWordsMachine(words8Letters);
+  // createNewDataWordsMachine(words8Letters);
   // createNewDataWords(nameFileLevel);
   // drawWord();
   // metrics = {varName: 'words8Letters', pathLocation: '../src/8-letters.js'};
@@ -278,7 +305,7 @@ setting8Letters.addEventListener('click', ()=> {
 setting9Letters.addEventListener('click', ()=> {
   // cleanTitleNumberLetters();
   nameFileLevel = words9Letters;
-  createNewDataWordsMachine(words9Letters);
+  // createNewDataWordsMachine(words9Letters);
   // createNewDataWords(nameFileLevel);
   // drawWord();
   // metrics = {varName: 'words9Letters', pathLocation: '../src/9-letters.js'};
