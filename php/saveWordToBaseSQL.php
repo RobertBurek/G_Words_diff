@@ -13,11 +13,20 @@
 		echo "Error: ".$connection->connect_erno." Opis: ".$connection->connect_error;
 	}
 	else {
-		$connection->query(sprintf( "INSERT INTO `5-letters` (`Word`, `Category`, `Game`, `Description`) VALUES ('%s', '%s', '%s', '%s')",
-								mysqli_real_escape_string($connection,$word),
-								mysqli_real_escape_string($connection,$category),
-								mysqli_real_escape_string($connection,$game),
-								mysqli_real_escape_string($connection,$description)));
+		if ($connection->query(sprintf( "INSERT INTO `7-letters` (`Word`, `Category`, `Game`, `Description`) VALUES ('%s', '%s', '%s', '%s')",
+		mysqli_real_escape_string($connection,$word),
+		mysqli_real_escape_string($connection,$category),
+		mysqli_real_escape_string($connection,$game),
+		mysqli_real_escape_string($connection,$description)))) {
+			echo "zapisano do bazy SQL";
+		} else {echo "błąd zapisu do bazy !!!";};
+
+
+		// $connection->query(sprintf( "INSERT INTO `7-letters` (`Word`, `Category`, `Game`, `Description`) VALUES ('%s', '%s', '%s', '%s')",
+		// 						mysqli_real_escape_string($connection,$word),
+		// 						mysqli_real_escape_string($connection,$category),
+		// 						mysqli_real_escape_string($connection,$game),
+		// 						mysqli_real_escape_string($connection,$description)));
     }
     $connection->close();
 ?>

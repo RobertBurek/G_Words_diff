@@ -118,21 +118,21 @@ function saveWordToBase(word, category, game) {
     $.post( "./php/sjp.php", dataPost, function( data ) {
       dataPost.description = data.description;
       console.log(dataPost);
-      $.post( "./php/saveWordToBaseSQL.php", dataPost, function() {
-        console.log(index + '.  ' + dataPost.word + " - zapisuję do bazy SQL");
+      $.post( "./php/saveWordToBaseSQL.php", dataPost, function(infoSQL) {
+        console.log(index + '.  ' + dataPost.word + " - " + infoSQL);
       });
     }, "json").fail(function() {
           console.log( "Błąd odczytu z sjp.pl" );
     });
   } else {
-    $.post( "./php/saveWordToBaseSQL.php", dataPost, function() {
-      console.log(index + '.  ' + dataPost.word + " - zapisuję do bazy SQL");
+    $.post( "./php/saveWordToBaseSQL.php", dataPost, function(infoSQL) {
+      console.log(index + '.  ' + dataPost.word + " - " + infoSQL);
     });
   }
   // if (index >= nameFileLevel.length) clearInterval(rewritingToBase);
 };
 
-let intervalWritingToBase = 250;
+let intervalWritingToBase = 200;
 let rewritingToBase;
 function rewritingWorksToBase(dataBase) {
   index = 0;
@@ -269,6 +269,7 @@ setting5Letters.addEventListener('click', ()=> {
 setting6Letters.addEventListener('click', ()=> {
   // cleanTitleNumberLetters();
   nameFileLevel = words6Letters;
+  rewritingWorksToBase(nameFileLevel);
   // createNewDataWordsMachine(words6Letters);
   // createNewDataWords(nameFileLevel);
   // drawWord();
@@ -281,6 +282,7 @@ setting6Letters.addEventListener('click', ()=> {
 setting7Letters.addEventListener('click', ()=> {
   // cleanTitleNumberLetters();
   nameFileLevel = words7Letters;
+  rewritingWorksToBase(nameFileLevel);
   // createNewDataWordsMachine(words7Letters);
   // createNewDataWords(nameFileLevel);
   // drawWord();
@@ -293,6 +295,7 @@ setting7Letters.addEventListener('click', ()=> {
 setting8Letters.addEventListener('click', ()=> {
   // cleanTitleNumberLetters();
   nameFileLevel = words8Letters;
+  rewritingWorksToBase(nameFileLevel);
   // createNewDataWordsMachine(words8Letters);
   // createNewDataWords(nameFileLevel);
   // drawWord();
@@ -305,6 +308,7 @@ setting8Letters.addEventListener('click', ()=> {
 setting9Letters.addEventListener('click', ()=> {
   // cleanTitleNumberLetters();
   nameFileLevel = words9Letters;
+  rewritingWorksToBase(nameFileLevel);
   // createNewDataWordsMachine(words9Letters);
   // createNewDataWords(nameFileLevel);
   // drawWord();
