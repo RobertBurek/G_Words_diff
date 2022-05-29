@@ -13,7 +13,7 @@
 		echo "Error: ".$connection->connect_erno." Opis: ".$connection->connect_error;
 	}
 	else {
-		if ($connection->query(sprintf( "INSERT INTO `8-letters` (`Word`, `Category`, `Game`, `Description`) VALUES ('%s', '%s', '%s', '%s')",
+		if ($connection->query(sprintf( "INSERT INTO `9-letters` (`Word`, `Category`, `Game`, `Description`) VALUES ('%s', '%s', '%s', '%s')",
 						mysqli_real_escape_string($connection,$word),
 						mysqli_real_escape_string($connection,$category),
 						mysqli_real_escape_string($connection,$game),
