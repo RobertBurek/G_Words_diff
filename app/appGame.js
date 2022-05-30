@@ -225,14 +225,14 @@ class AppGame {
     }
 
 
-    createDataLetters(dataLetters) {
-        let startData = [];
-        dataLetters.forEach(element => {
-            if (element.game) startData.push(element);
-            });
-            // console.log(startData);
-            return startData;
-    }
+    // createDataLetters(dataLetters) {
+    //     let startData = [];
+    //     dataLetters.forEach(element => {
+    //         if (element.game) startData.push(element);
+    //         });
+    //         // console.log(startData);
+    //         return startData;
+    // }
 
     // createWordsLevel(arrayLongLetters){
     //   const dataWorks = this.createDataLetters(arrayLongLetters);
@@ -242,52 +242,11 @@ class AppGame {
     //   return dataWorks[Math.floor(Math.random()*dataWorks.length)];
     // }
 
-    readWordsWithBase(gameWord){
+    readWordsWithBase(){
       this.myPromise.then(result => {
-        //obietnica zakończyła się pozytywnie
-        gameWord = result;
-        console.log(result);
-    });
-      // let nnnWord = new Word();
-      // // const nB = {nameBase: nameBase};
-      // // let dataWorks = {word: "word", category: "category", game: true, description: ""};
-      // $.post( "./php/readWordWithBaseSQL.php", {nameBase: nameBase}, function(data) {
-      //   nnnWord = new Word(data.word, data.category, true, data.description);
-      //   console.log(nnnWord);
-      //   // this.gameWord.word = data.word;
-      //   // this.gameWord.category = data.category;
-      //   // this.gameWord.game = true;
-      //   // this.gameWord.description = data.description;
-      //         // console.log(data);
-      //         // console.log(this.gameWord);
-      //         // console.log(dataWorks.length);
-      //         // numberWords = dataWorks.length;
-      //         numberWords = 1;
-      //         // console.log(dataWorks[Math.floor(Math.random()*dataWorks.length)]);
-      //         // return dataWorks[Math.floor(Math.random()*dataWorks.length)];
-      //         // return new Word(data.word, data.category, true, data.description);
-      //         gameWord = nnnWord;
-      //         this.guessWord = nnnWord.word;
-      //         this.guessWordChars = nnnWord.word.split('');
-      //         console.log(this.guessWordChars[0] + ' -> 0');
-      //         // this.categoryWrapper.innerHTML = 'KATEGORIA:  ' + nnnWord.category;
-      //         categoryWrapper.innerHTML = 'KATEGORIA:  ' + nnnWord.category;
-      //         longWordButton.innerHTML = `<i class="fas fa-sort-amount-down-alt" dropdown></i> 
-      //         Długość słowa <div class="dropdown-note" dropdown>(${titleButtonLongWord} [${numberWords}])</div>`;
-      //         console.log(gameWord.word + ' -> 1');
-      //         console.log(gameWord.category + ' -> 2');
-      //         // return nnnWord;
-      //   }, "json")
-      //   // })
-      //   .fail(function() {
-      //     // alert( "Błąd odczytu z bazy" );
-      //     console.log( "Błąd odczytu bazy." );
-      //     // return nnnWord;
-      // });
-      // // this.gameWord = nnnWord;
-      // // this.guessWord = nnnWord.word;
-      // // this.categoryWrapper.innerHTML = 'KATEGORIA:  ' + nnnWord.category;
-      // console.log(gameWord);
+        this.gameWord = new Word(result.word, result.category, true, result.description);
+        console.log(this.gameWord.word);
+      });
     }
 
 
@@ -299,35 +258,37 @@ class AppGame {
       this.level = level;
       this.leftEmpty = level;
       notWord.classList.add('hide');
+      titleButtonLongWord = this.level + `-literowe`;
+      this.readWordsWithBase();
       // let words;
-      switch (level) {
-        case 5:
-          // words = this.createWordsLevel(words5Letters);
-          titleButtonLongWord = `5-literowe`;
-          // gameWord = this.readWordsWithBase('5-letters');
-          this.readWordsWithBase(this.gameWord);
-          // console.log(this.gameWord.word + ' -> 3');
-          break;
-        // case 6:
-        //   // words = this.createWordsLevel(words6Letters);
-        //   titleButtonLongWord = `6-literowe`;
-        //   this.readWordsWithBase('6-letters');
-        //   break;
-        // case 7:
-        //   // words = this.createWordsLevel(words7Letters);
-        //   titleButtonLongWord = `7-literowe`;
-        //   this.readWordsWithBase('7-letters');
-        //   break;
-        // case 8:
-        //   // words = this.createWordsLevel(words8Letters);
-        //   titleButtonLongWord = `8-literowe`;
-        //   this.readWordsWithBase('8-letters');
-        //   break;
-        // case 9:
-        //   // words = this.createWordsLevel(words9Letters);
-        //   titleButtonLongWord = `9-literowe`;
-        //   this.readWordsWithBase('9-letters');
-        //   break;
+      // switch (level) {
+      //   case 5:
+      //     // words = this.createWordsLevel(words5Letters);
+      //     titleButtonLongWord = `5-literowe`;
+      //     // gameWord = this.readWordsWithBase('5-letters');
+      //     this.readWordsWithBase(this.gameWord);
+      //     // console.log(this.gameWord.word + ' -> 3');
+      //     break;
+      //   case 6:
+      //     // words = this.createWordsLevel(words6Letters);
+      //     titleButtonLongWord = `6-literowe`;
+      //     this.readWordsWithBase();
+      //     break;
+      //   case 7:
+      //     // words = this.createWordsLevel(words7Letters);
+      //     titleButtonLongWord = `7-literowe`;
+      //     this.readWordsWithBase('7-letters');
+      //     break;
+      //   case 8:
+      //     // words = this.createWordsLevel(words8Letters);
+      //     titleButtonLongWord = `8-literowe`;
+      //     this.readWordsWithBase('8-letters');
+      //     break;
+      //   case 9:
+      //     // words = this.createWordsLevel(words9Letters);
+      //     titleButtonLongWord = `9-literowe`;
+      //     this.readWordsWithBase('9-letters');
+      //     break;
 
 
 
@@ -337,7 +298,7 @@ class AppGame {
           // if (level == 7) words = {word:'APASZKA', category:'TestApaszka'};
           // if (level == 8) words = {word:'TEODOLIT', category:'TestTeodolit'};
           // if (level == 9) words = {word:'ARCHITEKT', category:'TestArchitekt'};
-      }
+      // }
           // if (level == 5) words = {word:'BANAN', category:'TestBanan'};
           // if (level == 5) words = {word:'BANAN', category:'?'};
           // if (level == 6) words = {word:'AGREST', category:'TestAgrest'};
@@ -759,24 +720,11 @@ class AppGame {
 
 
     run(level, attempts) {
-      let nnnWord = new Word();
       this.myPromise = new Promise((resolve, reject) => {
-        $.post( "./php/readWordWithBaseSQL.php", {nameBase: level + '-letters'}, function(data) {
-          nnnWord = new Word(data.word, data.category, true, data.description);
-          resolve(nnnWord);
-          console.log(data);
+        $.post( "./php/readWordWithBaseSQL.php", {nameBase: level + '-letters'}, function(dataSQL) {
+          resolve(dataSQL);
+          console.log(dataSQL);
           console.log('promise wykonana!!!');
-                // console.log(nnnWord);
-                // numberWords = 1;
-                // gameWord = nnnWord;
-                // this.guessWord = nnnWord.word;
-                // this.guessWordChars = nnnWord.word.split('');
-                // console.log(this.guessWordChars[0] + ' -> 0');
-                // categoryWrapper.innerHTML = 'KATEGORIA:  ' + nnnWord.category;
-                // longWordButton.innerHTML = `<i class="fas fa-sort-amount-down-alt" dropdown></i> 
-                // Długość słowa <div class="dropdown-note" dropdown>(${titleButtonLongWord} [${numberWords}])</div>`;
-                // console.log(gameWord.word + ' -> 1');
-                // console.log(gameWord.category + ' -> 2');
           }, "json")
           .fail(function() {
             console.log( "Błąd odczytu bazy." );
