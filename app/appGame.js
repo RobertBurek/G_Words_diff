@@ -63,7 +63,7 @@ setting9Letters.addEventListener('click', ()=> {
   listenerLongLetters(9, 6);
 });
 
-let stringWords = '';
+// let stringWords = '';
 
 onlyWords.addEventListener('click', ()=> {
   titleButtonFilling = '(tylko istniejące słowa)';
@@ -140,22 +140,29 @@ function startSelectionCategory() {
 //   Długość słowa <div class="dropdown-note" dropdown>(${titleButtonLongWord} [${numberWords}])</div>`;
 // }
 
-function listenerLongLetters(quantity, attempts) {
+function listenerLongLetters(quantity, attempts, resultSQL) {
   onceAgainSection.classList.add('hide');
   // wordsLetters = [...arrayLongLetters];
-  // stringWords = createStringWords(arrayLongLetters);
+  // stringWords = result.allWords;
   appGame.run(quantity, attempts);
+  // this.myPromise.then(result=>{
+    this.stringWords = resultSQL.allWords;
+  // stringWords = result.allWords;
+
   longWordButton.innerHTML = `<i class="fas fa-sort-amount-down-alt" dropdown></i> 
   Długość słowa <div class="dropdown-note" dropdown>(${titleButtonLongWord} [${numberWords}])</div>`;
+// });
 }
 
-function createStringWords(words) {
-    let tempStringWords = '';
-    words.forEach(el => {
-        tempStringWords += el.word +',';
-    });
-    return tempStringWords;
-}
+// function createStringWords() {
+//   this.myPromise.then(result => {
+//     // let tempStringWords = '';
+//     // words.forEach(el => {
+//     //     tempStringWords += el.word +',';
+//     // });
+//     return result.allWords;
+//   });
+// }
 
 
 class CharKeyboard {
@@ -195,7 +202,7 @@ class AppGame {
         this.guessWord;
         this.guessWordChars;
         this.currentWord;
-        this.typedWord;
+        this.typedWord = '';
         this.victory = false;
         this.onlyWords = true;
         this.isNotWord = false;
@@ -205,7 +212,10 @@ class AppGame {
         // this.gameWord = new Word('','?', false, '');
         // console.log(this.gameWord.word);
         this.myPromise;
+        this.stringWords = '';
     }
+
+
 
     clearLine(line) {
         line.forEach(el => {
@@ -242,15 +252,15 @@ class AppGame {
     //   return dataWorks[Math.floor(Math.random()*dataWorks.length)];
     // }
 
-    readWordsWithBase(){
-      this.myPromise.then(result => {
-        this.gameWord = new Word(result.word, result.category, true, result.description);
+    readWordsWithBase(resultSQL){
+      // this.myPromise.then(result => {
+        this.gameWord = new Word(resultSQL.word, resultSQL.category, true, resultSQL.description);
         console.log(this.gameWord.word);
-      });
+      // });
     }
 
 
-    startParameters(level, attempts) {
+    startParameters(level, attempts, resultSQL) {
       whatCategoryDiv.classList.add('hide');
       document.querySelector("#category").removeEventListener('click', changeCategoryStyle);
       document.querySelector("#category").style.cursor = "default";
@@ -259,7 +269,9 @@ class AppGame {
       this.leftEmpty = level;
       notWord.classList.add('hide');
       titleButtonLongWord = this.level + `-literowe`;
-      this.readWordsWithBase();
+      this.readWordsWithBase(resultSQL);
+      this.stringWords = resultSQL.allWords;
+      this.guessWordChars = resultSQL.word.split('');
       // let words;
       // switch (level) {
       //   case 5:
@@ -376,6 +388,7 @@ class AppGame {
       this.currentLine.forEach(el => {
           this.typedWord +=  el.innerHTML;
       });
+      console.log(this.typedWord + ' -> twoje słowo');
     }
 
 
@@ -405,48 +418,53 @@ class AppGame {
     }
 
 
-    isOnlyWords(){
+    isOnlyWords(resultSQL){
+        // console.log(resultSQL.allWords);
+        // this.stringWord = resultSQL.allWords;
         this.createTypedWord();
         if (this.onlyWords) {
-            if (stringWords.includes(this.typedWord)) {
-                // console.log('SŁOWO ISTNIEJE');
-                this.checkWord(this.guessWordChars);
+          console.log(this.stringWords);
+            if (this.stringWords.includes(this.typedWord)) {
+                console.log('SŁOWO ISTNIEJE');
+                this.checkWord(resultSQL);
                 if (!this.victory) this.createActiveRound();
             } else {
-                // console.log('NIE - słowo');
+                console.log('NIE - słowo');
                 this.stopCurrentLine();
             }
         } else {
-            // console.log('Dowolny ciąg znaków');
+            console.log('Dowolny ciąg znaków');
             // console.log(this.guessWordChars);
-            this.checkWord(this.guessWordChars);
+            this.checkWord(resultSQL);
             if (!this.victory) this.createActiveRound();
         }
+      // });
     }   
 
-
-    checkWord(wordChars) {
-      this.myPromise.then(result => {
+    checkWord(resultSQL) {
+      // this.myPromise.then(result => {
         let resultCheckedChars = new Array(this.level);
         let tempCurrentLine = [];
-        console.log(this.level + ' -> checWord()');
-        console.log(wordChars + ' -> checWord()');
+        // console.log(this.level + ' -> checWord()');
+        // console.log(wordChars + ' -> checWord()');
         console.log(this.gameWord + ' -> checWord()');
         this.currentLine.forEach(el => {
             tempCurrentLine.push(el.innerHTML);
         });
         // console.log(this.guessWord + ' -> checkWord()');
         // console.log(this.gameWord.word + ' -> checkWord()');
-        let guessWordChars;// = this.guessWord.split('');
+        // let guessWordChars;// = this.guessWord.split('');
 
           //obietnica zakończyła się pozytywnie
-          guessWordChars = result.word.split('');
-          console.log(guessWordChars);
+          // guessWordChars = result.word.split('');
+          // console.log(this.guessWordChars);
+          this.guessWordChars = resultSQL.word.split('');
+          console.log(this.guessWordChars);
 
         this.clearLine(this.currentLine);
         for (let i = 0; i < this.level; i++) {
-            if (tempCurrentLine[i] == guessWordChars[i]) {
-              guessWordChars[i] = '-';
+            if (tempCurrentLine[i] == this.guessWordChars[i]) {
+              this.guessWordChars[i] = '-';
                 tempCurrentLine[i] = '!';
                 resultCheckedChars[i] = 'success';
                 this.currentWord[i].stateChar = 'success';
@@ -454,8 +472,8 @@ class AppGame {
         for (let i = 0; i < this.level; i++) {
             if (tempCurrentLine[i] != '!') {
                 for (let j = 0; j < this.level; j++) {
-                    if (tempCurrentLine[i] == guessWordChars[j]) {
-                      guessWordChars[j] = '-';
+                    if (tempCurrentLine[i] == this.guessWordChars[j]) {
+                      this.guessWordChars[j] = '-';
                         resultCheckedChars[i] = 'half-success';
                         if ((this.currentWord[i].stateChar != 'success')) this.currentWord[i].stateChar = 'half-success';
                         break;
@@ -465,14 +483,16 @@ class AppGame {
                 }
             }
         }
+        console.log(resultCheckedChars);
         this.isVictory(resultCheckedChars);
         this.newViewLine(resultCheckedChars);
-        this.createKeyboard(this.currentlyKeyboard, this.keyboard1, this.keyboard2, this.keyboard3, this.keyboard4);
-      });
+        this.createKeyboard(this.currentlyKeyboard, this.keyboard1, this.keyboard2, this.keyboard3, this.keyboard4, resultSQL);
+      // });
       }   
     
 
     isVictory(resultCheckedChars) {
+      this.myPromise.then(result=>{
       let i = 0;
       resultCheckedChars.forEach(char => {
         if (char == 'success') i++;
@@ -481,12 +501,14 @@ class AppGame {
         this.victory = true;
         this.onceAgain(this.level, this.attempts);
         // if (words.category == "?") whatCategoryDiv.classList.remove('hide');
-        if (words.category == "?") startSelectionCategory();
+        if (result.category == "?") startSelectionCategory();
       }
+    });
     }
 
 
     newViewLine(resultCheckedChars) {
+      console.log(resultCheckedChars);
       const parentLine = this.currentLine[0].parentNode;
       for (let i = 0; i < this.level; i++) {
         if (this.currentWord[i].stateChar != 'success')
@@ -502,10 +524,12 @@ class AppGame {
     }
 
 
-    writeLetter(oneChar) {
+    writeLetter(oneChar, resultSQL) {
+      console.log(oneChar);
         const activeLetter = document.querySelector('div.current-letter');
         if (activeLetter) {
             let position = this.currentLine.indexOf(activeLetter); 
+            console.log(position);
             if (this.currentLine[position].innerHTML == '') this.leftEmpty -= 1;
             activeLetter.innerHTML = String.fromCharCode(oneChar.numberChar);
             this.currentWord[position] = oneChar;
@@ -519,7 +543,7 @@ class AppGame {
               this.currentLine[position].classList.add('current-letter');
             } else {
                 activeLetter.classList.remove('current-letter');
-                this.isOnlyWords();
+                this.isOnlyWords(resultSQL);
               }
         }
     }
@@ -568,7 +592,7 @@ class AppGame {
     }
 
 
-     createKeyboard(lettersCheme, keyboard1, keyboard2, keyboard3, keyboard4) {
+     createKeyboard(lettersCheme, keyboard1, keyboard2, keyboard3, keyboard4, resultSQL) {
       keyboard1.innerHTML = '';
       keyboard2.innerHTML = '';
       keyboard3.innerHTML = '';
@@ -577,14 +601,14 @@ class AppGame {
         const button = document.createElement('button');
         button.className = lettersCheme[i].stateChar;
         button.innerHTML = String.fromCharCode(lettersCheme[i].numberChar);
-        if (lettersCheme[i].stateChar != 'not-char') button.addEventListener('click', () => this.writeLetter(lettersCheme[i]));
+        if (lettersCheme[i].stateChar != 'not-char') button.addEventListener('click', () => this.writeLetter(lettersCheme[i], resultSQL));
         keyboard1.appendChild(button);
       }
       for (let i = 10; i < 19; i++) {
         const button = document.createElement('button');
         button.className = lettersCheme[i].stateChar;
         button.innerHTML = String.fromCharCode(lettersCheme[i].numberChar);
-        if (lettersCheme[i].stateChar != 'not-char') button.addEventListener('click', () => this.writeLetter(lettersCheme[i]));
+        if (lettersCheme[i].stateChar != 'not-char') button.addEventListener('click', () => this.writeLetter(lettersCheme[i], resultSQL));
         keyboard2.appendChild(button);
       }
       const divKeyboard = document.createElement('div');
@@ -600,7 +624,7 @@ class AppGame {
         const button = document.createElement('button');
         button.className = lettersCheme[i].stateChar;
         button.innerHTML = String.fromCharCode(lettersCheme[i].numberChar);
-        if (lettersCheme[i].stateChar != 'not-char') button.addEventListener('click', () => this.writeLetter(lettersCheme[i]));
+        if (lettersCheme[i].stateChar != 'not-char') button.addEventListener('click', () => this.writeLetter(lettersCheme[i], resultSQL));
         keyboard3.appendChild(button);
       }
       const divBackspace = document.createElement('div');
@@ -612,7 +636,7 @@ class AppGame {
         const button = document.createElement('button');
         button.className = lettersCheme[i].stateChar;
         button.innerHTML = String.fromCharCode(lettersCheme[i].numberChar);
-        if (lettersCheme[i].stateChar != 'not-char') button.addEventListener('click', () => this.writeLetter(lettersCheme[i]));
+        if (lettersCheme[i].stateChar != 'not-char') button.addEventListener('click', () => this.writeLetter(lettersCheme[i], resultSQL));
         keyboard4.appendChild(button);
       }
     }
@@ -730,10 +754,12 @@ class AppGame {
             console.log( "Błąd odczytu bazy." );
         });
     });
-    this.startParameters(level, attempts);
-    this.createKeyboard(this.currentlyKeyboard, this.keyboard1, this.keyboard2, this.keyboard3, this.keyboard4);
-    this.createStartPlaceGame(level, attempts, this.wordGameWrapper);
-    this.returnGame();
+    this.myPromise.then(resultSQL=>{
+    this.startParameters(level, attempts, resultSQL);
+    this.createKeyboard(this.currentlyKeyboard, this.keyboard1, this.keyboard2, this.keyboard3, this.keyboard4, resultSQL);
+    this.createStartPlaceGame(level, attempts, this.wordGameWrapper, resultSQL);
+    this.returnGame(resultSQL);
+      });
     }
 
 }
