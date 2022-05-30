@@ -451,13 +451,6 @@ class AppGame {
         this.currentLine.forEach(el => {
             tempCurrentLine.push(el.innerHTML);
         });
-        // console.log(this.guessWord + ' -> checkWord()');
-        // console.log(this.gameWord.word + ' -> checkWord()');
-        // let guessWordChars;// = this.guessWord.split('');
-
-          //obietnica zakończyła się pozytywnie
-          // guessWordChars = result.word.split('');
-          // console.log(this.guessWordChars);
           this.guessWordChars = resultSQL.word.split('');
           console.log(this.guessWordChars);
 
