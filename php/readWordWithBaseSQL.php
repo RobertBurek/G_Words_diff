@@ -10,22 +10,29 @@
 		echo "Error: ".$connection->connect_erno." Opis: ".$connection->connect_error;
 	}
 	else {
-		// SELECT * FROM `5-letters` WHERE `5-letters`.`Game` = 1;
-		// $results = $connection->query(sprintf( "SELECT * FROM '%s' WHERE '%s'.`Game` = 1",
-		// 				mysqli_real_escape_string($connection,$nameBase),
-		// 				mysqli_real_escape_string($connection,$nameBase)));
-		$result = $connection->query(sprintf( "SELECT * FROM `%s` WHERE `%s`.`Word` = '%s'",
-		// $result = $connection->query(sprintf( "SELECT * FROM '%s' WHERE '%s'.`Word` = '%s'",
+		$resultRandomWord = $connection->query(sprintf( "SELECT * FROM `%s` WHERE `%s`.`Game` = 1 ORDER BY RAND() LIMIT 1",
 						mysqli_real_escape_string($connection, $nameBase),
+						mysqli_real_escape_string($connection, $nameBase)));
+		$resultCountWords = $connection->query(sprintf( "SELECT COUNT(*) FROM `%s` WHERE `%s`.`Game` = 1",
 						mysqli_real_escape_string($connection, $nameBase),
-						// '5-letters',
-						// mysqli_real_escape_string($connection,$nameBase),
-						mysqli_real_escape_string($connection, 'BANAN')));
-		$line = $result->fetch_assoc();
-		// echo json_encode($result);
-		echo json_encode(array("word"=>$line['Word'], "category"=>$line['Category'], "game"=>$line['Game'], "description"=>$line['Description']));
-		// echo json_encode(array("word"=>"Word1", "category"=>"Category1", "game"=>"true", "description"=>"Description1"));
-		// echo "BANAN";
+						mysqli_real_escape_string($connection, $nameBase)));
+		$resultArrayWords = $connection->query(sprintf( "SELECT `Word` FROM `%s` GROUP BY `Word`",
+						mysqli_real_escape_string($connection, $nameBase)));
+
+		$oneWord = $resultRandomWord->fetch_assoc();
+		$countGameWords = $resultCountWords->fetch_assoc();
+
+		$longStringWords = '';
+		while ($row = $resultArrayWords->fetch_assoc()) {
+			$longStringWords = $longStringWords.$row['Word'].',';
+		}
+
+		echo json_encode(array("word"=>$oneWord['Word'],
+								 "category"=>$oneWord['Category'], 
+								 "game"=>$oneWord['Game'], 
+								 "description"=>$oneWord['Description'],
+								"allWords"=>$longStringWords,
+								"countWords"=>$countGameWords['COUNT(*)']));
     }
     $connection->close();
 ?>
