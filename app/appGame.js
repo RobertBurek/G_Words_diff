@@ -140,13 +140,13 @@ function startSelectionCategory() {
 //   Długość słowa <div class="dropdown-note" dropdown>(${titleButtonLongWord} [${numberWords}])</div>`;
 // }
 
-function listenerLongLetters(quantity, attempts, resultSQL) {
+function listenerLongLetters(quantity, attempts) {
   onceAgainSection.classList.add('hide');
   // wordsLetters = [...arrayLongLetters];
   // stringWords = result.allWords;
   appGame.run(quantity, attempts);
   // this.myPromise.then(result=>{
-    this.stringWords = resultSQL.allWords;
+    // this.stringWords = resultSQL.allWords;
   // stringWords = result.allWords;
 
   longWordButton.innerHTML = `<i class="fas fa-sort-amount-down-alt" dropdown></i> 
@@ -476,7 +476,7 @@ class AppGame {
                 }
             }
         }
-        console.log(resultCheckedChars);
+        // console.log(resultCheckedChars);
         this.isVictory(resultCheckedChars);
         this.newViewLine(resultCheckedChars);
         this.createKeyboard(this.currentlyKeyboard, this.keyboard1, this.keyboard2, this.keyboard3, this.keyboard4, resultSQL);
