@@ -419,7 +419,7 @@ class AppGame {
 
     isWord(level, isWord) {
       return new Promise((resolve, reject) => {
-        $.post( "./php/isWordInBaseSQL.php", {nameBase: level + '-letters', word: isWord}, function(dataSQL) {
+        $.post( "./php/isWordInBaseSQL.php", {nameBase: level + '-letters', isWord: isWord}, function(dataSQL) {
           resolve(dataSQL);
           console.log(dataSQL);
           console.log('Promise - szukanie słowa odbyło się !!!');
@@ -432,14 +432,18 @@ class AppGame {
   
 
   isOnlyWords(resultSQL){
+    // this.isWord(this.level, this.stringWords).then(res => {
         // console.log(resultSQL.allWords);
         // this.stringWord = resultSQL.allWords;
+        // console.log(this.stringWords);
         this.createTypedWord();
         if (this.onlyWords) {
-          console.log(this.stringWords);
-          this.isWord(this.level, this.stringWords).then(res => {
+          this.isWord(this.level, this.typedWord).then(result => {
             // if (this.stringWords.includes(this.typedWord)) {
-            if (res) {
+              console.log(this.typedWord);
+              console.log(result.res);
+              console.log(result.il);
+            if (result.res) {
                 console.log('SŁOWO ISTNIEJE.');
                 this.checkWord(resultSQL);
                 if (!this.victory) this.createActiveRound();
