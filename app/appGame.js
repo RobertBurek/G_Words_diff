@@ -417,27 +417,44 @@ class AppGame {
       document.querySelector('.back-space').classList.remove('curtain-back-space');
     }
 
+    isWord(level, isWord) {
+      return new Promise((resolve, reject) => {
+        $.post( "./php/isWordInBaseSQL.php", {nameBase: level + '-letters', word: isWord}, function(dataSQL) {
+          resolve(dataSQL);
+          console.log(dataSQL);
+          console.log('Promise - szukanie słowa odbyło się !!!');
+          }, "json")
+          .fail(function() {
+            console.log( "Błąd odczytu z bazy wszystkich słów." );
+        });
+      });
+  }
+  
 
-    isOnlyWords(resultSQL){
+  isOnlyWords(resultSQL){
         // console.log(resultSQL.allWords);
         // this.stringWord = resultSQL.allWords;
         this.createTypedWord();
         if (this.onlyWords) {
           console.log(this.stringWords);
-            if (this.stringWords.includes(this.typedWord)) {
-                console.log('SŁOWO ISTNIEJE');
+          this.isWord(this.level, this.stringWords).then(res => {
+            // if (this.stringWords.includes(this.typedWord)) {
+            if (res) {
+                console.log('SŁOWO ISTNIEJE.');
                 this.checkWord(resultSQL);
                 if (!this.victory) this.createActiveRound();
             } else {
-                console.log('NIE - słowo');
+                console.log('NIE MA TAKIEGO SŁOWA.');
                 this.stopCurrentLine();
             }
+          });
         } else {
-            console.log('Dowolny ciąg znaków');
+            console.log('Dowolny ciąg znaków.');
             // console.log(this.guessWordChars);
             this.checkWord(resultSQL);
             if (!this.victory) this.createActiveRound();
         }
+
       // });
     }   
 
