@@ -1,4 +1,9 @@
 // import { GuessWord } from './guessWord.js';
+import { allWords5 } from '../src/allWords-5-letters.js';
+import { allWords6 } from '../src/allWords-6-letters.js';
+import { allWords7 } from '../src/allWords-7-letters.js';
+import { allWords8 } from '../src/allWords-8-letters.js';
+import { allWords9 } from '../src/allWords-9-letters.js';
 // import { words5Letters } from '../src/5-letters.js';
 // import { words6Letters } from '../src/6-letters.js';
 // import { words7Letters } from '../src/7-letters.js';
@@ -14,6 +19,8 @@ class Word {
     this.description = description;
   }
 }
+
+// console.log(allWords5);
 
 // let gameWord = new Word('','?', false, '');
 
@@ -66,12 +73,12 @@ setting9Letters.addEventListener('click', ()=> {
 // let stringWords = '';
 
 onlyWords.addEventListener('click', ()=> {
-  titleButtonFilling = '(tylko istniejące słowa)';
-  appGame.changeOnlyWords(true);
+  // titleButtonFilling = '(tylko istniejące słowa)';
+  appGame.changeOnlyWords(true, '(tylko istniejące słowa)');
 });
 stringChars.addEventListener('click', ()=> {
-  titleButtonFilling = '(dowolny ciąg liter)';
-  appGame.changeOnlyWords(false);
+  // titleButtonFilling = '(dowolny ciąg liter)';
+  appGame.changeOnlyWords(false, '(dowolny ciąg liter)');
 });
 
 
@@ -225,7 +232,7 @@ class AppGame {
 
  
 
-    changeOnlyWords(param) {
+    changeOnlyWords(param, titleButtonFilling) {
       // console.log(fillingButton);
       fillingButton.innerHTML = `<i class="fas fa-digital-tachograph" dropdown></i> 
       Wypełnianie <div class="dropdown-note" dropdown>${titleButtonFilling}</div>`;
@@ -761,11 +768,14 @@ class AppGame {
       this.myPromise = new Promise((resolve, reject) => {
         $.post( "./php/readWordWithBaseSQL.php", {nameBase: level + '-letters'}, function(dataSQL) {
           resolve(dataSQL);
-          console.log(dataSQL);
-          console.log('promise wykonana!!!');
+          console.log(dataSQL.allWords);
+          console.log('promise - zapytanie wykonane.');
           }, "json")
           .fail(function() {
-            console.log( "Błąd odczytu bazy." );
+            console.log( "promise - błąd odczytu z bazy !!!" );
+            // this.changeOnlyWords(false);
+            let dataSQL = {word: 'BANAN', category: 'Roślina', game: true, description: 'Owoc tropikalny', countWords: 0};
+            reject(dataSQL);
         });
     });
     this.myPromise.then(resultSQL=>{
@@ -773,6 +783,13 @@ class AppGame {
     this.createKeyboard(this.currentlyKeyboard, this.keyboard1, this.keyboard2, this.keyboard3, this.keyboard4, resultSQL);
     this.createStartPlaceGame(level, attempts, this.wordGameWrapper, resultSQL);
     this.returnGame(resultSQL);
+      }).catch(resultSQL=>{
+        this.startParameters(level, attempts, resultSQL);
+        // this.changeOnlyWords(false);
+        this.createKeyboard(this.currentlyKeyboard, this.keyboard1, this.keyboard2, this.keyboard3, this.keyboard4, resultSQL);
+        this.createStartPlaceGame(level, attempts, this.wordGameWrapper, resultSQL);
+        this.changeOnlyWords(false, '(dowolny ciąg liter)');
+        this.returnGame(resultSQL);
       });
     }
 
