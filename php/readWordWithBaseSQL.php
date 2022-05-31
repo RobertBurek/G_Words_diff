@@ -16,22 +16,14 @@
 		$resultCountWords = $connection->query(sprintf( "SELECT COUNT(*) FROM `%s` WHERE `%s`.`Game` = 1",
 						mysqli_real_escape_string($connection, $nameBase),
 						mysqli_real_escape_string($connection, $nameBase)));
-		$resultArrayWords = $connection->query(sprintf( "SELECT `Word` FROM `%s` GROUP BY `Word`",
-						mysqli_real_escape_string($connection, $nameBase)));
 
 		$oneWord = $resultRandomWord->fetch_assoc();
 		$countGameWords = $resultCountWords->fetch_assoc();
-
-		$longStringWords = '';
-		while ($row = $resultArrayWords->fetch_assoc()) {
-			$longStringWords = $longStringWords.$row['Word'].',';
-		}
 
 		echo json_encode(array("word"=>$oneWord['Word'],
 								 "category"=>$oneWord['Category'], 
 								 "game"=>$oneWord['Game'], 
 								 "description"=>$oneWord['Description'],
-								"allWords"=>$longStringWords,
 								"countWords"=>$countGameWords['COUNT(*)']));
     }
     $connection->close();
