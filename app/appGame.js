@@ -475,7 +475,6 @@ class AppGame {
         let tempCurrentLine = [];
         // console.log(this.level + ' -> checWord()');
         // console.log(wordChars + ' -> checWord()');
-        console.log(this.gameWord + ' -> checWord()');
         this.currentLine.forEach(el => {
             tempCurrentLine.push(el.innerHTML);
         });
@@ -505,15 +504,15 @@ class AppGame {
             }
         }
         // console.log(resultCheckedChars);
-        this.isVictory(resultCheckedChars);
+        this.isVictory(resultCheckedChars, resultSQL);
         this.newViewLine(resultCheckedChars);
         this.createKeyboard(this.currentlyKeyboard, this.keyboard1, this.keyboard2, this.keyboard3, this.keyboard4, resultSQL);
       // });
       }   
     
 
-    isVictory(resultCheckedChars) {
-      this.myPromise.then(result=>{
+    isVictory(resultCheckedChars, resultSQL) {
+      // this.myPromise.then(result=>{
       let i = 0;
       resultCheckedChars.forEach(char => {
         if (char == 'success') i++;
@@ -522,9 +521,9 @@ class AppGame {
         this.victory = true;
         this.onceAgain(this.level, this.attempts);
         // if (words.category == "?") whatCategoryDiv.classList.remove('hide');
-        if (result.category == "?") startSelectionCategory();
+        if (resultSQL.category == "?") startSelectionCategory();
       }
-    });
+    // });
     }
 
 
@@ -546,11 +545,9 @@ class AppGame {
 
 
     writeLetter(oneChar, resultSQL) {
-      console.log(oneChar);
         const activeLetter = document.querySelector('div.current-letter');
         if (activeLetter) {
             let position = this.currentLine.indexOf(activeLetter); 
-            console.log(position);
             if (this.currentLine[position].innerHTML == '') this.leftEmpty -= 1;
             activeLetter.innerHTML = String.fromCharCode(oneChar.numberChar);
             this.currentWord[position] = oneChar;
@@ -768,7 +765,6 @@ class AppGame {
       this.myPromise = new Promise((resolve, reject) => {
         $.post( "./php/readWordWithBaseSQL.php", {nameBase: level + '-letters'}, function(dataSQL) {
           resolve(dataSQL);
-          console.log(dataSQL.allWords);
           console.log('promise - zapytanie wykonane.');
           }, "json")
           .fail(function() {
