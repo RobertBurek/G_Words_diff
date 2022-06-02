@@ -1,6 +1,6 @@
 <?php
 
-	$nameBase = $_POST['nameBase'];
+	// $nameBase = $_POST['nameBase'];
 
 	require_once "connect.php";
 	

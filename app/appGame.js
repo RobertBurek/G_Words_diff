@@ -4,7 +4,7 @@ import { allWords6 } from '../src/allWords-6-letters.js';
 import { allWords7 } from '../src/allWords-7-letters.js';
 import { allWords8 } from '../src/allWords-8-letters.js';
 import { allWords9 } from '../src/allWords-9-letters.js';
-// import { words5Letters } from '../src/5-letters.js';
+import { words5Letters } from '../src/5-lettersBIS.js';
 // import { words6Letters } from '../src/6-letters.js';
 // import { words7Letters } from '../src/7-letters.js';
 // import { words8Letters } from '../src/8-letters.js';
@@ -20,7 +20,7 @@ class Word {
   }
 }
 
-// console.log(allWords5);
+// console.log(words5Letters);
 
 // let gameWord = new Word('','?', false, '');
 
@@ -156,8 +156,8 @@ function listenerLongLetters(quantity, attempts) {
     // this.stringWords = resultSQL.allWords;
   // stringWords = result.allWords;
 
-  longWordButton.innerHTML = `<i class="fas fa-sort-amount-down-alt" dropdown></i> 
-  Długość słowa <div class="dropdown-note" dropdown>(${titleButtonLongWord} [${numberWords}])</div>`;
+  // longWordButton.innerHTML = `<i class="fas fa-sort-amount-down-alt" dropdown></i> 
+  // Długość słowa <div class="dropdown-note" dropdown>(${titleButtonLongWord} [${numberWords}])</div>`;
 // });
 }
 
@@ -279,6 +279,8 @@ class AppGame {
       this.readWordsWithBase(resultSQL);
       this.stringWords = resultSQL.allWords;
       this.guessWordChars = resultSQL.word.split('');
+      longWordButton.innerHTML = `<i class="fas fa-sort-amount-down-alt" dropdown></i> 
+      Długość słowa <div class="dropdown-note" dropdown>(${titleButtonLongWord} [${resultSQL.countWords}])</div>`;
       // let words;
       // switch (level) {
       //   case 5:
@@ -770,8 +772,9 @@ class AppGame {
           .fail(function() {
             console.log( "promise - błąd odczytu z bazy !!!" );
             // this.changeOnlyWords(false);
-            let dataSQL = {word: 'BANAN', category: 'Roślina', game: true, description: 'Owoc tropikalny', countWords: 0};
-            reject(dataSQL);
+            const dataFile = randomWordSelection(level);
+            // let dataSQL = {word: 'BANAN', category: 'Roślina', game: true, description: 'Owoc tropikalny', countWords: 0};
+            reject(dataFile);
         });
     });
     this.myPromise.then(resultSQL=>{
@@ -779,19 +782,47 @@ class AppGame {
     this.createKeyboard(this.currentlyKeyboard, this.keyboard1, this.keyboard2, this.keyboard3, this.keyboard4, resultSQL);
     this.createStartPlaceGame(level, attempts, this.wordGameWrapper, resultSQL);
     this.returnGame(resultSQL);
-      }).catch(resultSQL=>{
-        this.startParameters(level, attempts, resultSQL);
+      }).catch(resultFile=>{
+        this.startParameters(level, attempts, resultFile);
         // this.changeOnlyWords(false);
-        this.createKeyboard(this.currentlyKeyboard, this.keyboard1, this.keyboard2, this.keyboard3, this.keyboard4, resultSQL);
-        this.createStartPlaceGame(level, attempts, this.wordGameWrapper, resultSQL);
+        this.createKeyboard(this.currentlyKeyboard, this.keyboard1, this.keyboard2, this.keyboard3, this.keyboard4, resultFile);
+        this.createStartPlaceGame(level, attempts, this.wordGameWrapper, resultFile);
         this.changeOnlyWords(false, '(dowolny ciąg liter)');
-        this.returnGame(resultSQL);
+        this.returnGame(resultFile);
       });
     }
 
 }
 
+function randomWord(data){
+  numberWords = data.length;
+  // console.log(dataWorks[Math.floor(Math.random()*dataWorks.length)]);
+  return data[Math.floor(Math.random()*data.length)];
+};
 
+function randomWordSelection(level){
+  let dataWithFile = [];
+    switch (level) {
+      case 5:
+        dataWithFile = words5Letters;
+        break;
+      case 6:
+        dataWithFile = words5Letters;
+        break;
+      // case 7:
+      //   dataWithFile = words7Letters;
+      //   break;
+      // case 8:
+      //   dataWithFile = words8Letters;
+      //   break;
+      // case 9:
+      //   dataWithFile = words9Letters;
+      //   break;
+    }
+  const tempData = randomWord(dataWithFile);
+  const  dataFile = {word: tempData.word, category: tempData.category, game: true, description: tempData.description, countWords: numberWords};
+  return dataFile;
+};
 
 const appGame = new AppGame({
     lettersWrapper: document.getElementById("letters"),
