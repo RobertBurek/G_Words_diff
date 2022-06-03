@@ -5,10 +5,10 @@ import { allWords7 } from '../src/allWords-7-letters.js';
 import { allWords8 } from '../src/allWords-8-letters.js';
 import { allWords9 } from '../src/allWords-9-letters.js';
 import { words5Letters } from '../src/5-lettersBIS.js';
-// import { words6Letters } from '../src/6-letters.js';
-// import { words7Letters } from '../src/7-letters.js';
-// import { words8Letters } from '../src/8-letters.js';
-// import { words9Letters } from '../src/9-letters.js';
+import { words6Letters } from '../src/6-lettersBIS.js';
+import { words7Letters } from '../src/7-lettersBIS.js';
+import { words8Letters } from '../src/8-lettersBIS.js';
+import { words9Letters } from '../src/9-lettersBIS.js';
 // let wordsLetters = words5Letters;
 
 class Word {
@@ -778,16 +778,15 @@ class AppGame {
         });
     });
     this.myPromise.then(resultSQL=>{
-    this.startParameters(level, attempts, resultSQL);
-    this.createKeyboard(this.currentlyKeyboard, this.keyboard1, this.keyboard2, this.keyboard3, this.keyboard4, resultSQL);
-    this.createStartPlaceGame(level, attempts, this.wordGameWrapper, resultSQL);
-    this.returnGame(resultSQL);
-      }).catch(resultFile=>{
+      this.startParameters(level, attempts, resultSQL);
+      this.createKeyboard(this.currentlyKeyboard, this.keyboard1, this.keyboard2, this.keyboard3, this.keyboard4, resultSQL);
+      this.createStartPlaceGame(level, attempts, this.wordGameWrapper, resultSQL);
+      this.returnGame(resultSQL);
+    }).catch(resultFile=>{
         this.startParameters(level, attempts, resultFile);
         // this.changeOnlyWords(false);
         this.createKeyboard(this.currentlyKeyboard, this.keyboard1, this.keyboard2, this.keyboard3, this.keyboard4, resultFile);
         this.createStartPlaceGame(level, attempts, this.wordGameWrapper, resultFile);
-        this.changeOnlyWords(false, '(dowolny ciąg liter)');
         this.returnGame(resultFile);
       });
     }
@@ -807,17 +806,17 @@ function randomWordSelection(level){
         dataWithFile = words5Letters;
         break;
       case 6:
-        dataWithFile = words5Letters;
+        dataWithFile = words6Letters;
         break;
-      // case 7:
-      //   dataWithFile = words7Letters;
-      //   break;
-      // case 8:
-      //   dataWithFile = words8Letters;
-      //   break;
-      // case 9:
-      //   dataWithFile = words9Letters;
-      //   break;
+      case 7:
+        dataWithFile = words7Letters;
+        break;
+      case 8:
+        dataWithFile = words8Letters;
+        break;
+      case 9:
+        dataWithFile = words9Letters;
+        break;
     }
   const tempData = randomWord(dataWithFile);
   const  dataFile = {word: tempData.word, category: tempData.category, game: true, description: tempData.description, countWords: numberWords};
