@@ -435,6 +435,8 @@ class AppGame {
           }, "json")
           .fail(function() {
             console.log( "Błąd odczytu z bazy wszystkich słów." );
+            let dataFile = {res: false};
+            reject(dataFile);
         });
       });
   }
@@ -449,9 +451,9 @@ class AppGame {
         if (this.onlyWords) {
           this.isWord(this.level, this.typedWord).then(result => {
             // if (this.stringWords.includes(this.typedWord)) {
-              console.log(this.typedWord);
-              console.log(result.res);
-              console.log(result.il);
+              // console.log(this.typedWord);
+              // console.log(result.res);
+              // console.log(result.il);
             if (result.res) {
                 console.log('SŁOWO ISTNIEJE.');
                 this.checkWord(resultSQL);
@@ -460,6 +462,15 @@ class AppGame {
                 console.log('NIE MA TAKIEGO SŁOWA.');
                 this.stopCurrentLine();
             }
+          }).catch(resultFile=>{
+            if (resultFile.res) {
+              console.log('SŁOWO ISTNIEJE.');
+              this.checkWord(resultSQL);
+              if (!this.victory) this.createActiveRound();
+          } else {
+              console.log('NIE MA TAKIEGO SŁOWA.');
+              this.stopCurrentLine();
+          }
           });
         } else {
             console.log('Dowolny ciąg znaków.');

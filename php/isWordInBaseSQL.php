@@ -3,7 +3,7 @@
 	$nameBase = $_POST['nameBase'];
 	$isWord = $_POST['isWord'];
 
-	require_once "connect.php";
+	// require_once "connect.php";
 	
 	$connection = @new mysqli($host,$db_user,$db_password,$db_name);
 	if ($connection->connect_errno!=0)
@@ -23,7 +23,7 @@
 			$res = false;
 		}
 
-		echo json_encode(array("res"=>$res,"il"=>$countIsWord['COUNT(*)']));
+		echo json_encode(array("res"=>$res));
     }
     $connection->close();
 ?>
