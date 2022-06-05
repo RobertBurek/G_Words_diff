@@ -440,6 +440,17 @@ class AppGame {
         });
       });
   }
+
+  doWhenIsWord(condition, resultSQL){
+    if (condition) {
+      console.log('SŁOWO ISTNIEJE.');
+      this.checkWord(resultSQL);
+      if (!this.victory) this.createActiveRound();
+    } else {
+      console.log('NIE MA TAKIEGO SŁOWA.');
+      this.stopCurrentLine();
+    }
+  }
   
 
   isOnlyWords(resultSQL){
@@ -454,23 +465,25 @@ class AppGame {
               // console.log(this.typedWord);
               // console.log(result.res);
               // console.log(result.il);
-            if (result.res) {
-                console.log('SŁOWO ISTNIEJE.');
-                this.checkWord(resultSQL);
-                if (!this.victory) this.createActiveRound();
-            } else {
-                console.log('NIE MA TAKIEGO SŁOWA.');
-                this.stopCurrentLine();
-            }
+              this.doWhenIsWord(result.res, resultSQL);
+            // if (result.res) {
+            //     console.log('SŁOWO ISTNIEJE.');
+            //     this.checkWord(resultSQL);
+            //     if (!this.victory) this.createActiveRound();
+            // } else {
+            //     console.log('NIE MA TAKIEGO SŁOWA.');
+            //     this.stopCurrentLine();
+            // }
           }).catch(resultFile=>{
-            if (resultFile.res) {
-              console.log('SŁOWO ISTNIEJE.');
-              this.checkWord(resultSQL);
-              if (!this.victory) this.createActiveRound();
-          } else {
-              console.log('NIE MA TAKIEGO SŁOWA.');
-              this.stopCurrentLine();
-          }
+            this.doWhenIsWord(resultFile.res, resultSQL);
+          //   if (resultFile.res) {
+          //     console.log('SŁOWO ISTNIEJE.');
+          //     this.checkWord(resultSQL);
+          //     if (!this.victory) this.createActiveRound();
+          // } else {
+          //     console.log('NIE MA TAKIEGO SŁOWA.');
+          //     this.stopCurrentLine();
+          // }
           });
         } else {
             console.log('Dowolny ciąg znaków.');
