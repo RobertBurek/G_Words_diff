@@ -437,6 +437,23 @@ class AppGame {
           }, "json")
           .fail(function() {
             console.log( "Błąd odczytu z bazy wszystkich słów." );
+            switch (level) {
+              case 5:
+                stringWords = allWords5;
+                break;
+              case 6:
+                stringWords = allWords6;
+                break;
+              case 7:
+                stringWords = allWords7;
+                break;
+              case 8:
+                stringWords = allWords8;
+                break;
+              case 9:
+                stringWords = allWords9;
+                break;
+            }
             let dataFile;
             if (stringWords.includes(isWord)) {
               dataFile = {res: true};
@@ -837,23 +854,18 @@ function randomWordSelection(level){
     switch (level) {
       case 5:
         dataWithFile = words5Letters;
-        stringWords = allWords5;
         break;
       case 6:
         dataWithFile = words6Letters;
-        stringWords = allWords6;
         break;
       case 7:
         dataWithFile = words7Letters;
-        stringWords = allWords7;
         break;
       case 8:
         dataWithFile = words8Letters;
-        stringWords = allWords8;
         break;
       case 9:
         dataWithFile = words9Letters;
-        stringWords = allWords9;
         break;
     }
   const tempData = randomWord(dataWithFile);
