@@ -26,9 +26,11 @@ class Word {
 
 // let words = {word:'',category:'?',game:false};
 let numberWords;
+let stringWords;
 
-let titleButtonLongWord = `5-literowe`;
-let titleButtonFilling = 'Wypełnianie (tylko istniejące słowa)';
+// let titleButtonLongWord = `5-literowe`;
+let titleButtonLongWord;
+// let titleButtonFilling = 'Wypełnianie (tylko istniejące słowa)';
 
 const categoryWrapper = document.querySelector("#category p");
 const longWordButton = document.getElementById('longWord');
@@ -435,7 +437,14 @@ class AppGame {
           }, "json")
           .fail(function() {
             console.log( "Błąd odczytu z bazy wszystkich słów." );
-            let dataFile = {res: false};
+            let dataFile;
+            if (stringWords.includes(isWord)) {
+              dataFile = {res: true};
+            } else {
+              dataFile = {res: false};
+            }
+            console.log(stringWords);
+            console.log(isWord);
             reject(dataFile);
         });
       });
@@ -828,18 +837,23 @@ function randomWordSelection(level){
     switch (level) {
       case 5:
         dataWithFile = words5Letters;
+        stringWords = allWords5;
         break;
       case 6:
         dataWithFile = words6Letters;
+        stringWords = allWords6;
         break;
       case 7:
         dataWithFile = words7Letters;
+        stringWords = allWords7;
         break;
       case 8:
         dataWithFile = words8Letters;
+        stringWords = allWords8;
         break;
       case 9:
         dataWithFile = words9Letters;
+        stringWords = allWords9;
         break;
     }
   const tempData = randomWord(dataWithFile);
