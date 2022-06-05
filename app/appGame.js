@@ -443,8 +443,8 @@ class AppGame {
             } else {
               dataFile = {res: false};
             }
-            console.log(stringWords);
-            console.log(isWord);
+            // console.log(stringWords);
+            // console.log(isWord);
             reject(dataFile);
         });
       });
