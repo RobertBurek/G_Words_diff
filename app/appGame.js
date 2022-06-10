@@ -1,4 +1,3 @@
-// import { GuessWord } from './guessWord.js';
 import { allWords5 } from '../src/allWords-5-letters.js';
 import { allWords6 } from '../src/allWords-6-letters.js';
 import { allWords7 } from '../src/allWords-7-letters.js';
@@ -9,7 +8,6 @@ import { words6Letters } from '../src/6-lettersBIS.js';
 import { words7Letters } from '../src/7-lettersBIS.js';
 import { words8Letters } from '../src/8-lettersBIS.js';
 import { words9Letters } from '../src/9-lettersBIS.js';
-// let wordsLetters = words5Letters;
 
 class Word {
   constructor(word, category, game, description) {
@@ -20,17 +18,9 @@ class Word {
   }
 }
 
-// console.log(words5Letters);
-
-// let gameWord = new Word('','?', false, '');
-
-// let words = {word:'',category:'?',game:false};
 let numberWords;
 let stringWords;
-
-// let titleButtonLongWord = `5-literowe`;
 let titleButtonLongWord;
-// let titleButtonFilling = 'Wypełnianie (tylko istniejące słowa)';
 
 const categoryWrapper = document.querySelector("#category p");
 const longWordButton = document.getElementById('longWord');
@@ -46,40 +36,28 @@ const stringChars = document.getElementById('stringChars');
 const onceAgainSection = document.getElementById('onceAgain');
 const divOnlyWords = document.querySelector('.above.only-words');
 const pOnlyWords = document.querySelector('.above.only-words p');
+
 setting5Letters.addEventListener('click', ()=> {
-  // titleButtonLongWord = `5-literowe`;
-  // listenerLongLetters(5, 6, words5Letters);
   listenerLongLetters(5, 6);
 });
 setting6Letters.addEventListener('click', ()=> {
-  // titleButtonLongWord = `6-literowe`;
-  // listenerLongLetters(6, 6, words6Letters);
   listenerLongLetters(6, 6);
 });
 setting7Letters.addEventListener('click', ()=> {
-  // titleButtonLongWord = `7-literowe`;
-  // listenerLongLetters(7, 6, words7Letters);
   listenerLongLetters(7, 6);
 });
 setting8Letters.addEventListener('click', ()=> {
-  // titleButtonLongWord = `8-literowe`;
-  // listenerLongLetters(8, 6, words8Letters);
   listenerLongLetters(8, 6);
 });
 setting9Letters.addEventListener('click', ()=> {
-  // titleButtonLongWord = `9-literowe`;
-  // listenerLongLetters(9, 6, words9Letters);
   listenerLongLetters(9, 6);
 });
 
-// let stringWords = '';
 
 onlyWords.addEventListener('click', ()=> {
-  // titleButtonFilling = '(tylko istniejące słowa)';
   appGame.changeOnlyWords(true, '(tylko istniejące słowa)');
 });
 stringChars.addEventListener('click', ()=> {
-  // titleButtonFilling = '(dowolny ciąg liter)';
   appGame.changeOnlyWords(false, '(dowolny ciąg liter)');
 });
 
@@ -100,17 +78,7 @@ whatCategoryElements.forEach(element => {
     element.classList.remove('what-category-disabled');
     element.classList.add('what-category-focus');
         var dataWord = { category: convertTextCategory(element.innerHTML), word: words.word, longWord: words.word.length }
-        $.post( "./php/category.php", dataWord
-        // , function() {
-        //   alert( "success" );
-        // })
-        //   .done(function() {
-        //     alert( "second success" );
-        //   })
-        //   .fail(function() {
-        //     alert( "error" );
-        //   }
-        );
+        $.post( "./php/category.php", dataWord);
     whatCategoryDiv.classList.add('hide');
     document.querySelector("#category p").innerHTML = 'KATEGORIA:  ' + convertTextCategory(element.innerHTML);
     document.querySelector("#category").style.cursor = "pointer";
