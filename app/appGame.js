@@ -107,39 +107,10 @@ function startSelectionCategory() {
 }
 
 
-
-// function listenerLongLetters(quantity, attempts, arrayLongLetters) {
-//   onceAgainSection.classList.add('hide');
-//   wordsLetters = [...arrayLongLetters];
-//   stringWords = createStringWords(arrayLongLetters);
-//   game.run(quantity, attempts);
-//   longWordButton.innerHTML = `<i class="fas fa-sort-amount-down-alt" dropdown></i> 
-//   Długość słowa <div class="dropdown-note" dropdown>(${titleButtonLongWord} [${numberWords}])</div>`;
-// }
-
 function listenerLongLetters(quantity, attempts) {
   onceAgainSection.classList.add('hide');
-  // wordsLetters = [...arrayLongLetters];
-  // stringWords = result.allWords;
   appGame.run(quantity, attempts);
-  // this.myPromise.then(result=>{
-    // this.stringWords = resultSQL.allWords;
-  // stringWords = result.allWords;
-
-  // longWordButton.innerHTML = `<i class="fas fa-sort-amount-down-alt" dropdown></i> 
-  // Długość słowa <div class="dropdown-note" dropdown>(${titleButtonLongWord} [${numberWords}])</div>`;
-// });
 }
-
-// function createStringWords() {
-//   this.myPromise.then(result => {
-//     // let tempStringWords = '';
-//     // words.forEach(el => {
-//     //     tempStringWords += el.word +',';
-//     // });
-//     return result.allWords;
-//   });
-// }
 
 
 class CharKeyboard {
