@@ -119,7 +119,12 @@ class CharKeyboard {
         this.stateChar = stateChar;
       }
 
-      changeStateChar() {
+      changeNumberChar(newNumberChar) {
+        this.numberChar = newNumberChar;
+      }
+
+      changeStateChar(newStateChar) {
+        this.stateChar = newStateChar;
       }
 }
 
