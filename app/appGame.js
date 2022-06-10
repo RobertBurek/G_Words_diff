@@ -126,6 +126,14 @@ class CharKeyboard {
       changeStateChar(newStateChar) {
         this.stateChar = newStateChar;
       }
+
+      getStateChar() {
+        return this.stateChar;
+      }
+
+      getNumberChar() {
+        return this.numberChar;
+      }
 }
 
 
@@ -483,7 +491,8 @@ class AppGame {
               this.guessWordChars[i] = '-';
                 tempCurrentLine[i] = '!';
                 resultCheckedChars[i] = 'success';
-                this.currentWord[i].stateChar = 'success';
+                // this.currentWord[i].stateChar = 'success';
+                this.currentWord[i].changeStateChar('success');
             }}
         for (let i = 0; i < this.level; i++) {
             if (tempCurrentLine[i] != '!') {
@@ -491,7 +500,8 @@ class AppGame {
                     if (tempCurrentLine[i] == this.guessWordChars[j]) {
                       this.guessWordChars[j] = '-';
                         resultCheckedChars[i] = 'half-success';
-                        if ((this.currentWord[i].stateChar != 'success')) this.currentWord[i].stateChar = 'half-success';
+                        // if ((this.currentWord[i].stateChar != 'success')) this.currentWord[i].stateChar = 'half-success';
+                        if ((this.currentWord[i].getStateChar() != 'success')) this.currentWord[i].getStateChar() = 'half-success';
                         break;
                     } else {
                         resultCheckedChars[i] = 'not-char';
