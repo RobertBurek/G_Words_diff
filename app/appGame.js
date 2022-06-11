@@ -160,7 +160,7 @@ class AppGame {
         this.level;
         this.leftEmpty;
         this.currentLine = [];
-        this.guessWord;
+        this.guessWord;   //???????????????????????????????????????????????????
         this.guessWordChars;
         this.currentWord;
         this.typedWord = '';
@@ -169,13 +169,9 @@ class AppGame {
         this.isNotWord = false;
         this.attempts = 6;
         this.gameWord = new Word();
-        // this.gameWord;
-        // this.gameWord = new Word('','?', false, '');
-        // console.log(this.gameWord.word);
         this.myPromise;
         this.stringWords = '';
     }
-
 
 
     clearLine(line) {
@@ -184,10 +180,8 @@ class AppGame {
         });
     }
 
- 
 
     changeOnlyWords(param, titleButtonFilling) {
-      // console.log(fillingButton);
       fillingButton.innerHTML = `<i class="fas fa-digital-tachograph" dropdown></i> 
       Wypełnianie <div class="dropdown-note" dropdown>${titleButtonFilling}</div>`;
       this.onlyWords = param;
@@ -196,28 +190,9 @@ class AppGame {
     }
 
 
-    // createDataLetters(dataLetters) {
-    //     let startData = [];
-    //     dataLetters.forEach(element => {
-    //         if (element.game) startData.push(element);
-    //         });
-    //         // console.log(startData);
-    //         return startData;
-    // }
-
-    // createWordsLevel(arrayLongLetters){
-    //   const dataWorks = this.createDataLetters(arrayLongLetters);
-    //   // console.log(dataWorks.length);
-    //   numberWords = dataWorks.length;
-    //   // console.log(dataWorks[Math.floor(Math.random()*dataWorks.length)]);
-    //   return dataWorks[Math.floor(Math.random()*dataWorks.length)];
-    // }
-
     readWordsWithBase(resultSQL){
-      // this.myPromise.then(result => {
         this.gameWord = new Word(resultSQL.word, resultSQL.category, true, resultSQL.description);
         console.log(this.gameWord.word);
-      // });
     }
 
 
@@ -728,25 +703,25 @@ class AppGame {
 
 
     createActiveRound() {
-        let listRounds = document.querySelectorAll('#wordGame .line');
-        listRounds = [...listRounds];
-        for (let i = 0; i < listRounds.length; i++) {
-            if (listRounds[i].className == 'line current-round') {
-              listRounds[i].classList.remove('current-round');
-              if (i < listRounds.length -1) {
-                listRounds[i + 1].classList.add('current-round');
-                listRounds[i + 1].firstChild.classList.add('current-letter');
-                this.createCurrentLine();
-                } else {
-                  this.showWord(this.guessWord);
-                  this.onceAgain(this.level, this.attempts);
-                  // if (words.category == "?") whatCategoryDiv.classList.remove('hide');
-                  if (words.category == "?") startSelectionCategory();
-                  }
-                break;
-            }
-        }
-    }
+      let listRounds = document.querySelectorAll('#wordGame .line');
+      listRounds = [...listRounds];
+      for (let i = 0; i < listRounds.length; i++) {
+          if (listRounds[i].className == 'line current-round') {
+            listRounds[i].classList.remove('current-round');
+            if (i < listRounds.length -1) {
+              listRounds[i + 1].classList.add('current-round');
+              listRounds[i + 1].firstChild.classList.add('current-letter');
+              this.createCurrentLine();
+              } else {
+                this.showWord(this.guessWord);
+                this.onceAgain(this.level, this.attempts);
+                // if (words.category == "?") whatCategoryDiv.classList.remove('hide');
+                if (words.category == "?") startSelectionCategory();
+                }
+              break;
+          }
+      }
+  }
 
 
     onceAgain(quantity, attempts) {
