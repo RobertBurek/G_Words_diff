@@ -500,8 +500,8 @@ class AppGame {
                     if (tempCurrentLine[i] == this.guessWordChars[j]) {
                       this.guessWordChars[j] = '-';
                         resultCheckedChars[i] = 'half-success';
-                        // if ((this.currentWord[i].getStateChar() != 'success')) this.currentWord[i].stateChar = 'half-success';
-                        if ((this.currentWord[i].getStateChar() != 'success')) this.currentWord[i].stateChar = 'half-success';
+                        // if ((this.currentWord[i].getStateChar() != 'success')) this.currentWord[i].changeStateChar('half-success');
+                        if ((this.currentWord[i].getStateChar() != 'success')) this.currentWord[i].changeStateChar('half-success');
                         break;
                     } else {
                         resultCheckedChars[i] = 'not-char';
@@ -539,7 +539,7 @@ class AppGame {
       for (let i = 0; i < this.level; i++) {
         if (this.currentWord[i].getStateChar() != 'success')
           if (this.currentWord[i].getStateChar() != 'half-success') {
-            this.currentWord[i].stateChar = 'not-char';
+            this.currentWord[i].changeStateChar('not-char');
           }
         const divLetter = document.createElement('div');
         if (this.victory) divLetter.className = `one-letter ${resultCheckedChars[i]} heartly`;
