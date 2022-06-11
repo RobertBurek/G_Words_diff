@@ -126,13 +126,13 @@ class CharKeyboard {
       changeStateChar(newStateChar) {
         this.stateChar = newStateChar;
       }
+      
+      getNumberChar() {
+        return this.numberChar;
+      }
 
       getStateChar() {
         return this.stateChar;
-      }
-
-      getNumberChar() {
-        return this.numberChar;
       }
 }
 
@@ -500,8 +500,8 @@ class AppGame {
                     if (tempCurrentLine[i] == this.guessWordChars[j]) {
                       this.guessWordChars[j] = '-';
                         resultCheckedChars[i] = 'half-success';
-                        // if ((this.currentWord[i].stateChar != 'success')) this.currentWord[i].stateChar = 'half-success';
-                        if ((this.currentWord[i].getStateChar() != 'success')) this.currentWord[i].getStateChar() = 'half-success';
+                        // if ((this.currentWord[i].getStateChar() != 'success')) this.currentWord[i].stateChar = 'half-success';
+                        if ((this.currentWord[i].getStateChar() != 'success')) this.currentWord[i].stateChar = 'half-success';
                         break;
                     } else {
                         resultCheckedChars[i] = 'not-char';
@@ -537,8 +537,8 @@ class AppGame {
       console.log(resultCheckedChars);
       const parentLine = this.currentLine[0].parentNode;
       for (let i = 0; i < this.level; i++) {
-        if (this.currentWord[i].stateChar != 'success')
-          if (this.currentWord[i].stateChar != 'half-success') {
+        if (this.currentWord[i].getStateChar() != 'success')
+          if (this.currentWord[i].getStateChar() != 'half-success') {
             this.currentWord[i].stateChar = 'not-char';
           }
         const divLetter = document.createElement('div');
@@ -623,16 +623,16 @@ class AppGame {
       keyboard4.innerHTML = '';
       for (let i = 0; i < 10; i++) {
         const button = document.createElement('button');
-        button.className = lettersCheme[i].stateChar;
+        button.className = lettersCheme[i].getStateChar();
         button.innerHTML = String.fromCharCode(lettersCheme[i].numberChar);
-        if (lettersCheme[i].stateChar != 'not-char') button.addEventListener('click', () => this.writeLetter(lettersCheme[i], resultSQL));
+        if (lettersCheme[i].getStateChar() != 'not-char') button.addEventListener('click', () => this.writeLetter(lettersCheme[i], resultSQL));
         keyboard1.appendChild(button);
       }
       for (let i = 10; i < 19; i++) {
         const button = document.createElement('button');
-        button.className = lettersCheme[i].stateChar;
+        button.className = lettersCheme[i].getStateChar();
         button.innerHTML = String.fromCharCode(lettersCheme[i].numberChar);
-        if (lettersCheme[i].stateChar != 'not-char') button.addEventListener('click', () => this.writeLetter(lettersCheme[i], resultSQL));
+        if (lettersCheme[i].getStateChar() != 'not-char') button.addEventListener('click', () => this.writeLetter(lettersCheme[i], resultSQL));
         keyboard2.appendChild(button);
       }
       const divKeyboard = document.createElement('div');
@@ -646,9 +646,9 @@ class AppGame {
       keyboard3.appendChild(divKeyboard);
       for (let i = 19; i < 26; i++) {
         const button = document.createElement('button');
-        button.className = lettersCheme[i].stateChar;
+        button.className = lettersCheme[i].getStateChar();
         button.innerHTML = String.fromCharCode(lettersCheme[i].numberChar);
-        if (lettersCheme[i].stateChar != 'not-char') button.addEventListener('click', () => this.writeLetter(lettersCheme[i], resultSQL));
+        if (lettersCheme[i].getStateChar() != 'not-char') button.addEventListener('click', () => this.writeLetter(lettersCheme[i], resultSQL));
         keyboard3.appendChild(button);
       }
       const divBackspace = document.createElement('div');
@@ -658,9 +658,9 @@ class AppGame {
       keyboard3.appendChild(divBackspace);
       for (let i = 26; i < 35; i++) {
         const button = document.createElement('button');
-        button.className = lettersCheme[i].stateChar;
+        button.className = lettersCheme[i].getStateChar();
         button.innerHTML = String.fromCharCode(lettersCheme[i].numberChar);
-        if (lettersCheme[i].stateChar != 'not-char') button.addEventListener('click', () => this.writeLetter(lettersCheme[i], resultSQL));
+        if (lettersCheme[i].getStateChar() != 'not-char') button.addEventListener('click', () => this.writeLetter(lettersCheme[i], resultSQL));
         keyboard4.appendChild(button);
       }
     }
