@@ -713,10 +713,12 @@ class AppGame {
               listRounds[i + 1].firstChild.classList.add('current-letter');
               this.createCurrentLine();
               } else {
-                this.showWord(this.guessWord);
+                // this.showWord(this.guessWord);
+                this.showWord(this.gameWord.word);
                 this.onceAgain(this.level, this.attempts);
                 // if (words.category == "?") whatCategoryDiv.classList.remove('hide');
-                if (words.category == "?") startSelectionCategory();
+                // if (words.category == "?") startSelectionCategory();
+                if (this.gameWord.category == "?") startSelectionCategory();
                 }
               break;
           }
