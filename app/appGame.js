@@ -197,7 +197,6 @@ class AppGame {
 		this.level;
 		this.leftEmpty;
 		this.currentLine = [];
-		// this.guessWord;   //???????????????????????????????????????????????????
 		this.guessWordChars;
 		this.currentWord;
 		this.typedWord = "";
@@ -412,8 +411,6 @@ class AppGame {
 				} else {
 					dataFile = { res: false };
 				}
-				// console.log(stringWords);
-				// console.log(isWord);
 				reject(dataFile);
 			});
 		});
@@ -448,11 +445,8 @@ class AppGame {
 	}
 
 	checkWord(resultSQL) {
-		// this.myPromise.then(result => {
 		let resultCheckedChars = new Array(this.level);
 		let tempCurrentLine = [];
-		// console.log(this.level + ' -> checWord()');
-		// console.log(wordChars + ' -> checWord()');
 		this.currentLine.forEach((el) => {
 			tempCurrentLine.push(el.innerHTML);
 		});
@@ -465,7 +459,6 @@ class AppGame {
 				this.guessWordChars[i] = "-";
 				tempCurrentLine[i] = "!";
 				resultCheckedChars[i] = "success";
-				// this.currentWord[i].stateChar = 'success';
 				this.currentWord[i].changeStateChar("success");
 			}
 		}
@@ -475,7 +468,6 @@ class AppGame {
 					if (tempCurrentLine[i] == this.guessWordChars[j]) {
 						this.guessWordChars[j] = "-";
 						resultCheckedChars[i] = "half-success";
-						// if ((this.currentWord[i].getStateChar() != 'success')) this.currentWord[i].changeStateChar('half-success');
 						if (this.currentWord[i].getStateChar() != "success")
 							this.currentWord[i].changeStateChar("half-success");
 						break;
@@ -485,7 +477,6 @@ class AppGame {
 				}
 			}
 		}
-		// console.log(resultCheckedChars);
 		this.isVictory(resultCheckedChars, resultSQL);
 		this.newViewLine(resultCheckedChars);
 		this.createKeyboard(
@@ -496,7 +487,6 @@ class AppGame {
 			this.keyboard4,
 			resultSQL
 		);
-		// });
 	}
 
 	isVictory(resultCheckedChars, resultSQL) {
