@@ -1,21 +1,21 @@
-import { allWords5 } from '../src/allWords-5-letters.js';
-import { allWords6 } from '../src/allWords-6-letters.js';
-import { allWords7 } from '../src/allWords-7-letters.js';
-import { allWords8 } from '../src/allWords-8-letters.js';
-import { allWords9 } from '../src/allWords-9-letters.js';
-import { words5Letters } from '../src/5-lettersBIS.js';
-import { words6Letters } from '../src/6-lettersBIS.js';
-import { words7Letters } from '../src/7-lettersBIS.js';
-import { words8Letters } from '../src/8-lettersBIS.js';
-import { words9Letters } from '../src/9-lettersBIS.js';
+import { allWords5 } from "../src/allWords-5-letters.js";
+import { allWords6 } from "../src/allWords-6-letters.js";
+import { allWords7 } from "../src/allWords-7-letters.js";
+import { allWords8 } from "../src/allWords-8-letters.js";
+import { allWords9 } from "../src/allWords-9-letters.js";
+import { words5Letters } from "../src/5-lettersBIS.js";
+import { words6Letters } from "../src/6-lettersBIS.js";
+import { words7Letters } from "../src/7-lettersBIS.js";
+import { words8Letters } from "../src/8-lettersBIS.js";
+import { words9Letters } from "../src/9-lettersBIS.js";
 
 class Word {
-  constructor(word, category, game, description) {
-    this.word = word;
-    this.category = category;
-    this.game = game;
-    this.description = description;
-  }
+	constructor(word, category, game, description) {
+		this.word = word;
+		this.category = category;
+		this.game = game;
+		this.description = description;
+	}
 }
 
 let numberWords;
@@ -23,711 +23,831 @@ let stringWords;
 let titleButtonLongWord;
 
 // const categoryWrapper = document.querySelector("#category p");
-const longWordButton = document.getElementById('longWord');
-const fillingButton = document.getElementById('filling');
-const setting5Letters = document.getElementById('5letters');
-const setting6Letters = document.getElementById('6letters');
-const setting7Letters = document.getElementById('7letters');
-const setting8Letters = document.getElementById('8letters');
-const setting9Letters = document.getElementById('9letters');
-const onlyWords = document.getElementById('onlyWords');
-const notWord = document.querySelector('.not-word');
-const stringChars = document.getElementById('stringChars');
-const onceAgainSection = document.getElementById('onceAgain');
-const divOnlyWords = document.querySelector('.above.only-words');
-const pOnlyWords = document.querySelector('.above.only-words p');
+const longWordButton = document.getElementById("longWord");
+const fillingButton = document.getElementById("filling");
+const setting5Letters = document.getElementById("5letters");
+const setting6Letters = document.getElementById("6letters");
+const setting7Letters = document.getElementById("7letters");
+const setting8Letters = document.getElementById("8letters");
+const setting9Letters = document.getElementById("9letters");
+const onlyWords = document.getElementById("onlyWords");
+const notWord = document.querySelector(".not-word");
+const stringChars = document.getElementById("stringChars");
+const onceAgainSection = document.getElementById("onceAgain");
+const divOnlyWords = document.querySelector(".above.only-words");
+const pOnlyWords = document.querySelector(".above.only-words p");
 
-setting5Letters.addEventListener('click', ()=> {
-  listenerLongLetters(5, 6);
+setting5Letters.addEventListener("click", () => {
+	listenerLongLetters(5, 6);
 });
-setting6Letters.addEventListener('click', ()=> {
-  listenerLongLetters(6, 6);
+setting6Letters.addEventListener("click", () => {
+	listenerLongLetters(6, 6);
 });
-setting7Letters.addEventListener('click', ()=> {
-  listenerLongLetters(7, 6);
+setting7Letters.addEventListener("click", () => {
+	listenerLongLetters(7, 6);
 });
-setting8Letters.addEventListener('click', ()=> {
-  listenerLongLetters(8, 6);
+setting8Letters.addEventListener("click", () => {
+	listenerLongLetters(8, 6);
 });
-setting9Letters.addEventListener('click', ()=> {
-  listenerLongLetters(9, 6);
-});
-
-
-onlyWords.addEventListener('click', ()=> {
-  appGame.changeOnlyWords(true, '(tylko istniejące słowa)');
-});
-stringChars.addEventListener('click', ()=> {
-  appGame.changeOnlyWords(false, '(dowolny ciąg liter)');
+setting9Letters.addEventListener("click", () => {
+	listenerLongLetters(9, 6);
 });
 
+onlyWords.addEventListener("click", () => {
+	appGame.changeOnlyWords(true, "(tylko istniejące słowa)");
+});
+stringChars.addEventListener("click", () => {
+	appGame.changeOnlyWords(false, "(dowolny ciąg liter)");
+});
 
 function convertTextCategory(text) {
-  text = text.toLowerCase();
-  const tab = [...text];
-  tab[0] = tab[0].toUpperCase();
-  return tab.join("");
+	text = text.toLowerCase();
+	const tab = [...text];
+	tab[0] = tab[0].toUpperCase();
+	return tab.join("");
 }
 
-const whatCategoryDiv = document.querySelector('.what-category');
-const whatCategoryElements = document.querySelectorAll('[category]');
-whatCategoryElements.forEach(element => {
-  element.addEventListener('click', ()=>{
-    console.log(element);
-    disableWhatCategory();
-    element.classList.remove('what-category-disabled');
-    element.classList.add('what-category-focus');
-        // var dataWord = { category: convertTextCategory(element.innerHTML), word: this.gameWord.word, longWord: this.gameWord.word.length }
-        // $.post( "./php/category.php", dataWord);
-    whatCategoryDiv.classList.add('hide');
-    document.querySelector("#category p").innerHTML = 'KATEGORIA:  ' + convertTextCategory(element.innerHTML);
-    // this.categoryWrapper.innerHTML = 'KATEGORIA:  ' + convertTextCategory(element.innerHTML);
-    document.querySelector("#category").style.cursor = "pointer";
-    document.querySelector("#category").addEventListener('click', changeCategoryStyle);
-  });
-})
+const whatCategoryDiv = document.querySelector(".what-category");
+const whatCategoryElements = document.querySelectorAll("[category]");
+whatCategoryElements.forEach((element) => {
+	element.addEventListener("click", () => {
+		console.log(element);
+		disableWhatCategory();
+		element.classList.remove("what-category-disabled");
+		element.classList.add("what-category-focus");
+		// var dataWord = { category: convertTextCategory(element.innerHTML), word: this.gameWord.word, longWord: this.gameWord.word.length }
+		// $.post( "./php/category.php", dataWord);
+		whatCategoryDiv.classList.add("hide");
+		document.querySelector("#category p").innerHTML =
+			"KATEGORIA:  " + convertTextCategory(element.innerHTML);
+		// this.categoryWrapper.innerHTML = 'KATEGORIA:  ' + convertTextCategory(element.innerHTML);
+		document.querySelector("#category").style.cursor = "pointer";
+		document
+			.querySelector("#category")
+			.addEventListener("click", changeCategoryStyle);
+	});
+});
 
 const changeCategoryStyle = function changeCategoryStyle() {
-  whatCategoryDiv.classList.remove('hide');
-  document.querySelector("#category").style.cursor = "default";
-}
-
+	whatCategoryDiv.classList.remove("hide");
+	document.querySelector("#category").style.cursor = "default";
+};
 
 function disableWhatCategory() {
-  whatCategoryElements.forEach(el => {
-    el.classList.add('what-category-disabled');
-  })
+	whatCategoryElements.forEach((el) => {
+		el.classList.add("what-category-disabled");
+	});
 }
-
 
 function startSelectionCategory() {
-  whatCategoryDiv.classList.remove('hide');
-  whatCategoryElements.forEach(el => {
-    el.classList.remove('what-category-disabled');
-    el.classList.remove('what-category-focus');
-  })
+	whatCategoryDiv.classList.remove("hide");
+	whatCategoryElements.forEach((el) => {
+		el.classList.remove("what-category-disabled");
+		el.classList.remove("what-category-focus");
+	});
 }
-
 
 function listenerLongLetters(quantity, attempts) {
-  onceAgainSection.classList.add('hide');
-  appGame.run(quantity, attempts);
+	onceAgainSection.classList.add("hide");
+	appGame.run(quantity, attempts);
 }
-
 
 class CharKeyboard {
-      constructor(numberChar, stateChar) {
-        this.numberChar = numberChar;
-        this.stateChar = stateChar;
-      }
+	constructor(numberChar, stateChar) {
+		this.numberChar = numberChar;
+		this.stateChar = stateChar;
+	}
 
-      changeNumberChar(newNumberChar) {
-        this.numberChar = newNumberChar;
-      }
+	changeNumberChar(newNumberChar) {
+		this.numberChar = newNumberChar;
+	}
 
-      changeStateChar(newStateChar) {
-        this.stateChar = newStateChar;
-      }
-      
-      getNumberChar() {
-        return this.numberChar;
-      }
+	changeStateChar(newStateChar) {
+		this.stateChar = newStateChar;
+	}
 
-      getStateChar() {
-        return this.stateChar;
-      }
+	getNumberChar() {
+		return this.numberChar;
+	}
+
+	getStateChar() {
+		return this.stateChar;
+	}
 }
-
 
 class AppGame {
+	constructor({
+		lettersWrapper,
+		categoryWrapper,
+		wordGameWrapper,
+		keyboardScheme,
+		keyboard1,
+		keyboard2,
+		keyboard3,
+		keyboard4,
+		dataLetters,
+	}) {
+		this.lettersWrapper = lettersWrapper;
+		this.categoryWrapper = categoryWrapper;
+		this.wordGameWrapper = wordGameWrapper;
+		this.keyboardScheme = keyboardScheme;
+		this.keyboard1 = keyboard1;
+		this.keyboard2 = keyboard2;
+		this.keyboard3 = keyboard3;
+		this.keyboard4 = keyboard4;
+		this.dataLetters = dataLetters;
+		this.numbersChar = [
+			65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79,
+			//                 0   1   2    3   4   5   6   7  8    9   10  11  12  13   14
+			80,
+			81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 211, 260, 262, 280, 321, 323, 346,
+			377, 379,
+		];
+		//15  16   17  18   19 20   21 22  23  24  25   26   27   28   29   30   31  32  33    34
+		this.charsObject;
+		this.alphabet;
+		this.qwerty;
+		this.currentlyKeyboard;
+		this.level;
+		this.leftEmpty;
+		this.currentLine = [];
+		// this.guessWord;   //???????????????????????????????????????????????????
+		this.guessWordChars;
+		this.currentWord;
+		this.typedWord = "";
+		this.victory = false;
+		this.onlyWords = true;
+		this.isNotWord = false;
+		this.attempts = 6;
+		this.gameWord = new Word();
+		this.myPromise;
+		this.stringWords = "";
+	}
 
-   constructor({ lettersWrapper, categoryWrapper, wordGameWrapper, keyboardScheme, keyboard1, keyboard2, keyboard3, keyboard4, dataLetters }) {
-        this.lettersWrapper = lettersWrapper;
-        this.categoryWrapper = categoryWrapper;
-        this.wordGameWrapper = wordGameWrapper;
-        this.keyboardScheme = keyboardScheme;
-        this.keyboard1 = keyboard1;
-        this.keyboard2 = keyboard2;
-        this.keyboard3 = keyboard3;
-        this.keyboard4 = keyboard4;
-        this.dataLetters = dataLetters;
-        this.numbersChar = [65,  66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76,  77, 78, 79, 
-          //                 0   1   2    3   4   5   6   7  8    9   10  11  12  13   14
-          80, 81, 82, 83,  84, 85, 86, 87, 88, 89, 90, 211, 260, 262, 280, 321, 323, 346, 377, 379];
-        //15  16   17  18   19 20   21 22  23  24  25   26   27   28   29   30   31  32  33    34  
-        this.charsObject;
-        this.alphabet;
-        this.qwerty;
-        this.currentlyKeyboard;
-        this.level;
-        this.leftEmpty;
-        this.currentLine = [];
-        // this.guessWord;   //???????????????????????????????????????????????????
-        this.guessWordChars;
-        this.currentWord;
-        this.typedWord = '';
-        this.victory = false;
-        this.onlyWords = true;
-        this.isNotWord = false;
-        this.attempts = 6;
-        this.gameWord = new Word();
-        this.myPromise;
-        this.stringWords = '';
-    }
+	clearLine(line) {
+		line.forEach((el) => {
+			el.style.display = "none";
+		});
+	}
 
-
-    clearLine(line) {
-        line.forEach(el => {
-           el.style.display = 'none';
-        });
-    }
-
-
-    changeOnlyWords(param, titleButtonFilling) {
-      fillingButton.innerHTML = `<i class="fas fa-digital-tachograph" dropdown></i> 
+	changeOnlyWords(param, titleButtonFilling) {
+		fillingButton.innerHTML = `<i class="fas fa-digital-tachograph" dropdown></i> 
       Wypełnianie <div class="dropdown-note" dropdown>${titleButtonFilling}</div>`;
-      this.onlyWords = param;
-      if (this.onlyWords) document.querySelector('.above.only-words p').innerHTML = 'Tylko istniejące słowa';
-      else document.querySelector('.above.only-words p').innerHTML = 'Dowolny ciąg znaków';
-    }
+		this.onlyWords = param;
+		if (this.onlyWords)
+			document.querySelector(".above.only-words p").innerHTML =
+				"Tylko istniejące słowa";
+		else
+			document.querySelector(".above.only-words p").innerHTML =
+				"Dowolny ciąg znaków";
+	}
 
+	readWordsWithBase(resultSQL) {
+		this.gameWord = new Word(
+			resultSQL.word,
+			resultSQL.category,
+			true,
+			resultSQL.description
+		);
+		// this.categoryWrapper.innerHTML = resultSQL.category;
+		this.categoryWrapper.innerHTML =
+			"KATEGORIA:  " + convertTextCategory(resultSQL.category);
+		console.log(this.gameWord.word + "  -  " + resultSQL.category);
+	}
 
-    readWordsWithBase(resultSQL){
-        this.gameWord = new Word(resultSQL.word, resultSQL.category, true, resultSQL.description);
-        // this.categoryWrapper.innerHTML = resultSQL.category;
-        this.categoryWrapper.innerHTML = 'KATEGORIA:  ' + convertTextCategory(resultSQL.category);
-        console.log(this.gameWord.word + '  -  ' + resultSQL.category);
-    }
-
-
-    startParameters(level, attempts, resultSQL) {
-      whatCategoryDiv.classList.add('hide');
-      document.querySelector("#category").removeEventListener('click', changeCategoryStyle);
-      document.querySelector("#category").style.cursor = "default";
-      this.attempts = attempts;
-      this.level = level;
-      this.leftEmpty = level;
-      notWord.classList.add('hide');
-      titleButtonLongWord = this.level + `-literowe`;
-      this.readWordsWithBase(resultSQL);
-      this.stringWords = resultSQL.allWords;
-      this.guessWordChars = resultSQL.word.split('');
-      longWordButton.innerHTML = `<i class="fas fa-sort-amount-down-alt" dropdown></i> 
+	startParameters(level, attempts, resultSQL) {
+		whatCategoryDiv.classList.add("hide");
+		document
+			.querySelector("#category")
+			.removeEventListener("click", changeCategoryStyle);
+		document.querySelector("#category").style.cursor = "default";
+		this.attempts = attempts;
+		this.level = level;
+		this.leftEmpty = level;
+		notWord.classList.add("hide");
+		titleButtonLongWord = this.level + `-literowe`;
+		this.readWordsWithBase(resultSQL);
+		this.stringWords = resultSQL.allWords;
+		this.guessWordChars = resultSQL.word.split("");
+		longWordButton.innerHTML = `<i class="fas fa-sort-amount-down-alt" dropdown></i> 
       Długość słowa <div class="dropdown-note" dropdown>(${titleButtonLongWord} [${resultSQL.countWords}])</div>`;
-      this.charsObject = [];
-      for (let i = 0; i < this.numbersChar.length; i++ ){
-        this.charsObject.push(new CharKeyboard(this.numbersChar[i], 'normal'));
-      }
-      this.alphabet = [this.charsObject[0],  this.charsObject[27], this.charsObject[1], this.charsObject[2], this.charsObject[28], this.charsObject[3], this.charsObject[4], this.charsObject[29], 
-                      this.charsObject[5], this.charsObject[6], this.charsObject[7], this.charsObject[8], this.charsObject[9], this.charsObject[10], this.charsObject[11], this.charsObject[30], 
-                      this.charsObject[12], this.charsObject[13], this.charsObject[31], this.charsObject[14], this.charsObject[26], this.charsObject[15], this.charsObject[16], this.charsObject[17], 
-                      this.charsObject[18], this.charsObject[32], this.charsObject[19], this.charsObject[20], this.charsObject[21], this.charsObject[22], this.charsObject[23], this.charsObject[24], 
-                      this.charsObject[25], this.charsObject[33], this.charsObject[34]]
-      this.qwerty = [this.charsObject[16],  this.charsObject[22], this.charsObject[4], this.charsObject[17], this.charsObject[19], this.charsObject[24], this.charsObject[20], this.charsObject[8],
-                    this.charsObject[14], this.charsObject[15], this.charsObject[0], this.charsObject[18], this.charsObject[3], this.charsObject[5],this.charsObject[6], this.charsObject[7], 
-                    this.charsObject[9], this.charsObject[10], this.charsObject[11], this.charsObject[25], this.charsObject[23], this.charsObject[2], this.charsObject[21], this.charsObject[1],
-                    this.charsObject[13], this.charsObject[12], this.charsObject[27], this.charsObject[28], this.charsObject[29], this.charsObject[30], this.charsObject[31], this.charsObject[26],
-                    this.charsObject[32], this.charsObject[33], this.charsObject[34]]
-      this.currentlyKeyboard = this.alphabet;
-      this.currentWord = new Array(level);
-      this.victory = false;
-      this.showWord('');
-    }
+		this.charsObject = [];
+		for (let i = 0; i < this.numbersChar.length; i++) {
+			this.charsObject.push(new CharKeyboard(this.numbersChar[i], "normal"));
+		}
+		this.alphabet = [
+			this.charsObject[0],
+			this.charsObject[27],
+			this.charsObject[1],
+			this.charsObject[2],
+			this.charsObject[28],
+			this.charsObject[3],
+			this.charsObject[4],
+			this.charsObject[29],
+			this.charsObject[5],
+			this.charsObject[6],
+			this.charsObject[7],
+			this.charsObject[8],
+			this.charsObject[9],
+			this.charsObject[10],
+			this.charsObject[11],
+			this.charsObject[30],
+			this.charsObject[12],
+			this.charsObject[13],
+			this.charsObject[31],
+			this.charsObject[14],
+			this.charsObject[26],
+			this.charsObject[15],
+			this.charsObject[16],
+			this.charsObject[17],
+			this.charsObject[18],
+			this.charsObject[32],
+			this.charsObject[19],
+			this.charsObject[20],
+			this.charsObject[21],
+			this.charsObject[22],
+			this.charsObject[23],
+			this.charsObject[24],
+			this.charsObject[25],
+			this.charsObject[33],
+			this.charsObject[34],
+		];
+		this.qwerty = [
+			this.charsObject[16],
+			this.charsObject[22],
+			this.charsObject[4],
+			this.charsObject[17],
+			this.charsObject[19],
+			this.charsObject[24],
+			this.charsObject[20],
+			this.charsObject[8],
+			this.charsObject[14],
+			this.charsObject[15],
+			this.charsObject[0],
+			this.charsObject[18],
+			this.charsObject[3],
+			this.charsObject[5],
+			this.charsObject[6],
+			this.charsObject[7],
+			this.charsObject[9],
+			this.charsObject[10],
+			this.charsObject[11],
+			this.charsObject[25],
+			this.charsObject[23],
+			this.charsObject[2],
+			this.charsObject[21],
+			this.charsObject[1],
+			this.charsObject[13],
+			this.charsObject[12],
+			this.charsObject[27],
+			this.charsObject[28],
+			this.charsObject[29],
+			this.charsObject[30],
+			this.charsObject[31],
+			this.charsObject[26],
+			this.charsObject[32],
+			this.charsObject[33],
+			this.charsObject[34],
+		];
+		this.currentlyKeyboard = this.alphabet;
+		this.currentWord = new Array(level);
+		this.victory = false;
+		this.showWord("");
+	}
 
+	createTypedWord() {
+		this.typedWord = "";
+		this.currentLine.forEach((el) => {
+			this.typedWord += el.innerHTML;
+		});
+		console.log(this.typedWord + " -> twoje słowo");
+	}
 
-    createTypedWord() {
-      this.typedWord = '';
-      this.currentLine.forEach(el => {
-          this.typedWord +=  el.innerHTML;
-      });
-      console.log(this.typedWord + ' -> twoje słowo');
-    }
+	stopCurrentLine() {
+		this.isNotWord = true;
+		// console.log('stopCurrentLine');
+		notWord.classList.remove("hide");
+		divOnlyWords.classList.add("curtain-only-words");
+		pOnlyWords.classList.add("curtain");
+		this.currentLine.forEach((el) => {
+			el.classList.add("curtain-char");
+		});
+		document.querySelector(".back-space").classList.add("curtain-back-space");
+	}
 
+	startCurrentLine() {
+		this.isNotWord = false;
+		// console.log('startCurrentLin');
+		notWord.classList.add("hide");
+		divOnlyWords.classList.remove("curtain-only-words");
+		pOnlyWords.classList.remove("curtain");
+		this.currentLine.forEach((el) => {
+			el.classList.remove("curtain-char");
+			el.innerHTML = "";
+		});
+		document
+			.querySelector(".back-space")
+			.classList.remove("curtain-back-space");
+	}
 
-    stopCurrentLine(){
-      this.isNotWord = true;
-      // console.log('stopCurrentLine');
-      notWord.classList.remove('hide');
-      divOnlyWords.classList.add('curtain-only-words');
-      pOnlyWords.classList.add('curtain');
-      this.currentLine.forEach(el => {
-        el.classList.add('curtain-char');
-      });
-      document.querySelector('.back-space').classList.add('curtain-back-space');
-    }
+	isWord(level, isWord) {
+		return new Promise((resolve, reject) => {
+			$.post(
+				"./php/isWordInBaseSQL.php",
+				{ nameBase: level + "-letters", isWord: isWord },
+				function (dataSQL) {
+					resolve(dataSQL);
+					console.log(dataSQL);
+					console.log("Promise - szukanie słowa odbyło się !!!");
+				},
+				"json"
+			).fail(function () {
+				console.log("Błąd odczytu z bazy wszystkich słów.");
+				switch (level) {
+					case 5:
+						stringWords = allWords5;
+						break;
+					case 6:
+						stringWords = allWords6;
+						break;
+					case 7:
+						stringWords = allWords7;
+						break;
+					case 8:
+						stringWords = allWords8;
+						break;
+					case 9:
+						stringWords = allWords9;
+						break;
+				}
+				let dataFile;
+				if (stringWords.includes(isWord)) {
+					dataFile = { res: true };
+				} else {
+					dataFile = { res: false };
+				}
+				// console.log(stringWords);
+				// console.log(isWord);
+				reject(dataFile);
+			});
+		});
+	}
 
-    startCurrentLine(){
-      this.isNotWord = false;
-      // console.log('startCurrentLin');
-      notWord.classList.add('hide');
-      divOnlyWords.classList.remove('curtain-only-words');
-      pOnlyWords.classList.remove('curtain');
-      this.currentLine.forEach(el => {
-        el.classList.remove('curtain-char');
-        el.innerHTML = '';
-      });
-      document.querySelector('.back-space').classList.remove('curtain-back-space');
-    }
+	doWhenIsWord(condition, resultSQL) {
+		if (condition) {
+			console.log("SŁOWO ISTNIEJE.");
+			this.checkWord(resultSQL);
+			if (!this.victory) this.createActiveRound();
+		} else {
+			console.log("NIE MA TAKIEGO SŁOWA.");
+			this.stopCurrentLine();
+		}
+	}
 
-    isWord(level, isWord) {
-      return new Promise((resolve, reject) => {
-        $.post( "./php/isWordInBaseSQL.php", {nameBase: level + '-letters', isWord: isWord}, function(dataSQL) {
-          resolve(dataSQL);
-          console.log(dataSQL);
-          console.log('Promise - szukanie słowa odbyło się !!!');
-          }, "json")
-          .fail(function() {
-            console.log( "Błąd odczytu z bazy wszystkich słów." );
-            switch (level) {
-              case 5:
-                stringWords = allWords5;
-                break;
-              case 6:
-                stringWords = allWords6;
-                break;
-              case 7:
-                stringWords = allWords7;
-                break;
-              case 8:
-                stringWords = allWords8;
-                break;
-              case 9:
-                stringWords = allWords9;
-                break;
-            }
-            let dataFile;
-            if (stringWords.includes(isWord)) {
-              dataFile = {res: true};
-            } else {
-              dataFile = {res: false};
-            }
-            // console.log(stringWords);
-            // console.log(isWord);
-            reject(dataFile);
-        });
-      });
-  }
+	isOnlyWords(resultSQL) {
+		this.createTypedWord();
+		if (this.onlyWords) {
+			this.isWord(this.level, this.typedWord)
+				.then((result) => {
+					this.doWhenIsWord(result.res, resultSQL);
+				})
+				.catch((resultFile) => {
+					this.doWhenIsWord(resultFile.res, resultSQL);
+				});
+		} else {
+			console.log("Dowolny ciąg znaków.");
+			this.checkWord(resultSQL);
+			if (!this.victory) this.createActiveRound();
+		}
+	}
 
-  doWhenIsWord(condition, resultSQL){
-    if (condition) {
-      console.log('SŁOWO ISTNIEJE.');
-      this.checkWord(resultSQL);
-      if (!this.victory) this.createActiveRound();
-    } else {
-      console.log('NIE MA TAKIEGO SŁOWA.');
-      this.stopCurrentLine();
-    }
-  }
-  
+	checkWord(resultSQL) {
+		// this.myPromise.then(result => {
+		let resultCheckedChars = new Array(this.level);
+		let tempCurrentLine = [];
+		// console.log(this.level + ' -> checWord()');
+		// console.log(wordChars + ' -> checWord()');
+		this.currentLine.forEach((el) => {
+			tempCurrentLine.push(el.innerHTML);
+		});
+		this.guessWordChars = resultSQL.word.split("");
+		console.log(this.guessWordChars);
 
-  isOnlyWords(resultSQL){
-    // this.isWord(this.level, this.stringWords).then(res => {
-        // console.log(resultSQL.allWords);
-        // this.stringWord = resultSQL.allWords;
-        // console.log(this.stringWords);
-        this.createTypedWord();
-        if (this.onlyWords) {
-          this.isWord(this.level, this.typedWord).then(result => {
-            // if (this.stringWords.includes(this.typedWord)) {
-              // console.log(this.typedWord);
-              // console.log(result.res);
-              // console.log(result.il);
-              this.doWhenIsWord(result.res, resultSQL);
-            // if (result.res) {
-            //     console.log('SŁOWO ISTNIEJE.');
-            //     this.checkWord(resultSQL);
-            //     if (!this.victory) this.createActiveRound();
-            // } else {
-            //     console.log('NIE MA TAKIEGO SŁOWA.');
-            //     this.stopCurrentLine();
-            // }
-          }).catch(resultFile=>{
-            this.doWhenIsWord(resultFile.res, resultSQL);
-          //   if (resultFile.res) {
-          //     console.log('SŁOWO ISTNIEJE.');
-          //     this.checkWord(resultSQL);
-          //     if (!this.victory) this.createActiveRound();
-          // } else {
-          //     console.log('NIE MA TAKIEGO SŁOWA.');
-          //     this.stopCurrentLine();
-          // }
-          });
-        } else {
-            console.log('Dowolny ciąg znaków.');
-            // console.log(this.guessWordChars);
-            this.checkWord(resultSQL);
-            if (!this.victory) this.createActiveRound();
-        }
+		this.clearLine(this.currentLine);
+		for (let i = 0; i < this.level; i++) {
+			if (tempCurrentLine[i] == this.guessWordChars[i]) {
+				this.guessWordChars[i] = "-";
+				tempCurrentLine[i] = "!";
+				resultCheckedChars[i] = "success";
+				// this.currentWord[i].stateChar = 'success';
+				this.currentWord[i].changeStateChar("success");
+			}
+		}
+		for (let i = 0; i < this.level; i++) {
+			if (tempCurrentLine[i] != "!") {
+				for (let j = 0; j < this.level; j++) {
+					if (tempCurrentLine[i] == this.guessWordChars[j]) {
+						this.guessWordChars[j] = "-";
+						resultCheckedChars[i] = "half-success";
+						// if ((this.currentWord[i].getStateChar() != 'success')) this.currentWord[i].changeStateChar('half-success');
+						if (this.currentWord[i].getStateChar() != "success")
+							this.currentWord[i].changeStateChar("half-success");
+						break;
+					} else {
+						resultCheckedChars[i] = "not-char";
+					}
+				}
+			}
+		}
+		// console.log(resultCheckedChars);
+		this.isVictory(resultCheckedChars, resultSQL);
+		this.newViewLine(resultCheckedChars);
+		this.createKeyboard(
+			this.currentlyKeyboard,
+			this.keyboard1,
+			this.keyboard2,
+			this.keyboard3,
+			this.keyboard4,
+			resultSQL
+		);
+		// });
+	}
 
-      // });
-    }   
+	isVictory(resultCheckedChars, resultSQL) {
+		// this.myPromise.then(result=>{
+		let i = 0;
+		resultCheckedChars.forEach((char) => {
+			if (char == "success") i++;
+		});
+		if (i == this.level) {
+			this.victory = true;
+			this.onceAgain(this.level, this.attempts);
+			// if (words.category == "?") whatCategoryDiv.classList.remove('hide');
+			if (resultSQL.category == "?") startSelectionCategory();
+		}
+		// });
+	}
 
-    checkWord(resultSQL) {
-      // this.myPromise.then(result => {
-        let resultCheckedChars = new Array(this.level);
-        let tempCurrentLine = [];
-        // console.log(this.level + ' -> checWord()');
-        // console.log(wordChars + ' -> checWord()');
-        this.currentLine.forEach(el => {
-            tempCurrentLine.push(el.innerHTML);
-        });
-          this.guessWordChars = resultSQL.word.split('');
-          console.log(this.guessWordChars);
+	newViewLine(resultCheckedChars) {
+		console.log(resultCheckedChars);
+		const parentLine = this.currentLine[0].parentNode;
+		for (let i = 0; i < this.level; i++) {
+			if (this.currentWord[i].getStateChar() != "success")
+				if (this.currentWord[i].getStateChar() != "half-success") {
+					this.currentWord[i].changeStateChar("not-char");
+				}
+			const divLetter = document.createElement("div");
+			if (this.victory)
+				divLetter.className = `one-letter ${resultCheckedChars[i]} heartly`;
+			else divLetter.className = `one-letter ${resultCheckedChars[i]}`;
+			divLetter.innerHTML = this.currentLine[i].innerHTML;
+			parentLine.appendChild(divLetter);
+		}
+	}
 
-        this.clearLine(this.currentLine);
-        for (let i = 0; i < this.level; i++) {
-            if (tempCurrentLine[i] == this.guessWordChars[i]) {
-              this.guessWordChars[i] = '-';
-                tempCurrentLine[i] = '!';
-                resultCheckedChars[i] = 'success';
-                // this.currentWord[i].stateChar = 'success';
-                this.currentWord[i].changeStateChar('success');
-            }}
-        for (let i = 0; i < this.level; i++) {
-            if (tempCurrentLine[i] != '!') {
-                for (let j = 0; j < this.level; j++) {
-                    if (tempCurrentLine[i] == this.guessWordChars[j]) {
-                      this.guessWordChars[j] = '-';
-                        resultCheckedChars[i] = 'half-success';
-                        // if ((this.currentWord[i].getStateChar() != 'success')) this.currentWord[i].changeStateChar('half-success');
-                        if ((this.currentWord[i].getStateChar() != 'success')) this.currentWord[i].changeStateChar('half-success');
-                        break;
-                    } else {
-                        resultCheckedChars[i] = 'not-char';
-                    }
-                }
-            }
-        }
-        // console.log(resultCheckedChars);
-        this.isVictory(resultCheckedChars, resultSQL);
-        this.newViewLine(resultCheckedChars);
-        this.createKeyboard(this.currentlyKeyboard, this.keyboard1, this.keyboard2, this.keyboard3, this.keyboard4, resultSQL);
-      // });
-      }   
-    
+	writeLetter(oneChar, resultSQL) {
+		const activeLetter = document.querySelector("div.current-letter");
+		if (activeLetter) {
+			let position = this.currentLine.indexOf(activeLetter);
+			if (this.currentLine[position].innerHTML == "") this.leftEmpty -= 1;
+			activeLetter.innerHTML = String.fromCharCode(oneChar.numberChar);
+			this.currentWord[position] = oneChar;
+			if (this.leftEmpty > 0) {
+				if (position == this.level - 1) position = 0;
+				while (this.currentLine[position].innerHTML != "") {
+					position += 1;
+					if (position == this.level) position = 0;
+				}
+				activeLetter.classList.remove("current-letter");
+				this.currentLine[position].classList.add("current-letter");
+			} else {
+				activeLetter.classList.remove("current-letter");
+				this.isOnlyWords(resultSQL);
+			}
+		}
+	}
 
-    isVictory(resultCheckedChars, resultSQL) {
-      // this.myPromise.then(result=>{
-      let i = 0;
-      resultCheckedChars.forEach(char => {
-        if (char == 'success') i++;
-      });
-      if (i == this.level) {
-        this.victory = true;
-        this.onceAgain(this.level, this.attempts);
-        // if (words.category == "?") whatCategoryDiv.classList.remove('hide');
-        if (resultSQL.category == "?") startSelectionCategory();
-      }
-    // });
-    }
+	delLetter() {
+		const activeLetter = document.querySelector("div.current-letter");
+		if (activeLetter) {
+			if (activeLetter.innerHTML != "") {
+				this.leftEmpty += 1;
+				activeLetter.innerHTML = String.fromCharCode(0);
+			} else {
+				let position = this.currentLine.indexOf(activeLetter);
+				if (position == 0) position = this.level - 1;
+				else position -= 1;
+				activeLetter.classList.remove("current-letter");
+				this.currentLine[position].classList.add("current-letter");
+				if (this.currentLine[position].innerHTML != "") {
+					this.leftEmpty += 1;
+					this.currentLine[position].innerHTML = String.fromCharCode(0);
+				}
+			}
+		}
+	}
 
+	returnGame() {
+		this.startCurrentLine();
+		this.leftEmpty = this.level;
+		document
+			.querySelector(".current-round")
+			.firstChild.classList.add("current-letter");
+		pOnlyWords.classList.remove("curtain-z-index");
+	}
 
-    newViewLine(resultCheckedChars) {
-      console.log(resultCheckedChars);
-      const parentLine = this.currentLine[0].parentNode;
-      for (let i = 0; i < this.level; i++) {
-        if (this.currentWord[i].getStateChar() != 'success')
-          if (this.currentWord[i].getStateChar() != 'half-success') {
-            this.currentWord[i].changeStateChar('not-char');
-          }
-        const divLetter = document.createElement('div');
-        if (this.victory) divLetter.className = `one-letter ${resultCheckedChars[i]} heartly`;
-          else divLetter.className = `one-letter ${resultCheckedChars[i]}`;
-        divLetter.innerHTML = this.currentLine[i].innerHTML;
-        parentLine.appendChild(divLetter);
-      }
-    }
+	delCurtainOnlyWords() {
+		if (this.isNotWord) {
+			this.returnGame();
+		} else {
+			this.delLetter();
+		}
+	}
 
+	changeKeyboard() {
+		if (this.currentlyKeyboard == this.alphabet)
+			this.currentlyKeyboard = this.qwerty;
+		else this.currentlyKeyboard = this.alphabet;
+		// console.log(this.gameWord.word);
+	}
 
-    writeLetter(oneChar, resultSQL) {
-        const activeLetter = document.querySelector('div.current-letter');
-        if (activeLetter) {
-            let position = this.currentLine.indexOf(activeLetter); 
-            if (this.currentLine[position].innerHTML == '') this.leftEmpty -= 1;
-            activeLetter.innerHTML = String.fromCharCode(oneChar.numberChar);
-            this.currentWord[position] = oneChar;
-            if (this.leftEmpty > 0) {
-              if (position == this.level - 1) position = 0;
-              while (this.currentLine[position].innerHTML != '') {
-                position += 1;
-                if (position == this.level) position = 0;
-              }
-              activeLetter.classList.remove('current-letter');
-              this.currentLine[position].classList.add('current-letter');
-            } else {
-                activeLetter.classList.remove('current-letter');
-                this.isOnlyWords(resultSQL);
-              }
-        }
-    }
+	createKeyboard(
+		lettersCheme,
+		keyboard1,
+		keyboard2,
+		keyboard3,
+		keyboard4,
+		resultSQL
+	) {
+		keyboard1.innerHTML = "";
+		keyboard2.innerHTML = "";
+		keyboard3.innerHTML = "";
+		keyboard4.innerHTML = "";
+		for (let i = 0; i < 10; i++) {
+			const button = document.createElement("button");
+			button.className = lettersCheme[i].getStateChar();
+			button.innerHTML = String.fromCharCode(lettersCheme[i].numberChar);
+			if (lettersCheme[i].getStateChar() != "not-char")
+				button.addEventListener("click", () =>
+					this.writeLetter(lettersCheme[i], resultSQL)
+				);
+			keyboard1.appendChild(button);
+		}
+		for (let i = 10; i < 19; i++) {
+			const button = document.createElement("button");
+			button.className = lettersCheme[i].getStateChar();
+			button.innerHTML = String.fromCharCode(lettersCheme[i].numberChar);
+			if (lettersCheme[i].getStateChar() != "not-char")
+				button.addEventListener("click", () =>
+					this.writeLetter(lettersCheme[i], resultSQL)
+				);
+			keyboard2.appendChild(button);
+		}
+		const divKeyboard = document.createElement("div");
+		divKeyboard.setAttribute("id", "keyboardScheme");
+		divKeyboard.className = "keyboard-scheme";
+		divKeyboard.innerHTML = '<i class="fas fa-keyboard"></i>';
+		divKeyboard.addEventListener("click", () => {
+			this.changeKeyboard();
+			this.createKeyboard(
+				this.currentlyKeyboard,
+				this.keyboard1,
+				this.keyboard2,
+				this.keyboard3,
+				this.keyboard4
+			);
+		});
+		keyboard3.appendChild(divKeyboard);
+		for (let i = 19; i < 26; i++) {
+			const button = document.createElement("button");
+			button.className = lettersCheme[i].getStateChar();
+			button.innerHTML = String.fromCharCode(lettersCheme[i].numberChar);
+			if (lettersCheme[i].getStateChar() != "not-char")
+				button.addEventListener("click", () =>
+					this.writeLetter(lettersCheme[i], resultSQL)
+				);
+			keyboard3.appendChild(button);
+		}
+		const divBackspace = document.createElement("div");
+		divBackspace.className = "back-space";
+		divBackspace.innerHTML = '<i class="fas fa-long-arrow-alt-left"></i>';
+		divBackspace.addEventListener("click", () => this.delCurtainOnlyWords());
+		keyboard3.appendChild(divBackspace);
+		for (let i = 26; i < 35; i++) {
+			const button = document.createElement("button");
+			button.className = lettersCheme[i].getStateChar();
+			button.innerHTML = String.fromCharCode(lettersCheme[i].numberChar);
+			if (lettersCheme[i].getStateChar() != "not-char")
+				button.addEventListener("click", () =>
+					this.writeLetter(lettersCheme[i], resultSQL)
+				);
+			keyboard4.appendChild(button);
+		}
+	}
 
+	changeLetter(element) {
+		this.currentLine.forEach((el) => {
+			el.classList.remove("current-letter");
+		});
+		if (!this.isNotWord) element.classList.add("current-letter");
+	}
 
-    delLetter() {
-        const activeLetter = document.querySelector('div.current-letter');
-        if (activeLetter) {
-            if (activeLetter.innerHTML != '') {
-              this.leftEmpty += 1;
-              activeLetter.innerHTML = String.fromCharCode(0);
-            } else {
-              let position = this.currentLine.indexOf(activeLetter);
-              if (position == 0) position = this.level - 1;
-              else position -= 1;
-              activeLetter.classList.remove('current-letter');
-              this.currentLine[position].classList.add('current-letter');
-              if (this.currentLine[position].innerHTML != '') {
-                this.leftEmpty += 1;
-                this.currentLine[position].innerHTML = String.fromCharCode(0);
-              }
-            }
-        } 
-    }
+	createStartPlaceGame(level, attempts, wrapper) {
+		wrapper.innerHTML = "";
+		// for ( let i = 0; i < level + 1; i++){
+		for (let i = 0; i < attempts; i++) {
+			const divLine = document.createElement("div");
+			if (i == 0) divLine.className = "line current-round";
+			else divLine.className = "line";
+			for (let j = 0; j < level; j++) {
+				const divLetter = document.createElement("div");
+				if (j == 0 && i == 0) divLetter.className = "one-letter current-letter";
+				else divLetter.className = "one-letter";
+				if (i == 0) {
+					divLetter.addEventListener("click", () =>
+						this.changeLetter(divLetter)
+					);
+				}
+				divLine.appendChild(divLetter);
+			}
+			wrapper.appendChild(divLine);
+		}
+		this.createCurrentLine();
+	}
 
-    returnGame() {
-      this.startCurrentLine();
-      this.leftEmpty = this.level;
-      document.querySelector('.current-round').firstChild.classList.add('current-letter');
-      pOnlyWords.classList.remove('curtain-z-index');
-    }
+	createInfoOnlyWords() {
+		const divOnlyWords = document.createElement("div");
+		divOnlyWords.className = "not-word hide";
+		const pInfo = document.createElement("p");
+		pInfo.innerHTML = "Nie ma takiego słowa";
+		divOnlyWords.appendChild(pInfo);
+		document.querySelector(".only-words").appendChild(divOnlyWords);
+	}
 
-    delCurtainOnlyWords() {
-      if (this.isNotWord) {
-        this.returnGame();
-      } else {
-        this.delLetter();
-      }
-    }
+	createCurrentLine() {
+		this.currentLine = document.querySelectorAll(".current-round .one-letter");
+		this.currentLine = [...this.currentLine];
+		this.currentLine.forEach((element) => {
+			element.addEventListener("click", () => this.changeLetter(element));
+		});
+		this.leftEmpty = this.level;
+	}
 
+	showWord(word) {
+		const resultDiv = document.getElementById("resultWord");
+		if (word != "") {
+			resultDiv.classList.add("result-word");
+			resultDiv.innerHTML = `Szukane słowo: <p>${word}</p>`;
+		} else {
+			resultDiv.innerHTML = ``;
+		}
+	}
 
-    changeKeyboard() {
-        if (this.currentlyKeyboard == this.alphabet) this.currentlyKeyboard = this.qwerty;
-        else this.currentlyKeyboard = this.alphabet;
-        // console.log(this.gameWord.word);
-    }
+	createActiveRound() {
+		let listRounds = document.querySelectorAll("#wordGame .line");
+		listRounds = [...listRounds];
+		for (let i = 0; i < listRounds.length; i++) {
+			if (listRounds[i].className == "line current-round") {
+				listRounds[i].classList.remove("current-round");
+				if (i < listRounds.length - 1) {
+					listRounds[i + 1].classList.add("current-round");
+					listRounds[i + 1].firstChild.classList.add("current-letter");
+					this.createCurrentLine();
+				} else {
+					// this.showWord(this.guessWord);
+					this.showWord(this.gameWord.word);
+					this.onceAgain(this.level, this.attempts);
+					// if (words.category == "?") whatCategoryDiv.classList.remove('hide');
+					// if (words.category == "?") startSelectionCategory();
+					if (this.gameWord.category == "?") startSelectionCategory();
+				}
+				break;
+			}
+		}
+	}
 
+	onceAgain(quantity, attempts) {
+		onceAgainSection.classList.remove("hide");
+		divOnlyWords.classList.add("curtain-only-words");
+		pOnlyWords.classList.add("curtain");
+		pOnlyWords.classList.add("curtain-z-index");
+		// document.querySelector('.back-space').classList.add('back-space-z-index');
+		// document.querySelector('.back-space').style.zIndex = '0';
+		// console.log(document.querySelector('.back-space'));
+		const onceAgainDiv = document.querySelector("#onceAgain div");
+		// console.log(onceAgainDiv);
+		onceAgainDiv.addEventListener("click", () => {
+			onceAgainSection.classList.add("hide");
+			this.run(quantity, attempts);
+		});
+		// document.querySelector('.back-space').classList.add('back-space-z-index');
+	}
 
-     createKeyboard(lettersCheme, keyboard1, keyboard2, keyboard3, keyboard4, resultSQL) {
-      keyboard1.innerHTML = '';
-      keyboard2.innerHTML = '';
-      keyboard3.innerHTML = '';
-      keyboard4.innerHTML = '';
-      for (let i = 0; i < 10; i++) {
-        const button = document.createElement('button');
-        button.className = lettersCheme[i].getStateChar();
-        button.innerHTML = String.fromCharCode(lettersCheme[i].numberChar);
-        if (lettersCheme[i].getStateChar() != 'not-char') button.addEventListener('click', () => this.writeLetter(lettersCheme[i], resultSQL));
-        keyboard1.appendChild(button);
-      }
-      for (let i = 10; i < 19; i++) {
-        const button = document.createElement('button');
-        button.className = lettersCheme[i].getStateChar();
-        button.innerHTML = String.fromCharCode(lettersCheme[i].numberChar);
-        if (lettersCheme[i].getStateChar() != 'not-char') button.addEventListener('click', () => this.writeLetter(lettersCheme[i], resultSQL));
-        keyboard2.appendChild(button);
-      }
-      const divKeyboard = document.createElement('div');
-      divKeyboard.setAttribute('id', 'keyboardScheme');
-      divKeyboard.className='keyboard-scheme';
-      divKeyboard.innerHTML = '<i class="fas fa-keyboard"></i>';
-      divKeyboard.addEventListener('click', () =>{
-        this.changeKeyboard();
-        this.createKeyboard(this.currentlyKeyboard, this.keyboard1, this.keyboard2, this.keyboard3, this.keyboard4);
-      });
-      keyboard3.appendChild(divKeyboard);
-      for (let i = 19; i < 26; i++) {
-        const button = document.createElement('button');
-        button.className = lettersCheme[i].getStateChar();
-        button.innerHTML = String.fromCharCode(lettersCheme[i].numberChar);
-        if (lettersCheme[i].getStateChar() != 'not-char') button.addEventListener('click', () => this.writeLetter(lettersCheme[i], resultSQL));
-        keyboard3.appendChild(button);
-      }
-      const divBackspace = document.createElement('div');
-      divBackspace.className = 'back-space';
-      divBackspace.innerHTML = '<i class="fas fa-long-arrow-alt-left"></i>';
-      divBackspace.addEventListener('click', () => this.delCurtainOnlyWords());
-      keyboard3.appendChild(divBackspace);
-      for (let i = 26; i < 35; i++) {
-        const button = document.createElement('button');
-        button.className = lettersCheme[i].getStateChar();
-        button.innerHTML = String.fromCharCode(lettersCheme[i].numberChar);
-        if (lettersCheme[i].getStateChar() != 'not-char') button.addEventListener('click', () => this.writeLetter(lettersCheme[i], resultSQL));
-        keyboard4.appendChild(button);
-      }
-    }
-
-    
-    changeLetter(element) {
-      this.currentLine.forEach(el => {
-        el.classList.remove('current-letter')
-      });
-      if (!this.isNotWord) element.classList.add('current-letter');
-    }
-
-
-    createStartPlaceGame(level, attempts, wrapper) {
-      wrapper.innerHTML = '';
-        // for ( let i = 0; i < level + 1; i++){
-        for ( let i = 0; i < attempts; i++){
-            const divLine = document.createElement('div');
-            if (i == 0) divLine.className = 'line current-round';
-            else divLine.className = 'line';
-            for ( let j = 0; j < level; j++){
-                const divLetter = document.createElement('div');
-                if ((j == 0) && (i == 0)) divLetter.className = 'one-letter current-letter';
-                else divLetter.className = 'one-letter';
-                if (i == 0) {
-                  divLetter.addEventListener('click', () => this.changeLetter(divLetter));
-                }
-                divLine.appendChild(divLetter);
-            }
-            wrapper.appendChild(divLine);
-        }
-        this.createCurrentLine();
-    }
-
-    
-    createInfoOnlyWords() {
-      const divOnlyWords = document.createElement('div');
-      divOnlyWords.className = 'not-word hide';
-      const pInfo = document.createElement('p');
-      pInfo.innerHTML = 'Nie ma takiego słowa'
-      divOnlyWords.appendChild(pInfo);
-      document.querySelector('.only-words').appendChild(divOnlyWords);
-    }
-
-
-    createCurrentLine() {
-      this.currentLine = document.querySelectorAll('.current-round .one-letter');
-      this.currentLine = [...this.currentLine];
-      this.currentLine.forEach(element => {
-          element.addEventListener('click', () => this.changeLetter(element));
-      });
-      this.leftEmpty = this.level;
-    }
-
-
-    showWord(word) {
-      const resultDiv = document.getElementById('resultWord');
-      if (word != '') {
-        resultDiv.classList.add('result-word');
-        resultDiv.innerHTML = `Szukane słowo: <p>${word}</p>`;
-      } else {
-        resultDiv.innerHTML = ``;
-      }
-    }
-
-
-    createActiveRound() {
-      let listRounds = document.querySelectorAll('#wordGame .line');
-      listRounds = [...listRounds];
-      for (let i = 0; i < listRounds.length; i++) {
-          if (listRounds[i].className == 'line current-round') {
-            listRounds[i].classList.remove('current-round');
-            if (i < listRounds.length -1) {
-              listRounds[i + 1].classList.add('current-round');
-              listRounds[i + 1].firstChild.classList.add('current-letter');
-              this.createCurrentLine();
-              } else {
-                // this.showWord(this.guessWord);
-                this.showWord(this.gameWord.word);
-                this.onceAgain(this.level, this.attempts);
-                // if (words.category == "?") whatCategoryDiv.classList.remove('hide');
-                // if (words.category == "?") startSelectionCategory();
-                if (this.gameWord.category == "?") startSelectionCategory();
-                }
-              break;
-          }
-      }
-  }
-
-
-    onceAgain(quantity, attempts) {
-      onceAgainSection.classList.remove('hide');
-      divOnlyWords.classList.add('curtain-only-words');
-      pOnlyWords.classList.add('curtain');
-      pOnlyWords.classList.add('curtain-z-index');
-      // document.querySelector('.back-space').classList.add('back-space-z-index');
-      // document.querySelector('.back-space').style.zIndex = '0';
-      // console.log(document.querySelector('.back-space'));
-      const onceAgainDiv = document.querySelector('#onceAgain div');
-      // console.log(onceAgainDiv);
-      onceAgainDiv.addEventListener('click', () =>{
-        onceAgainSection.classList.add('hide');
-        this.run(quantity, attempts);
-      });
-      // document.querySelector('.back-space').classList.add('back-space-z-index');
-    }
-
-
-    run(level, attempts) {
-      this.myPromise = new Promise((resolve, reject) => {
-        $.post( "./php/readWordWithBaseSQL.php", {nameBase: level + '-letters'}, function(dataSQL) {
-          resolve(dataSQL);
-          console.log('promise - zapytanie wykonane.');
-          }, "json")
-          .fail(function() {
-            console.log( "promise - błąd odczytu z bazy !!!" );
-            // this.changeOnlyWords(false);
-            const dataFile = randomWordSelection(level);
-            // let dataSQL = {word: 'BANAN', category: 'Roślina', game: true, description: 'Owoc tropikalny', countWords: 0};
-            reject(dataFile);
-        });
-    });
-    this.myPromise.then(resultSQL=>{
-      this.startParameters(level, attempts, resultSQL);
-      this.createKeyboard(this.currentlyKeyboard, this.keyboard1, this.keyboard2, this.keyboard3, this.keyboard4, resultSQL);
-      this.createStartPlaceGame(level, attempts, this.wordGameWrapper, resultSQL);
-      this.returnGame(resultSQL);
-    }).catch(resultFile=>{
-        this.startParameters(level, attempts, resultFile);
-        // this.changeOnlyWords(false);
-        this.createKeyboard(this.currentlyKeyboard, this.keyboard1, this.keyboard2, this.keyboard3, this.keyboard4, resultFile);
-        this.createStartPlaceGame(level, attempts, this.wordGameWrapper, resultFile);
-        this.returnGame(resultFile);
-      });
-    }
-
+	run(level, attempts) {
+		this.myPromise = new Promise((resolve, reject) => {
+			$.post(
+				"./php/readWordWithBaseSQL.php",
+				{ nameBase: level + "-letters" },
+				function (dataSQL) {
+					resolve(dataSQL);
+					console.log("promise - zapytanie wykonane.");
+				},
+				"json"
+			).fail(function () {
+				console.log("promise - błąd odczytu z bazy !!!");
+				// this.changeOnlyWords(false);
+				const dataFile = randomWordSelection(level);
+				// let dataSQL = {word: 'BANAN', category: 'Roślina', game: true, description: 'Owoc tropikalny', countWords: 0};
+				reject(dataFile);
+			});
+		});
+		this.myPromise
+			.then((resultSQL) => {
+				this.startParameters(level, attempts, resultSQL);
+				this.createKeyboard(
+					this.currentlyKeyboard,
+					this.keyboard1,
+					this.keyboard2,
+					this.keyboard3,
+					this.keyboard4,
+					resultSQL
+				);
+				this.createStartPlaceGame(
+					level,
+					attempts,
+					this.wordGameWrapper,
+					resultSQL
+				);
+				this.returnGame(resultSQL);
+			})
+			.catch((resultFile) => {
+				this.startParameters(level, attempts, resultFile);
+				// this.changeOnlyWords(false);
+				this.createKeyboard(
+					this.currentlyKeyboard,
+					this.keyboard1,
+					this.keyboard2,
+					this.keyboard3,
+					this.keyboard4,
+					resultFile
+				);
+				this.createStartPlaceGame(
+					level,
+					attempts,
+					this.wordGameWrapper,
+					resultFile
+				);
+				this.returnGame(resultFile);
+			});
+	}
 }
 
-function randomWord(data){
-  numberWords = data.length;
-  // console.log(dataWorks[Math.floor(Math.random()*dataWorks.length)]);
-  return data[Math.floor(Math.random()*data.length)];
-};
+function randomWord(data) {
+	numberWords = data.length;
+	// console.log(dataWorks[Math.floor(Math.random()*dataWorks.length)]);
+	return data[Math.floor(Math.random() * data.length)];
+}
 
-function randomWordSelection(level){
-  let dataWithFile = [];
-    switch (level) {
-      case 5:
-        dataWithFile = words5Letters;
-        break;
-      case 6:
-        dataWithFile = words6Letters;
-        break;
-      case 7:
-        dataWithFile = words7Letters;
-        break;
-      case 8:
-        dataWithFile = words8Letters;
-        break;
-      case 9:
-        dataWithFile = words9Letters;
-        break;
-    }
-  const tempData = randomWord(dataWithFile);
-  const  dataFile = {word: tempData.word, category: tempData.category, game: true, description: tempData.description, countWords: numberWords};
-  return dataFile;
-};
+function randomWordSelection(level) {
+	let dataWithFile = [];
+	switch (level) {
+		case 5:
+			dataWithFile = words5Letters;
+			break;
+		case 6:
+			dataWithFile = words6Letters;
+			break;
+		case 7:
+			dataWithFile = words7Letters;
+			break;
+		case 8:
+			dataWithFile = words8Letters;
+			break;
+		case 9:
+			dataWithFile = words9Letters;
+			break;
+	}
+	const tempData = randomWord(dataWithFile);
+	const dataFile = {
+		word: tempData.word,
+		category: tempData.category,
+		game: true,
+		description: tempData.description,
+		countWords: numberWords,
+	};
+	return dataFile;
+}
 
 const appGame = new AppGame({
-    lettersWrapper: document.getElementById("letters"),
-    categoryWrapper: document.querySelector("#category p"),
-    wordGameWrapper: document.getElementById("wordGame"),
-    keyboardScheme: document.getElementById("keyboardScheme"),
-    keyboard1: document.getElementById("keyboard1"),
-    keyboard2: document.getElementById("keyboard2"),
-    keyboard3: document.getElementById("keyboard3"),
-    keyboard4: document.getElementById("keyboard4"),
-    // dataLetters: wordsLetters,
+	lettersWrapper: document.getElementById("letters"),
+	categoryWrapper: document.querySelector("#category p"),
+	wordGameWrapper: document.getElementById("wordGame"),
+	keyboardScheme: document.getElementById("keyboardScheme"),
+	keyboard1: document.getElementById("keyboard1"),
+	keyboard2: document.getElementById("keyboard2"),
+	keyboard3: document.getElementById("keyboard3"),
+	keyboard4: document.getElementById("keyboard4"),
+	// dataLetters: wordsLetters,
 });
 
 appGame.run(5, 6);
