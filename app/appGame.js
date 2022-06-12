@@ -21,6 +21,7 @@ class Word {
 let numberWords;
 let stringWords;
 let titleButtonLongWord;
+let wordVictory;
 
 // const categoryWrapper = document.querySelector("#category p");
 const longWordButton = document.getElementById("longWord");
@@ -60,12 +61,12 @@ stringChars.addEventListener("click", () => {
 	appGame.changeOnlyWords(false, "(dowolny ciąg liter)");
 });
 
-class Category {
-	constructor({ whatCategoryDiv, whatCategoryElements }) {
-		this.whatCategoryDiv = whatCategoryDiv;
-		this.whatCategoryElements = whatCategoryElements;
-	}
-}
+// class Category {
+// 	constructor({ whatCategoryDiv, whatCategoryElements }) {
+// 		this.whatCategoryDiv = whatCategoryDiv;
+// 		this.whatCategoryElements = whatCategoryElements;
+// 	}
+// }
 
 function convertTextCategory(text) {
 	text = text.toLowerCase();
@@ -154,11 +155,11 @@ class AppGame {
 		keyboard4,
 		dataLetters,
 	}) {
-		this.placeCatefory = new Category({
-			whatCategoryDiv: document.querySelector(".what-category"),
-			whatCategoryElements: document.querySelectorAll("[category]"),
-		});
-		console.log(this.placeCatefory);
+		// this.placeCatefory = new Category({
+		// 	whatCategoryDiv: document.querySelector(".what-category"),
+		// 	whatCategoryElements: document.querySelectorAll("[category]"),
+		// });
+		// console.log(this.placeCatefory);
 		this.lettersWrapper = lettersWrapper;
 		this.categoryWrapper = categoryWrapper;
 		this.wordGameWrapper = wordGameWrapper;
@@ -736,6 +737,8 @@ class AppGame {
 	}
 
 	onceAgain(quantity, attempts) {
+    wordVictory = this.gameWord.word;
+    console.log(wordVictory);
 		onceAgainSection.classList.remove("hide");
 		divOnlyWords.classList.add("curtain-only-words");
 		pOnlyWords.classList.add("curtain");
