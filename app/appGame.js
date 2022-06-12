@@ -60,6 +60,13 @@ stringChars.addEventListener("click", () => {
 	appGame.changeOnlyWords(false, "(dowolny ciąg liter)");
 });
 
+class Category {
+	constructor({ whatCategoryDiv, whatCategoryElements }) {
+		this.whatCategoryDiv = whatCategoryDiv;
+		this.whatCategoryElements = whatCategoryElements;
+	}
+}
+
 function convertTextCategory(text) {
 	text = text.toLowerCase();
 	const tab = [...text];
@@ -147,6 +154,11 @@ class AppGame {
 		keyboard4,
 		dataLetters,
 	}) {
+		this.placeCatefory = new Category({
+			whatCategoryDiv: document.querySelector(".what-category"),
+			whatCategoryElements: document.querySelectorAll("[category]"),
+		});
+		console.log(this.placeCatefory);
 		this.lettersWrapper = lettersWrapper;
 		this.categoryWrapper = categoryWrapper;
 		this.wordGameWrapper = wordGameWrapper;
@@ -157,13 +169,10 @@ class AppGame {
 		this.keyboard4 = keyboard4;
 		this.dataLetters = dataLetters;
 		this.numbersChar = [
-			65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79,
-			//                 0   1   2    3   4   5   6   7  8    9   10  11  12  13   14
-			80,
-			81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 211, 260, 262, 280, 321, 323, 346,
-			377, 379,
+			65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82,
+			83, 84, 85, 86, 87, 88, 89, 90, 211, 260, 262, 280, 321, 323, 346, 377,
+			379,
 		];
-		//15  16   17  18   19 20   21 22  23  24  25   26   27   28   29   30   31  32  33    34
 		this.charsObject;
 		this.alphabet;
 		this.qwerty;
