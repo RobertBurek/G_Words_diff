@@ -22,7 +22,7 @@ let numberWords;
 let stringWords;
 let titleButtonLongWord;
 
-const categoryWrapper = document.querySelector("#category p");
+// const categoryWrapper = document.querySelector("#category p");
 const longWordButton = document.getElementById('longWord');
 const fillingButton = document.getElementById('filling');
 const setting5Letters = document.getElementById('5letters');
@@ -77,10 +77,11 @@ whatCategoryElements.forEach(element => {
     disableWhatCategory();
     element.classList.remove('what-category-disabled');
     element.classList.add('what-category-focus');
-        var dataWord = { category: convertTextCategory(element.innerHTML), word: words.word, longWord: words.word.length }
-        $.post( "./php/category.php", dataWord);
+        // var dataWord = { category: convertTextCategory(element.innerHTML), word: this.gameWord.word, longWord: this.gameWord.word.length }
+        // $.post( "./php/category.php", dataWord);
     whatCategoryDiv.classList.add('hide');
     document.querySelector("#category p").innerHTML = 'KATEGORIA:  ' + convertTextCategory(element.innerHTML);
+    // this.categoryWrapper.innerHTML = 'KATEGORIA:  ' + convertTextCategory(element.innerHTML);
     document.querySelector("#category").style.cursor = "pointer";
     document.querySelector("#category").addEventListener('click', changeCategoryStyle);
   });
@@ -97,6 +98,7 @@ function disableWhatCategory() {
     el.classList.add('what-category-disabled');
   })
 }
+
 
 function startSelectionCategory() {
   whatCategoryDiv.classList.remove('hide');
@@ -192,7 +194,9 @@ class AppGame {
 
     readWordsWithBase(resultSQL){
         this.gameWord = new Word(resultSQL.word, resultSQL.category, true, resultSQL.description);
-        console.log(this.gameWord.word);
+        // this.categoryWrapper.innerHTML = resultSQL.category;
+        this.categoryWrapper.innerHTML = 'KATEGORIA:  ' + convertTextCategory(resultSQL.category);
+        console.log(this.gameWord.word + '  -  ' + resultSQL.category);
     }
 
 
@@ -806,7 +810,7 @@ function randomWordSelection(level){
 
 const appGame = new AppGame({
     lettersWrapper: document.getElementById("letters"),
-    // categoryWrapper: document.querySelector("#category p"),
+    categoryWrapper: document.querySelector("#category p"),
     wordGameWrapper: document.getElementById("wordGame"),
     keyboardScheme: document.getElementById("keyboardScheme"),
     keyboard1: document.getElementById("keyboard1"),
