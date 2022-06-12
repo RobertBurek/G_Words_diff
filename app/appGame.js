@@ -83,8 +83,24 @@ whatCategoryElements.forEach((element) => {
 		disableWhatCategory();
 		element.classList.remove("what-category-disabled");
 		element.classList.add("what-category-focus");
-		// var dataWord = { category: convertTextCategory(element.innerHTML), word: this.gameWord.word, longWord: this.gameWord.word.length }
-		// $.post( "./php/category.php", dataWord);
+		var dataWord = {
+			category: convertTextCategory(element.innerHTML),
+			word: wordVictory,
+			longWord: 5,
+		};
+		console.log(dataWord);
+		$.post(
+			"./php/writeCategoryInBaseSQL.php",
+			{ nameBase: wordVictory.length + "-letters", isWord: wordVictory, category: convertTextCategory(element.innerHTML)},
+			function (dataSQL) {
+				// resolve(dataSQL);
+				console.log(dataSQL);
+				console.log("Szukanie słowa odbyło się !!!");
+			},
+			"json"
+		).fail(function () {
+			$.post("./php/category.php", dataWord);
+		});
 		whatCategoryDiv.classList.add("hide");
 		document.querySelector("#category p").innerHTML =
 			"KATEGORIA:  " + convertTextCategory(element.innerHTML);
@@ -737,8 +753,8 @@ class AppGame {
 	}
 
 	onceAgain(quantity, attempts) {
-    wordVictory = this.gameWord.word;
-    console.log(wordVictory);
+		wordVictory = this.gameWord.word;
+		console.log(wordVictory);
 		onceAgainSection.classList.remove("hide");
 		divOnlyWords.classList.add("curtain-only-words");
 		pOnlyWords.classList.add("curtain");
