@@ -92,10 +92,11 @@ whatCategoryElements.forEach((element) => {
 			function (dataSQL) {
 				// resolve(dataSQL);
 				console.log(dataSQL);
-				console.log("Szukanie słowa odbyło się !!!");
+				console.log("Zapis kategorii w bazie SQL !!!");
 			},
 			"json"
-		).fail(function () {
+		).fail(function (date) {
+      console.log(date);
 			$.post("./php/category.php", dataWord);
 		});
 		whatCategoryDiv.classList.add("hide");

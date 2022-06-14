@@ -12,21 +12,25 @@
 		echo "Error: ".$connection->connect_erno." Opis: ".$connection->connect_error;
 	}
 	else {
-		// $resultIsWord = $coni_realnection->query(sprintf( "SELECT COUNT(*) FROM `%s` WHERE `%s`.`Word` = '%s'",
-		// 				mysqli_real_escape_string($connection, $nameBase),
-		// 				mysqli_real_escape_string($connection, $nameBase),
-		// 				mysql_escape_string($connection, $isWord)));
+		$resultUpdateCategory = $connection->query(sprintf( "UPDATE `%s` SET `Category` = '%s' WHERE `%s`.`Word` = '%s';",
+						mysqli_real_escape_string($connection, $nameBase),
+						mysqli_real_escape_string($connection, $category),
+						mysqli_real_escape_string($connection, $nameBase),
+						mysqli_real_escape_string($connection, $isWord)));
 
-		$resultIsWord = true;
+		// UPDATE `5-letters` SET `Category` = 'ds' WHERE `5-letters`.`Word` = 'ABACE';
+
+		// $resultIsWord = true;
 
 		// $countIsWord = $resultIsWord->fetch_assoc();
-		if ($resultIsWord) {
+		// if ($resultUpdateCategory) {
+		if (true) {
 			$res = true;
 		} else {
 			$res = false;
 		}
 
-		echo json_encode(array("res"=>$res, "base"=>$nameBase));
+		echo json_encode(array("res"=>$res, "base"=>$nameBase, "result"=>$resultUpdateCategory));
     }
     $connection->close();
 ?>
