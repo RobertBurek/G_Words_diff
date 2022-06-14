@@ -61,13 +61,6 @@ stringChars.addEventListener("click", () => {
 	appGame.changeOnlyWords(false, "(dowolny ciąg liter)");
 });
 
-// class Category {
-// 	constructor({ whatCategoryDiv, whatCategoryElements }) {
-// 		this.whatCategoryDiv = whatCategoryDiv;
-// 		this.whatCategoryElements = whatCategoryElements;
-// 	}
-// }
-
 function convertTextCategory(text) {
 	text = text.toLowerCase();
 	const tab = [...text];
@@ -86,12 +79,16 @@ whatCategoryElements.forEach((element) => {
 		var dataWord = {
 			category: convertTextCategory(element.innerHTML),
 			word: wordVictory,
-			longWord: 5,
+			longWord: wordVictory.length,
 		};
 		console.log(dataWord);
 		$.post(
 			"./php/writeCategoryInBaseSQL.php",
-			{ nameBase: wordVictory.length + "-letters", isWord: wordVictory, category: convertTextCategory(element.innerHTML)},
+			{
+				nameBase: wordVictory.length + "-letters",
+				isWord: wordVictory,
+				category: convertTextCategory(element.innerHTML),
+			},
 			function (dataSQL) {
 				// resolve(dataSQL);
 				console.log(dataSQL);
@@ -171,11 +168,6 @@ class AppGame {
 		keyboard4,
 		dataLetters,
 	}) {
-		// this.placeCatefory = new Category({
-		// 	whatCategoryDiv: document.querySelector(".what-category"),
-		// 	whatCategoryElements: document.querySelectorAll("[category]"),
-		// });
-		// console.log(this.placeCatefory);
 		this.lettersWrapper = lettersWrapper;
 		this.categoryWrapper = categoryWrapper;
 		this.wordGameWrapper = wordGameWrapper;
