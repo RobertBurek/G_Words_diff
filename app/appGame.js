@@ -95,8 +95,8 @@ whatCategoryElements.forEach((element) => {
 				console.log("Zapis kategorii w bazie SQL !!!  W tabeli: " + dataSQL.base);
 			},
 			"json"
-		).fail(function (date) {
-      console.log(date);
+		).fail(function () {
+      // console.log(date);
 			$.post("./php/category.php", dataWord);
 		});
 		whatCategoryDiv.classList.add("hide");
