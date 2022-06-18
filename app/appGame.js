@@ -741,16 +741,11 @@ class AppGame {
 		divOnlyWords.classList.add("curtain-only-words");
 		pOnlyWords.classList.add("curtain");
 		pOnlyWords.classList.add("curtain-z-index");
-		// document.querySelector('.back-space').classList.add('back-space-z-index');
-		// document.querySelector('.back-space').style.zIndex = '0';
-		// console.log(document.querySelector('.back-space'));
 		const onceAgainDiv = document.querySelector("#onceAgain div");
-		// console.log(onceAgainDiv);
 		onceAgainDiv.addEventListener("click", () => {
 			onceAgainSection.classList.add("hide");
 			this.run(quantity, attempts);
 		});
-		// document.querySelector('.back-space').classList.add('back-space-z-index');
 	}
 
 	run(level, attempts) {
