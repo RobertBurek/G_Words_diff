@@ -92,7 +92,7 @@ whatCategoryElements.forEach((element) => {
 			function (dataSQL) {
 				// resolve(dataSQL);
 				console.log(dataSQL);
-				console.log("Zapis kategorii w bazie SQL !!!");
+				console.log("Zapis kategorii w bazie SQL !!!  W tabeli: " + dataSQL.base);
 			},
 			"json"
 		).fail(function (date) {

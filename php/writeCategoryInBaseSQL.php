@@ -18,19 +18,7 @@
 						mysqli_real_escape_string($connection, $nameBase),
 						mysqli_real_escape_string($connection, $isWord)));
 
-		// UPDATE `5-letters` SET `Category` = 'ds' WHERE `5-letters`.`Word` = 'ABACE';
-
-		// $resultIsWord = true;
-
-		// $countIsWord = $resultIsWord->fetch_assoc();
-		// if ($resultUpdateCategory) {
-		if (true) {
-			$res = true;
-		} else {
-			$res = false;
-		}
-
-		echo json_encode(array("res"=>$res, "base"=>$nameBase, "result"=>$resultUpdateCategory));
+		echo json_encode(array("res"=>$resultUpdateCategory, "base"=>$nameBase));
     }
     $connection->close();
 ?>
