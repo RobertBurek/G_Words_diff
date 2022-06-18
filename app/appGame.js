@@ -90,14 +90,13 @@ whatCategoryElements.forEach((element) => {
 				category: convertTextCategory(element.innerHTML),
 			},
 			function (dataSQL) {
-				// resolve(dataSQL);
-				console.log(dataSQL);
-				console.log("Zapis kategorii w bazie SQL !!!  W tabeli: " + dataSQL.base);
+				// console.log(dataSQL);
+				console.log("Zapis kategorii w bazie SQL !!!  W tabeli: " + dataSQL.nameTable);
 			},
 			"json"
 		).fail(function () {
-      // console.log(date);
 			$.post("./php/category.php", dataWord);
+      console.log("Błąd zapisu w bazie SQL - zapis kategorii do pliku !!!");
 		});
 		whatCategoryDiv.classList.add("hide");
 		document.querySelector("#category p").innerHTML =

@@ -4,7 +4,7 @@
 	$isWord = $_POST['isWord'];
 	$category = $_POST['category'];
 
-	// require_once "connect.php";
+	require_once "connect.php";
 	
 	$connection = @new mysqli($host,$db_user,$db_password,$db_name);
 	if ($connection->connect_errno!=0)
@@ -18,7 +18,7 @@
 						mysqli_real_escape_string($connection, $nameBase),
 						mysqli_real_escape_string($connection, $isWord)));
 
-		echo json_encode(array("res"=>$resultUpdateCategory, "base"=>$nameBase));
+		echo json_encode(array("res"=>$resultUpdateCategory, "nameTable"=>$nameBase));
     }
     $connection->close();
 ?>
