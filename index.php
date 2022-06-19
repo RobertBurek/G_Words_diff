@@ -1,3 +1,12 @@
+<?php
+
+@session_start();
+if ((isset($_SESSION['logged'])) && ($_SESSION['logged'] == true)) {
+    @$namePlayer = $_SESSION['player'];
+}
+if (isset($_SESSION['errorConnect'])) unset($_SESSION['errorConnect']);
+?>
+
 <!DOCTYPE html>
 <html lang="pl">
 
@@ -9,7 +18,9 @@
     <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"> -->
     <script src="https://kit.fontawesome.com/1085229b76.js" crossorigin="anonymous"></script>
     <!-- <link rel="stylesheet" href="css/style.css"> -->
-    <script>document.write('<link rel="stylesheet" href="css/style.css?ver=' + Math.floor(Math.random() * 1000) + '"\>');</script>
+    <script>
+        document.write('<link rel="stylesheet" href="css/style.css?ver=' + Math.floor(Math.random() * 1000) + '"\>');
+    </script>
     <!-- <script src="https://kit.fontawesome.com/1085229b76.js" crossorigin="anonymous"></script> -->
 
     <script src="./app/jquery.min.js"></script>
@@ -147,28 +158,17 @@
                 <div>Jeszcze raz?</div>
             </div>
             <div id="keyboard1" class="keyboard1">
-                <button class="normal">A</button><button class="normal">Ą</button><button
-                    class="normal">B</button><button class="normal">C</button><button class="normal">Ć</button><button
-                    class="normal">D</button><button class="normal">E</button><button class="normal">Ę</button><button
-                    class="normal">F</button><button class="normal">G</button>
+                <button class="normal">A</button><button class="normal">Ą</button><button class="normal">B</button><button class="normal">C</button><button class="normal">Ć</button><button class="normal">D</button><button class="normal">E</button><button class="normal">Ę</button><button class="normal">F</button><button class="normal">G</button>
             </div>
             <div id="keyboard2" class="keyboard2">
-                <button class="normal">H</button><button class="normal">I</button><button
-                    class="normal">J</button><button class="normal">K</button><button class="normal">L</button><button
-                    class="normal">Ł</button><button class="normal">M</button><button class="normal">N</button><button
-                    class="normal">Ń</button>
+                <button class="normal">H</button><button class="normal">I</button><button class="normal">J</button><button class="normal">K</button><button class="normal">L</button><button class="normal">Ł</button><button class="normal">M</button><button class="normal">N</button><button class="normal">Ń</button>
             </div>
             <div id="keyboard3" class="keyboard3">
                 <div id="keyboardScheme" class="keyboard-scheme"><i class="fas fa-keyboard" aria-hidden="true"></i>
-                </div><button class="normal">O</button><button class="normal">Ó</button><button
-                    class="normal">P</button><button class="normal">Q</button><button class="normal">R</button><button
-                    class="normal">S</button><button class="normal">Ś</button>
+                </div><button class="normal">O</button><button class="normal">Ó</button><button class="normal">P</button><button class="normal">Q</button><button class="normal">R</button><button class="normal">S</button><button class="normal">Ś</button>
                 <div class="back-space"><i class="fas fa-long-arrow-alt-left" aria-hidden="true"></i></div>
             </div>
-            <div id="keyboard4" class="keyboard4"><button class="normal">T</button><button
-                    class="normal">U</button><button class="normal">V</button><button class="normal">W</button><button
-                    class="normal">X</button><button class="normal">Y</button><button class="normal">Z</button><button
-                    class="normal">Ź</button><button class="normal">Ż</button>
+            <div id="keyboard4" class="keyboard4"><button class="normal">T</button><button class="normal">U</button><button class="normal">V</button><button class="normal">W</button><button class="normal">X</button><button class="normal">Y</button><button class="normal">Z</button><button class="normal">Ź</button><button class="normal">Ż</button>
             </div>
         </div>
 
@@ -205,23 +205,47 @@
                     </div>
                 </div>
                 <div class="dropdown-box">
-                    <button id='logging' class="dropdown-btn">
+<?php
+                if ((isset($_SESSION['logged']))&&($_SESSION['logged']==true ))
+					{
+                        $namePlayer = $_SESSION['player'];
+                        echo '<button id="logging" class="dropdown-btn">';
+                        echo '<i class="fas fa-sign-in-alt" dropdown></i>';
+                        echo 'Logowanie <div class="dropdown-note" dropdown>Witaj, '.$namePlayer.'</div>';
+                        echo '</button>';
+                        
+					// echo '<p> <font style="color:black;">';
+					// echo '<a href="userdane.php?strona='.$nazwStr.'" style="color:black;">Witaj '.$_SESSION["imie"].'!  </a>';
+					// echo '| <a href="logout.php?strona='.$nazwStr.'"> Wyloguj!</a>   ';
+					// echo '</font></p>';
+					} 
+					else
+					{
+                        echo '<button id="logging" class="dropdown-btn">';
+                        echo '<i class="fas fa-sign-in-alt" dropdown></i>';
+                        echo 'Logowanie <div class="dropdown-note" dropdown>(rejestracja)</div>';
+                        echo '</button>';
+					}
+
+?>
+
+                    <!-- <button id='logging' class="dropdown-btn">
                         <i class="fas fa-sign-in-alt" dropdown></i>
                         Logowanie <div class="dropdown-note" dropdown>(rejestracja)</div>
-                    </button>
+                    </button> -->
                     <div class="dropdown-info">
-                    <div class="logging" logging>
-                        <!-- <form action="login.php" method="POST"> -->
+                        <div class="logging" logging>
+                            <!-- <form action="login.php" method="POST"> -->
                             <label class="dropdown-login" logging>Nazwa (login):
-                            <input type="text" name="nick" placeholder="" logging></label>
+                                <input type="text" name="nick" placeholder="" logging></label>
                             <label class="dropdown-password" logging>Hasło:
-                            <input type="password" name="password" placeholder="" logging></label>
+                                <input type="password" name="password" placeholder="" logging></label>
                             <div id="lower">
-                                <button class="normal reg-log-btn register-btn" >Rejestruj</button>
-                                <button class="normal reg-log-btn login-btn" >Zaloguj</button>
+                                <button class="normal reg-log-btn register-btn">Rejestruj</button>
+                                <button class="normal reg-log-btn login-btn">Zaloguj</button>
                             </div>
-                        <!-- </form> -->
-                    </div>
+                            <!-- </form> -->
+                        </div>
                         <!-- <div id="onlyWords" class="setting-letter">Nazwa</div>
                         <div id="stringChars" class="setting-letter">Hasło</div> -->
                     </div>
@@ -270,9 +294,15 @@
 
     <!-- <script src="/app/game.js" type="text/javascript"></script> -->
     <!-- <script>document.write('<script src="./app/game.js?ver=' + Math.floor(Math.random() * 10000) + '" type="module"\><\/script>');</script> -->
-    <script>document.write('<script src="./app/appGame.js?ver=' + Math.floor(Math.random() * 10000) + '" type="module"\><\/script>');</script>
-    <script>document.write('<script src="./app/dropdown.js?ver=' + Math.floor(Math.random() * 10000) + '" type="module"\><\/script>');</script>
-    <script>document.write('<script src="./app/login.js?ver=' + Math.floor(Math.random() * 10000) + '" type="module"\><\/script>');</script>
+    <script>
+        document.write('<script src="./app/appGame.js?ver=' + Math.floor(Math.random() * 10000) + '" type="module"\><\/script>');
+    </script>
+    <script>
+        document.write('<script src="./app/dropdown.js?ver=' + Math.floor(Math.random() * 10000) + '" type="module"\><\/script>');
+    </script>
+    <script>
+        document.write('<script src="./app/login.js?ver=' + Math.floor(Math.random() * 10000) + '" type="module"\><\/script>');
+    </script>
     <!-- <script>
         const game = new Game({
             lettersWrapper: document.getElementById("letters"),
