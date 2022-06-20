@@ -195,7 +195,7 @@ if (isset($_SESSION['errorConnect'])) unset($_SESSION['errorConnect']);
                 <div class="dropdown-box">
                     <button id='filling' class="dropdown-btn">
                         <i class="fas fa-digital-tachograph" dropdown></i>
-                        Wypełnianie <div class="dropdown-note" dropdown>(tylko istniejące słowa)</div>
+                        Wypełnianie<div class="dropdown-note" dropdown>(tylko istniejące słowa)</div>
                     </button>
                     <div class="dropdown-info">
                         <div id="onlyWords" class="setting-letter">tylko istniejące słowa</div>
@@ -205,24 +205,20 @@ if (isset($_SESSION['errorConnect'])) unset($_SESSION['errorConnect']);
                     </div>
                 </div>
                 <div class="dropdown-box">
-<?php
-                if ((isset($_SESSION['logged']))&&($_SESSION['logged']==true ))
-					{
+                    <?php
+                    if ((isset($_SESSION['logged'])) && ($_SESSION['logged'] == true)) {
                         $namePlayer = $_SESSION['nick'];
                         echo '<button id="logging" class="dropdown-btn">';
                         echo '<i class="fas fa-sign-in-alt" dropdown></i>';
-                        echo 'Logowanie <div class="dropdown-note" dropdown>Witaj, '.$namePlayer.'!</div>';
+                        echo ' Witaj, '.$namePlayer.' !<div class="dropdown-note" dropdown>(Twoje wyniki)</div>';
                         echo '</button>';
-					} 
-					else
-					{
+                    } else {
                         echo '<button id="logging" class="dropdown-btn">';
                         echo '<i class="fas fa-sign-in-alt" dropdown></i>';
-                        echo 'Logowanie <div class="dropdown-note" dropdown>(rejestracja)</div>';
+                        echo ' Logowanie<div class="dropdown-note" dropdown>(rejestracja)</div>';
                         echo '</button>';
-					}
-
-?>
+                    }
+                    ?>
 
                     <!-- <button id='logging' class="dropdown-btn">
                         <i class="fas fa-sign-in-alt" dropdown></i>
