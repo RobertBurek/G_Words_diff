@@ -208,16 +208,11 @@ if (isset($_SESSION['errorConnect'])) unset($_SESSION['errorConnect']);
 <?php
                 if ((isset($_SESSION['logged']))&&($_SESSION['logged']==true ))
 					{
-                        $namePlayer = $_SESSION['player'];
+                        $namePlayer = $_SESSION['nick'];
                         echo '<button id="logging" class="dropdown-btn">';
                         echo '<i class="fas fa-sign-in-alt" dropdown></i>';
-                        echo 'Logowanie <div class="dropdown-note" dropdown>Witaj, '.$namePlayer.'</div>';
+                        echo 'Logowanie <div class="dropdown-note" dropdown>Witaj, '.$namePlayer.'!</div>';
                         echo '</button>';
-                        
-					// echo '<p> <font style="color:black;">';
-					// echo '<a href="userdane.php?strona='.$nazwStr.'" style="color:black;">Witaj '.$_SESSION["imie"].'!  </a>';
-					// echo '| <a href="logout.php?strona='.$nazwStr.'"> Wyloguj!</a>   ';
-					// echo '</font></p>';
 					} 
 					else
 					{
@@ -302,6 +297,9 @@ if (isset($_SESSION['errorConnect'])) unset($_SESSION['errorConnect']);
     </script>
     <script>
         document.write('<script src="./app/login.js?ver=' + Math.floor(Math.random() * 10000) + '" type="module"\><\/script>');
+    </script>
+    <script>
+        document.write('<script src="./app/register.js?ver=' + Math.floor(Math.random() * 10000) + '" type="module"\><\/script>');
     </script>
     <!-- <script>
         const game = new Game({

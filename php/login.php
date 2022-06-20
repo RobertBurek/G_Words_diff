@@ -89,6 +89,7 @@
 				}
 				
 			}
+			header('Location: ../index.php');
 	$connection->close();
 	// echo json_encode(array("Nick"=>"Kasia","result5"=>"2"));
 	}
