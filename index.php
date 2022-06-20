@@ -1,5 +1,5 @@
 <?php
-
+// $_SESSION['logged'] = false;
 @session_start();
 if ((isset($_SESSION['logged'])) && ($_SESSION['logged'] == true)) {
     @$namePlayer = $_SESSION['player'];
@@ -210,9 +210,14 @@ if (isset($_SESSION['errorConnect'])) unset($_SESSION['errorConnect']);
                         $namePlayer = $_SESSION['nick'];
                         echo '<button id="logging" class="dropdown-btn">';
                         echo '  <i class="fas fa-sign-in-alt" dropdown></i>';
-                        echo '  Witaj, '.$namePlayer.' ! <div class="dropdown-note" dropdown>(Twoje wyniki)</div>';
+                        echo '  Witaj, ' . $namePlayer . ' ! <div class="dropdown-note" dropdown>(Twoje wyniki)</div>';
                         echo '</button>';
                         echo '<div class="dropdown-info">';
+                        echo '<div class="setting-letter">5-literowe</div>';
+                        echo '<div class="setting-letter">6-literowe</div>';
+                        echo '<div class="setting-letter">7-literowe</div>';
+                        echo '<div class="setting-letter">8-literowe</div>';
+                        echo '<div class="setting-letter">9-literowe</div>';
                         echo '</div>';
                     } else {
                         echo '<button id="logging" class="dropdown-btn">';
