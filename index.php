@@ -320,6 +320,9 @@ if (isset($_SESSION['errorConnect'])) unset($_SESSION['errorConnect']);
     <script>
         document.write('<script src="./app/register.js?ver=' + Math.floor(Math.random() * 10000) + '" type="module"\><\/script>');
     </script>
+        <script>
+        document.write('<script src="./app/logout.js?ver=' + Math.floor(Math.random() * 10000) + '" type="module"\><\/script>');
+    </script>
     <!-- <script>
         const game = new Game({
             lettersWrapper: document.getElementById("letters"),
