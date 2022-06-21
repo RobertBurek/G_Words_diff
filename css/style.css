@@ -587,7 +587,8 @@ input {
   cursor: pointer;
 }
 
-.register-btn {
+.register-btn,
+.logout-btn {
   color: yellow;
 }
 
