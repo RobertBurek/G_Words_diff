@@ -220,7 +220,7 @@ if (isset($_SESSION['errorConnect'])) unset($_SESSION['errorConnect']);
                         echo '  <div class="result-letter">9-literowe</div>';
                         echo '  <div class="logging" logging>';
                         echo '      <div id="lower">';
-                        echo '          <button class="normal reg-log-btn register-btn">Wyloguj</button>';
+                        echo '          <button class="normal reg-log-btn logout-btn">Wyloguj</button>';
                         // echo '          <button class="normal reg-log-btn login-btn">Zaloguj</button>';
                         echo '      </div>';
                         echo '  </div>';
