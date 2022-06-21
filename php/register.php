@@ -16,18 +16,10 @@
 		echo "Error: ".$connection->connect_erno." Opis: ".$connection->connect_error;
 	}
 	else{
-	// $nick = str_replace(' ', '_', $nick);
-	// echo $login.' - ';
-	// $password=$_POST['password'];
-	// echo $password."<br>";
-
 		$nick = htmlentities($nick, ENT_QUOTES, "UTF-8");
-		// echo $login;
-
 		$passwordHash = password_hash($password,PASSWORD_DEFAULT);
 		$userData = date("Y-m-d H:i:s");
-        // $nameTable = preg_replace('[ -:]', '', $nick.$userdata);
-        $nameTable = preg_replace('/[\ :-]/','', $nick.$userData);
+        $nameTable = preg_replace('/[ :-]/','', $nick.$userData);
 
 		$connection->query(sprintf( "INSERT INTO `players` (`Nick`, `Password`, `DateStart`, `DateLast`, `ResultTotal`, `NameTable`) VALUES ('%s', '%s', '%s', '%s', '%s', '%s')",
 								mysqli_real_escape_string($connection,$nick),
