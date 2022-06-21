@@ -24,18 +24,20 @@
 		$nick = htmlentities($nick, ENT_QUOTES, "UTF-8");
 		// echo $login;
 
-		$password_hash = password_hash($password,PASSWORD_DEFAULT);
-		$userdata = date("Y-m-d H:i:s");
+		$passwordHash = password_hash($password,PASSWORD_DEFAULT);
+		$userData = date("Y-m-d H:i:s");
+        // $nameTable = preg_replace('[ -:]', '', $nick.$userdata);
+        $nameTable = preg_replace('/[\ :-]/','', $nick.$userData);
 
 		$connection->query(sprintf( "INSERT INTO `players` (`Nick`, `Password`, `DateStart`, `DateLast`, `ResultTotal`, `NameTable`) VALUES ('%s', '%s', '%s', '%s', '%s', '%s')",
 								mysqli_real_escape_string($connection,$nick),
-								mysqli_real_escape_string($connection,$password_hash),
-								mysqli_real_escape_string($connection,$userdata),
-								mysqli_real_escape_string($connection,$userdata),
+								mysqli_real_escape_string($connection,$passwordHash),
+								mysqli_real_escape_string($connection,$userData),
+								mysqli_real_escape_string($connection,$userData),
 								mysqli_real_escape_string($connection,'111'),
-								mysqli_real_escape_string($connection,$nick.$userdata)));
+								mysqli_real_escape_string($connection,$nameTable)));
 
 	
 	$connection->close();
-	echo json_encode(array("Nick"=>$nick,"date"=>$userdata));
+	echo json_encode(array("nick"=>$nick, "date"=>$userData, "nameTable"=>$nameTable));
 	}
