@@ -623,6 +623,14 @@ h2 {
   color: yellow;
 }
 
+.result-letter {
+  height: 30px;
+  margin-left: 40%;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 30px;
+}
+
 .heartly {
   -webkit-animation: heartly 1s infinite;
           animation: heartly 1s infinite;
