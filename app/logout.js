@@ -1,16 +1,16 @@
-const registerBtn = document.querySelector(".register-btn");
-const inputNick = document.querySelector("[name='nick']");
+const logoutBtn = document.querySelector(".logout-btn");
+// const inputNick = document.querySelector("[name='nick']");
 // console.log(registerBtn);
 
 try {
 	// typeof registerBtn === "undefined";
-	registerBtn.addEventListener("click", () => {
+	logoutBtn.addEventListener("click", () => {
 		// console.log(loginBtn);
 		// console.log(inputNick.value);
 		// console.log(inputPassword.value);
-		const dataLogin = { Nick: inputNick.value };
+		const dataLogin = { Nick: '' };
 		$.post(
-			"./php/register.php",
+			"./php/logout.php",
 			dataLogin,
 			function (data) {
 				// alert( "OK - odczyt / zapis do bazy" );
@@ -19,12 +19,12 @@ try {
 			},
 			"json"
 		).fail(function () {
-			alert("Błąd reakcji z register.php");
+			alert("Błąd reakcji z logout.php");
 		});
 	});
 } catch (e) {
 	if (e instanceof ReferenceError) {
-		console.log("registerBtn - is not defined");
+		console.log("logoutBtn - is not defined");
 	}
 }
 
