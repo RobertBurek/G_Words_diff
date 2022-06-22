@@ -29,6 +29,16 @@
 								mysqli_real_escape_string($connection,'111'),
 								mysqli_real_escape_string($connection,$nameTable)));
 
+        $connection->query(sprintf("CREATE TABLE `jakie_to_slowo`.`%s` (
+                                    `Word` text COLLATE utf8_polish_ci NOT NULL,
+                                    `Level` int(11) NOT NULL,
+                                    `Attempt` int(11) NOT NULL,
+                                    `IsCategory` tinyint(1) NOT NULL,
+                                    `IsOnlyWord` tinyint(1) NOT NULL,
+                                    `Points` int(11) NOT NULL
+                                  ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;",
+                                  mysqli_real_escape_string($connection,$nameTable)));
+
 	
 	$connection->close();
 	echo json_encode(array("nick"=>$nick, "date"=>$userData, "nameTable"=>$nameTable));
