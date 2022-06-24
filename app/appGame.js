@@ -18,6 +18,20 @@ class Word {
 	}
 }
 
+class GameRound {
+	constructor(word, category, game, description, level, attempt, isCategory, isOnlyWord, points) {
+		this.word = word;
+		this.category = category;
+		this.game = game;
+		this.description = description;
+		this.level = level;
+		this.attempt = attempt;
+		this.isCategory = isCategory;
+		this.isOnlyWord = isOnlyWord;
+		this.points = points;
+	}
+}
+
 let numberWords;
 let stringWords;
 let titleButtonLongWord;
@@ -157,6 +171,7 @@ class CharKeyboard {
 }
 
 class AppGame {
+  listGameRound = [];
 	constructor({
 		lettersWrapper,
 		categoryWrapper,
