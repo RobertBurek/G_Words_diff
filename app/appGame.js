@@ -19,7 +19,17 @@ class Word {
 }
 
 class GameRound {
-	constructor(word, category, game, description, level, attempt, isCategory, isOnlyWord, points) {
+	constructor(
+		word,
+		category,
+		game,
+		description,
+		level,
+		attempt,
+		isCategory,
+		isOnlyWord,
+		points
+	) {
 		this.word = word;
 		this.category = category;
 		this.game = game;
@@ -105,12 +115,14 @@ whatCategoryElements.forEach((element) => {
 			},
 			function (dataSQL) {
 				// console.log(dataSQL);
-				console.log("Zapis kategorii w bazie SQL !!!  W tabeli: " + dataSQL.nameTable);
+				console.log(
+					"Zapis kategorii w bazie SQL !!!  W tabeli: " + dataSQL.nameTable
+				);
 			},
 			"json"
 		).fail(function () {
 			$.post("./php/category.php", dataWord);
-      console.log("Błąd zapisu w bazie SQL - zapis kategorii do pliku !!!");
+			console.log("Błąd zapisu w bazie SQL - zapis kategorii do pliku !!!");
 		});
 		whatCategoryDiv.classList.add("hide");
 		document.querySelector("#category p").innerHTML =
@@ -171,7 +183,7 @@ class CharKeyboard {
 }
 
 class AppGame {
-  listGameRound = [];
+	listGameRound = [];
 	constructor({
 		lettersWrapper,
 		categoryWrapper,
