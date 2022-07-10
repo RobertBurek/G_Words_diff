@@ -40,6 +40,15 @@ class GameRound {
 		this.isOnlyWord = isOnlyWord;
 		this.points = points;
 	}
+
+	changeParametr(parametr, value) {
+		parametr = value;
+	}
+
+	getParametr(parametr) {
+		return parametr;
+	}
+
 }
 
 let numberWords;
@@ -776,6 +785,7 @@ class AppGame {
 	}
 
 	run(level, attempts) {
+    let newGameRound = new GameRound();
 		this.myPromise = new Promise((resolve, reject) => {
 				$.post(
 					'./php/readWordWithBaseSQL.php',
