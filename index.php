@@ -22,8 +22,6 @@ if (isset($_SESSION['errorConnect'])) unset($_SESSION['errorConnect']);
         document.write('<link rel="stylesheet" href="css/style.css?ver=' + Math.floor(Math.random() * 1000) + '"\>');
     </script>
     <!-- <script src="https://kit.fontawesome.com/1085229b76.js" crossorigin="anonymous"></script> -->
-
-    <script src="./app/jquery.min.js"></script>
 </head>
 
 <body>
@@ -306,8 +304,7 @@ if (isset($_SESSION['errorConnect'])) unset($_SESSION['errorConnect']);
         </div>
     </footer>
 
-    <!-- <script src="/app/game.js" type="text/javascript"></script> -->
-    <!-- <script>document.write('<script src="./app/game.js?ver=' + Math.floor(Math.random() * 10000) + '" type="module"\><\/script>');</script> -->
+    <script src="./app/jquery.min.js"></script>
     <script>
         document.write('<script src="./app/appGame.js?ver=' + Math.floor(Math.random() * 10000) + '" type="module"\><\/script>');
     </script>
@@ -320,7 +317,7 @@ if (isset($_SESSION['errorConnect'])) unset($_SESSION['errorConnect']);
     <script>
         document.write('<script src="./app/register.js?ver=' + Math.floor(Math.random() * 10000) + '" type="module"\><\/script>');
     </script>
-        <script>
+    <script>
         document.write('<script src="./app/logout.js?ver=' + Math.floor(Math.random() * 10000) + '" type="module"\><\/script>');
     </script>
     <!-- <script>

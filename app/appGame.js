@@ -777,61 +777,59 @@ class AppGame {
 
 	run(level, attempts) {
 		this.myPromise = new Promise((resolve, reject) => {
-			$.post(
-				"./php/readWordWithBaseSQL.php",
-				{ nameBase: level + "-letters" },
-				function (dataSQL) {
-					resolve(dataSQL);
-					console.log("promise - zapytanie wykonane.");
-				},
-				"json"
-			).fail(function () {
-				console.log("promise - błąd odczytu z bazy !!!");
-				// this.changeOnlyWords(false);
-				const dataFile = randomWordSelection(level);
-				// let dataSQL = {word: 'BANAN', category: 'Roślina', game: true, description: 'Owoc tropikalny', countWords: 0};
-				reject(dataFile);
+				$.post(
+					'./php/readWordWithBaseSQL.php',
+					{ nameBase: level + "-letters" },
+					function (dataSQL) {
+						resolve(dataSQL);
+						console.log("promise - zapytanie wykonane. -" + dataSQL['countWords']);
+					},
+					"json"
+        ).fail(function () {
+					console.log("promise - błąd odczytu z bazy !!!");
+					const dataFile = randomWordSelection(level);
+					reject(dataFile);
+				});
 			});
-		});
-		this.myPromise
-			.then((resultSQL) => {
-				this.startParameters(level, attempts, resultSQL);
-				this.createKeyboard(
-					this.currentlyKeyboard,
-					this.keyboard1,
-					this.keyboard2,
-					this.keyboard3,
-					this.keyboard4,
-					resultSQL
-				);
-				this.createStartPlaceGame(
-					level,
-					attempts,
-					this.wordGameWrapper,
-					resultSQL
-				);
-				this.returnGame(resultSQL);
-			})
-			.catch((resultFile) => {
-				this.startParameters(level, attempts, resultFile);
-				// this.changeOnlyWords(false);
-				this.createKeyboard(
-					this.currentlyKeyboard,
-					this.keyboard1,
-					this.keyboard2,
-					this.keyboard3,
-					this.keyboard4,
-					resultFile
-				);
-				this.createStartPlaceGame(
-					level,
-					attempts,
-					this.wordGameWrapper,
-					resultFile
-				);
-				this.returnGame(resultFile);
-			});
-	}
+			this.myPromise
+				.then((resultSQL) => {
+					this.startParameters(level, attempts, resultSQL);
+					this.createKeyboard(
+						this.currentlyKeyboard,
+						this.keyboard1,
+						this.keyboard2,
+						this.keyboard3,
+						this.keyboard4,
+						resultSQL
+					);
+					this.createStartPlaceGame(
+						level,
+						attempts,
+						this.wordGameWrapper,
+						resultSQL
+					);
+					this.returnGame(resultSQL);
+				})
+				.catch((resultFile) => {
+					this.startParameters(level, attempts, resultFile);
+					// this.changeOnlyWords(false);
+					this.createKeyboard(
+						this.currentlyKeyboard,
+						this.keyboard1,
+						this.keyboard2,
+						this.keyboard3,
+						this.keyboard4,
+						resultFile
+					);
+					this.createStartPlaceGame(
+						level,
+						attempts,
+						this.wordGameWrapper,
+						resultFile
+					);
+					this.returnGame(resultFile);
+				});
+		}
 }
 
 function randomWord(data) {
