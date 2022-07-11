@@ -41,14 +41,32 @@ class GameRound {
 		this.points = points;
 	}
 
-	changeParametr(parametr, value) {
-		parametr = value;
+	startParameters(dataSQL, level, attempts) {
+		this.word = dataSQL["word"];
+		this.category = dataSQL["category"];
+		this.game = dataSQL["game"];
+		this.description = dataSQL["description"];
+		this.level = level;
+		this.attempt = attempts;
+		this.isCategory = true;
+		this.isOnlyWord = false;
+		this.points = 0;
 	}
-
-	getParametr(parametr) {
-		return parametr;
+	setCategory(value) {
+		this.category = value;
 	}
-
+	setAttempt(value) {
+		this.attempt = value;
+	}
+	setIsCategory(value) {
+		this.isCategory = value;
+	}
+	setIsOnlyWord(value) {
+		this.isOnlyWord = value;
+	}
+	setPoints(value) {
+		this.points = value;
+	}
 }
 
 let numberWords;
@@ -785,61 +803,75 @@ class AppGame {
 	}
 
 	run(level, attempts) {
-    let newGameRound = new GameRound();
+		let newGameRound = new GameRound();
 		this.myPromise = new Promise((resolve, reject) => {
-				$.post(
-					'./php/readWordWithBaseSQL.php',
-					{ nameBase: level + "-letters" },
-					function (dataSQL) {
-						resolve(dataSQL);
-						console.log("promise - zapytanie wykonane. -" + dataSQL['countWords']);
-					},
-					"json"
-        ).fail(function () {
-					console.log("promise - błąd odczytu z bazy !!!");
-					const dataFile = randomWordSelection(level);
-					reject(dataFile);
-				});
+			$.post(
+				"./php/readWordWithBaseSQL.php",
+				{ nameBase: level + "-letters" },
+				function (dataSQL) {
+					console.log(
+						"promise - zapytanie wykonane. Ilość słów: " + dataSQL["countWords"]
+					);
+					// newGameRound.startParameters(dataSQL, level, attempts);
+					// newGameRound.changeParametr(newGameRound.word, dataSQL['word']);
+					// newGameRound.changeParametr(newGameRound.category, dataSQL['category']);
+					// newGameRound.changeParametr(newGameRound.game, dataSQL['game']);
+					// newGameRound.changeParametr(newGameRound.description, dataSQL['description']);
+					// console.log(newGameRound);
+					resolve(dataSQL);
+				},
+				"json"
+			).fail(function () {
+				const dataFile = randomWordSelection(level);
+				console.log(
+					"promise - błąd odczytu z bazy !!! Ilość słów: " +
+						dataFile["countWords"]
+				);
+				reject(dataFile);
 			});
-			this.myPromise
-				.then((resultSQL) => {
-					this.startParameters(level, attempts, resultSQL);
-					this.createKeyboard(
-						this.currentlyKeyboard,
-						this.keyboard1,
-						this.keyboard2,
-						this.keyboard3,
-						this.keyboard4,
-						resultSQL
-					);
-					this.createStartPlaceGame(
-						level,
-						attempts,
-						this.wordGameWrapper,
-						resultSQL
-					);
-					this.returnGame(resultSQL);
-				})
-				.catch((resultFile) => {
-					this.startParameters(level, attempts, resultFile);
-					// this.changeOnlyWords(false);
-					this.createKeyboard(
-						this.currentlyKeyboard,
-						this.keyboard1,
-						this.keyboard2,
-						this.keyboard3,
-						this.keyboard4,
-						resultFile
-					);
-					this.createStartPlaceGame(
-						level,
-						attempts,
-						this.wordGameWrapper,
-						resultFile
-					);
-					this.returnGame(resultFile);
-				});
-		}
+		});
+		this.myPromise
+			.then((resultSQL) => {
+				newGameRound.startParameters(resultSQL, level, attempts);
+				console.log(newGameRound);
+				this.startParameters(level, attempts, resultSQL);
+				this.createKeyboard(
+					this.currentlyKeyboard,
+					this.keyboard1,
+					this.keyboard2,
+					this.keyboard3,
+					this.keyboard4,
+					resultSQL
+				);
+				this.createStartPlaceGame(
+					level,
+					attempts,
+					this.wordGameWrapper,
+					resultSQL
+				);
+				this.returnGame(resultSQL);
+			})
+			.catch((resultFile) => {
+        newGameRound.startParameters(resultFile, level, attempts);
+				console.log(newGameRound);
+				this.startParameters(level, attempts, resultFile);
+				this.createKeyboard(
+					this.currentlyKeyboard,
+					this.keyboard1,
+					this.keyboard2,
+					this.keyboard3,
+					this.keyboard4,
+					resultFile
+				);
+				this.createStartPlaceGame(
+					level,
+					attempts,
+					this.wordGameWrapper,
+					resultFile
+				);
+				this.returnGame(resultFile);
+			});
+	}
 }
 
 function randomWord(data) {
