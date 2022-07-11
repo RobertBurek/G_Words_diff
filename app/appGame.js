@@ -39,7 +39,19 @@ class GameRound {
 		this.isCategory = isCategory;
 		this.isOnlyWord = isOnlyWord;
 		this.points = points;
+    this.multiplierIsCategory = 3;
+    this.multiplierIsOnlyWord = 2;
 	}
+
+  checkCategory() {
+    if (this.category != "?") {
+      this.isCategory = true;
+      this.multiplierIsCategory = 1;
+    } else {
+      this.isCategory = false;
+      this.multiplierIsCategory = 3;
+    }
+  }
 
 	startParameters(dataSQL, level, attempts) {
 		this.word = dataSQL["word"];
@@ -48,23 +60,32 @@ class GameRound {
 		this.description = dataSQL["description"];
 		this.level = level;
 		this.attempt = attempts;
-		if (this.category != "?") this.isCategory = true;
-		else this.isCategory = false;
+    this.checkCategory();
 		this.isOnlyWord = false;
-		this.points = 0;
+		// this.points = level * 10 * this.multiplierIsCategory * this.multiplierIsOnlyWord;
+		this.points = this.countPoints(10, level);
 	}
+
+  countPoints(round, level) {
+    return (level * round * this.multiplierIsCategory * this.multiplierIsOnlyWord);
+  }
+
 	setCategory(value) {
 		this.category = value;
 	}
+
 	setAttempt(value) {
 		this.attempt = value;
 	}
+
 	setIsCategory(value) {
 		this.isCategory = value;
 	}
+
 	setIsOnlyWord(value) {
 		this.isOnlyWord = value;
 	}
+
 	setPoints(value) {
 		this.points = value;
 	}
