@@ -48,7 +48,8 @@ class GameRound {
 		this.description = dataSQL["description"];
 		this.level = level;
 		this.attempt = attempts;
-		this.isCategory = true;
+		if (this.category != "?") this.isCategory = true;
+		else this.isCategory = false;
 		this.isOnlyWord = false;
 		this.points = 0;
 	}
@@ -852,7 +853,7 @@ class AppGame {
 				this.returnGame(resultSQL);
 			})
 			.catch((resultFile) => {
-        newGameRound.startParameters(resultFile, level, attempts);
+				newGameRound.startParameters(resultFile, level, attempts);
 				console.log(newGameRound);
 				this.startParameters(level, attempts, resultFile);
 				this.createKeyboard(
