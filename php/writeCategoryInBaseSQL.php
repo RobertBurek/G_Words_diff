@@ -7,6 +7,8 @@
 	require_once "connect.php";
 	
 	$connection = @new mysqli($host,$db_user,$db_password,$db_name);
+	mysqli_set_charset($connection, "utf8");
+
 	if ($connection->connect_errno!=0)
 	{
 		echo "Error: ".$connection->connect_erno." Opis: ".$connection->connect_error;
@@ -19,6 +21,6 @@
 						mysqli_real_escape_string($connection, $isWord)));
 
 		echo json_encode(array("res"=>$resultUpdateCategory, "nameTable"=>$nameBase));
+
+		$connection->close();
     }
-    $connection->close();
-?>
