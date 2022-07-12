@@ -39,19 +39,29 @@ class GameRound {
 		this.isCategory = isCategory;
 		this.isOnlyWord = isOnlyWord;
 		this.points = points;
-    this.multiplierIsCategory = 3;
-    this.multiplierIsOnlyWord = 2;
+		this.multiplierIsCategory = 3;
+		this.multiplierIsOnlyWord = 2;
 	}
 
-  checkCategory() {
-    if (this.category != "?") {
-      this.isCategory = true;
-      this.multiplierIsCategory = 1;
-    } else {
-      this.isCategory = false;
-      this.multiplierIsCategory = 3;
-    }
-  }
+	checkCategory() {
+		if (this.category != "?") {
+			this.isCategory = true;
+			this.multiplierIsCategory = 2;
+		} else {
+			this.isCategory = false;
+			this.multiplierIsCategory = 3;
+		}
+	}
+
+	chengeIsOnlyWord(param) {
+		if (param) {
+			this.isOnlyWord = false;
+			this.multiplierIsOnlyWord = 2;
+		} else {
+			this.isOnlyWord = true;
+			this.multiplierIsOnlyWord = 1;
+		}
+	}
 
 	startParameters(dataSQL, level, attempts) {
 		this.word = dataSQL["word"];
@@ -60,15 +70,17 @@ class GameRound {
 		this.description = dataSQL["description"];
 		this.level = level;
 		this.attempt = attempts;
-    this.checkCategory();
+		this.checkCategory();
 		this.isOnlyWord = false;
 		// this.points = level * 10 * this.multiplierIsCategory * this.multiplierIsOnlyWord;
 		this.points = this.countPoints(10, level);
 	}
 
-  countPoints(round, level) {
-    return (level * round * this.multiplierIsCategory * this.multiplierIsOnlyWord);
-  }
+	countPoints(round, level) {
+		return (
+			level * round * this.multiplierIsCategory * this.multiplierIsOnlyWord
+		);
+	}
 
 	setCategory(value) {
 		this.category = value;
@@ -273,6 +285,7 @@ class AppGame {
 		this.isNotWord = false;
 		this.attempts = 6;
 		this.gameWord = new Word();
+    this.oneRoundGame = new GameRound();
 		this.myPromise;
 		this.stringWords = "";
 	}
@@ -287,6 +300,9 @@ class AppGame {
 		fillingButton.innerHTML = `<i class="fas fa-digital-tachograph" dropdown></i> 
       Wypełnianie <div class="dropdown-note" dropdown>${titleButtonFilling}</div>`;
 		this.onlyWords = param;
+    this.oneRoundGame.chengeIsOnlyWord(param);
+    this.oneRoundGame.points = this.oneRoundGame.countPoints(10, this.level);
+    console.log(this.oneRoundGame);
 		if (this.onlyWords)
 			document.querySelector(".above.only-words p").innerHTML =
 				"Tylko istniejące słowa";
@@ -825,7 +841,7 @@ class AppGame {
 	}
 
 	run(level, attempts) {
-		let newGameRound = new GameRound();
+		// let newGameRound = new GameRound();
 		this.myPromise = new Promise((resolve, reject) => {
 			$.post(
 				"./php/readWordWithBaseSQL.php",
@@ -854,8 +870,8 @@ class AppGame {
 		});
 		this.myPromise
 			.then((resultSQL) => {
-				newGameRound.startParameters(resultSQL, level, attempts);
-				console.log(newGameRound);
+				this.oneRoundGame.startParameters(resultSQL, level, attempts);
+				console.log(this.oneRoundGame);
 				this.startParameters(level, attempts, resultSQL);
 				this.createKeyboard(
 					this.currentlyKeyboard,
@@ -874,8 +890,8 @@ class AppGame {
 				this.returnGame(resultSQL);
 			})
 			.catch((resultFile) => {
-				newGameRound.startParameters(resultFile, level, attempts);
-				console.log(newGameRound);
+				this.oneRoundGame.startParameters(resultFile, level, attempts);
+				console.log(this.oneRoundGame);
 				this.startParameters(level, attempts, resultFile);
 				this.createKeyboard(
 					this.currentlyKeyboard,
