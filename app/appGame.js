@@ -841,7 +841,6 @@ class AppGame {
 	}
 
 	run(level, attempts) {
-		// let newGameRound = new GameRound();
 		this.myPromise = new Promise((resolve, reject) => {
 			$.post(
 				"./php/readWordWithBaseSQL.php",
@@ -850,12 +849,6 @@ class AppGame {
 					console.log(
 						"promise - zapytanie wykonane. Ilość słów: " + dataSQL["countWords"]
 					);
-					// newGameRound.startParameters(dataSQL, level, attempts);
-					// newGameRound.changeParametr(newGameRound.word, dataSQL['word']);
-					// newGameRound.changeParametr(newGameRound.category, dataSQL['category']);
-					// newGameRound.changeParametr(newGameRound.game, dataSQL['game']);
-					// newGameRound.changeParametr(newGameRound.description, dataSQL['description']);
-					// console.log(newGameRound);
 					resolve(dataSQL);
 				},
 				"json"
@@ -914,7 +907,6 @@ class AppGame {
 
 function randomWord(data) {
 	numberWords = data.length;
-	// console.log(dataWorks[Math.floor(Math.random()*dataWorks.length)]);
 	return data[Math.floor(Math.random() * data.length)];
 }
 
@@ -957,7 +949,6 @@ const appGame = new AppGame({
 	keyboard2: document.getElementById("keyboard2"),
 	keyboard3: document.getElementById("keyboard3"),
 	keyboard4: document.getElementById("keyboard4"),
-	// dataLetters: wordsLetters,
 });
 
 appGame.run(5, 6);
