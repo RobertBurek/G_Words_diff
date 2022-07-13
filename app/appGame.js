@@ -285,7 +285,7 @@ class AppGame {
 		this.isNotWord = false;
 		this.attempts = 6;
 		// this.gameWord = new Word();
-    this.oneRoundGame = new GameRound();
+		this.oneRoundGame = new GameRound();
 		this.myPromise;
 		this.stringWords = "";
 	}
@@ -300,9 +300,9 @@ class AppGame {
 		fillingButton.innerHTML = `<i class="fas fa-digital-tachograph" dropdown></i> 
       Wypełnianie <div class="dropdown-note" dropdown>${titleButtonFilling}</div>`;
 		this.onlyWords = param;
-    this.oneRoundGame.chengeIsOnlyWord(param);
-    this.oneRoundGame.points = this.oneRoundGame.countPoints(10, this.level);
-    console.log(this.oneRoundGame);
+		this.oneRoundGame.chengeIsOnlyWord(param);
+		this.oneRoundGame.points = this.oneRoundGame.countPoints(10, this.level);
+		console.log(this.oneRoundGame);
 		if (this.onlyWords)
 			document.querySelector(".above.only-words p").innerHTML =
 				"Tylko istniejące słowa";
@@ -324,7 +324,7 @@ class AppGame {
 	// 	console.log(this.gameWord.word + "  -  " + resultSQL.category);
 	// }
 
-  writeCategory() {
+	writeCategory() {
 		this.categoryWrapper.innerHTML =
 			"KATEGORIA:  " + convertTextCategory(this.oneRoundGame.category);
 		console.log("Kategoria  -  " + this.oneRoundGame.category);
