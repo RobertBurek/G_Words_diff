@@ -284,7 +284,7 @@ class AppGame {
 		this.onlyWords = true;
 		this.isNotWord = false;
 		this.attempts = 6;
-		this.gameWord = new Word();
+		// this.gameWord = new Word();
     this.oneRoundGame = new GameRound();
 		this.myPromise;
 		this.stringWords = "";
@@ -311,17 +311,23 @@ class AppGame {
 				"Dowolny ciąg znaków";
 	}
 
-	readWordsWithBase(resultSQL) {
-		this.gameWord = new Word(
-			resultSQL.word,
-			resultSQL.category,
-			true,
-			resultSQL.description
-		);
-		// this.categoryWrapper.innerHTML = resultSQL.category;
+	// readWordsWithBase(resultSQL) {
+	// 	this.gameWord = new Word(
+	// 		resultSQL.word,
+	// 		resultSQL.category,
+	// 		true,
+	// 		resultSQL.description
+	// 	);
+	// 	// this.categoryWrapper.innerHTML = resultSQL.category;
+	// 	this.categoryWrapper.innerHTML =
+	// 		"KATEGORIA:  " + convertTextCategory(resultSQL.category);
+	// 	console.log(this.gameWord.word + "  -  " + resultSQL.category);
+	// }
+
+  writeCategory() {
 		this.categoryWrapper.innerHTML =
-			"KATEGORIA:  " + convertTextCategory(resultSQL.category);
-		console.log(this.gameWord.word + "  -  " + resultSQL.category);
+			"KATEGORIA:  " + convertTextCategory(this.oneRoundGame.category);
+		console.log("Kategoria  -  " + this.oneRoundGame.category);
 	}
 
 	startParameters(level, attempts, resultSQL) {
@@ -335,7 +341,8 @@ class AppGame {
 		this.leftEmpty = level;
 		notWord.classList.add("hide");
 		titleButtonLongWord = this.level + `-literowe`;
-		this.readWordsWithBase(resultSQL);
+		// this.readWordsWithBase(resultSQL);
+		this.writeCategory();
 		this.stringWords = resultSQL.allWords;
 		this.guessWordChars = resultSQL.word.split("");
 		longWordButton.innerHTML = `<i class="fas fa-sort-amount-down-alt" dropdown></i> 
@@ -815,11 +822,13 @@ class AppGame {
 					this.createCurrentLine();
 				} else {
 					// this.showWord(this.guessWord);
-					this.showWord(this.gameWord.word);
+					// this.showWord(this.gameWord.word);
+					this.showWord(this.oneRoundGame.word);
 					this.onceAgain(this.level, this.attempts);
 					// if (words.category == "?") whatCategoryDiv.classList.remove('hide');
 					// if (words.category == "?") startSelectionCategory();
-					if (this.gameWord.category == "?") startSelectionCategory();
+					// if (this.gameWord.category == "?") startSelectionCategory();
+					if (this.oneRoundGame.category == "?") startSelectionCategory();
 				}
 				break;
 			}
@@ -827,7 +836,8 @@ class AppGame {
 	}
 
 	onceAgain(quantity, attempts) {
-		wordVictory = this.gameWord.word;
+		// wordVictory = this.gameWord.word;
+		wordVictory = this.oneRoundGame.word;
 		console.log(wordVictory);
 		onceAgainSection.classList.remove("hide");
 		divOnlyWords.classList.add("curtain-only-words");
