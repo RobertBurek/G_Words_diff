@@ -9,14 +9,6 @@ import { words7Letters } from "../src/7-lettersBIS.js";
 import { words8Letters } from "../src/8-lettersBIS.js";
 import { words9Letters } from "../src/9-lettersBIS.js";
 
-class Word {
-	constructor(word, category, game, description) {
-		this.word = word;
-		this.category = category;
-		this.game = game;
-		this.description = description;
-	}
-}
 
 class GameRound {
 	constructor(
@@ -284,7 +276,6 @@ class AppGame {
 		this.onlyWords = true;
 		this.isNotWord = false;
 		this.attempts = 6;
-		// this.gameWord = new Word();
 		this.oneRoundGame = new GameRound();
 		this.myPromise;
 		this.stringWords = "";
@@ -310,19 +301,6 @@ class AppGame {
 			document.querySelector(".above.only-words p").innerHTML =
 				"Dowolny ciąg znaków";
 	}
-
-	// readWordsWithBase(resultSQL) {
-	// 	this.gameWord = new Word(
-	// 		resultSQL.word,
-	// 		resultSQL.category,
-	// 		true,
-	// 		resultSQL.description
-	// 	);
-	// 	// this.categoryWrapper.innerHTML = resultSQL.category;
-	// 	this.categoryWrapper.innerHTML =
-	// 		"KATEGORIA:  " + convertTextCategory(resultSQL.category);
-	// 	console.log(this.gameWord.word + "  -  " + resultSQL.category);
-	// }
 
 	writeCategory() {
 		this.categoryWrapper.innerHTML =
@@ -675,7 +653,6 @@ class AppGame {
 		if (this.currentlyKeyboard == this.alphabet)
 			this.currentlyKeyboard = this.qwerty;
 		else this.currentlyKeyboard = this.alphabet;
-		// console.log(this.gameWord.word);
 	}
 
 	createKeyboard(
@@ -821,13 +798,8 @@ class AppGame {
 					listRounds[i + 1].firstChild.classList.add("current-letter");
 					this.createCurrentLine();
 				} else {
-					// this.showWord(this.guessWord);
-					// this.showWord(this.gameWord.word);
 					this.showWord(this.oneRoundGame.word);
 					this.onceAgain(this.level, this.attempts);
-					// if (words.category == "?") whatCategoryDiv.classList.remove('hide');
-					// if (words.category == "?") startSelectionCategory();
-					// if (this.gameWord.category == "?") startSelectionCategory();
 					if (this.oneRoundGame.category == "?") startSelectionCategory();
 				}
 				break;
@@ -836,7 +808,6 @@ class AppGame {
 	}
 
 	onceAgain(quantity, attempts) {
-		// wordVictory = this.gameWord.word;
 		wordVictory = this.oneRoundGame.word;
 		console.log(wordVictory);
 		onceAgainSection.classList.remove("hide");
