@@ -568,7 +568,7 @@ class AppGame {
 			this.victory = true;
 			this.onceAgain(this.level, this.attempts);
 			// if (words.category == "?") whatCategoryDiv.classList.remove('hide');
-			if (resultSQL.category == "?") startSelectionCategory();
+			if ((resultSQL.category == "?") && this.oneRoundGame.category == "?") startSelectionCategory();
 		}
 		// });
 	}
