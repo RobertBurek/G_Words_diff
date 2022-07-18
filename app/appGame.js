@@ -698,7 +698,8 @@ class AppGame {
 				this.keyboard1,
 				this.keyboard2,
 				this.keyboard3,
-				this.keyboard4
+				this.keyboard4,
+        resultSQL
 			);
 		});
 		keyboard3.appendChild(divKeyboard);
