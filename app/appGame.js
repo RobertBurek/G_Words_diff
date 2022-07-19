@@ -519,7 +519,8 @@ class AppGame {
 		this.currentLine.forEach((el) => {
 			tempCurrentLine.push(el.innerHTML);
 		});
-		this.guessWordChars = resultSQL.word.split("");
+		// this.guessWordChars = resultSQL.word.split("");
+		this.guessWordChars = this.oneRoundGame.word.split(""); //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 		console.log(this.guessWordChars);
 
 		this.clearLine(this.currentLine);
@@ -546,7 +547,7 @@ class AppGame {
 				}
 			}
 		}
-		this.isVictory(resultCheckedChars, resultSQL);
+		this.isVictory(resultCheckedChars);
 		this.newViewLine(resultCheckedChars);
 		this.createKeyboard(
 			this.currentlyKeyboard,
@@ -558,7 +559,8 @@ class AppGame {
 		);
 	}
 
-	isVictory(resultCheckedChars, resultSQL) {
+	// isVictory(resultCheckedChars, resultSQL) {
+	isVictory(resultCheckedChars) {
 		// this.myPromise.then(result=>{
 		let i = 0;
 		resultCheckedChars.forEach((char) => {
@@ -568,7 +570,8 @@ class AppGame {
 			this.victory = true;
 			this.onceAgain(this.level, this.attempts);
 			// if (words.category == "?") whatCategoryDiv.classList.remove('hide');
-			if ((resultSQL.category == "?") && this.oneRoundGame.category == "?") startSelectionCategory();
+			// if ((resultSQL.category == "?") && this.oneRoundGame.category == "?") startSelectionCategory();
+			if (this.oneRoundGame.category == "?") startSelectionCategory();
 		}
 		// });
 	}
