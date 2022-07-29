@@ -590,6 +590,8 @@ class AppGame {
 			else divLetter.className = `one-letter ${resultCheckedChars[i]}`;
 			divLetter.innerHTML = this.currentLine[i].innerHTML;
 			parentLine.appendChild(divLetter);
+      this.oneRoundGame.points = this.oneRoundGame.points - this.oneRoundGame.countPoints(1, 1);
+      console.log(this.oneRoundGame.points);
 		}
 	}
 
