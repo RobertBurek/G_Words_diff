@@ -32,6 +32,7 @@ class GameRound {
 		this.isOnlyWord = isOnlyWord;
 		this.points = points;
 		this.multiplierIsCategory = 3;
+		this.bonusIsCategory;
 		this.multiplierIsOnlyWord = 2;
 	}
 
@@ -66,6 +67,7 @@ class GameRound {
 		this.isOnlyWord = false;
 		// this.points = level * 10 * this.multiplierIsCategory * this.multiplierIsOnlyWord;
 		this.points = this.countPoints(10, level);
+    this.bonusIsCategory = level * 2 * 10;
 	}
 
 	countPoints(round, level) {
@@ -592,6 +594,7 @@ class AppGame {
 			parentLine.appendChild(divLetter);
       this.oneRoundGame.points = this.oneRoundGame.points - this.oneRoundGame.countPoints(1, 1);
       console.log(this.oneRoundGame.points);
+      console.log(this.oneRoundGame.bonusIsCategory);
 		}
 	}
 
