@@ -32,17 +32,19 @@ class GameRound {
 		this.isOnlyWord = isOnlyWord;
 		this.points = points;
 		this.multiplierIsCategory = 3;
-		this.bonusIsCategory;
+		this.bonusIsCategory = 100;
 		this.multiplierIsOnlyWord = 2;
 	}
 
-	checkCategory() {
+	checkCategory(level) {
 		if (this.category != "?") {
 			this.isCategory = true;
 			this.multiplierIsCategory = 2;
+			this.bonusIsCategory = 0;
 		} else {
 			this.isCategory = false;
 			this.multiplierIsCategory = 3;
+			this.bonusIsCategory = level * 20;
 		}
 	}
 
@@ -63,16 +65,17 @@ class GameRound {
 		this.description = dataSQL["description"];
 		this.level = level;
 		this.attempt = attempts;
-		this.checkCategory();
+		this.checkCategory(level);
 		this.isOnlyWord = false;
+    // this.bonusIsCategory = level * 2 * 10;
 		// this.points = level * 10 * this.multiplierIsCategory * this.multiplierIsOnlyWord;
 		this.points = this.countPoints(10, level);
-    this.bonusIsCategory = level * 2 * 10;
 	}
 
 	countPoints(round, level) {
 		return (
-			level * round * this.multiplierIsCategory * this.multiplierIsOnlyWord
+			level * round * this.multiplierIsOnlyWord + this.bonusIsCategory
+			// (this.isOnlyWord) ? (level * round + this.bonusIsCategory * this.multiplierIsOnlyWord):(level * round + this.bonusIsCategory * this.multiplierIsOnlyWord);
 		);
 	}
 
@@ -592,7 +595,7 @@ class AppGame {
 			else divLetter.className = `one-letter ${resultCheckedChars[i]}`;
 			divLetter.innerHTML = this.currentLine[i].innerHTML;
 			parentLine.appendChild(divLetter);
-      this.oneRoundGame.points = this.oneRoundGame.points - this.oneRoundGame.countPoints(1, 1);
+      this.oneRoundGame.points = this.oneRoundGame.points - this.oneRoundGame.countPoints(1, this.level);
       console.log(this.oneRoundGame.points);
       console.log(this.oneRoundGame.bonusIsCategory);
 		}
