@@ -31,19 +31,19 @@ class GameRound {
 		this.isCategory = isCategory;
 		this.isOnlyWord = isOnlyWord;
 		this.points = points;
-		this.multiplierIsCategory = 3;
+		// this.multiplierIsCategory = 3;
 		this.bonusIsCategory = 100;
-		this.multiplierIsOnlyWord = 2;
+		this.multiplierIsOnlyWord = 1;
 	}
 
 	checkCategory(level) {
 		if (this.category != "?") {
 			this.isCategory = true;
-			this.multiplierIsCategory = 2;
+			// this.multiplierIsCategory = 2;
 			this.bonusIsCategory = 0;
 		} else {
 			this.isCategory = false;
-			this.multiplierIsCategory = 3;
+			// this.multiplierIsCategory = 3;
 			this.bonusIsCategory = level * 20;
 		}
 	}
@@ -51,10 +51,10 @@ class GameRound {
 	chengeIsOnlyWord(param) {
 		if (param) {
 			this.isOnlyWord = false;
-			this.multiplierIsOnlyWord = 2;
+			this.multiplierIsOnlyWord = 1;
 		} else {
 			this.isOnlyWord = true;
-			this.multiplierIsOnlyWord = 1;
+			this.multiplierIsOnlyWord = 2;
 		}
 	}
 
@@ -69,12 +69,12 @@ class GameRound {
 		this.isOnlyWord = false;
     // this.bonusIsCategory = level * 2 * 10;
 		// this.points = level * 10 * this.multiplierIsCategory * this.multiplierIsOnlyWord;
-		this.points = this.countPoints(10, level);
+		this.points = this.countPoints(10, level) + this.bonusIsCategory;
 	}
 
 	countPoints(round, level) {
 		return (
-			level * round * this.multiplierIsOnlyWord + this.bonusIsCategory
+			level * round * this.multiplierIsOnlyWord
 			// (this.isOnlyWord) ? (level * round + this.bonusIsCategory * this.multiplierIsOnlyWord):(level * round + this.bonusIsCategory * this.multiplierIsOnlyWord);
 		);
 	}
@@ -297,7 +297,7 @@ class AppGame {
       Wypełnianie <div class="dropdown-note" dropdown>${titleButtonFilling}</div>`;
 		this.onlyWords = param;
 		this.oneRoundGame.chengeIsOnlyWord(param);
-		this.oneRoundGame.points = this.oneRoundGame.countPoints(10, this.level);
+		// this.oneRoundGame.points = this.oneRoundGame.countPoints(10, this.level);
 		console.log(this.oneRoundGame);
 		if (this.onlyWords)
 			document.querySelector(".above.only-words p").innerHTML =
@@ -310,7 +310,8 @@ class AppGame {
 	writeCategory() {
 		this.categoryWrapper.innerHTML =
 			"KATEGORIA:  " + convertTextCategory(this.oneRoundGame.category);
-		console.log("Kategoria  -  " + this.oneRoundGame.category);
+		// console.log("Kategoria  -  " + this.oneRoundGame.category);
+		console.log("Punkty  :  " + this.oneRoundGame.points + ", w tym (kategoria) :  " + this.oneRoundGame.bonusIsCategory);
 	}
 
 	startParameters(level, attempts, resultSQL) {
@@ -582,6 +583,7 @@ class AppGame {
 	}
 
 	newViewLine(resultCheckedChars) {
+    console.log('Punkty przed rundą : ' + this.oneRoundGame.points + ", w tym (kategoria) :  " + this.oneRoundGame.bonusIsCategory);
 		console.log(resultCheckedChars);
 		const parentLine = this.currentLine[0].parentNode;
 		for (let i = 0; i < this.level; i++) {
@@ -595,10 +597,11 @@ class AppGame {
 			else divLetter.className = `one-letter ${resultCheckedChars[i]}`;
 			divLetter.innerHTML = this.currentLine[i].innerHTML;
 			parentLine.appendChild(divLetter);
-      this.oneRoundGame.points = this.oneRoundGame.points - this.oneRoundGame.countPoints(1, this.level);
-      console.log(this.oneRoundGame.points);
-      console.log(this.oneRoundGame.bonusIsCategory);
 		}
+    this.oneRoundGame.points = this.oneRoundGame.points - this.oneRoundGame.countPoints(1, this.level);
+    // console.log(this.oneRoundGame.points);
+    // console.log(this.oneRoundGame.bonusIsCategory);
+    console.log("Punkty po rundzie  :  " + this.oneRoundGame.points + ", w tym (kategoria) :  " + this.oneRoundGame.bonusIsCategory);
 	}
 
 	writeLetter(oneChar, resultSQL) {
