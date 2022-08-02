@@ -69,12 +69,12 @@ class GameRound {
 		this.isOnlyWord = false;
     // this.bonusIsCategory = level * 2 * 10;
 		// this.points = level * 10 * this.multiplierIsCategory * this.multiplierIsOnlyWord;
-		this.points = this.countPoints(10, level) + this.bonusIsCategory;
+		this.points = this.countPoints(10, level, 2) + this.bonusIsCategory;
 	}
 
-	countPoints(round, level) {
+	countPoints(round, level, multiplier) {
 		return (
-			level * round * this.multiplierIsOnlyWord
+			level * round * multiplier
 			// (this.isOnlyWord) ? (level * round + this.bonusIsCategory * this.multiplierIsOnlyWord):(level * round + this.bonusIsCategory * this.multiplierIsOnlyWord);
 		);
 	}
@@ -598,7 +598,7 @@ class AppGame {
 			divLetter.innerHTML = this.currentLine[i].innerHTML;
 			parentLine.appendChild(divLetter);
 		}
-    this.oneRoundGame.points = this.oneRoundGame.points - this.oneRoundGame.countPoints(1, this.level);
+    this.oneRoundGame.points = this.oneRoundGame.points - this.oneRoundGame.countPoints(1, this.level, this.oneRoundGame.multiplierIsOnlyWord);
     // console.log(this.oneRoundGame.points);
     // console.log(this.oneRoundGame.bonusIsCategory);
     console.log("Punkty po rundzie  :  " + this.oneRoundGame.points + ", w tym (kategoria) :  " + this.oneRoundGame.bonusIsCategory);
