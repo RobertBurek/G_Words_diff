@@ -267,71 +267,11 @@ class AppGame {
 			83, 84, 85, 86, 87, 88, 89, 90, 211, 260, 262, 280, 321, 323, 346, 377,
 			379,
 		];
-		this.charsObject;
-		this.alphabet;
-		this.qwerty;
-		this.currentlyKeyboard;
-		this.level;
-		this.leftEmpty;
-		this.currentLine = [];
-		this.guessWordChars;
-		this.currentWord;
-		this.typedWord = "";
-		this.victory = false;
-		this.onlyWords = true;
-		this.isNotWord = false;
-		this.attempts = 6;
-		this.oneRoundGame = new GameRound();
-		this.myPromise;
-		this.stringWords = "";
-	}
-
-	clearLine(line) {
-		line.forEach((el) => {
-			el.style.display = "none";
-		});
-	}
-
-	changeOnlyWords(param, titleButtonFilling) {
-		fillingButton.innerHTML = `<i class="fas fa-digital-tachograph" dropdown></i> 
-      Wypełnianie <div class="dropdown-note" dropdown>${titleButtonFilling}</div>`;
-		this.onlyWords = param;
-		this.oneRoundGame.chengeIsOnlyWord(param);
-		// this.oneRoundGame.points = this.oneRoundGame.countPoints(10, this.level);
-		console.log(this.oneRoundGame);
-		if (this.onlyWords)
-			document.querySelector(".above.only-words p").innerHTML =
-				"Tylko istniejące słowa";
-		else
-			document.querySelector(".above.only-words p").innerHTML =
-				"Dowolny ciąg znaków";
-	}
-
-	writeCategory() {
-		this.categoryWrapper.innerHTML =
-			"KATEGORIA:  " + convertTextCategory(this.oneRoundGame.category);
-		// console.log("Kategoria  -  " + this.oneRoundGame.category);
-		console.log("Punkty  :  " + this.oneRoundGame.points + ", w tym (kategoria) :  " + this.oneRoundGame.bonusIsCategory);
-	}
-
-	startParameters(level, attempts, resultSQL) {
-		whatCategoryDiv.classList.add("hide");
-		document
-			.querySelector("#category")
-			.removeEventListener("click", changeCategoryStyle);
-		document.querySelector("#category").style.cursor = "default";
-		this.attempts = attempts;
-		this.level = level;
-		this.leftEmpty = level;
-		notWord.classList.add("hide");
-		titleButtonLongWord = this.level + `-literowe`;
-		// this.readWordsWithBase(resultSQL);
-		this.writeCategory();
-		this.stringWords = resultSQL.allWords;
-		this.guessWordChars = resultSQL.word.split("");
-		longWordButton.innerHTML = `<i class="fas fa-sort-amount-down-alt" dropdown></i> 
-      Długość słowa <div class="dropdown-note" dropdown>(${titleButtonLongWord} [${resultSQL.countWords}])</div>`;
-		this.charsObject = [];
+		// this.charsObject;
+		// this.alphabet;
+		// this.qwerty;
+    // --------------------------------------
+    this.charsObject = [];
 		for (let i = 0; i < this.numbersChar.length; i++) {
 			this.charsObject.push(new CharKeyboard(this.numbersChar[i], "normal"));
 		}
@@ -409,7 +349,176 @@ class AppGame {
 			this.charsObject[33],
 			this.charsObject[34],
 		];
-		this.currentlyKeyboard = this.alphabet;
+    this.currentlyKeyboard = this.alphabet
+    // --------------------------------------
+		// this.currentlyKeyboard;
+		// this.currentlyKeyboard = this.alphabet;
+		this.level;
+		this.leftEmpty;
+		this.currentLine = [];
+		this.guessWordChars;
+		this.currentWord;
+		this.typedWord = "";
+		this.victory = false;
+		this.onlyWords = true;
+		this.isNotWord = false;
+		this.attempts = 6;
+		this.oneRoundGame = new GameRound();
+		this.myPromise;
+		this.stringWords = "";
+	}
+
+	clearLine(line) {
+		line.forEach((el) => {
+			el.style.display = "none";
+		});
+	}
+
+	changeOnlyWords(param, titleButtonFilling) {
+		fillingButton.innerHTML = `<i class="fas fa-digital-tachograph" dropdown></i> 
+      Wypełnianie <div class="dropdown-note" dropdown>${titleButtonFilling}</div>`;
+		this.onlyWords = param;
+		this.oneRoundGame.chengeIsOnlyWord(param);
+		// this.oneRoundGame.points = this.oneRoundGame.countPoints(10, this.level);
+		console.log(this.oneRoundGame);
+		if (this.onlyWords)
+			document.querySelector(".above.only-words p").innerHTML =
+				"Tylko istniejące słowa";
+		else
+			document.querySelector(".above.only-words p").innerHTML =
+				"Dowolny ciąg znaków";
+	}
+
+	writeCategory() {
+		this.categoryWrapper.innerHTML =
+			"KATEGORIA:  " + convertTextCategory(this.oneRoundGame.category);
+		// console.log("Kategoria  -  " + this.oneRoundGame.category);
+		console.log("Punkty  :  " + this.oneRoundGame.points + ", w tym (kategoria) :  " + this.oneRoundGame.bonusIsCategory);
+	}
+
+	startParameters(level, attempts, resultSQL, charsObject) {
+		whatCategoryDiv.classList.add("hide");
+		document
+			.querySelector("#category")
+			.removeEventListener("click", changeCategoryStyle);
+		document.querySelector("#category").style.cursor = "default";
+		this.attempts = attempts;
+		this.level = level;
+		this.leftEmpty = level;
+		notWord.classList.add("hide");
+		titleButtonLongWord = this.level + `-literowe`;
+		// this.readWordsWithBase(resultSQL);
+		this.writeCategory();
+		this.stringWords = resultSQL.allWords;
+		this.guessWordChars = resultSQL.word.split("");
+		longWordButton.innerHTML = `<i class="fas fa-sort-amount-down-alt" dropdown></i> 
+      Długość słowa <div class="dropdown-note" dropdown>(${titleButtonLongWord} [${resultSQL.countWords}])</div>`;
+		
+    // ----------------------------------------------------------
+    //   this.charsObject = [];
+		// for (let i = 0; i < this.numbersChar.length; i++) {
+		// 	this.charsObject.push(new CharKeyboard(this.numbersChar[i], "normal"));
+		// }
+		// this.alphabet = [
+		// 	this.charsObject[0],
+		// 	this.charsObject[27],
+		// 	this.charsObject[1],
+		// 	this.charsObject[2],
+		// 	this.charsObject[28],
+		// 	this.charsObject[3],
+		// 	this.charsObject[4],
+		// 	this.charsObject[29],
+		// 	this.charsObject[5],
+		// 	this.charsObject[6],
+		// 	this.charsObject[7],
+		// 	this.charsObject[8],
+		// 	this.charsObject[9],
+		// 	this.charsObject[10],
+		// 	this.charsObject[11],
+		// 	this.charsObject[30],
+		// 	this.charsObject[12],
+		// 	this.charsObject[13],
+		// 	this.charsObject[31],
+		// 	this.charsObject[14],
+		// 	this.charsObject[26],
+		// 	this.charsObject[15],
+		// 	this.charsObject[16],
+		// 	this.charsObject[17],
+		// 	this.charsObject[18],
+		// 	this.charsObject[32],
+		// 	this.charsObject[19],
+		// 	this.charsObject[20],
+		// 	this.charsObject[21],
+		// 	this.charsObject[22],
+		// 	this.charsObject[23],
+		// 	this.charsObject[24],
+		// 	this.charsObject[25],
+		// 	this.charsObject[33],
+		// 	this.charsObject[34],
+		// ];
+		// this.qwerty = [
+		// 	this.charsObject[16],
+		// 	this.charsObject[22],
+		// 	this.charsObject[4],
+		// 	this.charsObject[17],
+		// 	this.charsObject[19],
+		// 	this.charsObject[24],
+		// 	this.charsObject[20],
+		// 	this.charsObject[8],
+		// 	this.charsObject[14],
+		// 	this.charsObject[15],
+		// 	this.charsObject[0],
+		// 	this.charsObject[18],
+		// 	this.charsObject[3],
+		// 	this.charsObject[5],
+		// 	this.charsObject[6],
+		// 	this.charsObject[7],
+		// 	this.charsObject[9],
+		// 	this.charsObject[10],
+		// 	this.charsObject[11],
+		// 	this.charsObject[25],
+		// 	this.charsObject[23],
+		// 	this.charsObject[2],
+		// 	this.charsObject[21],
+		// 	this.charsObject[1],
+		// 	this.charsObject[13],
+		// 	this.charsObject[12],
+		// 	this.charsObject[27],
+		// 	this.charsObject[28],
+		// 	this.charsObject[29],
+		// 	this.charsObject[30],
+		// 	this.charsObject[31],
+		// 	this.charsObject[26],
+		// 	this.charsObject[32],
+		// 	this.charsObject[33],
+		// 	this.charsObject[34],
+		// ];
+    // this.currentlyKeyboard = this.alphabet;
+
+    for (let i = 0; i < this.numbersChar.length; i++) {
+			this.charsObject[i].changeStateChar("normal");
+		}
+
+        // --------------------------------------------------
+    // if (this.currentlyKeyboard == null) this.currentlyKeyboard = this.alphabet;
+    // else {
+      // this.createKeyboard(
+      //   this.currentlyKeyboard,
+      //   this.keyboard1,
+      //   this.keyboard2,
+      //   this.keyboard3,
+      //   this.keyboard4,
+      //   resultSQL
+      // );
+    // }
+    // this.createKeyboard(
+		// 	this.currentlyKeyboard,
+		// 	this.keyboard1,
+		// 	this.keyboard2,
+		// 	this.keyboard3,
+		// 	this.keyboard4,
+		// 	resultSQL
+		// );
 		this.currentWord = new Array(level);
 		this.victory = false;
 		this.showWord("");
@@ -664,6 +773,7 @@ class AppGame {
 	}
 
 	changeKeyboard() {
+    console.log('Przed zmianą klawiatury : ' + this.currentlyKeyboard[0]);
 		if (this.currentlyKeyboard == this.alphabet)
 			this.currentlyKeyboard = this.qwerty;
 		else this.currentlyKeyboard = this.alphabet;
