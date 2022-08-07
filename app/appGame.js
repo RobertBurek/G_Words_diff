@@ -32,9 +32,13 @@ class GameRound {
 		this.isOnlyWord = isOnlyWord;
 		this.points = points;
 		// this.multiplierIsCategory = 3;
-		this.bonusIsCategory = 100;
+		this.bonusIsCategory = 0;
 		this.multiplierIsOnlyWord = 1;
 	}
+
+  // setBonusIsCategory(level){
+  //   this.bonusIsCategory = 20 * level;
+  // }
 
 	checkCategory(level) {
 		if (this.category != "?") {
@@ -65,7 +69,9 @@ class GameRound {
 		this.description = dataSQL["description"];
 		this.level = level;
 		this.attempt = attempts;
-		this.checkCategory(level);
+		// this.checkCategory(level);
+    // this.oneRoundGame.setBonusIsCategory(level);
+    this.bonusIsCategory = 20 * level;
 		this.isOnlyWord = false;
     // this.bonusIsCategory = level * 2 * 10;
 		// this.points = level * 10 * this.multiplierIsCategory * this.multiplierIsOnlyWord;
@@ -390,10 +396,12 @@ class AppGame {
 	}
 
 	writeCategory() {
+		// this.categoryWrapper.innerHTML =
+		// 	"KATEGORIA:  " + convertTextCategory(this.oneRoundGame.category);
 		this.categoryWrapper.innerHTML =
-			"KATEGORIA:  " + convertTextCategory(this.oneRoundGame.category);
+			"KATEGORIA:  ? ";
 		// console.log("Kategoria  -  " + this.oneRoundGame.category);
-		console.log("Punkty  :  " + this.oneRoundGame.points + ", w tym (kategoria) :  " + this.oneRoundGame.bonusIsCategory);
+		console.log("Punkty  :  " + this.oneRoundGame.points + ", w tym (kategoria) :  " + this.oneRoundGame.bonusIsCategory + ' ,    Kat: ' + convertTextCategory(this.oneRoundGame.category));
 	}
 
 	startParameters(level, attempts, resultSQL) {
