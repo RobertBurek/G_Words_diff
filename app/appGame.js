@@ -373,7 +373,7 @@ class AppGame {
 		this.oneRoundGame = new GameRound();
 		this.myPromise;
 		this.stringWords = "";
-	}
+  }
 
 	clearLine(line) {
 		line.forEach((el) => {
@@ -403,27 +403,17 @@ class AppGame {
   // }
 
 	writeCategory() {
-		// this.categoryWrapper.innerHTML =
-		// 	"KATEGORIA:  " + convertTextCategory(this.oneRoundGame.category);
 		this.categoryWrapper.innerHTML =
 			"KATEGORIA:  ? ";
-		// console.log("Kategoria  -  " + this.oneRoundGame.category);
-    // -----------------------------
     whatCategoryDiv.classList.add("hide");
-		// document.querySelector("#category p").innerHTML =
-		// 	"KATEGORIA:  " + convertTextCategory(element.innerHTML);
-		// this.categoryWrapper.innerHTML = 'KATEGORIA:  ' + convertTextCategory(element.innerHTML);
-		// document.querySelector("#category")
     this.categoryWrapper.style.cursor = "pointer";
-		// document
-		// 	.querySelector("#category")
     this.categoryWrapper.addEventListener("click", () => {
         this.categoryWrapper.innerHTML =
           "KATEGORIA:  " + convertTextCategory(this.oneRoundGame.category);
         console.log('Pokazałem kategorię: ' + this.oneRoundGame.category);
         this.categoryWrapper.style.cursor = "default";
-    });
-      // --------------------------------
+      }
+    );
 		console.log("Punkty  :  " + this.oneRoundGame.points + ", w tym (kategoria) :  " + this.oneRoundGame.bonusIsCategory + ' ,    Kat: ' + convertTextCategory(this.oneRoundGame.category));
 	}
 
