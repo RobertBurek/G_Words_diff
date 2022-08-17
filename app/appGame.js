@@ -44,6 +44,7 @@ class GameRound {
 		if (this.category != "?") {
 			this.isCategory = true;
 			// this.multiplierIsCategory = 2;
+      this.points -= this.bonusIsCategory;
 			this.bonusIsCategory = 0;
 		} else {
 			this.isCategory = false;
@@ -403,8 +404,7 @@ class AppGame {
   // }
 
 	writeCategory() {
-		this.categoryWrapper.innerHTML =
-			"KATEGORIA:  ? ";
+		this.categoryWrapper.innerHTML = "KATEGORIA:  ? ";
     whatCategoryDiv.classList.add("hide");
     this.categoryWrapper.style.cursor = "pointer";
     this.categoryWrapper.addEventListener("click", () => {
@@ -412,6 +412,8 @@ class AppGame {
           "KATEGORIA:  " + convertTextCategory(this.oneRoundGame.category);
         console.log('Pokazałem kategorię: ' + this.oneRoundGame.category);
         this.categoryWrapper.style.cursor = "default";
+        this.oneRoundGame.checkCategory(this.level);
+        console.log("Punkty  :  " + this.oneRoundGame.points + ", w tym (kategoria) :  " + this.oneRoundGame.bonusIsCategory + ' ,    Kat: ' + convertTextCategory(this.oneRoundGame.category));
       }
     );
 		console.log("Punkty  :  " + this.oneRoundGame.points + ", w tym (kategoria) :  " + this.oneRoundGame.bonusIsCategory + ' ,    Kat: ' + convertTextCategory(this.oneRoundGame.category));
