@@ -249,7 +249,7 @@ class CharKeyboard {
 }
 
 class AppGame {
-	listGameRound = [];
+	// listGameRound = [];
 	constructor({
 		lettersWrapper,
 		categoryWrapper,
@@ -374,6 +374,7 @@ class AppGame {
 		this.oneRoundGame = new GameRound();
 		this.myPromise;
 		this.stringWords = "";
+    this.listGameRound = [];
   }
 
 	clearLine(line) {
@@ -420,6 +421,8 @@ class AppGame {
 	}
 
 	startParameters(level, attempts, resultSQL) {
+    console.log(this.listGameRound.length);
+    console.log(this.listGameRound);
 		whatCategoryDiv.classList.add("hide");
 		document
 			.querySelector("#category")
@@ -890,8 +893,10 @@ class AppGame {
 		});
 		this.myPromise
 			.then((resultSQL) => {
+        this.oneRoundGame = new GameRound();
 				this.oneRoundGame.startParameters(resultSQL, level, attempts);
 				console.log(this.oneRoundGame);
+        this.listGameRound.push(this.oneRoundGame);
 				this.startParameters(level, attempts, resultSQL);
 				this.createKeyboard(
 					this.currentlyKeyboard,
@@ -910,8 +915,10 @@ class AppGame {
 				this.returnGame(resultSQL);
 			})
 			.catch((resultFile) => {
+        this.oneRoundGame = new GameRound();
 				this.oneRoundGame.startParameters(resultFile, level, attempts);
 				console.log(this.oneRoundGame);
+        this.listGameRound.push(this.oneRoundGame);
 				this.startParameters(level, attempts, resultFile);
 				this.createKeyboard(
 					this.currentlyKeyboard,
