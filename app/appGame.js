@@ -611,6 +611,7 @@ class AppGame {
 			// if (words.category == "?") whatCategoryDiv.classList.remove('hide');
 			// if ((resultSQL.category == "?") && this.oneRoundGame.category == "?") startSelectionCategory();
 			if (this.oneRoundGame.category == "?") startSelectionCategory();
+      this.listGameRound.push(this.oneRoundGame);
 		}
 		// });
 	}
@@ -896,7 +897,7 @@ class AppGame {
         this.oneRoundGame = new GameRound();
 				this.oneRoundGame.startParameters(resultSQL, level, attempts);
 				console.log(this.oneRoundGame);
-        this.listGameRound.push(this.oneRoundGame);
+        // this.listGameRound.push(this.oneRoundGame);
 				this.startParameters(level, attempts, resultSQL);
 				this.createKeyboard(
 					this.currentlyKeyboard,
@@ -918,7 +919,7 @@ class AppGame {
         this.oneRoundGame = new GameRound();
 				this.oneRoundGame.startParameters(resultFile, level, attempts);
 				console.log(this.oneRoundGame);
-        this.listGameRound.push(this.oneRoundGame);
+        // this.listGameRound.push(this.oneRoundGame);
 				this.startParameters(level, attempts, resultFile);
 				this.createKeyboard(
 					this.currentlyKeyboard,
