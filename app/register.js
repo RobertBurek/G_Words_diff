@@ -44,7 +44,7 @@ try {
 
 					$.getScript("app/logout.js")
 						.done(function () {
-							console.log("inicjacja logout");
+							console.log("inicjacja logout.js");
 						// })
 						// .fail(function () {
 						// 	console.log("coś poszło nie tak w autoLogin");

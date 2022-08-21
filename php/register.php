@@ -1,8 +1,8 @@
 <?php
 
-if (!isset($_SESSION)) {
-    session_start();
-}
+// if (!isset($_SESSION)) {
+//     session_start();
+// }
 
 $nick = $_POST['Nick'];
 $password = $_POST['Password'];
@@ -26,8 +26,10 @@ if ($connection->connect_errno != 0) {
         mysqli_real_escape_string($connection, $userData),
         mysqli_real_escape_string($connection, '111'),
         mysqli_real_escape_string($connection, $nameTable)
-    ))) { $connection->query(sprintf(
-        "CREATE TABLE `jakie_to_slowo`.`%s` (
+    ))
+    ) {
+        $connection->query(sprintf(
+            "CREATE TABLE `%s`.`%s` (
                                     `Word` text COLLATE utf8_polish_ci NOT NULL,
                                     `Level` int(11) NOT NULL,
                                     `Attempt` int(11) NOT NULL,
@@ -35,7 +37,8 @@ if ($connection->connect_errno != 0) {
                                     `IsOnlyWord` tinyint(1) NOT NULL,
                                     `Points` int(11) NOT NULL
                                   ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;",
-        mysqli_real_escape_string($connection, $nameTable)
+            mysqli_real_escape_string($connection, $db_name),
+            mysqli_real_escape_string($connection, $nameTable)
         ));
         echo json_encode(array("nick" => $nick, "date" => $userData, "nameTable" => $nameTable));
     } else {

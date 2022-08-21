@@ -22,7 +22,7 @@ try {
 					console.log("Zalogowano nowego gracza: " + data.nick);
 					localStorage.setItem("nick/JTS", data.nick);
 					// console.log("Zarejestrowano nowego gracza: " + data.date);
-					console.log("Zarejestrowano nowego gracza: " + data.nameTable);
+					console.log("Zalogowanego tabela: " + data.nameTable);
 					localStorage.setItem("nameTable/JTS", data.nameTable);
 
 					loggingButton.innerHTML = `<i class="fas fa-sign-in-alt" dropdown></i>
@@ -41,7 +41,7 @@ try {
 
 					$.getScript("app/logout.js")
 						.done(function () {
-							console.log("inicjacja logout");
+							console.log("inicjacja logout.js");
 						// })
 						// .fail(function () {
 						// 	console.log("coś poszło nie tak w autoLogin");
