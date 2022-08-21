@@ -1,21 +1,8 @@
 const registerBtn = document.querySelector(".register-btn");
 const inputNick = document.querySelector("[name='nick']");
 const inputPassword = document.querySelector("[name='password']");
-// console.log(registerBtn);
-
-// function supports_storage() {
-//     try {
-//         console.log('localStorage' in window && window['localStorage'] !== null); // true
-//     } catch (e) {
-//         console.log(false); // false
-//     }
-// }
-
-// supports_storage();
-
 
 try {
-	// typeof registerBtn === "undefined";
 	registerBtn.addEventListener("click", () => {
 		// console.log(loginBtn);
 		// console.log(inputNick.value);
