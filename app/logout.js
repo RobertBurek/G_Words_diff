@@ -16,6 +16,7 @@ try {
 				// alert( "OK - odczyt / zapis do bazy" );
 				// console.log(data.name);
 				console.log("Wylogowano: " + data.nick);
+				localStorage.setItem('nick','');
 			},
 			"json"
 		).fail(function () {

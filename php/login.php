@@ -41,7 +41,7 @@
 
 // ---------------------------------------------------------------------------------------
 	
-		if ($result = @$connection->query(sprintf("SELECT * FROM users WHERE Nick='%s'",
+		if ($result = @$connection->query(sprintf("SELECT * FROM `players` WHERE Nick='%s'",
 										mysqli_real_escape_string($connection,$nick))))
 			{
 				$rows_login = $result->num_rows;

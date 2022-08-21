@@ -3,6 +3,17 @@ const inputNick = document.querySelector("[name='nick']");
 const inputPassword = document.querySelector("[name='password']");
 // console.log(registerBtn);
 
+// function supports_storage() {
+//     try {
+//         console.log('localStorage' in window && window['localStorage'] !== null); // true
+//     } catch (e) {
+//         console.log(false); // false
+//     }
+// }
+
+// supports_storage();
+
+
 try {
 	// typeof registerBtn === "undefined";
 	registerBtn.addEventListener("click", () => {
@@ -15,10 +26,12 @@ try {
 			dataRegister,
 			function (data) {
 				// alert( "OK - odczyt / zapis do bazy" );
-				// console.log(data.name);
+				console.log('dane z rejestracji: ', data);
 				console.log("Zarejestrowano nowego gracza: " + data.nick);
-				console.log("Zarejestrowano nowego gracza: " + data.date);
+                localStorage.setItem('nick/JTS',data.nick);
+				// console.log("Zarejestrowano nowego gracza: " + data.date);
 				console.log("Zarejestrowano nowego gracza: " + data.nameTable);
+                localStorage.setItem('nameTable/JTS',data.nameTable);
 			},
 			"json"
 		).fail(function () {
