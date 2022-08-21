@@ -14,12 +14,12 @@ try {
 			"./php/login.php",
 			dataLogin,
 			function (data) {
-				// alert( "OK - odczyt / zapis do bazy" );
+				alert( "OK - odczyt z bazy" );
 				// console.log(data.name);
-				// console.log(data.result);
-				console.log('dane z logowania: ', data);
-                localStorage.setItem('nick/JTS', data.nick);
-                localStorage.setItem('nameTable/JTS', data.nameTable);
+				console.log(data.result);
+				// console.log('dane z logowania: ', data);
+                // localStorage.setItem('nick/JTS', data.nick);
+                // localStorage.setItem('nameTable/JTS', data.nameTable);
 			},
 			"json"
 		).fail(function () {

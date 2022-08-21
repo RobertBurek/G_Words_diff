@@ -115,6 +115,7 @@ let wordVictory;
 // const categoryWrapper = document.querySelector("#category p");
 const longWordButton = document.getElementById("longWord");
 const fillingButton = document.getElementById("filling");
+// const loggingButton = document.getElementById("logging");
 const setting5Letters = document.getElementById("5letters");
 const setting6Letters = document.getElementById("6letters");
 const setting7Letters = document.getElementById("7letters");

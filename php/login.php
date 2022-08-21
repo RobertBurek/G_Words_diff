@@ -70,7 +70,8 @@
 						$result->free_result();
 						// header('Location:loginForm.php');
 						// echo '<br> jest OK <br>';
-						echo json_encode(array("result"=>$row['ResultTotal']));
+						// echo json_encode(array("result"=>$row['ResultTotal']));
+						echo json_encode(array("result"=>$row['Nick']));
 						}
 						else 
 						{

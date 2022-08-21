@@ -18,7 +18,7 @@ if ($connection->connect_errno != 0) {
     $userData = date("Y-m-d H:i:s");
     $nameTable = preg_replace('/[ :-]/', '', strtolower($nick) . $userData);
 
-    $connection->query(sprintf(
+    if ($connection->query(sprintf(
         "INSERT INTO `players` (`Nick`, `Password`, `DateStart`, `DateLast`, `ResultTotal`, `NameTable`) VALUES ('%s', '%s', '%s', '%s', '%s', '%s');",
         mysqli_real_escape_string($connection, $nick),
         mysqli_real_escape_string($connection, $passwordHash),
@@ -26,9 +26,7 @@ if ($connection->connect_errno != 0) {
         mysqli_real_escape_string($connection, $userData),
         mysqli_real_escape_string($connection, '111'),
         mysqli_real_escape_string($connection, $nameTable)
-    ));
-
-    $connection->query(sprintf(
+    ))) { $connection->query(sprintf(
         "CREATE TABLE `jakie_to_slowo`.`%s` (
                                     `Word` text COLLATE utf8_polish_ci NOT NULL,
                                     `Level` int(11) NOT NULL,
@@ -38,8 +36,13 @@ if ($connection->connect_errno != 0) {
                                     `Points` int(11) NOT NULL
                                   ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;",
         mysqli_real_escape_string($connection, $nameTable)
-    ));
+        ));
+        echo json_encode(array("nick" => $nick, "date" => $userData, "nameTable" => $nameTable));
+    } else {
+        // $_SESSION['error'] = '<span style="color:red">Nieprawidłowy nick lub hasło!</span>';
+        echo json_encode(array("nick" => $nick, "error" => 'Istnieje już taki NICK !!!'));
+    }
 
     $connection->close();
-    echo json_encode(array("nick" => $nick, "date" => $userData, "nameTable" => $nameTable));
+    // echo json_encode(array("nick" => $nick, "date" => $userData, "nameTable" => $nameTable));
 }

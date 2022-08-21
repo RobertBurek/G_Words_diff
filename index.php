@@ -204,44 +204,62 @@ if (isset($_SESSION['errorConnect'])) unset($_SESSION['errorConnect']);
                 </div>
                 <div class="dropdown-box">
                     <?php
-                    if ((isset($_SESSION['logged'])) && ($_SESSION['logged'] == true)) {
-                        $namePlayer = $_SESSION['nick'];
-                        echo '<button id="logging" class="dropdown-btn">';
-                        echo '  <i class="fas fa-sign-in-alt" dropdown></i>';
-                        echo '  Witaj, ' . $namePlayer . ' ! <div class="dropdown-note" dropdown>(twoje wyniki)</div>';
-                        echo '</button>';
-                        echo '<div class="dropdown-info">';
-                        echo '  <div class="result-letter">5-literowe</div>';
-                        echo '  <div class="result-letter">6-literowe</div>';
-                        echo '  <div class="result-letter">7-literowe</div>';
-                        echo '  <div class="result-letter">8-literowe</div>';
-                        echo '  <div class="result-letter">9-literowe</div>';
-                        echo '  <div class="logging" logging>';
-                        echo '      <div id="lower">';
-                        echo '          <button class="normal reg-log-btn logout-btn">Wyloguj</button>';
-                        // echo '          <button class="normal reg-log-btn login-btn">Zaloguj</button>';
-                        echo '      </div>';
-                        echo '  </div>';
-                        echo '</div>';
-                    } else {
-                        echo '<button id="logging" class="dropdown-btn">';
-                        echo '  <i class="fas fa-sign-in-alt" dropdown></i>';
-                        echo '  Logowanie <div class="dropdown-note" dropdown>(rejestracja)</div>';
-                        echo '</button>';
-                        echo '<div class="dropdown-info">';
-                        echo '  <div class="logging" logging>';
-                        echo '      <label class="dropdown-login" logging>Nazwa (login):';
-                        echo '          <input type="text" name="nick" placeholder="" logging></label>';
-                        echo '      <label class="dropdown-password" logging>Hasło:';
-                        echo '          <input type="password" name="password" placeholder="" logging></label>';
-                        echo '      <div id="lower">';
-                        echo '          <button class="normal reg-log-btn register-btn">Rejestruj</button>';
-                        echo '          <button class="normal reg-log-btn login-btn">Zaloguj</button>';
-                        echo '      </div>';
-                        echo '  </div>';
-                        echo '</div>';
-                    }
+                    // if ((isset($_SESSION['logged'])) && ($_SESSION['logged'] == true)) {
+                    //     $namePlayer = $_SESSION['nick'];
+                    //     echo '<button id="logging" class="dropdown-btn">';
+                    //     echo '  <i class="fas fa-sign-in-alt" dropdown></i>';
+                    //     echo '  Witaj, ' . $namePlayer . ' ! <div class="dropdown-note" dropdown>(twoje wyniki)</div>';
+                    //     echo '</button>';
+                    //     echo '<div class="dropdown-info">';
+                    //     echo '  <div class="result-letter">5-literowe</div>';
+                    //     echo '  <div class="result-letter">6-literowe</div>';
+                    //     echo '  <div class="result-letter">7-literowe</div>';
+                    //     echo '  <div class="result-letter">8-literowe</div>';
+                    //     echo '  <div class="result-letter">9-literowe</div>';
+                    //     echo '  <div class="logging" logging>';
+                    //     echo '      <div id="lower">';
+                    //     echo '          <button class="normal reg-log-btn logout-btn">Wyloguj</button>';
+                    //     // echo '          <button class="normal reg-log-btn login-btn">Zaloguj</button>';
+                    //     echo '      </div>';
+                    //     echo '  </div>';
+                    //     echo '</div>';
+                    // } else {
+                    //     echo '<button id="logging" class="dropdown-btn">';
+                    //     echo '  <i class="fas fa-sign-in-alt" dropdown></i>';
+                    //     echo '  Logowanie <div class="dropdown-note" dropdown>(rejestracja)</div>';
+                    //     echo '</button>';
+                    //     echo '<div class="dropdown-info">';
+                    //     echo '  <div class="logging" logging>';
+                    //     echo '      <label class="dropdown-login" logging>Nazwa (login):';
+                    //     echo '          <input type="text" name="nick" placeholder="" logging></label>';
+                    //     echo '      <label class="dropdown-password" logging>Hasło:';
+                    //     echo '          <input type="password" name="password" placeholder="" logging></label>';
+                    //     echo '      <div id="lower">';
+                    //     echo '          <button class="normal reg-log-btn register-btn">Rejestruj</button>';
+                    //     echo '          <button class="normal reg-log-btn login-btn">Zaloguj</button>';
+                    //     echo '      </div>';
+                    //     echo '  </div>';
+                    //     echo '</div>';
+                    // }
                     ?>
+
+
+                    <button id="logging" class="dropdown-btn">
+                      <i class="fas fa-sign-in-alt" dropdown></i>
+                      Logowanie <div class="dropdown-note" dropdown>(rejestracja)</div>
+                    </button>
+                    <div class="dropdown-info">
+                      <div class="logging" logging>
+                          <label class="dropdown-login" logging>Nazwa (login):
+                              <input type="text" name="nick" placeholder="" logging></label>
+                          <label class="dropdown-password" logging>Hasło:
+                              <input type="password" name="password" placeholder="" logging></label>
+                          <div id="lower">
+                              <button class="normal reg-log-btn register-btn">Rejestruj</button>
+                              <button class="normal reg-log-btn login-btn">Zaloguj</button>
+                          </div>
+                      </div>
+                    </div>
 
                     <!-- <button id='logging' class="dropdown-btn">
                         <i class="fas fa-sign-in-alt" dropdown></i>
@@ -261,7 +279,9 @@ if (isset($_SESSION['errorConnect'])) unset($_SESSION['errorConnect']);
                             </div>
                         </div>
                     </div> -->
+
                 </div>
+
                 <div class="dropdown-box">
                     <button class="dropdown-btn">
                         <i class="fas fa-chalkboard-teacher" dropdown></i>
