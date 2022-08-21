@@ -2,6 +2,8 @@ const loginBtn = document.querySelector(".login-btn");
 const inputNick = document.querySelector("[name='nick']");
 const inputPassword = document.querySelector("[name='password']");
 // console.log(loginBtn);
+const loggingButton = document.getElementById("logging");
+const loggingDivInfo = document.querySelector(".logging").parentNode;
 
 try {
 	// typeof loginBtn === "undefined";
@@ -14,12 +16,47 @@ try {
 			"./php/login.php",
 			dataLogin,
 			function (data) {
-				alert( "OK - odczyt z bazy" );
+
+                if (!data.error) {
+					console.log("dane z logowania: ", data);
+					console.log("Zalogowano nowego gracza: " + data.nick);
+					localStorage.setItem("nick/JTS", data.nick);
+					// console.log("Zarejestrowano nowego gracza: " + data.date);
+					console.log("Zarejestrowano nowego gracza: " + data.nameTable);
+					localStorage.setItem("nameTable/JTS", data.nameTable);
+
+					loggingButton.innerHTML = `<i class="fas fa-sign-in-alt" dropdown></i>
+                    Witaj ${data.nick} ! <div class="dropdown-note" dropdown> (twoje wyniki) </div>`;
+
+					loggingDivInfo.innerHTML = `<div class="result-letter">0 odgadniętych 5-lit. słów </div>
+                     <div class="result-letter">0 odgadniętych 6-lit. słów </div>
+                     <div class="result-letter">0 odgadniętych 7-lit. słów </div>
+                     <div class="result-letter">0 odgadniętych 8-lit. słów </div>
+                     <div class="result-letter">0 odgadniętych 9-lit. słów </div>
+                     <div class="logging" logging>
+                        <div id="lower">
+                            <button class="normal reg-log-btn logout-btn">Wyloguj</button>
+                        </div>
+                     </div>`;
+
+					$.getScript("app/logout.js")
+						.done(function () {
+							console.log("inicjacja logout");
+						// })
+						// .fail(function () {
+						// 	console.log("coś poszło nie tak w autoLogin");
+						});
+				} else {}
+
+
+
+
+				// alert( "OK - odczyt z bazy" );
 				// console.log(data.name);
-				console.log(data.date);
+				// console.log(data.date);
 				// console.log('dane z logowania: ', data);
-                localStorage.setItem('nick/JTS', data.nick);
-                localStorage.setItem('nameTable/JTS', data.nameTable);
+                // localStorage.setItem('nick/JTS', data.nick);
+                // localStorage.setItem('nameTable/JTS', data.nameTable);
 			},
 			"json"
 		).fail(function () {
