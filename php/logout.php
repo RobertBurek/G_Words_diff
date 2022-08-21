@@ -6,3 +6,4 @@ if (!isset($_SESSION)) {
 $nick = $_SESSION['nick'];
 $_SESSION['logged'] = false;
 echo json_encode(array("nick" => $nick));
+?>

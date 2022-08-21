@@ -9,6 +9,21 @@ import { words7Letters } from "../src/7-lettersBIS.js";
 import { words8Letters } from "../src/8-lettersBIS.js";
 import { words9Letters } from "../src/9-lettersBIS.js";
 
+// include( 'autoLogin.js');
+
+// $.getScript( "app/autoLogin.js" )
+//   .done(function( script, textStatus ) {
+//     // console.log( script );
+//     console.log( textStatus );
+//     console.log( 'byłem w autoLoginie  ...' );
+//   })
+//   .fail(function() {
+//     console.log( "coś poszło nie tak w autoLogin" );
+// });
+
+// localStorage.setItem('nick/JTS', 'Robert');
+// localStorage.setItem('nick/JTS', '');
+// localStorage.removeItem('nick/JTS');
 
 class GameRound {
 	constructor(

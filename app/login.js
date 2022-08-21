@@ -18,8 +18,8 @@ try {
 				// console.log(data.name);
 				console.log(data.result);
 				// console.log('dane z logowania: ', data);
-                // localStorage.setItem('nick/JTS', data.nick);
-                // localStorage.setItem('nameTable/JTS', data.nameTable);
+                localStorage.setItem('nick/JTS', data.nick);
+                localStorage.setItem('nameTable/JTS', data.nameTable);
 			},
 			"json"
 		).fail(function () {

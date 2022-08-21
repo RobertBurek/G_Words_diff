@@ -11,26 +11,27 @@ try {
 		// console.log(loginBtn);
 		// console.log(inputNick.value);
 		// console.log(inputPassword.value);
-		const dataRegister = { Nick: inputNick.value,  Password: inputPassword.value };
+		const dataRegister = {
+			Nick: inputNick.value,
+			Password: inputPassword.value,
+		};
 		$.post(
 			"./php/register.php",
 			dataRegister,
 			function (data) {
 				// alert( "OK - odczyt / zapis do bazy" );
-                if (!data.error) { 
-				console.log('dane z rejestracji: ', data);
-				console.log("Zarejestrowano nowego gracza: " + data.nick);
-                localStorage.setItem('nick/JTS',data.nick);
-				// console.log("Zarejestrowano nowego gracza: " + data.date);
-				console.log("Zarejestrowano nowego gracza: " + data.nameTable);
-                localStorage.setItem('nameTable/JTS',data.nameTable);
+				if (!data.error) {
+					console.log("dane z rejestracji: ", data);
+					console.log("Zarejestrowano nowego gracza: " + data.nick);
+					localStorage.setItem("nick/JTS", data.nick);
+					// console.log("Zarejestrowano nowego gracza: " + data.date);
+					console.log("Zarejestrowano nowego gracza: " + data.nameTable);
+					localStorage.setItem("nameTable/JTS", data.nameTable);
 
-                loggingButton.innerHTML = 
-                    `<i class="fas fa-sign-in-alt" dropdown></i>
+					loggingButton.innerHTML = `<i class="fas fa-sign-in-alt" dropdown></i>
                     Witaj ${data.nick} ! <div class="dropdown-note" dropdown> (twoje wyniki) </div>`;
 
-                loggingDivInfo.innerHTML = 
-                    `<div class="result-letter">12 odgadniętych 5-lit. słów </div>
+					loggingDivInfo.innerHTML = `<div class="result-letter">0 odgadniętych 5-lit. słów </div>
                      <div class="result-letter">0 odgadniętych 6-lit. słów </div>
                      <div class="result-letter">0 odgadniętych 7-lit. słów </div>
                      <div class="result-letter">0 odgadniętych 8-lit. słów </div>
@@ -41,17 +42,23 @@ try {
                         </div>
                      </div>`;
 
-                } else {
-                    console.log(data.error +" -> " + data.nick); 
-                    loggingDivInfo.classList.add('dropdown-active');
-                    loggingButton.innerHTML = 
-                    // `<i class="fas fa-digital-tachograph" dropdown></i> 
-                    // Wypełnianie <div class="dropdown-note" dropdown>${titleButtonFilling}</div>`;
-                
-                    `<i class="fas fa-sign-in-alt" dropdown></i>
+					$.getScript("app/logout.js")
+						.done(function () {
+							console.log("inicjacja logout");
+						// })
+						// .fail(function () {
+						// 	console.log("coś poszło nie tak w autoLogin");
+						});
+				} else {
+					console.log(data.error + " -> " + data.nick);
+					loggingDivInfo.classList.add("dropdown-active");
+					loggingButton.innerHTML =
+						// `<i class="fas fa-digital-tachograph" dropdown></i>
+						// Wypełnianie <div class="dropdown-note" dropdown>${titleButtonFilling}</div>`;
+
+						`<i class="fas fa-sign-in-alt" dropdown></i>
                     Logowanie <div class="dropdown-note" dropdown style="color:red;"> (${data.error})</div>`;
-                
-                }
+				}
 			},
 			"json"
 		).fail(function () {
