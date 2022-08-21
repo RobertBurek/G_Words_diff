@@ -3,11 +3,8 @@ const inputNick = document.querySelector("[name='nick']");
 const inputPassword = document.querySelector("[name='password']");
 const loggingButton = document.getElementById("logging");
 const loggingDivInfo = document.querySelector(".logging").parentNode;
-console.log(loggingDivInfo);
-// const parentLoggingButton = loggingButton.parentNode;
-// const nextSiblingLoggingButton = parentLoggingButton.nextSibling;
-// console.log(parentLoggingButton);
-// console.log(nextSiblingLoggingButton);
+// console.log(loggingDivInfo);
+// localStorage.removeItem('nick');
 
 try {
 	registerBtn.addEventListener("click", () => {
@@ -31,6 +28,18 @@ try {
                 loggingButton.innerHTML = 
                     `<i class="fas fa-sign-in-alt" dropdown></i>
                     Witaj ${data.nick} ! <div class="dropdown-note" dropdown> (twoje wyniki) </div>`;
+
+                loggingDivInfo.innerHTML = 
+                    `<div class="result-letter">12 odgadniętych 5-lit. słów </div>
+                     <div class="result-letter">0 odgadniętych 6-lit. słów </div>
+                     <div class="result-letter">0 odgadniętych 7-lit. słów </div>
+                     <div class="result-letter">0 odgadniętych 8-lit. słów </div>
+                     <div class="result-letter">0 odgadniętych 9-lit. słów </div>
+                     <div class="logging" logging>
+                        <div id="lower">
+                            <button class="normal reg-log-btn logout-btn">Wyloguj</button>
+                        </div>
+                     </div>`;
 
                 } else {
                     console.log(data.error +" -> " + data.nick); 
