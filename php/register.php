@@ -1,9 +1,5 @@
 <?php
 
-// if (!isset($_SESSION)) {
-//     session_start();
-// }
-
 $nick = $_POST['Nick'];
 $password = $_POST['Password'];
 
@@ -42,10 +38,8 @@ if ($connection->connect_errno != 0) {
         ));
         echo json_encode(array("nick" => $nick, "date" => $userData, "nameTable" => $nameTable));
     } else {
-        // $_SESSION['error'] = '<span style="color:red">Nieprawidłowy nick lub hasło!</span>';
         echo json_encode(array("nick" => $nick, "error" => 'Istnieje już taki NICK !!!'));
     }
 
     $connection->close();
-    // echo json_encode(array("nick" => $nick, "date" => $userData, "nameTable" => $nameTable));
 }
