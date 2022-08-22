@@ -3,7 +3,7 @@ const loggingDivInfo = document.querySelector(".logging").parentNode;
 
 console.log(localStorage.getItem('nick/JTS'));
 
-if (localStorage.getItem('nick/JTS') != '') {
+if ((localStorage.getItem('nick/JTS') != '')&&(localStorage.getItem('nick/JTS'))) {
     loggingButton.innerHTML = 
         `<i class="fas fa-sign-in-alt" dropdown></i>
         Witaj ${localStorage.getItem('nick/JTS')} ! <div class="dropdown-note" dropdown> (twoje wyniki) </div>`;
