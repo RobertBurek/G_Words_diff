@@ -11,14 +11,7 @@
 		echo "Error: ".$connection->connect_erno." Opis: ".$connection->connect_error;
 	}
 	else{
-	// $nick = str_replace(' ', '_', $nick);
-	// echo $login.' - ';
-	// $password=$_POST['password'];
-	// echo $password."<br>";
-
 		$nick = htmlentities($nick, ENT_QUOTES, "UTF-8");
-		// echo $login;
-
 
 		if ($result = @$connection->query(sprintf("SELECT * FROM `players` WHERE Nick='%s'",
 										mysqli_real_escape_string($connection,$nick))))
@@ -27,11 +20,6 @@
 				if ($rows_login>0) 
 				{
 						$row = $result->fetch_assoc();
-						// echo $row['Result9'];
-						// foreach ($row as $value) {
-						// 	echo "$value <br>";
-						//   }
-
 						// echo $nick.'   -  istnieje w bazie';
 
 					if (password_verify($password, $row['Password']))
