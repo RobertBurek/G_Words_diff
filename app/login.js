@@ -46,7 +46,9 @@ try {
 						// .fail(function () {
 						// 	console.log("coś poszło nie tak w autoLogin");
 						});
-				} else {}
+				} else {
+                    console.log("Błąd logowania: ", data.error);
+                }
 
 
 

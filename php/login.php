@@ -34,14 +34,14 @@
 						{
 							// $_SESSION['error'] = '<span style="color:red">Nieprawidłowy nick lub hasło!</span>';
 
-							echo json_encode(array("result"=>"złe hasło"));
+							echo json_encode(array("error"=>"złe hasło"));
 						}
 						
 				} else {
 					
 					// $_SESSION['error'] = '<span style="color:red">Nieprawidłowy nick lub hasło!</span>';
 
-					echo json_encode(array("result"=>"nie ma w bazie"));
+					echo json_encode(array("error"=>"nie ma w bazie"));
 				}
 				
 			}
