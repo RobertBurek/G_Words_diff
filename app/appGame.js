@@ -628,6 +628,25 @@ class AppGame {
 			// if ((resultSQL.category == "?") && this.oneRoundGame.category == "?") startSelectionCategory();
 			if (this.oneRoundGame.category == "?") startSelectionCategory();
       this.listGameRound.push(this.oneRoundGame);
+
+			$.post(
+				"./php/saveRoundGame.php",
+				{ nameTable: localStorage.getItem('nameTable'),
+        word: this.oneRoundGame.word,
+        level: this.oneRoundGame.level,
+        attempt: this.oneRoundGame.attempt,
+        isCategory: this.oneRoundGame.isCategory,
+        isOnlyWord: this.oneRoundGame.isOnlyWord,
+        points: this.oneRoundGame.points
+       },
+				function (dataSQL) {
+					console.log(dataSQL);
+				},
+				"json"
+			).fail(function (data) {
+				console.log(data.error);
+			});
+
 		}
 		// });
 	}
