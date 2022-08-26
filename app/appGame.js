@@ -33,17 +33,18 @@ class GameRound {
 		description,
 		level,
 		attempt,
-		isCategory,
+		// isCategory,
 		isOnlyWord,
 		points
-	) {
+	) 
+  {
 		this.word = word;
 		this.category = category;
 		this.game = game;
 		this.description = description;
 		this.level = level;
 		this.attempt = attempt;
-		this.isCategory = isCategory;
+		this.isCategory = false;
 		this.isOnlyWord = isOnlyWord;
 		this.points = points;
 		// this.multiplierIsCategory = 3;
@@ -614,6 +615,31 @@ class AppGame {
 		);
 	}
 
+
+  saveWord(){
+    return new Promise((resolve, reject) => {
+    $.post(
+      "./php/saveRoundGame.php",
+      { nameTable: localStorage.getItem('nameTable/JTS'),
+      word: this.oneRoundGame.word,
+      level: this.oneRoundGame.level,
+      attempt: this.oneRoundGame.attempt,
+      isCategory: this.oneRoundGame.isCategory,
+      isOnlyWord: this.oneRoundGame.isOnlyWord,
+      points: this.oneRoundGame.points
+     },
+      function (dataSQL) {
+        resolve(dataSQL);
+        console.log(dataSQL);
+      },
+      "json"
+    ).fail(function (data) {
+      reject(data);
+      console.log(data);
+    });
+  });
+  }
+
 	// isVictory(resultCheckedChars, resultSQL) {
 	isVictory(resultCheckedChars) {
 		// this.myPromise.then(result=>{
@@ -628,24 +654,17 @@ class AppGame {
 			// if ((resultSQL.category == "?") && this.oneRoundGame.category == "?") startSelectionCategory();
 			if (this.oneRoundGame.category == "?") startSelectionCategory();
       this.listGameRound.push(this.oneRoundGame);
+      console.log(this.oneRoundGame);
 
-			$.post(
-				"./php/saveRoundGame.php",
-				{ nameTable: localStorage.getItem('nameTable'),
-        word: this.oneRoundGame.word,
-        level: this.oneRoundGame.level,
-        attempt: this.oneRoundGame.attempt,
-        isCategory: this.oneRoundGame.isCategory,
-        isOnlyWord: this.oneRoundGame.isOnlyWord,
-        points: this.oneRoundGame.points
-       },
-				function (dataSQL) {
-					console.log(dataSQL);
-				},
-				"json"
-			).fail(function (data) {
-				console.log(data.error);
-			});
+      this.saveWord()
+      .then((result) => {
+        console.log(result);
+      })
+      .catch((resultFile) => {
+        console.log(resultFile);
+      });
+
+
 
 		}
 		// });
