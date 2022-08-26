@@ -43,7 +43,7 @@ class GameRound {
 		this.game = game;
 		this.description = description;
 		this.level = level;
-		this.attempt = attempt;
+		this.attempt = 1;
 		this.isCategory = false;
 		this.isOnlyWord = true;
 		this.points = points;
@@ -79,13 +79,13 @@ class GameRound {
 		}
 	}
 
-	startParameters(dataSQL, level, attempts) {
+	startParameters(dataSQL, level) {
 		this.word = dataSQL["word"];
 		this.category = dataSQL["category"];
 		this.game = dataSQL["game"];
 		this.description = dataSQL["description"];
 		this.level = level;
-		this.attempt = attempts;
+		// this.attempt = attempts;
 		// this.checkCategory(level);
     // this.oneRoundGame.setBonusIsCategory(level);
     this.bonusIsCategory = 20 * level;
@@ -895,13 +895,15 @@ class AppGame {
 		let listRounds = document.querySelectorAll("#wordGame .line");
 		listRounds = [...listRounds];
 		for (let i = 0; i < listRounds.length; i++) {
-      console.log('runda: ' + (i+1));
-      this.oneRoundGame.attempt = i + 1;
+      // console.log('runda: ' + (i+1));
+      // this.oneRoundGame.attempt = i + 1;
 			if (listRounds[i].className == "line current-round") {
 				listRounds[i].classList.remove("current-round");
 				if (i < listRounds.length - 1) {
 					listRounds[i + 1].classList.add("current-round");
 					listRounds[i + 1].firstChild.classList.add("current-letter");
+          this.oneRoundGame.attempt += 1;
+          console.log(this.oneRoundGame.attempt);
 					this.createCurrentLine();
 				} else {
 					this.showWord(this.oneRoundGame.word);
@@ -951,7 +953,7 @@ class AppGame {
 		this.myPromise
 			.then((resultSQL) => {
         this.oneRoundGame = new GameRound();
-				this.oneRoundGame.startParameters(resultSQL, level, attempts);
+				this.oneRoundGame.startParameters(resultSQL, level);
 				console.log(this.oneRoundGame);
         // this.listGameRound.push(this.oneRoundGame);
 				this.startParameters(level, attempts, resultSQL);
@@ -973,7 +975,7 @@ class AppGame {
 			})
 			.catch((resultFile) => {
         this.oneRoundGame = new GameRound();
-				this.oneRoundGame.startParameters(resultFile, level, attempts);
+				this.oneRoundGame.startParameters(resultFile, level);
 				console.log(this.oneRoundGame);
         // this.listGameRound.push(this.oneRoundGame);
 				this.startParameters(level, attempts, resultFile);
