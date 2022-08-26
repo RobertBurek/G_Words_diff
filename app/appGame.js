@@ -895,15 +895,12 @@ class AppGame {
 		let listRounds = document.querySelectorAll("#wordGame .line");
 		listRounds = [...listRounds];
 		for (let i = 0; i < listRounds.length; i++) {
-      // console.log('runda: ' + (i+1));
-      // this.oneRoundGame.attempt = i + 1;
 			if (listRounds[i].className == "line current-round") {
 				listRounds[i].classList.remove("current-round");
 				if (i < listRounds.length - 1) {
 					listRounds[i + 1].classList.add("current-round");
 					listRounds[i + 1].firstChild.classList.add("current-letter");
           this.oneRoundGame.attempt += 1;
-          console.log(this.oneRoundGame.attempt);
 					this.createCurrentLine();
 				} else {
 					this.showWord(this.oneRoundGame.word);
