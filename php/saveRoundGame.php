@@ -15,19 +15,6 @@ if ($connection->connect_errno != 0) {
     echo "Error: " . $connection->connect_erno . " Opis: " . $connection->connect_error;
 } else {
 
-    // $connection->query(sprintf(
-    //     "INSERT INTO `%s` (`Word`, `Level`, `Attempt`, `IsCategory`, `IsOnlyWord`, `Points`) VALUES ('%s', '%s', '%s', '%s', '%s', '%s');",
-    //     mysqli_real_escape_string($connection, $nameTable),
-    //     mysqli_real_escape_string($connection, $word),
-    //     mysqli_real_escape_string($connection, $level),
-    //     mysqli_real_escape_string($connection, $attempt),
-    //     mysqli_real_escape_string($connection, $isCategory),
-    //     mysqli_real_escape_string($connection, $isOnlyWord),
-    //     mysqli_real_escape_string($connection, $points)
-    // ));
-
-
-
     if (
         $connection->query(sprintf(
             "INSERT INTO `%s` (`Word`, `Level`, `Attempt`, `IsCategory`, `IsOnlyWord`, `Points`) VALUES ('%s', '%s', '%s', '%s', '%s', '%s');",
@@ -48,7 +35,17 @@ if ($connection->connect_errno != 0) {
         ));
 
         $countLevel = $resultLevel->fetch_assoc();
-        echo json_encode(array("result" => $countLevel['COUNT(*)'], "level" => $level, "error" => 'Zapisano słowo w bazie gracza !!!'));
+        echo json_encode(array(
+            "result" => $countLevel['COUNT(*)'],
+            "level" => $level,
+            "error" => 'Zapisano słowo w bazie gracza !!!',
+            "nameTable" => $nameTable,
+            "word" => $word,
+            "attempt" => $attempt,
+            "isCategory" => $isCategory,
+            "isOnlyWord" => $isOnlyWord,
+            "points" => $points
+        ));
     } else {
         echo json_encode(array("word" => $word, "error" => 'Słowo istniało już w bazie gracza !!!'));
     }
