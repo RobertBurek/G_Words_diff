@@ -34,7 +34,7 @@ class GameRound {
 		level,
 		attempt,
 		// isCategory,
-		isOnlyWord,
+		// isOnlyWord,
 		points
 	) 
   {
@@ -45,7 +45,7 @@ class GameRound {
 		this.level = level;
 		this.attempt = attempt;
 		this.isCategory = false;
-		this.isOnlyWord = isOnlyWord;
+		this.isOnlyWord = true;
 		this.points = points;
 		// this.multiplierIsCategory = 3;
 		this.bonusIsCategory = 0;
@@ -71,10 +71,10 @@ class GameRound {
 
 	chengeIsOnlyWord(param) {
 		if (param) {
-			this.isOnlyWord = false;
+			this.isOnlyWord = true;
 			this.multiplierIsOnlyWord = 1;
 		} else {
-			this.isOnlyWord = true;
+			this.isOnlyWord = false;
 			this.multiplierIsOnlyWord = 2;
 		}
 	}
@@ -89,7 +89,7 @@ class GameRound {
 		// this.checkCategory(level);
     // this.oneRoundGame.setBonusIsCategory(level);
     this.bonusIsCategory = 20 * level;
-		this.isOnlyWord = false;
+		// this.isOnlyWord = true;
     // this.bonusIsCategory = level * 2 * 10;
 		// this.points = level * 10 * this.multiplierIsCategory * this.multiplierIsOnlyWord;
 		this.points = this.countPoints(10, level, 2) + this.bonusIsCategory;
@@ -406,7 +406,7 @@ class AppGame {
 		this.onlyWords = param;
 		this.oneRoundGame.chengeIsOnlyWord(param);
 		// this.oneRoundGame.points = this.oneRoundGame.countPoints(10, this.level);
-		console.log(this.oneRoundGame);
+		console.log(this.oneRoundGame.isOnlyWord);
 		if (this.onlyWords)
 			document.querySelector(".above.only-words p").innerHTML =
 				"Tylko istniejące słowa";
@@ -431,10 +431,10 @@ class AppGame {
         console.log('Pokazałem kategorię: ' + this.oneRoundGame.category);
         this.categoryWrapper.style.cursor = "default";
         this.oneRoundGame.checkCategory(this.level);
-        console.log("Punkty  :  " + this.oneRoundGame.points + ", w tym (kategoria) :  " + this.oneRoundGame.bonusIsCategory + ' ,    Kat: ' + convertTextCategory(this.oneRoundGame.category));
+        console.log("Punkty  :  " + this.oneRoundGame.points + ", w tym (kategoria) :  " + this.oneRoundGame.bonusIsCategory + ' ,'+this.oneRoundGame.isCategory+'    Kat: ' + convertTextCategory(this.oneRoundGame.category));
       }
     );
-		console.log("Punkty  :  " + this.oneRoundGame.points + ", w tym (kategoria) :  " + this.oneRoundGame.bonusIsCategory + ' ,    Kat: ' + convertTextCategory(this.oneRoundGame.category));
+		console.log("Punkty  :  " + this.oneRoundGame.points + ", w tym (kategoria) :  " + this.oneRoundGame.bonusIsCategory + ' ,'+this.oneRoundGame.isCategory+'    Kat: ' + convertTextCategory(this.oneRoundGame.category));
 	}
 
 	startParameters(level, attempts, resultSQL) {

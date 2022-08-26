@@ -4,8 +4,13 @@ $nameTable = $_POST['nameTable'];
 $word = $_POST['word'];
 $level = $_POST['level'];
 $attempt = $_POST['attempt'];
-$isCategory = $_POST['isCategory'];
-$isOnlyWord = $_POST['isOnlyWord'];
+// $isCategory = $_POST['isCategory'];
+if ($_POST['isCategory'] == "true") $isCategory = '1'; else $isCategory = '0';
+// $isCategory?$isCategory=1:$isCategory=0;
+// $isOnlyWord = $_POST['isOnlyWord'];
+if ($_POST['isOnlyWord'] == "true") $isOnlyWord = '1'; else $isOnlyWord = '0';
+// $isOnlyWord = ($_POST['isOnlyWord']==true)?"1":"0";
+// $isOnlyWord?$isOnlyWord=1:$isOnlyWord=0;
 $points = $_POST['points'];
 
 require_once "connect.php";
