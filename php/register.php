@@ -20,10 +20,9 @@ if ($connection->connect_errno != 0) {
         mysqli_real_escape_string($connection, $passwordHash),
         mysqli_real_escape_string($connection, $userData),
         mysqli_real_escape_string($connection, $userData),
-        mysqli_real_escape_string($connection, '111'),
+        mysqli_real_escape_string($connection, '0'),
         mysqli_real_escape_string($connection, $nameTable)
-    ))
-    ) {
+    ))) {
         $connection->query(sprintf(
             "CREATE TABLE `%s`.`%s` (
                                     `Word` text COLLATE utf8_polish_ci NOT NULL,
@@ -36,10 +35,9 @@ if ($connection->connect_errno != 0) {
             mysqli_real_escape_string($connection, $db_name),
             mysqli_real_escape_string($connection, $nameTable)
         ));
-        echo json_encode(array("nick" => $nick, "date" => $userData, "nameTable" => $nameTable));
+        echo json_encode(array("nick" => $nick, "nameTable" => $nameTable));
     } else {
         echo json_encode(array("nick" => $nick, "error" => 'Istnieje już taki NICK !!!'));
     }
-
     $connection->close();
 }
