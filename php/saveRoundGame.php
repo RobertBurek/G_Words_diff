@@ -39,11 +39,11 @@ if ($connection->connect_errno != 0) {
             "result" => $countLevel['COUNT(*)'],
             "level" => $level,
             "error" => 'Zapisano słowo w bazie gracza !!!',
-            "nameTable" => $nameTable,
-            "word" => $word,
-            "attempt" => $attempt,
-            "isCategory" => $isCategory,
-            "isOnlyWord" => $isOnlyWord,
+            // "nameTable" => $nameTable,
+            // "word" => $word,
+            // "attempt" => $attempt,
+            // "isCategory" => $isCategory,
+            // "isOnlyWord" => $isOnlyWord,
             "points" => $points
         ));
     } else {

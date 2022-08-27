@@ -630,14 +630,19 @@ class AppGame {
      },
       function (dataSQL) {
         resolve(dataSQL);
-        console.log(dataSQL);
+        // console.log(dataSQL);
       },
       "json"
     ).fail(function (data) {
       reject(data);
-      console.log(data);
+      // console.log(data);
     });
   });
+  }
+
+
+  setResultLocalStorage(level, result){
+     localStorage.setItem('result' + level + '/JTS', result);
   }
 
 	// isVictory(resultCheckedChars, resultSQL) {
@@ -657,8 +662,8 @@ class AppGame {
       console.log(this.oneRoundGame);
 
       this.saveWord()
-      .then((result) => {
-        console.log(result);
+      .then((dataBase) => {
+        this.setResultLocalStorage(dataBase.level, dataBase.result);
       })
       .catch((resultFile) => {
         console.log(resultFile);
