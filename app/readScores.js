@@ -10,7 +10,7 @@ $.post(
 		localStorage.setItem("result8/JTS", dataSQL.result8);
 		localStorage.setItem("result9/JTS", dataSQL.result9);
 		$.getScript("app/displayScores.js").done(function () {
-			console.log("Wyświetlanie wyników gracza - displayScores.js");
+			console.log(`Wyświetlanie wyników gracza: ${localStorage.getItem("nick/JTS")}   - displayScores.js`);
 		});
 	},
 	"json"

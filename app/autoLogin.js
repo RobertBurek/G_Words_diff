@@ -10,6 +10,6 @@ if (
 				)} ! <div class="dropdown-note" dropdown> (twoje wyniki) </div>`;
 
 	$.getScript("app/readScores.js").done(function () {
-		console.log("Odczyt wyników gracza - readScores.js");
+		console.log(`Odczyt wyników gracza: ${localStorage.getItem("nick/JTS")}   - readScores.js`);
 	});
 }
