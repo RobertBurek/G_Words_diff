@@ -47,6 +47,11 @@ try {
 					// 	// 	console.log("coś poszło nie tak w autoLogin");
 					// 	});
 
+					$.getScript("app/readScores.js").done(function () {
+						console.log("Odczyt wyników gracza  readScores.js");
+					});
+
+
 					$.getScript("app/displayScores.js").done(function () {
 						console.log("Wyświetlanie wyników gracza  displayScores.js");
 					});

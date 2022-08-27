@@ -1,7 +1,7 @@
 <?php
 
-// $nameTable = $_POST['nameTable'];
-$nameTable = 'robert20220821125115';
+$nameTable = $_POST['nameTable'];
+// $nameTable = 'robert20220821125115';
 // $word = $_POST['word'];
 // $level = $_POST['level'];
 // $attempt = $_POST['attempt'];
