@@ -47,14 +47,24 @@ try {
 					// 	// 	console.log("coś poszło nie tak w autoLogin");
 					// 	});
 
-					$.getScript("app/readScores.js").done(function () {
-						console.log("Odczyt wyników gracza  readScores.js");
+					const readScoresPlayer = new Promise((resolve, reject) => {
+						$.getScript("app/readScores.js").done(function () {
+							console.log("Odczyt wyników gracza  readScores.js");
+							resolve();
+						});
 					});
-
-
-					$.getScript("app/displayScores.js").done(function () {
-						console.log("Wyświetlanie wyników gracza  displayScores.js");
+					readScoresPlayer.then(() => {
+						$.getScript("app/displayScores.js").done(function () {
+							console.log("Wyświetlanie wyników gracza  displayScores.js");
+						});
 					});
+					// $.getScript("app/displayScores.js").done(function () {
+					//     console.log("Wyświetlanie wyników gracza  displayScores.js");
+					// });
+
+					// $.getScript("app/displayScores.js").done(function () {
+					// 	console.log("Wyświetlanie wyników gracza  displayScores.js");
+					// });
 				} else {
 					console.log("Błąd logowania: ", data.error);
 				}

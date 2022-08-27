@@ -664,6 +664,9 @@ class AppGame {
       this.saveWord()
       .then((dataBase) => {
         this.setResultLocalStorage(dataBase.level, dataBase.result);
+        $.getScript("app/displayScores.js").done(function () {
+          console.log("Wyświetlanie wyników gracza  displayScores.js");
+        });
       })
       .catch((resultFile) => {
         console.log(resultFile);
