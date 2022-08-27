@@ -10,11 +10,11 @@ try {
 	logoutBtn.addEventListener("click", () => {
 		localStorage.setItem("nick/JTS", "");
 		localStorage.setItem("nameTable/JTS", "");
-		localStorage.setItem("result5/JTS", 0);
-		localStorage.setItem("result6/JTS", 0);
-		localStorage.setItem("result7/JTS", 0);
-		localStorage.setItem("result8/JTS", 0);
-		localStorage.setItem("result9/JTS", 0);
+		// localStorage.setItem("result5/JTS", 0);
+		// localStorage.setItem("result6/JTS", 0);
+		// localStorage.setItem("result7/JTS", 0);
+		// localStorage.setItem("result8/JTS", 0);
+		// localStorage.setItem("result9/JTS", 0);
 		console.log("Wyczysciłem localStorage !!!");
 
 		loggingButton.innerHTML =
