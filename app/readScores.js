@@ -1,3 +1,5 @@
+
+
 $.post(
     "./php/readResultsPlayerWithBaseSQL.php",
     { nameTable: localStorage.getItem('nameTable/JTS')},
@@ -9,6 +11,9 @@ $.post(
       localStorage.setItem("result7/JTS", dataSQL.result7);
       localStorage.setItem("result8/JTS", dataSQL.result8);
       localStorage.setItem("result9/JTS", dataSQL.result9);
+      $.getScript("app/displayScores.js").done(function () {
+        console.log("Wyświetlanie wyników gracza  displayScores.js");
+    });
     },
     "json"
   ).fail(function (data) {
