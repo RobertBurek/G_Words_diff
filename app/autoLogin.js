@@ -3,6 +3,11 @@ const loggingButton = document.getElementById("logging");
 
 console.log(localStorage.getItem('nick/JTS'));
 
+$.getScript("app/readScores.js")
+.done(function () {
+    console.log("Odczyt wyników gracza  readScores.js");
+});
+
 if ((localStorage.getItem('nick/JTS') != '')&&(localStorage.getItem('nick/JTS'))) {
     loggingButton.innerHTML = 
         `<i class="fas fa-sign-in-alt" dropdown></i>
@@ -28,11 +33,9 @@ if ((localStorage.getItem('nick/JTS') != '')&&(localStorage.getItem('nick/JTS'))
     // });
 
     $.getScript("app/displayScores.js")
-    .done(function () {
+    .done(function (data) {
         console.log("Wyświetlanie wyników gracza  displayScores.js");
-    // })
-    // .fail(function () {
-    // 	console.log("coś poszło nie tak w autoLogin");
+        console.log(data);
     });
 
 

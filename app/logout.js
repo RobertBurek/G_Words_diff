@@ -9,7 +9,7 @@ const loggingDivInfo = document.querySelector(".logging").parentNode;
 try {
 	logoutBtn.addEventListener("click", () => {
 		localStorage.setItem("nick/JTS", "");
-		localStorage.setItem("nameTable/JTS", "");
+		// localStorage.setItem("nameTable/JTS", "");
 		// localStorage.setItem("result5/JTS", 0);
 		// localStorage.setItem("result6/JTS", 0);
 		// localStorage.setItem("result7/JTS", 0);
