@@ -37,7 +37,7 @@ if ($connection->connect_errno != 0) {
         ));
         echo json_encode(array("nick" => $nick, "nameTable" => $nameTable));
     } else {
-        echo json_encode(array("nick" => $nick, "error" => 'Istnieje już taki NICK !!!'));
+        echo json_encode(array("nick" => $nick, "error" => 'Istnieje już taki LOGIN !!!'));
     }
     $connection->close();
 }
