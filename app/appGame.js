@@ -660,9 +660,7 @@ class AppGame {
 		localStorage.setItem("result" + level + "/JTS", result);
 	}
 
-	// isVictory(resultCheckedChars, resultSQL) {
 	isVictory(resultCheckedChars) {
-		// this.myPromise.then(result=>{
 		let i = 0;
 		resultCheckedChars.forEach((char) => {
 			if (char == "success") i++;
@@ -670,10 +668,7 @@ class AppGame {
 		if (i == this.level) {
 			this.victory = true;
 			this.onceAgain(this.level, this.attempts);
-			// if (words.category == "?") whatCategoryDiv.classList.remove('hide');
-			// if ((resultSQL.category == "?") && this.oneRoundGame.category == "?") startSelectionCategory();
 			if (this.oneRoundGame.category == "?") startSelectionCategory();
-
 			if (
 				localStorage.getItem("nick/JTS") != "" &&
 				localStorage.getItem("nick/JTS")
@@ -694,8 +689,6 @@ class AppGame {
 			console.log(this.oneRoundGame);
 		}
 	}
-	// });
-	// }
 
 	newViewLine(resultCheckedChars) {
 		console.log(
