@@ -9,7 +9,7 @@ $nameTable = $_POST['nameTable'];
 // $isOnlyWord = ($_POST['isOnlyWord'] == "true") ? '1': '0';
 // $points = $_POST['points'];
 
-require_once "connect1.php";
+require_once "connect.php";
 
 $connection = @new mysqli($host, $db_user, $db_password, $db_name);
 if ($connection->connect_errno != 0) {

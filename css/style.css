@@ -587,13 +587,17 @@ input {
   cursor: pointer;
 }
 
-.register-btn,
-.logout-btn {
+.register-btn {
   color: yellow;
 }
 
 .login-btn {
   color: lime;
+}
+
+.logout-btn {
+  color: yellow;
+  margin-top: 10px;
 }
 
 h2 {
@@ -630,6 +634,12 @@ h2 {
   font-size: 14px;
   font-weight: 600;
   line-height: 30px;
+}
+
+.result-letter strong {
+  color: lime;
+  font-size: 115%;
+  padding: 0 10px;
 }
 
 .heartly {

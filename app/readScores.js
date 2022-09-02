@@ -26,7 +26,8 @@ if (
 		localStorage.setItem("result7/JTS", "0");
 		localStorage.setItem("result8/JTS", "0");
 		localStorage.setItem("result9/JTS", "0");
-		$.getScript("app/displayScores.js").done(function () {
+		localStorage.setItem("info/JTS", '<div class="result-letter" style="color: red;">Błąd odczytu danych z bazy !!!</div>');
+		$.getScript("app/displayScores.js?imie=Jak").done(function () {
 			console.log(
 				`Błąd odczytu wyników gracza: ${localStorage.getItem(
 					"nick/JTS"

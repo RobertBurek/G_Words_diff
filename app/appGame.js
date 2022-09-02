@@ -9,6 +9,8 @@ import { words7Letters } from "../src/7-lettersBIS.js";
 import { words8Letters } from "../src/8-lettersBIS.js";
 import { words9Letters } from "../src/9-lettersBIS.js";
 
+localStorage.setItem("info/JTS", "");
+
 // include( 'autoLogin.js');
 
 // $.getScript( "app/autoLogin.js" )
@@ -32,7 +34,7 @@ class GameRound {
 		game,
 		description,
 		level,
-		attempt,
+		// attempt,
 		// isCategory,
 		// isOnlyWord,
 		points
