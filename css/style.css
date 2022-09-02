@@ -395,7 +395,13 @@ html {
 }
 
 .above.once-again {
-  top: 78px;
+  top: 60px;
+  color: yellow;
+}
+
+.above.save-score {
+  top: 120px;
+  color: lime;
 }
 
 .above p {
@@ -791,8 +797,11 @@ h2 {
     width: 20px;
   }
   .above.once-again {
-    top: 94px;
+    top: 60px;
   }
+  /* .above.save-score {
+    top: 120px;
+  } */
   .one-letter {
     margin: 5px 5px;
   }

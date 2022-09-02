@@ -142,6 +142,7 @@ const onlyWords = document.getElementById("onlyWords");
 const notWord = document.querySelector(".not-word");
 const stringChars = document.getElementById("stringChars");
 const onceAgainSection = document.getElementById("onceAgain");
+const saveScoreSection = document.getElementById("saveScore");
 const divOnlyWords = document.querySelector(".above.only-words");
 const pOnlyWords = document.querySelector(".above.only-words p");
 
@@ -240,6 +241,7 @@ function startSelectionCategory() {
 
 function listenerLongLetters(quantity, attempts) {
 	onceAgainSection.classList.add("hide");
+	saveScoreSection.classList.add("hide");
 	appGame.run(quantity, attempts);
 }
 
@@ -954,14 +956,37 @@ class AppGame {
 		wordVictory = this.oneRoundGame.word;
 		console.log(wordVictory);
 		onceAgainSection.classList.remove("hide");
+    saveScoreSection.classList.remove("hide");
 		divOnlyWords.classList.add("curtain-only-words");
 		pOnlyWords.classList.add("curtain");
 		pOnlyWords.classList.add("curtain-z-index");
 		const onceAgainDiv = document.querySelector("#onceAgain div");
 		onceAgainDiv.addEventListener("click", () => {
 			onceAgainSection.classList.add("hide");
+			saveScoreSection.classList.add("hide");
 			this.run(quantity, attempts);
 		});
+    const saveScoreDiv = document.querySelector("#saveScore div");
+    saveScoreDiv.addEventListener("click", () => {
+			onceAgainSection.classList.add("hide");
+			saveScoreSection.classList.add("hide");
+			this.run(quantity, attempts);
+		});
+	}
+
+  saveScore(quantity, attempts) {
+		// wordVictory = this.oneRoundGame.word;
+		// console.log(wordVictory);
+		// onceAgainSection.classList.remove("hide");
+		// saveScoreSection.classList.remove("hide");
+		// divOnlyWords.classList.add("curtain-only-words");
+		// pOnlyWords.classList.add("curtain");
+		// pOnlyWords.classList.add("curtain-z-index");
+		// const onceAgainDiv = document.querySelector("#onceAgain div");
+		// onceAgainDiv.addEventListener("click", () => {
+		// 	onceAgainSection.classList.add("hide");
+		// 	this.run(quantity, attempts);
+		// });
 	}
 
 	run(level, attempts) {
