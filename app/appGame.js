@@ -684,9 +684,9 @@ class AppGame {
 						console.log(resultFile);
 					});
 			} else {
+				this.listGameRound.push(this.oneRoundGame);
+				console.log(this.oneRoundGame);
 			}
-			this.listGameRound.push(this.oneRoundGame);
-			console.log(this.oneRoundGame);
 		}
 	}
 

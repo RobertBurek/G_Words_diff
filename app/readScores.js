@@ -21,6 +21,19 @@ if (
 		},
 		"json"
 	).fail(function () {
-		console.log("Nie udało się odczyta wyników gracza.");
+		localStorage.setItem("result5/JTS", "0");
+		localStorage.setItem("result6/JTS", "0");
+		localStorage.setItem("result7/JTS", "0");
+		localStorage.setItem("result8/JTS", "0");
+		localStorage.setItem("result9/JTS", "0");
+		$.getScript("app/displayScores.js").done(function () {
+			console.log(
+				`Błąd odczytu wyników gracza: ${localStorage.getItem(
+					"nick/JTS"
+				)}   - displayScores.js`
+			);
+		});
+		// console.log("Nie udało się odczytać wyników gracza.");
+		// console.log(data.error);
 	});
 }
