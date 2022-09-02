@@ -341,7 +341,7 @@ if (isset($_SESSION['errorConnect'])) unset($_SESSION['errorConnect']);
         document.write('<script src="./app/logout.js?ver=' + Math.floor(Math.random() * 10000) + '" type="module"\><\/script>');
     </script> -->
     <script>
-        document.write('<script src="./app/autoLogin.js?ver=' + Math.floor(Math.random() * 10000) + '" type="module"\><\/script>');
+        document.write('<script src="./app/autoReading.js?ver=' + Math.floor(Math.random() * 10000) + '" type="module"\><\/script>');
     </script>
     <!-- <script>
         const game = new Game({
