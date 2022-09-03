@@ -685,12 +685,17 @@ class AppGame {
 						});
 					})
 					.catch(() => {
-            this.listGameRound.push(this.oneRoundGame);
+						this.listGameRound.push(this.oneRoundGame);
 						console.log(`Problem z zapisem słowa do bazy !!!`);
 						console.log(this.listGameRound);
-            localStorage.setItem("info/JTS", '<div class="result-letter info">Błąd zapisu wyniku do bazy !!!</div>');
-            $.getScript("app/displayScores.js").done(function () {
-							console.log("Wyświetlanie wyników gracza. Błąd zapisu - displayScores.js");
+						localStorage.setItem(
+							"info/JTS",
+							'<div class="result-letter info">Błąd zapisu wyniku do bazy !!!</div>'
+						);
+						$.getScript("app/displayScores.js").done(function () {
+							console.log(
+								"Wyświetlanie wyników gracza. Błąd zapisu - displayScores.js"
+							);
 						});
 					});
 			} else {
@@ -962,27 +967,30 @@ class AppGame {
 		wordVictory = this.oneRoundGame.word;
 		console.log(`Odgadnięte słowo: ${wordVictory}`);
 		onceAgainSection.classList.remove("hide");
-    saveScoreSection.classList.remove("hide");
 		divOnlyWords.classList.add("curtain-only-words");
 		pOnlyWords.classList.add("curtain");
 		pOnlyWords.classList.add("curtain-z-index");
 		const onceAgainDiv = document.querySelector("#onceAgain div");
-		// const onceAgainDiv = document.querySelector("#onceAgain p");
 		onceAgainDiv.addEventListener("click", () => {
 			onceAgainSection.classList.add("hide");
 			saveScoreSection.classList.add("hide");
 			this.run(quantity, attempts);
 		});
-    const saveScoreDiv = document.querySelector("#saveScore div");
-    // const saveScoreDiv = document.querySelector("#saveScore p");
-    saveScoreDiv.addEventListener("click", () => {
-			onceAgainSection.classList.add("hide");
-			saveScoreSection.classList.add("hide");
-			this.run(quantity, attempts);
-		});
+		if (
+			localStorage.getItem("nick/JTS") == "" &&
+			!localStorage.getItem("nick/JTS")
+		) {
+			saveScoreSection.classList.remove("hide");
+			const saveScoreDiv = document.querySelector("#saveScore div");
+			saveScoreDiv.addEventListener("click", () => {
+				onceAgainSection.classList.add("hide");
+				saveScoreSection.classList.add("hide");
+				this.saveScore(quantity, attempts);
+			});
+		}
 	}
 
-  saveScore(quantity, attempts) {
+	saveScore(quantity, attempts) {
 		// wordVictory = this.oneRoundGame.word;
 		// console.log(wordVictory);
 		// onceAgainSection.classList.remove("hide");
