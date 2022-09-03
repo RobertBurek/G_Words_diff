@@ -681,11 +681,19 @@ class AppGame {
 					.then((dataBase) => {
 						this.setResultLocalStorage(dataBase.level, dataBase.result);
 						$.getScript("app/displayScores.js").done(function () {
-							console.log("Wyświetlanie wyników gracza  displayScores.js");
+							console.log("Wyświetlanie wyników gracza - displayScores.js");
 						});
 					})
-					.catch((resultFile) => {
-						console.log(resultFile);
+					.catch(() => {
+            // localStorage.setItem("info/JTS", 'Błąd zapisu wyniku do bazy !!!');
+            this.listGameRound.push(this.oneRoundGame);
+						console.log(`Problem z zapisem słowa do bazy !!!`);
+						console.log(this.listGameRound);
+            localStorage.setItem("info/JTS", '<div class="result-letter info">Błąd zapisu wyniku do bazy !!!</div>');
+            // localStorage.setItem("info/JTS", 'Błąd zapisu wyniku do bazy !!!');
+            $.getScript("app/displayScores.js").done(function () {
+							console.log("Wyświetlanie wyników gracza. Błąd zapisu - displayScores.js");
+						});
 					});
 			} else {
 				this.listGameRound.push(this.oneRoundGame);
@@ -954,7 +962,7 @@ class AppGame {
 
 	onceAgain(quantity, attempts) {
 		wordVictory = this.oneRoundGame.word;
-		console.log(wordVictory);
+		console.log(`Odgadnięte słowo: ${wordVictory}`);
 		onceAgainSection.classList.remove("hide");
     saveScoreSection.classList.remove("hide");
 		divOnlyWords.classList.add("curtain-only-words");

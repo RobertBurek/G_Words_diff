@@ -1,7 +1,8 @@
 const loggingDivInfo = document.querySelector(".logging").parentNode;
 
 
-loggingDivInfo.innerHTML = `${localStorage.getItem("info/JTS")}
+loggingDivInfo.innerHTML = `
+${localStorage.getItem("info/JTS")}
 <div class="result-letter">5-literowych słów: <strong> ${localStorage.getItem('result5/JTS')} </strong></div> 
 <div class="result-letter">6-literowych słów: <strong> ${localStorage.getItem('result6/JTS')} </strong></div> 
 <div class="result-letter">7-literowych słów: <strong> ${localStorage.getItem('result7/JTS')} </strong></div> 
