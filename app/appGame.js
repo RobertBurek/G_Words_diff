@@ -685,12 +685,10 @@ class AppGame {
 						});
 					})
 					.catch(() => {
-            // localStorage.setItem("info/JTS", 'Błąd zapisu wyniku do bazy !!!');
             this.listGameRound.push(this.oneRoundGame);
 						console.log(`Problem z zapisem słowa do bazy !!!`);
 						console.log(this.listGameRound);
             localStorage.setItem("info/JTS", '<div class="result-letter info">Błąd zapisu wyniku do bazy !!!</div>');
-            // localStorage.setItem("info/JTS", 'Błąd zapisu wyniku do bazy !!!');
             $.getScript("app/displayScores.js").done(function () {
 							console.log("Wyświetlanie wyników gracza. Błąd zapisu - displayScores.js");
 						});
@@ -969,12 +967,14 @@ class AppGame {
 		pOnlyWords.classList.add("curtain");
 		pOnlyWords.classList.add("curtain-z-index");
 		const onceAgainDiv = document.querySelector("#onceAgain div");
+		// const onceAgainDiv = document.querySelector("#onceAgain p");
 		onceAgainDiv.addEventListener("click", () => {
 			onceAgainSection.classList.add("hide");
 			saveScoreSection.classList.add("hide");
 			this.run(quantity, attempts);
 		});
     const saveScoreDiv = document.querySelector("#saveScore div");
+    // const saveScoreDiv = document.querySelector("#saveScore p");
     saveScoreDiv.addEventListener("click", () => {
 			onceAgainSection.classList.add("hide");
 			saveScoreSection.classList.add("hide");

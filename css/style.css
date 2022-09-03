@@ -355,10 +355,12 @@ html {
 }
 
 .curtain {
-	height: 160px !important;
+	height: 162px !important;
 	width: 380px !important;
 	background-color: gray;
 	opacity: 0.8;
+  position: relative;
+  top: 1px;
 }
 
 .curtain-z-index {
@@ -395,12 +397,12 @@ html {
 }
 
 .above.once-again {
-	top: 60px;
+	top: 45px;
 	color: yellow;
 }
 
 .above.save-score {
-	top: 120px;
+	top: 100px;
 	color: lime;
 }
 
@@ -416,18 +418,24 @@ html {
 }
 
 .above div {
-	width: 200px;
+	/* width: 200px;
 	height: 40px;
 	text-align: center;
-	line-height: 34px;
-	font-size: 2rem;
+	line-height: 34px; */
+  width: 170px;
+  height: 35px;
+  text-align: center;
+  line-height: 30px;
+	/* font-size: 2rem; */
+	font-size: 1.4rem;
 	cursor: pointer;
 	font-weight: 700;
 	background-color: #555555;
 	border-radius: 5px;
 	border: 4px solid;
 	border-color: #999999 #2b2b2b #2b2b2b #999999;
-	letter-spacing: 3px;
+	/* letter-spacing: 3px; */
+	letter-spacing: 2px;
 	z-index: 500;
 }
 
@@ -760,9 +768,19 @@ h2 {
 		width: 27px;
 		font-size: 20px;
 	}
+  .above div {
+    width: 190px;
+    height: 40px;
+    text-align: center;
+    line-height: 34px;
+    font-size: 2rem;
+  }
 	.above.once-again {
-		top: 87px;
+		top: 60px;
 	}
+  .above.save-score {
+    top: 120px;
+  }
 	.one-letter {
 		margin: 5px 3px;
 	}
@@ -798,6 +816,7 @@ h2 {
 	.curtain {
 		height: 188px !important;
 		width: 700px !important;
+    top: 0px;
 	}
 	.title-letter {
 		height: 31px;
@@ -807,10 +826,17 @@ h2 {
 	.title-letter-space {
 		width: 20px;
 	}
+  /* .above div {
+    width: 190px;
+    height: 40px;
+    text-align: center;
+    line-height: 34px;
+    font-size: 2rem;
+  }
 	.above.once-again {
 		top: 60px;
 	}
-	/* .above.save-score {
+	.above.save-score {
     top: 120px;
   } */
 	.one-letter {
