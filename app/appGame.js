@@ -972,7 +972,6 @@ class AppGame {
 		wordVictory = this.oneRoundGame.word;
 		console.log(`Odgadnięte słowo: ${wordVictory}`);
 		onceAgainSection.classList.remove("hide");
-		saveScoreSection.classList.remove("hide");
 		divOnlyWords.classList.add("curtain-only-words");
 		pOnlyWords.classList.add("curtain");
 		pOnlyWords.classList.add("curtain-z-index");
@@ -986,15 +985,17 @@ class AppGame {
 			localStorage.getItem("nick/JTS") == "" &&
 			!localStorage.getItem("nick/JTS")
 		) {
+			saveScoreSection.classList.remove("hide");
 			const saveScoreDiv = document.querySelector("#saveScore div");
-			saveScoreDiv.addEventListener("click", 
-      // this.saveScore()
-      () => {
-				// onceAgainSection.classList.add("hide");
-				saveScoreSection.classList.add("hide");
-				this.saveScore();
-			}
-      );
+			saveScoreDiv.addEventListener(
+				"click",
+				// this.saveScore()
+				() => {
+					// onceAgainSection.classList.add("hide");
+					saveScoreSection.classList.add("hide");
+					this.saveScore();
+				}
+			);
 		}
 	}
 
@@ -1003,22 +1004,7 @@ class AppGame {
 		const loggingDivInfo = document.querySelector(".logging").parentNode;
 		loggingDivInfo.classList.add("dropdown-active");
 		console.log(loggingDivInfo);
-    $('html, body').animate({scrollTop: 800}, 'linear'); // 'linear'
-		// const loggingDivInfo = document.querySelector(".logging").parentNode;
-		// console.log(loggingDivInfo);
-		// loggingDivInfo.classList.add("dropdown-active");
-		// wordVictory = this.oneRoundGame.word;
-		// console.log(wordVictory);
-		// onceAgainSection.classList.remove("hide");
-		// saveScoreSection.classList.remove("hide");
-		// divOnlyWords.classList.add("curtain-only-words");
-		// pOnlyWords.classList.add("curtain");
-		// pOnlyWords.classList.add("curtain-z-index");
-		// const onceAgainDiv = document.querySelector("#onceAgain div");
-		// onceAgainDiv.addEventListener("click", () => {
-		// 	onceAgainSection.classList.add("hide");
-		// 	this.run(quantity, attempts);
-		// });
+		$("html, body").animate({ scrollTop: 800 }, 300); // 'linear'
 	}
 
 	run(level, attempts) {
