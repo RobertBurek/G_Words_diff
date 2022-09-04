@@ -965,10 +965,6 @@ class AppGame {
 	}
 
 	onceAgain(quantity, attempts) {
-		// const loggingDivInfo = document.querySelector(".logging").parentNode;
-		// loggingDivInfo.classList.add("dropdown-active");
-		// console.log(loggingDivInfo);
-
 		wordVictory = this.oneRoundGame.word;
 		console.log(`Odgadnięte słowo: ${wordVictory}`);
 		onceAgainSection.classList.remove("hide");
@@ -987,15 +983,10 @@ class AppGame {
 		) {
 			saveScoreSection.classList.remove("hide");
 			const saveScoreDiv = document.querySelector("#saveScore div");
-			saveScoreDiv.addEventListener(
-				"click",
-				// this.saveScore()
-				() => {
-					// onceAgainSection.classList.add("hide");
-					saveScoreSection.classList.add("hide");
-					this.saveScore();
-				}
-			);
+			saveScoreDiv.addEventListener("click", () => {
+				saveScoreSection.classList.add("hide");
+				this.saveScore();
+			});
 		}
 	}
 
@@ -1004,7 +995,7 @@ class AppGame {
 		const loggingDivInfo = document.querySelector(".logging").parentNode;
 		loggingDivInfo.classList.add("dropdown-active");
 		console.log(loggingDivInfo);
-		$("html, body").animate({ scrollTop: 800 }, 300); // 'linear'
+		$("html, body").animate({ scrollTop: 800 }, 500); // 'linear'
 	}
 
 	run(level, attempts) {
