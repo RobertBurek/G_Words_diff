@@ -145,6 +145,7 @@ const onceAgainSection = document.getElementById("onceAgain");
 const saveScoreSection = document.getElementById("saveScore");
 const divOnlyWords = document.querySelector(".above.only-words");
 const pOnlyWords = document.querySelector(".above.only-words p");
+const loggingDivInfo = document.querySelector(".logging").parentNode;
 
 setting5Letters.addEventListener("click", () => {
 	listenerLongLetters(5, 6);
@@ -964,9 +965,14 @@ class AppGame {
 	}
 
 	onceAgain(quantity, attempts) {
+		// const loggingDivInfo = document.querySelector(".logging").parentNode;
+		// loggingDivInfo.classList.add("dropdown-active");
+		// console.log(loggingDivInfo);
+
 		wordVictory = this.oneRoundGame.word;
 		console.log(`Odgadnięte słowo: ${wordVictory}`);
 		onceAgainSection.classList.remove("hide");
+		saveScoreSection.classList.remove("hide");
 		divOnlyWords.classList.add("curtain-only-words");
 		pOnlyWords.classList.add("curtain");
 		pOnlyWords.classList.add("curtain-z-index");
@@ -980,17 +986,27 @@ class AppGame {
 			localStorage.getItem("nick/JTS") == "" &&
 			!localStorage.getItem("nick/JTS")
 		) {
-			saveScoreSection.classList.remove("hide");
 			const saveScoreDiv = document.querySelector("#saveScore div");
-			saveScoreDiv.addEventListener("click", () => {
-				onceAgainSection.classList.add("hide");
+			saveScoreDiv.addEventListener("click", 
+      // this.saveScore()
+      () => {
+				// onceAgainSection.classList.add("hide");
 				saveScoreSection.classList.add("hide");
-				this.saveScore(quantity, attempts);
-			});
+				this.saveScore();
+			}
+      );
 		}
 	}
 
-	saveScore(quantity, attempts) {
+	saveScore() {
+		console.log("Robię saveScore()");
+		const loggingDivInfo = document.querySelector(".logging").parentNode;
+		loggingDivInfo.classList.add("dropdown-active");
+		console.log(loggingDivInfo);
+    $('html, body').animate({scrollTop: 800}, 'linear'); // 'linear'
+		// const loggingDivInfo = document.querySelector(".logging").parentNode;
+		// console.log(loggingDivInfo);
+		// loggingDivInfo.classList.add("dropdown-active");
 		// wordVictory = this.oneRoundGame.word;
 		// console.log(wordVictory);
 		// onceAgainSection.classList.remove("hide");

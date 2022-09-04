@@ -156,7 +156,7 @@ if (isset($_SESSION['errorConnect'])) unset($_SESSION['errorConnect']);
                 <div>Jeszcze raz?</div>
             </div>
             <div id="saveScore" class="above save-score hide">
-                <div>Zapisz wynik</div>
+                <div logging>Zapisz wynik</div>
             </div>
             <div id="keyboard1" class="keyboard1">
                 <button class="normal">A</button><button class="normal">Ą</button><button class="normal">B</button><button class="normal">C</button><button class="normal">Ć</button><button class="normal">D</button><button class="normal">E</button><button class="normal">Ę</button><button class="normal">F</button><button class="normal">G</button>
