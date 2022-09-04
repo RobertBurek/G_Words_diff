@@ -146,6 +146,7 @@ const saveScoreSection = document.getElementById("saveScore");
 const divOnlyWords = document.querySelector(".above.only-words");
 const pOnlyWords = document.querySelector(".above.only-words p");
 const loggingDivInfo = document.querySelector(".logging").parentNode;
+const saveScoreDiv = document.querySelector("#saveScore div");
 
 setting5Letters.addEventListener("click", () => {
 	listenerLongLetters(5, 6);
@@ -982,7 +983,7 @@ class AppGame {
 			!localStorage.getItem("nick/JTS")
 		) {
 			saveScoreSection.classList.remove("hide");
-			const saveScoreDiv = document.querySelector("#saveScore div");
+			// const saveScoreDiv = document.querySelector("#saveScore div");
 			saveScoreDiv.addEventListener("click", () => {
 				saveScoreSection.classList.add("hide");
 				this.saveScore();
@@ -992,10 +993,42 @@ class AppGame {
 
 	saveScore() {
 		console.log("Robię saveScore()");
-		const loggingDivInfo = document.querySelector(".logging").parentNode;
+		// const loggingDivInfo = document.querySelector(".logging").parentNode;
 		loggingDivInfo.classList.add("dropdown-active");
 		console.log(loggingDivInfo);
 		$("html, body").animate({ scrollTop: 800 }, 500); // 'linear'
+
+		const intervalSaveScores = setInterval(() => {
+			if (
+				localStorage.getItem("nick/JTS") != "" &&
+				localStorage.getItem("nick/JTS")
+			) {
+				if (this.listGameRound.length > 0) {
+					for (let i = 0; i < this.listGameRound.length; i++) {
+            $.post(
+              "./php/saveRoundGame.php",
+              {
+                nameTable: localStorage.getItem("nameTable/JTS"),
+                word: this.listGameRound[i].word,
+                level: this.listGameRound[i].level,
+                attempt: this.listGameRound[i].attempt,
+                isCategory: this.listGameRound[i].isCategory,
+                isOnlyWord: this.listGameRound[i].isOnlyWord,
+                points: this.listGameRound[i].points,
+              },
+              function (dataSQL) {
+                console.log(dataSQL);
+              },
+              "json"
+            ).fail(function (data) {
+              console.log(data);
+            });
+					}
+				}
+				console.log("Zapisano wyniki z listy gracza!!!");
+				clearInterval(intervalSaveScores);
+			}
+		}, 3000);
 	}
 
 	run(level, attempts) {

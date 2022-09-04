@@ -12,7 +12,9 @@ if ($connection->connect_errno != 0) {
     $nick = htmlentities($nick, ENT_QUOTES, "UTF-8");
     $passwordHash = password_hash($password, PASSWORD_DEFAULT);
     $userData = date("Y-m-d H:i:s");
-    $nameTable = preg_replace('/[ :-]/', '', strtolower($nick) . $userData);
+    $nameTable = str_replace(' ', '', strtolower($nick) . $userData);
+    $nameTable = str_replace('-', '', $nameTable);
+    $nameTable = preg_replace('/[^A-Za-z0-9\-]/', '', $nameTable);
 
     if ($connection->query(sprintf(
         "INSERT INTO `players` (`Nick`, `Password`, `DateStart`, `DateLast`, `ResultTotal`, `NameTable`) VALUES ('%s', '%s', '%s', '%s', '%s', '%s');",
@@ -25,13 +27,14 @@ if ($connection->connect_errno != 0) {
     ))) {
         $connection->query(sprintf(
             "CREATE TABLE `%s`.`%s` (
-                                    `Word` text COLLATE utf8_polish_ci NOT NULL,
-                                    `Level` int(11) NOT NULL,
-                                    `Attempt` int(11) NOT NULL,
-                                    `IsCategory` tinyint(1) NOT NULL,
-                                    `IsOnlyWord` tinyint(1) NOT NULL,
-                                    `Points` int(11) NOT NULL
-                                  ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;",
+                `Word` varchar(9) COLLATE utf8_polish_ci NOT NULL,
+                `Level` int(11) NOT NULL,
+                `Attempt` int(11) NOT NULL,
+                `IsCategory` tinyint(1) NOT NULL,
+                `IsOnlyWord` tinyint(1) NOT NULL,
+                `Points` int(11) NOT NULL,
+                PRIMARY KEY (`Word`)
+              ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;",
             mysqli_real_escape_string($connection, $db_name),
             mysqli_real_escape_string($connection, $nameTable)
         ));
