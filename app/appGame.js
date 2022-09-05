@@ -146,7 +146,7 @@ const saveScoreSection = document.getElementById("saveScore");
 const divOnlyWords = document.querySelector(".above.only-words");
 const pOnlyWords = document.querySelector(".above.only-words p");
 const loggingDivInfo = document.querySelector(".logging").parentNode;
-const saveScoreDiv = document.querySelector("#saveScore div");
+// const saveScoreDiv = document.querySelector("#saveScore div");
 
 setting5Letters.addEventListener("click", () => {
 	listenerLongLetters(5, 6);
@@ -276,6 +276,7 @@ class AppGame {
 		lettersWrapper,
 		categoryWrapper,
 		wordGameWrapper,
+    saveScoreWrapper,
 		keyboardScheme,
 		keyboard1,
 		keyboard2,
@@ -286,6 +287,7 @@ class AppGame {
 		this.lettersWrapper = lettersWrapper;
 		this.categoryWrapper = categoryWrapper;
 		this.wordGameWrapper = wordGameWrapper;
+    this.saveScoreWrapper = saveScoreWrapper;
 		this.keyboardScheme = keyboardScheme;
 		this.keyboard1 = keyboard1;
 		this.keyboard2 = keyboard2;
@@ -397,6 +399,10 @@ class AppGame {
 		this.myPromise;
 		this.stringWords = "";
 		this.listGameRound = [];
+    this.saveScoreWrapper.addEventListener("click", () => {
+      saveScoreSection.classList.add("hide");
+      this.saveScore();
+    });
 	}
 
 	clearLine(line) {
@@ -673,7 +679,7 @@ class AppGame {
 		});
 		if (i == this.level) {
 			this.victory = true;
-			this.onceAgain(this.level, this.attempts);
+			this.onceAgain(this.level, this.attempts, this.saveScoreWrapper);
 			if (this.oneRoundGame.category == "?") startSelectionCategory();
 			if (
 				localStorage.getItem("nick/JTS") != "" &&
@@ -957,7 +963,7 @@ class AppGame {
 					this.createCurrentLine();
 				} else {
 					this.showWord(this.oneRoundGame.word);
-					this.onceAgain(this.level, this.attempts);
+					this.onceAgain(this.level, this.attempts, this.saveScoreWrapper);
 					if (this.oneRoundGame.category == "?") startSelectionCategory();
 				}
 				break;
@@ -965,7 +971,7 @@ class AppGame {
 		}
 	}
 
-	onceAgain(quantity, attempts) {
+	onceAgain(quantity, attempts, saveScoreWrapper) {
 		wordVictory = this.oneRoundGame.word;
 		console.log(`Odgadnięte słowo: ${wordVictory}`);
 		onceAgainSection.classList.remove("hide");
@@ -984,10 +990,10 @@ class AppGame {
 		) {
 			saveScoreSection.classList.remove("hide");
 			// const saveScoreDiv = document.querySelector("#saveScore div");
-			saveScoreDiv.addEventListener("click", () => {
-				saveScoreSection.classList.add("hide");
-				this.saveScore();
-			});
+			// saveScoreWrapper.addEventListener("click", () => {
+			// 	saveScoreSection.classList.add("hide");
+			// 	this.saveScore();
+			// });
 		}
 	}
 
@@ -1028,7 +1034,7 @@ class AppGame {
 				console.log("Zapisano wyniki z listy gracza!!!");
 				clearInterval(intervalSaveScores);
 			}
-		}, 3000);
+		}, 2000);
 	}
 
 	run(level, attempts) {
@@ -1139,6 +1145,7 @@ const appGame = new AppGame({
 	lettersWrapper: document.getElementById("letters"),
 	categoryWrapper: document.querySelector("#category p"),
 	wordGameWrapper: document.getElementById("wordGame"),
+  saveScoreWrapper: document.getElementById("saveScore"),
 	keyboardScheme: document.getElementById("keyboardScheme"),
 	keyboard1: document.getElementById("keyboard1"),
 	keyboard2: document.getElementById("keyboard2"),
