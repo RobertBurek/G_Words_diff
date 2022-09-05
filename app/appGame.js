@@ -997,11 +997,9 @@ class AppGame {
 
 	saveScore() {
 		console.log("Robię saveScore()");
-		// const loggingDivInfo = document.querySelector(".logging").parentNode;
 		loggingDivInfo.classList.add("dropdown-active");
 		console.log(loggingDivInfo);
-		$("html, body").animate({ scrollTop: 800 }, 500); // 'linear'
-
+		$("html, body").animate({ scrollTop: 800 }, 100); // 'linear'
 		const intervalSaveScores = setInterval(() => {
 			if (
 				localStorage.getItem("nick/JTS") != "" &&
@@ -1022,15 +1020,11 @@ class AppGame {
 							},
 							function (dataSQL) {
 								console.log(dataSQL);
-								// this.listGameRound.splice(i, 1);
-								// console.log(this.listGameRound);
 							},
 							"json"
 						).fail(function (data) {
 							console.log(data);
 						});
-						// this.listGameRound.splice(i, 1);
-						// console.log(this.listGameRound);
 					}
 					this.listGameRound = [];
 					console.log(this.listGameRound);
