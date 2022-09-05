@@ -688,7 +688,7 @@ class AppGame {
 		});
 		if (i == this.level) {
 			this.victory = true;
-			this.onceAgain(this.level, this.attempts);
+			this.onceAgain();
 			if (this.oneRoundGame.category == "?") startSelectionCategory();
 			if (
 				localStorage.getItem("nick/JTS") != "" &&
@@ -972,7 +972,7 @@ class AppGame {
 					this.createCurrentLine();
 				} else {
 					this.showWord(this.oneRoundGame.word);
-					this.onceAgain(this.level, this.attempts);
+					this.onceAgain();
 					if (this.oneRoundGame.category == "?") startSelectionCategory();
 				}
 				break;
@@ -984,7 +984,7 @@ class AppGame {
   //   this.run(this.level, this.attempts);
   // };
 
-	onceAgain(quantity, attempts) {
+	onceAgain() {
 		wordVictory = this.oneRoundGame.word;
 		console.log(`Odgadnięte słowo: ${wordVictory}`);
 		onceAgainSection.classList.remove("hide");
