@@ -1022,12 +1022,18 @@ class AppGame {
 							},
 							function (dataSQL) {
 								console.log(dataSQL);
+								// this.listGameRound.splice(i, 1);
+								// console.log(this.listGameRound);
 							},
 							"json"
 						).fail(function (data) {
 							console.log(data);
 						});
+						// this.listGameRound.splice(i, 1);
+						// console.log(this.listGameRound);
 					}
+					this.listGameRound = [];
+					console.log(this.listGameRound);
 				}
 				console.log("Zapisano wyniki z listy gracza!!!");
 				clearInterval(intervalSaveScores);
