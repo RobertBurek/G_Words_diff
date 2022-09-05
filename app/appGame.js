@@ -277,6 +277,7 @@ class AppGame {
 		categoryWrapper,
 		wordGameWrapper,
     saveScoreWrapper,
+    onceAgainWrapper,
 		keyboardScheme,
 		keyboard1,
 		keyboard2,
@@ -288,6 +289,7 @@ class AppGame {
 		this.categoryWrapper = categoryWrapper;
 		this.wordGameWrapper = wordGameWrapper;
     this.saveScoreWrapper = saveScoreWrapper;
+    this.onceAgainWrapper = onceAgainWrapper;
 		this.keyboardScheme = keyboardScheme;
 		this.keyboard1 = keyboard1;
 		this.keyboard2 = keyboard2;
@@ -403,6 +405,13 @@ class AppGame {
       saveScoreSection.classList.add("hide");
       this.saveScore();
     });
+    this.onceAgainWrapper.addEventListener("click", () => {
+			onceAgainSection.classList.add("hide");
+			saveScoreSection.classList.add("hide");
+      this.run(this.level, this.attempts);
+      // this.stratAgain();
+			// this.run(quantity, attempts);
+		});
 	}
 
 	clearLine(line) {
@@ -679,7 +688,7 @@ class AppGame {
 		});
 		if (i == this.level) {
 			this.victory = true;
-			this.onceAgain(this.level, this.attempts, this.saveScoreWrapper);
+			this.onceAgain(this.level, this.attempts);
 			if (this.oneRoundGame.category == "?") startSelectionCategory();
 			if (
 				localStorage.getItem("nick/JTS") != "" &&
@@ -963,7 +972,7 @@ class AppGame {
 					this.createCurrentLine();
 				} else {
 					this.showWord(this.oneRoundGame.word);
-					this.onceAgain(this.level, this.attempts, this.saveScoreWrapper);
+					this.onceAgain(this.level, this.attempts);
 					if (this.oneRoundGame.category == "?") startSelectionCategory();
 				}
 				break;
@@ -971,19 +980,23 @@ class AppGame {
 		}
 	}
 
-	onceAgain(quantity, attempts, saveScoreWrapper) {
+  // stratAgain(){
+  //   this.run(this.level, this.attempts);
+  // };
+
+	onceAgain(quantity, attempts) {
 		wordVictory = this.oneRoundGame.word;
 		console.log(`Odgadnięte słowo: ${wordVictory}`);
 		onceAgainSection.classList.remove("hide");
 		divOnlyWords.classList.add("curtain-only-words");
 		pOnlyWords.classList.add("curtain");
 		pOnlyWords.classList.add("curtain-z-index");
-		const onceAgainDiv = document.querySelector("#onceAgain div");
-		onceAgainDiv.addEventListener("click", () => {
-			onceAgainSection.classList.add("hide");
-			saveScoreSection.classList.add("hide");
-			this.run(quantity, attempts);
-		});
+		// const onceAgainDiv = document.querySelector("#onceAgain div");
+		// onceAgainDiv.addEventListener("click", () => {
+		// 	onceAgainSection.classList.add("hide");
+		// 	saveScoreSection.classList.add("hide");
+		// 	this.run(quantity, attempts);
+		// });
 		if (
 			localStorage.getItem("nick/JTS") == "" &&
 			!localStorage.getItem("nick/JTS")
@@ -1145,7 +1158,8 @@ const appGame = new AppGame({
 	lettersWrapper: document.getElementById("letters"),
 	categoryWrapper: document.querySelector("#category p"),
 	wordGameWrapper: document.getElementById("wordGame"),
-  saveScoreWrapper: document.getElementById("saveScore"),
+  saveScoreWrapper: document.querySelector("#saveScore div"),
+  onceAgainWrapper: document.querySelector("#onceAgain div"),
 	keyboardScheme: document.getElementById("keyboardScheme"),
 	keyboard1: document.getElementById("keyboard1"),
 	keyboard2: document.getElementById("keyboard2"),
