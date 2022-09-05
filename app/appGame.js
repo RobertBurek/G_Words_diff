@@ -996,9 +996,7 @@ class AppGame {
 	}
 
 	saveScore() {
-		console.log("Robię saveScore()");
 		loggingDivInfo.classList.add("dropdown-active");
-		console.log(loggingDivInfo);
 		$("html, body").animate({ scrollTop: 800 }, 100); // 'linear'
 		const intervalSaveScores = setInterval(() => {
 			if (
@@ -1027,9 +1025,8 @@ class AppGame {
 						});
 					}
 					this.listGameRound = [];
-					console.log(this.listGameRound);
 				}
-				console.log("Zapisano wyniki z listy gracza!!!");
+				console.log("Wyniki z listy zapisano do gracza!!!");
 				clearInterval(intervalSaveScores);
 			}
 		}, 2000);
