@@ -276,8 +276,8 @@ class AppGame {
 		lettersWrapper,
 		categoryWrapper,
 		wordGameWrapper,
-    saveScoreWrapper,
-    onceAgainWrapper,
+		saveScoreWrapper,
+		onceAgainWrapper,
 		keyboardScheme,
 		keyboard1,
 		keyboard2,
@@ -288,8 +288,8 @@ class AppGame {
 		this.lettersWrapper = lettersWrapper;
 		this.categoryWrapper = categoryWrapper;
 		this.wordGameWrapper = wordGameWrapper;
-    this.saveScoreWrapper = saveScoreWrapper;
-    this.onceAgainWrapper = onceAgainWrapper;
+		this.saveScoreWrapper = saveScoreWrapper;
+		this.onceAgainWrapper = onceAgainWrapper;
 		this.keyboardScheme = keyboardScheme;
 		this.keyboard1 = keyboard1;
 		this.keyboard2 = keyboard2;
@@ -401,15 +401,15 @@ class AppGame {
 		this.myPromise;
 		this.stringWords = "";
 		this.listGameRound = [];
-    this.saveScoreWrapper.addEventListener("click", () => {
-      saveScoreSection.classList.add("hide");
-      this.saveScore();
-    });
-    this.onceAgainWrapper.addEventListener("click", () => {
+		this.saveScoreWrapper.addEventListener("click", () => {
+			saveScoreSection.classList.add("hide");
+			this.saveScore();
+		});
+		this.onceAgainWrapper.addEventListener("click", () => {
 			onceAgainSection.classList.add("hide");
 			saveScoreSection.classList.add("hide");
-      this.run(this.level, this.attempts);
-      // this.stratAgain();
+			this.run(this.level, this.attempts);
+			// this.stratAgain();
 			// this.run(quantity, attempts);
 		});
 	}
@@ -980,10 +980,6 @@ class AppGame {
 		}
 	}
 
-  // stratAgain(){
-  //   this.run(this.level, this.attempts);
-  // };
-
 	onceAgain() {
 		wordVictory = this.oneRoundGame.word;
 		console.log(`Odgadnięte słowo: ${wordVictory}`);
@@ -991,22 +987,11 @@ class AppGame {
 		divOnlyWords.classList.add("curtain-only-words");
 		pOnlyWords.classList.add("curtain");
 		pOnlyWords.classList.add("curtain-z-index");
-		// const onceAgainDiv = document.querySelector("#onceAgain div");
-		// onceAgainDiv.addEventListener("click", () => {
-		// 	onceAgainSection.classList.add("hide");
-		// 	saveScoreSection.classList.add("hide");
-		// 	this.run(quantity, attempts);
-		// });
 		if (
 			localStorage.getItem("nick/JTS") == "" &&
 			!localStorage.getItem("nick/JTS")
 		) {
 			saveScoreSection.classList.remove("hide");
-			// const saveScoreDiv = document.querySelector("#saveScore div");
-			// saveScoreWrapper.addEventListener("click", () => {
-			// 	saveScoreSection.classList.add("hide");
-			// 	this.saveScore();
-			// });
 		}
 	}
 
@@ -1024,24 +1009,24 @@ class AppGame {
 			) {
 				if (this.listGameRound.length > 0) {
 					for (let i = 0; i < this.listGameRound.length; i++) {
-            $.post(
-              "./php/saveRoundGame.php",
-              {
-                nameTable: localStorage.getItem("nameTable/JTS"),
-                word: this.listGameRound[i].word,
-                level: this.listGameRound[i].level,
-                attempt: this.listGameRound[i].attempt,
-                isCategory: this.listGameRound[i].isCategory,
-                isOnlyWord: this.listGameRound[i].isOnlyWord,
-                points: this.listGameRound[i].points,
-              },
-              function (dataSQL) {
-                console.log(dataSQL);
-              },
-              "json"
-            ).fail(function (data) {
-              console.log(data);
-            });
+						$.post(
+							"./php/saveRoundGame.php",
+							{
+								nameTable: localStorage.getItem("nameTable/JTS"),
+								word: this.listGameRound[i].word,
+								level: this.listGameRound[i].level,
+								attempt: this.listGameRound[i].attempt,
+								isCategory: this.listGameRound[i].isCategory,
+								isOnlyWord: this.listGameRound[i].isOnlyWord,
+								points: this.listGameRound[i].points,
+							},
+							function (dataSQL) {
+								console.log(dataSQL);
+							},
+							"json"
+						).fail(function (data) {
+							console.log(data);
+						});
 					}
 				}
 				console.log("Zapisano wyniki z listy gracza!!!");
@@ -1158,8 +1143,8 @@ const appGame = new AppGame({
 	lettersWrapper: document.getElementById("letters"),
 	categoryWrapper: document.querySelector("#category p"),
 	wordGameWrapper: document.getElementById("wordGame"),
-  saveScoreWrapper: document.querySelector("#saveScore div"),
-  onceAgainWrapper: document.querySelector("#onceAgain div"),
+	saveScoreWrapper: document.querySelector("#saveScore div"),
+	onceAgainWrapper: document.querySelector("#onceAgain div"),
 	keyboardScheme: document.getElementById("keyboardScheme"),
 	keyboard1: document.getElementById("keyboard1"),
 	keyboard2: document.getElementById("keyboard2"),
