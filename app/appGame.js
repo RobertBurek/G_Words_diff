@@ -1018,6 +1018,14 @@ class AppGame {
 							},
 							function (dataSQL) {
 								console.log(dataSQL);
+                localStorage.setItem("result" + dataSQL.level + "/JTS", dataSQL.result);
+								$.getScript("app/displayScores.js").done(function () {
+									console.log(
+										`Błąd odczytu wyników gracza: ${localStorage.getItem(
+											"nick/JTS"
+										)}   - displayScores.js`
+									);
+								});
 							},
 							"json"
 						).fail(function (data) {
