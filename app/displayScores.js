@@ -16,9 +16,9 @@ ${localStorage.getItem("info/JTS")}
 $.getScript("app/logout.js")
 .done(function () {
     console.log("inicjacja logout");
-// })
-// .fail(function () {
-// 	console.log("coś poszło nie tak w autoLogin");
+})
+.fail(function () {
+	console.log("coś poszło nie tak w logout.js");
 });
 
 // localStorage.removeItem("info/JTS");

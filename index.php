@@ -248,20 +248,28 @@ if (isset($_SESSION['errorConnect'])) unset($_SESSION['errorConnect']);
 
 
                     <button id="logging" class="dropdown-btn">
-                      <i class="fas fa-sign-in-alt" dropdown></i>
-                      Logowanie <div class="dropdown-note" dropdown>(rejestracja)</div>
+                        <i class="fas fa-sign-in-alt" dropdown></i>
+                        Logowanie <div class="dropdown-note" dropdown>(rejestracja)</div>
                     </button>
                     <div class="dropdown-info">
-                      <div class="logging" logging>
-                          <label class="dropdown-login" logging>Nazwa (login):
-                              <input type="text" name="nick" placeholder="" logging></label>
-                          <label class="dropdown-password" logging>Hasło:
-                              <input type="password" name="password" placeholder="" logging></label>
-                          <div id="lower">
-                              <button class="normal reg-log-btn register-btn">Rejestruj</button>
-                              <button class="normal reg-log-btn login-btn">Zaloguj</button>
-                          </div>
-                      </div>
+                        <div class="logging" logging contacts>
+                            <label class="dropdown-login" logging>Nazwa (login):
+                                <input type="text" name="nick" placeholder="" logging></label>
+                            <label class="dropdown-password" logging>Hasło:
+                                <input type="password" name="password" placeholder="" logging></label>
+                            <div id="lower">
+                                <button class="normal reg-log-btn register-btn">Rejestruj</button>
+                                <button class="normal reg-log-btn login-btn">Zaloguj</button>
+                            </div>
+                        </div>
+                        <div class="logging" logging results>
+                            <div class="logging" logging>
+                                <div id="lower">
+                                    <button class="normal reg-log-btn logout-btn">Wyloguj</button>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
 
                     <!-- <button id='logging' class="dropdown-btn">

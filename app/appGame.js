@@ -27,6 +27,15 @@ localStorage.setItem("info/JTS", "");
 // localStorage.setItem('nick/JTS', '');
 // localStorage.removeItem('nick/JTS');
 
+// const ggg = document.getElementById(".login-btn");
+const loginBtn = document.querySelector(".login-btn");
+
+loginBtn.addEventListener("click", () => {
+  console.log("zapis start");
+});
+
+
+
 class GameRound {
 	constructor(
 		word,
@@ -995,6 +1004,40 @@ class AppGame {
 		}
 	}
 
+  saveOneRoundGameWithList(){
+    if (this.listGameRound.length > 0) {
+      for (let i = 0; i < this.listGameRound.length; i++) {
+        $.post(
+          "./php/saveRoundGame.php",
+          {
+            nameTable: localStorage.getItem("nameTable/JTS"),
+            word: this.listGameRound[i].word,
+            level: this.listGameRound[i].level,
+            attempt: this.listGameRound[i].attempt,
+            isCategory: this.listGameRound[i].isCategory,
+            isOnlyWord: this.listGameRound[i].isOnlyWord,
+            points: this.listGameRound[i].points,
+          },
+          function (dataSQL) {
+            console.log(dataSQL);
+            localStorage.setItem("result" + dataSQL.level + "/JTS", dataSQL.result);
+            $.getScript("app/displayScores.js").done(function () {
+              console.log(
+                `Przygotowanie widoku wyników gracza: ${localStorage.getItem(
+                  "nick/JTS"
+                )}   - displayScores.js`
+              );
+            });
+          },
+          "json"
+        ).fail(function (data) {
+          console.log(data);
+        });
+      }
+      this.listGameRound = [];
+    }
+  }
+
 	saveScore() {
 		loggingDivInfo.classList.add("dropdown-active");
 		$("html, body").animate({ scrollTop: 800 }, 100); // 'linear'
@@ -1003,37 +1046,7 @@ class AppGame {
 				localStorage.getItem("nick/JTS") != "" &&
 				localStorage.getItem("nick/JTS")
 			) {
-				if (this.listGameRound.length > 0) {
-					for (let i = 0; i < this.listGameRound.length; i++) {
-						$.post(
-							"./php/saveRoundGame.php",
-							{
-								nameTable: localStorage.getItem("nameTable/JTS"),
-								word: this.listGameRound[i].word,
-								level: this.listGameRound[i].level,
-								attempt: this.listGameRound[i].attempt,
-								isCategory: this.listGameRound[i].isCategory,
-								isOnlyWord: this.listGameRound[i].isOnlyWord,
-								points: this.listGameRound[i].points,
-							},
-							function (dataSQL) {
-								console.log(dataSQL);
-                localStorage.setItem("result" + dataSQL.level + "/JTS", dataSQL.result);
-								$.getScript("app/displayScores.js").done(function () {
-									console.log(
-										`Błąd odczytu wyników gracza: ${localStorage.getItem(
-											"nick/JTS"
-										)}   - displayScores.js`
-									);
-								});
-							},
-							"json"
-						).fail(function (data) {
-							console.log(data);
-						});
-					}
-					this.listGameRound = [];
-				}
+				this.saveOneRoundGameWithList();
 				console.log("Wyniki z listy zapisano do gracza!!!");
 				clearInterval(intervalSaveScores);
 			}
