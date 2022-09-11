@@ -297,7 +297,7 @@ html {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  padding-top: 10px;
+  padding-top: 9px;
   padding-bottom: 10px;
   text-align: center;
 }
@@ -351,7 +351,7 @@ html {
 }
 
 .curtain-only-words {
-  top: 130px;
+  top: 131px;
 }
 
 .curtain {
@@ -395,7 +395,13 @@ html {
 }
 
 .above.once-again {
-  top: 78px;
+  top: 45px;
+  color: yellow;
+}
+
+.above.save-score {
+  top: 100px;
+  color: lime;
 }
 
 .above p {
@@ -410,18 +416,18 @@ html {
 }
 
 .above div {
-  width: 200px;
-  height: 40px;
+  width: 170px;
+  height: 38px;
   text-align: center;
   line-height: 34px;
-  font-size: 2rem;
+  font-size: 1.6em;
   cursor: pointer;
   font-weight: 700;
   background-color: #555555;
   border-radius: 5px;
   border: 4px solid;
   border-color: #999999 #2b2b2b #2b2b2b #999999;
-  letter-spacing: 3px;
+  letter-spacing: 2px;
   z-index: 500;
 }
 
@@ -481,7 +487,7 @@ html {
 .dropdown-btn {
   padding: 5px;
   width: 100%;
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   text-align: left;
   border: none;
   border-radius: 8px;
@@ -728,7 +734,7 @@ h2 {
     left: 50px;
   }
   .curtain-only-words {
-    top: 146px;
+    top: 147px;
   }
   .curtain {
     height: 177px !important;
@@ -740,13 +746,19 @@ h2 {
     font-size: 20px;
   }
   .above.once-again {
-    top: 87px;
+    top: 50px;
+  }
+  .above.save-score {
+    top: 115px;
   }
   .one-letter {
     margin: 5px 3px;
   }
   .dropdown-info p {
     padding: 0 30px;
+  }
+  .dropdown-btn {
+    font-size: 1.4rem;
   }
   input {
     width: 145px;
@@ -780,8 +792,17 @@ h2 {
   .title-letter-space {
     width: 20px;
   }
+  .above div {
+    width: 200px;
+    height: 40px;
+    font-size: 2em;
+    letter-spacing: 3px;
+  }
   .above.once-again {
-    top: 94px;
+    top: 55px;
+  }
+  .above.save-score {
+    top: 122px;
   }
   .one-letter {
     margin: 5px 5px;
@@ -795,6 +816,9 @@ h2 {
     margin-bottom: 1.2rem;
     font-size: 1.6rem;
     padding: 0 20px;
+  }
+  .dropdown-btn {
+    font-size: 1.5rem;
   }
   input {
     width: 165px;
