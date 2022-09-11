@@ -15,13 +15,13 @@ ${localStorage.getItem("info/JTS")}
     //     </div>
     //  </div>`;
 
-$.getScript("app/logout.js")
-.done(function () {
-    console.log("inicjacja logout");
-})
-.fail(function () {
-	console.log("coś poszło nie tak w logout.js");
-});
+// $.getScript("app/logout.js")
+// .done(function () {
+//     console.log("inicjacja logout");
+// })
+// .fail(function () {
+// 	console.log("coś poszło nie tak w logout.js");
+// });
 
 // localStorage.removeItem("info/JTS");
 localStorage.setItem("info/JTS", "");

@@ -259,8 +259,8 @@ try {
 
 
 const resultsDiv = document.querySelector("[name='results']");
-console.log(contactsDiv);
-console.log(resultsDiv);
+// console.log(contactsDiv);
+// console.log(resultsDiv);
 
 if (
 	localStorage.getItem("nick/JTS") != "" &&
