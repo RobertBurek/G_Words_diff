@@ -425,10 +425,6 @@ html {
 	z-index: 500;
 }
 
-.hide {
-	display: none;
-}
-
 .half-success {
 	background-color: $background-light;
 	color: #252527;
@@ -709,6 +705,10 @@ h2 {
 	font-size: 14px;
 	font-weight: 600;
 	line-height: 30px;
+}
+
+.hide {
+	display: none;
 }
 
 .heartly {
