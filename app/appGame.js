@@ -171,6 +171,7 @@ const loggingDivInfo = document.querySelector(".logging").parentNode;
 try {
 	loginBtn.addEventListener("click", () => {
     // resultsDiv.classList.remove('hide');
+    // loggingDivInfo.classList.add("dropdown-active");
 		const dataLogin = { Nick: inputNick.value, Password: inputPassword.value };
 		$.post(
 			"./php/login.php",
@@ -192,6 +193,7 @@ try {
 							)}   - readScores.js`
 						);
 					});
+          loggingDivInfo.classList.add("dropdown-active");
 				} else {
 					loggingDivInfo.classList.add("dropdown-active");
 					loggingButton.innerHTML = `<i class="fas fa-sign-in-alt" dropdown></i>
