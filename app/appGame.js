@@ -167,6 +167,7 @@ const inputPassword = document.querySelector("[name='password']");
 const loggingButton = document.getElementById("logging");
 const loggingDivInfo = document.querySelector(".logging").parentNode;
 
+
 try {
 	loginBtn.addEventListener("click", () => {
     // resultsDiv.classList.remove('hide');
@@ -260,6 +261,27 @@ try {
 const resultsDiv = document.querySelector("[name='results']");
 console.log(contactsDiv);
 console.log(resultsDiv);
+
+if (
+	localStorage.getItem("nick/JTS") != "" &&
+	localStorage.getItem("nick/JTS")
+) {
+	resultsDiv.classList.remove('hide');
+	contactsDiv.classList.add('hide');
+	loggingButton.innerHTML = `<i class="fas fa-sign-in-alt" dropdown></i>
+        Witaj ${localStorage.getItem(
+					"nick/JTS"
+				)} ! <div class="dropdown-note" dropdown> (twoje wyniki) </div>`;
+
+	$.getScript("app/readScores.js").done(function () {
+		console.log(
+			`Odczyt wyników gracza: ${localStorage.getItem(
+				"nick/JTS"
+			)}   - readScores.js`
+		);
+	});
+}
+
 
 
 
