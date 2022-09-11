@@ -28,11 +28,14 @@ localStorage.setItem("info/JTS", "");
 // localStorage.removeItem('nick/JTS');
 
 // const ggg = document.getElementById(".login-btn");
-const loginBtn = document.querySelector(".login-btn");
 
-loginBtn.addEventListener("click", () => {
-  console.log("zapis start");
-});
+
+
+// const loginBtn = document.querySelector(".login-btn");
+
+// loginBtn.addEventListener("click", () => {
+//   console.log("zapis start");
+// });
 
 
 
@@ -154,8 +157,62 @@ const onceAgainSection = document.getElementById("onceAgain");
 const saveScoreSection = document.getElementById("saveScore");
 const divOnlyWords = document.querySelector(".above.only-words");
 const pOnlyWords = document.querySelector(".above.only-words p");
-const loggingDivInfo = document.querySelector(".logging").parentNode;
+// const loggingDivInfo = document.querySelector(".logging").parentNode;
 // const saveScoreDiv = document.querySelector("#saveScore div");
+
+const contactsDiv = document.querySelector("[name='contacts']");
+const loginBtn = document.querySelector(".login-btn");
+const inputNick = document.querySelector("[name='nick']");
+const inputPassword = document.querySelector("[name='password']");
+const loggingButton = document.getElementById("logging");
+const loggingDivInfo = document.querySelector(".logging").parentNode;
+
+try {
+	loginBtn.addEventListener("click", () => {
+    // resultsDiv.classList.remove('hide');
+		const dataLogin = { Nick: inputNick.value, Password: inputPassword.value };
+		$.post(
+			"./php/login.php",
+			dataLogin,
+			function (data) {
+				if (!data.error) {
+          resultsDiv.classList.remove('hide');
+          contactsDiv.classList.add('hide');
+					console.log("Zalogowano gracza: " + data.nick);
+					localStorage.setItem("nick/JTS", data.nick);
+					localStorage.setItem("nameTable/JTS", data.nameTable);
+					loggingButton.innerHTML = `<i class="fas fa-sign-in-alt" dropdown></i>
+                    Witaj ${data.nick} ! <div class="dropdown-note" dropdown> (twoje wyniki) </div>`;
+
+					$.getScript("app/readScores.js").done(function () {
+						console.log(
+							`Odczyt wyników gracza: ${localStorage.getItem(
+								"nick/JTS"
+							)}   - readScores.js`
+						);
+					});
+				} else {
+					loggingDivInfo.classList.add("dropdown-active");
+					loggingButton.innerHTML = `<i class="fas fa-sign-in-alt" dropdown></i>
+                    Logowanie <div class="dropdown-note" dropdown style="color:red;"> (${data.error})</div>`;
+				}
+			},
+			"json"
+		).fail(function () {
+			alert("Błąd reakcji z login.php");
+		});
+	});
+} catch (e) {
+	if (e instanceof ReferenceError) {
+		console.log("loginBtn - nie jest zdefiniowany.");
+	}
+}
+
+
+
+const resultsDiv = document.querySelector("[name='results']");
+console.log(contactsDiv);
+console.log(resultsDiv);
 
 setting5Letters.addEventListener("click", () => {
 	listenerLongLetters(5, 6);
