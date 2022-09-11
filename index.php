@@ -252,7 +252,7 @@ if (isset($_SESSION['errorConnect'])) unset($_SESSION['errorConnect']);
                         Logowanie <div class="dropdown-note" dropdown>(rejestracja)</div>
                     </button>
                     <div class="dropdown-info">
-                        <div class="logging hide" logging contacts>
+                        <div class="logging" logging contacts>
                             <label class="dropdown-login" logging>Nazwa (login):
                                 <input type="text" name="nick" placeholder="" logging></label>
                             <label class="dropdown-password" logging>Hasło:
@@ -262,7 +262,14 @@ if (isset($_SESSION['errorConnect'])) unset($_SESSION['errorConnect']);
                                 <button class="normal reg-log-btn login-btn">Zaloguj</button>
                             </div>
                         </div>
-                        <div class="logging hide" logging results >
+                        <div class="logging hide" logging results>
+                            <div class="results">
+                            <div class="result-letter">5-literowych słów: <strong> 0 </strong></div>
+                            <div class="result-letter">6-literowych słów: <strong> 0 </strong></div>
+                            <div class="result-letter">7-literowych słów: <strong> 0 </strong></div>
+                            <div class="result-letter">8-literowych słów: <strong> 0 </strong></div>
+                            <div class="result-letter">9-literowych słów: <strong> 0 </strong></div>
+                            </div>
                             <div class="logging" logging>
                                 <div id="lower">
                                     <button class="normal reg-log-btn logout-btn">Wyloguj</button>

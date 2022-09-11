@@ -574,7 +574,7 @@ html {
 	display: flex;
 	align-items: flex-end;
 	flex-direction: column;
-    margin-right: 0px;
+    // margin-right: 0px;
 	letter-spacing: 1px;
 }
 
@@ -681,6 +681,7 @@ h2 {
 	border-radius: 2px;
 }
 
+.result-letter,
 .setting-letter {
 	height: 30px;
 	// width: 80%;
@@ -689,6 +690,7 @@ h2 {
 	font-size: 14px;
 	font-weight: 600;
 	line-height: 30px;
+	letter-spacing: 1px;
 }
 
 .setting-letter:hover {
@@ -697,14 +699,24 @@ h2 {
 	color: $background-light;
 }
 
-.result-letter {
-	height: 30px;
-	// width: 80%;
-	margin-left: 40%;
- 	// margin: 0px;
-	font-size: 14px;
-	font-weight: 600;
-	line-height: 30px;
+// .result-letter {
+// 	height: 30px;
+// 	// width: 80%;
+// 	margin-left: 40%;
+//  	// margin: 0px;
+// 	font-size: 14px;
+// 	font-weight: 600;
+// 	line-height: 30px;
+// }
+
+.result-letter strong {
+    color: lime;
+    font-size: 115%;
+    padding: 0 10px;
+}
+
+.results {
+	width: 100%;
 }
 
 .hide {
@@ -819,9 +831,9 @@ h2 {
 	input {
 		width: 145px;
 	}
-	.logging {
-		margin-right: 20px;
-	}
+	// .logging {
+	// 	margin-right: 20px;
+	// }
 }
 
 @media (min-width: 500px) {
@@ -872,9 +884,9 @@ h2 {
 	input {
 		width: 165px;
 	}
-	.logging {
-		margin-right: 45px;
-	}
+	// .logging {
+	// 	margin-right: 45px;
+	// }
 }
 
 @media (min-width: 768px) {

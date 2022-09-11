@@ -556,7 +556,6 @@ html {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  margin-right: 0px;
   letter-spacing: 1px;
 }
 
@@ -607,12 +606,14 @@ h2 {
   border-radius: 2px;
 }
 
+.result-letter,
 .setting-letter {
   height: 30px;
   margin-left: 40%;
   font-size: 14px;
   font-weight: 600;
   line-height: 30px;
+  letter-spacing: 1px;
 }
 
 .setting-letter:hover {
@@ -620,12 +621,14 @@ h2 {
   color: yellow;
 }
 
-.result-letter {
-  height: 30px;
-  margin-left: 40%;
-  font-size: 14px;
-  font-weight: 600;
-  line-height: 30px;
+.result-letter strong {
+  color: lime;
+  font-size: 115%;
+  padding: 0 10px;
+}
+
+.results {
+  width: 100%;
 }
 
 .hide {
@@ -748,9 +751,6 @@ h2 {
   input {
     width: 145px;
   }
-  .logging {
-    margin-right: 20px;
-  }
 }
 
 @media (min-width: 500px) {
@@ -798,9 +798,6 @@ h2 {
   }
   input {
     width: 165px;
-  }
-  .logging {
-    margin-right: 45px;
   }
 }
 
