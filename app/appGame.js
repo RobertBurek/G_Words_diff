@@ -29,15 +29,11 @@ localStorage.setItem("info/JTS", "");
 
 // const ggg = document.getElementById(".login-btn");
 
-
-
 // const loginBtn = document.querySelector(".login-btn");
 
 // loginBtn.addEventListener("click", () => {
 //   console.log("zapis start");
 // });
-
-
 
 class GameRound {
 	constructor(
@@ -168,26 +164,25 @@ const inputPassword = document.querySelector("[name='password']");
 const loggingButton = document.getElementById("logging");
 const loggingDivInfo = document.querySelector(".logging").parentNode;
 
-
 try {
 	loginBtn.addEventListener("click", () => {
-    // resultsDiv.classList.remove('hide');
-    // loggingDivInfo.classList.add("dropdown-active");
+		// resultsDiv.classList.remove('hide');
+		// loggingDivInfo.classList.add("dropdown-active");
 		const dataLogin = { Nick: inputNick.value, Password: inputPassword.value };
 		$.post(
 			"./php/login.php",
 			dataLogin,
 			function (data) {
-        loggingDivInfo.classList.add("dropdown-active");
+				loggingDivInfo.classList.add("dropdown-active");
 				if (!data.error) {
-          resultsDiv.classList.remove('hide');
-          contactsDiv.classList.add('hide');
+					resultsDiv.classList.remove("hide");
+					contactsDiv.classList.add("hide");
 					console.log("Zalogowano gracza: " + data.nick);
 					localStorage.setItem("nick/JTS", data.nick);
 					localStorage.setItem("nameTable/JTS", data.nameTable);
 					loggingButton.innerHTML = `<i class="fas fa-sign-in-alt" dropdown></i>
                     Witaj ${data.nick} ! <div class="dropdown-note" dropdown> (twoje wyniki) </div>`;
-
+					appGame.saveScore();
 					$.getScript("app/readScores.js").done(function () {
 						console.log(
 							`Odczyt wyników gracza: ${localStorage.getItem(
@@ -195,7 +190,7 @@ try {
 							)}   - readScores.js`
 						);
 					});
-          // loggingDivInfo.classList.add("dropdown-active");
+					// loggingDivInfo.classList.add("dropdown-active");
 				} else {
 					// loggingDivInfo.classList.add("dropdown-active");
 					loggingButton.innerHTML = `<i class="fas fa-sign-in-alt" dropdown></i>
@@ -213,8 +208,6 @@ try {
 	}
 }
 
-
-
 const registerBtn = document.querySelector(".register-btn");
 // const inputNick = document.querySelector("[name='nick']");
 // const inputPassword = document.querySelector("[name='password']");
@@ -231,16 +224,16 @@ try {
 			"./php/register.php",
 			dataRegister,
 			function (data) {
-        loggingDivInfo.classList.add("dropdown-active");
+				loggingDivInfo.classList.add("dropdown-active");
 				if (!data.error) {
-          resultsDiv.classList.remove('hide');
-          contactsDiv.classList.add('hide');
+					resultsDiv.classList.remove("hide");
+					contactsDiv.classList.add("hide");
 					console.log("Zarejestrowano nowego gracza: " + data.nick);
 					localStorage.setItem("nick/JTS", data.nick);
 					localStorage.setItem("nameTable/JTS", data.nameTable);
 					loggingButton.innerHTML = `<i class="fas fa-sign-in-alt" dropdown></i>
                     Witaj ${data.nick} ! <div class="dropdown-note" dropdown> (twoje wyniki) </div>`;
-
+					appGame.saveScore();
 					$.getScript("app/readScores.js").done(function () {
 						console.log(
 							`Odczyt wyników gracza: ${localStorage.getItem(
@@ -248,7 +241,7 @@ try {
 							)}   - readScores.js`
 						);
 					});
-          // loggingDivInfo.classList.add("dropdown-active");
+					// loggingDivInfo.classList.add("dropdown-active");
 				} else {
 					// loggingDivInfo.classList.add("dropdown-active");
 					loggingButton.innerHTML = `<i class="fas fa-sign-in-alt" dropdown></i>
@@ -266,15 +259,14 @@ try {
 	}
 }
 
-
 const logoutBtn = document.querySelector(".logout-btn");
 // const loggingButton = document.getElementById("logging");
 // const loggingDivInfo = document.querySelector(".logging").parentNode;
 
 try {
 	logoutBtn.addEventListener("click", () => {
-    resultsDiv.classList.add('hide');
-    contactsDiv.classList.remove('hide');
+		resultsDiv.classList.add("hide");
+		contactsDiv.classList.remove("hide");
 		localStorage.setItem("nick/JTS", "");
 		localStorage.setItem("nameTable/JTS", "");
 		localStorage.setItem("result5/JTS", 0);
@@ -313,8 +305,6 @@ try {
 	}
 }
 
-
-
 // const resultsDiv = document.querySelector("[name='results']");
 // console.log(contactsDiv);
 // console.log(resultsDiv);
@@ -323,8 +313,8 @@ if (
 	localStorage.getItem("nick/JTS") != "" &&
 	localStorage.getItem("nick/JTS")
 ) {
-	resultsDiv.classList.remove('hide');
-	contactsDiv.classList.add('hide');
+	resultsDiv.classList.remove("hide");
+	contactsDiv.classList.add("hide");
 	loggingButton.innerHTML = `<i class="fas fa-sign-in-alt" dropdown></i>
         Witaj ${localStorage.getItem(
 					"nick/JTS"
@@ -338,9 +328,6 @@ if (
 		);
 	});
 }
-
-
-
 
 setting5Letters.addEventListener("click", () => {
 	listenerLongLetters(5, 6);
@@ -597,7 +584,9 @@ class AppGame {
 		this.listGameRound = [];
 		this.saveScoreWrapper.addEventListener("click", () => {
 			saveScoreSection.classList.add("hide");
-			this.saveScore();
+			loggingDivInfo.classList.add("dropdown-active");
+			$("html, body").animate({ scrollTop: 800 }, 100);
+			// this.saveScore();
 		});
 		this.onceAgainWrapper.addEventListener("click", () => {
 			onceAgainSection.classList.add("hide");
@@ -1189,43 +1178,46 @@ class AppGame {
 		}
 	}
 
-  saveOneRoundGameWithList(){
-    if (this.listGameRound.length > 0) {
-      for (let i = 0; i < this.listGameRound.length; i++) {
-        $.post(
-          "./php/saveRoundGame.php",
-          {
-            nameTable: localStorage.getItem("nameTable/JTS"),
-            word: this.listGameRound[i].word,
-            level: this.listGameRound[i].level,
-            attempt: this.listGameRound[i].attempt,
-            isCategory: this.listGameRound[i].isCategory,
-            isOnlyWord: this.listGameRound[i].isOnlyWord,
-            points: this.listGameRound[i].points,
-          },
-          function (dataSQL) {
-            console.log(dataSQL);
-            localStorage.setItem("result" + dataSQL.level + "/JTS", dataSQL.result);
-            $.getScript("app/displayScores.js").done(function () {
-              console.log(
-                `Przygotowanie widoku wyników gracza: ${localStorage.getItem(
-                  "nick/JTS"
-                )}   - displayScores.js`
-              );
-            });
-          },
-          "json"
-        ).fail(function (data) {
-          console.log(data);
-        });
-      }
-      this.listGameRound = [];
-    }
-  }
+	saveOneRoundGameWithList() {
+		if (this.listGameRound.length > 0) {
+			for (let i = 0; i < this.listGameRound.length; i++) {
+				$.post(
+					"./php/saveRoundGame.php",
+					{
+						nameTable: localStorage.getItem("nameTable/JTS"),
+						word: this.listGameRound[i].word,
+						level: this.listGameRound[i].level,
+						attempt: this.listGameRound[i].attempt,
+						isCategory: this.listGameRound[i].isCategory,
+						isOnlyWord: this.listGameRound[i].isOnlyWord,
+						points: this.listGameRound[i].points,
+					},
+					function (dataSQL) {
+						console.log(dataSQL);
+						localStorage.setItem(
+							"result" + dataSQL.level + "/JTS",
+							dataSQL.result
+						);
+						$.getScript("app/displayScores.js").done(function () {
+							console.log(
+								`Przygotowanie widoku wyników gracza: ${localStorage.getItem(
+									"nick/JTS"
+								)}   - displayScores.js`
+							);
+						});
+					},
+					"json"
+				).fail(function (data) {
+					console.log(data);
+				});
+			}
+			this.listGameRound = [];
+		}
+	}
 
 	saveScore() {
-		loggingDivInfo.classList.add("dropdown-active");
-		$("html, body").animate({ scrollTop: 800 }, 100); // 'linear'
+		// loggingDivInfo.classList.add("dropdown-active");
+		// $("html, body").animate({ scrollTop: 800 }, 100); // 'linear'
 		const intervalSaveScores = setInterval(() => {
 			if (
 				localStorage.getItem("nick/JTS") != "" &&
@@ -1235,7 +1227,7 @@ class AppGame {
 				console.log("Wyniki z listy zapisano do gracza!!!");
 				clearInterval(intervalSaveScores);
 			}
-		}, 2000);
+		}, 1000);
 	}
 
 	run(level, attempts) {
