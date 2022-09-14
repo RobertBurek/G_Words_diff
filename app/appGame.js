@@ -1231,10 +1231,25 @@ class AppGame {
 	}
 
 	run(level, attempts) {
+		let dataForBase;
 		this.myPromise = new Promise((resolve, reject) => {
+			if (
+				localStorage.getItem("nick/JTS") != "" &&
+				localStorage.getItem("nick/JTS")
+			) {
+				dataForBase = {
+					nameBase: level + "-letters",
+					nameTable: localStorage.getItem("nameTable/JTS"),
+				};
+			} else {
+				dataForBase = {
+					nameBase: level + "-letters",
+					nameTable: "",
+				};
+			}
 			$.post(
 				"./php/readWordWithBaseSQL.php",
-				{ nameBase: level + "-letters" },
+				dataForBase,
 				function (dataSQL) {
 					console.log(
 						"promise - zapytanie wykonane. Ilość słów: " + dataSQL["countWords"]
