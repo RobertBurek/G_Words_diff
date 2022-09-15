@@ -1252,7 +1252,7 @@ class AppGame {
 				dataForBase,
 				function (dataSQL) {
 					console.log(
-						"promise - zapytanie wykonane. Ilość słów: " + dataSQL["countWords"]
+						"promise - zapytanie wykonane. Ilość słów: " + dataSQL["countWords"] + "/" + dataSQL["countWordsPlayer"]
 					);
 					resolve(dataSQL);
 				},
