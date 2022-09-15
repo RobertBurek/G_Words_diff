@@ -1216,8 +1216,6 @@ class AppGame {
 	}
 
 	saveScore() {
-		// loggingDivInfo.classList.add("dropdown-active");
-		// $("html, body").animate({ scrollTop: 800 }, 100); // 'linear'
 		const intervalSaveScores = setInterval(() => {
 			if (
 				localStorage.getItem("nick/JTS") != "" &&
