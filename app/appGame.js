@@ -11,30 +11,6 @@ import { words9Letters } from "../src/9-lettersBIS.js";
 
 localStorage.setItem("info/JTS", "");
 
-// include( 'autoLogin.js');
-
-// $.getScript( "app/autoLogin.js" )
-//   .done(function( script, textStatus ) {
-//     // console.log( script );
-//     console.log( textStatus );
-//     console.log( 'byłem w autoLoginie  ...' );
-//   })
-//   .fail(function() {
-//     console.log( "coś poszło nie tak w autoLogin" );
-// });
-
-// localStorage.setItem('nick/JTS', 'Robert');
-// localStorage.setItem('nick/JTS', '');
-// localStorage.removeItem('nick/JTS');
-
-// const ggg = document.getElementById(".login-btn");
-
-// const loginBtn = document.querySelector(".login-btn");
-
-// loginBtn.addEventListener("click", () => {
-//   console.log("zapis start");
-// });
-
 class GameRound {
 	constructor(
 		word,
@@ -42,9 +18,6 @@ class GameRound {
 		game,
 		description,
 		level,
-		// attempt,
-		// isCategory,
-		// isOnlyWord,
 		points
 	) {
 		this.word = word;
@@ -56,14 +29,9 @@ class GameRound {
 		this.isCategory = false;
 		this.isOnlyWord = true;
 		this.points = points;
-		// this.multiplierIsCategory = 3;
 		this.bonusIsCategory = 0;
 		this.multiplierIsOnlyWord = 1;
 	}
-
-	// setBonusIsCategory(level){
-	//   this.bonusIsCategory = 20 * level;
-	// }
 
 	checkCategory(level) {
 		if (this.category != "?") {
