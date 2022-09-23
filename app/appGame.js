@@ -67,7 +67,6 @@ class GameRound {
 	countPoints(round, level, multiplier) {
 		return (
 			level * round * multiplier
-			// (this.isOnlyWord) ? (level * round + this.bonusIsCategory * this.multiplierIsOnlyWord):(level * round + this.bonusIsCategory * this.multiplierIsOnlyWord);
 		);
 	}
 
