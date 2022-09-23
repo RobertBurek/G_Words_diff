@@ -96,10 +96,8 @@ let stringWords;
 let titleButtonLongWord;
 let wordVictory;
 
-// const categoryWrapper = document.querySelector("#category p");
 const longWordButton = document.getElementById("longWord");
 const fillingButton = document.getElementById("filling");
-// const loggingButton = document.getElementById("logging");
 const setting5Letters = document.getElementById("5letters");
 const setting6Letters = document.getElementById("6letters");
 const setting7Letters = document.getElementById("7letters");
@@ -112,9 +110,6 @@ const onceAgainSection = document.getElementById("onceAgain");
 const saveScoreSection = document.getElementById("saveScore");
 const divOnlyWords = document.querySelector(".above.only-words");
 const pOnlyWords = document.querySelector(".above.only-words p");
-// const loggingDivInfo = document.querySelector(".logging").parentNode;
-// const saveScoreDiv = document.querySelector("#saveScore div");
-
 const contactsDiv = document.querySelector("[name='contacts']");
 const resultsDiv = document.querySelector("[name='results']");
 const loginBtn = document.querySelector(".login-btn");
@@ -168,10 +163,6 @@ try {
 }
 
 const registerBtn = document.querySelector(".register-btn");
-// const inputNick = document.querySelector("[name='nick']");
-// const inputPassword = document.querySelector("[name='password']");
-// const loggingButton = document.getElementById("logging");
-// const loggingDivInfo = document.querySelector(".logging").parentNode;
 
 try {
 	registerBtn.addEventListener("click", () => {
@@ -219,8 +210,6 @@ try {
 }
 
 const logoutBtn = document.querySelector(".logout-btn");
-// const loggingButton = document.getElementById("logging");
-// const loggingDivInfo = document.querySelector(".logging").parentNode;
 
 try {
 	logoutBtn.addEventListener("click", () => {
