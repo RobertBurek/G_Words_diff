@@ -62,13 +62,7 @@ class GameRound {
 		this.game = dataSQL["game"];
 		this.description = dataSQL["description"];
 		this.level = level;
-		// this.attempt = attempts;
-		// this.checkCategory(level);
-		// this.oneRoundGame.setBonusIsCategory(level);
 		this.bonusIsCategory = 20 * level;
-		// this.isOnlyWord = true;
-		// this.bonusIsCategory = level * 2 * 10;
-		// this.points = level * 10 * this.multiplierIsCategory * this.multiplierIsOnlyWord;
 		this.points = this.countPoints(10, level, 2) + this.bonusIsCategory;
 	}
 
