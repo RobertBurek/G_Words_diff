@@ -36,12 +36,10 @@ class GameRound {
 	checkCategory(level) {
 		if (this.category != "?") {
 			this.isCategory = true;
-			// this.multiplierIsCategory = 2;
 			this.points -= this.bonusIsCategory;
 			this.bonusIsCategory = 0;
 		} else {
 			this.isCategory = false;
-			// this.multiplierIsCategory = 3;
 			this.bonusIsCategory = level * 20;
 		}
 	}
