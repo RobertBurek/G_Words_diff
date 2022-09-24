@@ -12,14 +12,7 @@ import { words9Letters } from "../src/9-lettersBIS.js";
 localStorage.setItem("info/JTS", "");
 
 class GameRound {
-	constructor(
-		word,
-		category,
-		game,
-		description,
-		level,
-		points
-	) {
+	constructor(word, category, game, description, level, points) {
 		this.word = word;
 		this.category = category;
 		this.game = game;
@@ -65,9 +58,7 @@ class GameRound {
 	}
 
 	countPoints(round, level, multiplier) {
-		return (
-			level * round * multiplier
-		);
+		return level * round * multiplier;
 	}
 
 	setCategory(value) {
@@ -191,9 +182,7 @@ try {
 							)}   - readScores.js`
 						);
 					});
-					// loggingDivInfo.classList.add("dropdown-active");
 				} else {
-					// loggingDivInfo.classList.add("dropdown-active");
 					loggingButton.innerHTML = `<i class="fas fa-sign-in-alt" dropdown></i>
                     Logowanie <div class="dropdown-note" dropdown style="color:red;"> (${data.error})</div>`;
 				}
@@ -228,21 +217,6 @@ try {
 			<i class="fas fa-sign-in-alt" dropdown></i>
 			Logowanie <div class="dropdown-note" dropdown>(rejestracja)</div>
 		`;
-
-		// loggingDivInfo.innerHTML = `<div class="logging" logging>
-		// 		<label class="dropdown-login" logging>Nazwa (login):
-		// 		    <input type="text" name="nick" placeholder="" logging></label>
-		// 		<label class="dropdown-password" logging>Hasło:
-		// 		    <input type="password" name="password" placeholder="" logging></label>
-		// 		<div id="lower">
-		// 		    <button class="normal reg-log-btn register-btn">Rejestruj</button>
-		// 		    <button class="normal reg-log-btn login-btn">Zaloguj</button>
-		// 		</div>
-		// 	</div>`;
-
-		// $.getScript("app/login.js").done(function () {
-		// 	console.log("inicjacja login.js");
-		// });
 		$.getScript("app/register.js").done(function () {
 			console.log("inicjacja register.js");
 		});
@@ -252,10 +226,6 @@ try {
 		console.log("logoutBtn - nie jest zdefiniowany.");
 	}
 }
-
-// const resultsDiv = document.querySelector("[name='results']");
-// console.log(contactsDiv);
-// console.log(resultsDiv);
 
 if (
 	localStorage.getItem("nick/JTS") != "" &&
@@ -1198,7 +1168,10 @@ class AppGame {
 				dataForBase,
 				function (dataSQL) {
 					console.log(
-						"promise - zapytanie wykonane. Ilość słów: " + dataSQL["countWords"] + "/" + dataSQL["countWordsPlayer"]
+						"promise - zapytanie wykonane. Ilość słów: " +
+							dataSQL["countWords"] +
+							"/" +
+							dataSQL["countWordsPlayer"]
 					);
 					resolve(dataSQL);
 				},

@@ -39,6 +39,11 @@ if ($connection->connect_errno != 0) {
 			mysqli_real_escape_string($connection, $nameBase),
 			mysqli_real_escape_string($connection, $nameBase)
 		));
+		$resultCountWordsPlayer = $connection->query(sprintf(
+			"SELECT COUNT(*) FROM `%s` WHERE `%s`.`Game` = 1",
+			mysqli_real_escape_string($connection, $nameBase),
+			mysqli_real_escape_string($connection, $nameBase)
+		));
 	}
 
 	$oneWord = $resultRandomWord->fetch_assoc();
