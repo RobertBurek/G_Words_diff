@@ -525,12 +525,6 @@ class AppGame {
 				"Dowolny ciąg znaków";
 	}
 
-	// this.howCategory = funcShowCategory(){
-	// 	this.categoryWrapper.innerHTML =
-	// 		"KATEGORIA:  " + convertTextCategory(this.oneRoundGame.category);
-	//     console.log('Pokazałem kategorię: ' + this.oneRoundGame.category);
-	// }
-
 	writeCategory() {
 		this.categoryWrapper.innerHTML = "KATEGORIA:  ? ";
 		whatCategoryDiv.classList.add("hide");
@@ -577,7 +571,6 @@ class AppGame {
 		this.leftEmpty = level;
 		notWord.classList.add("hide");
 		titleButtonLongWord = this.level + `-literowe`;
-		// this.readWordsWithBase(resultSQL);
 		this.writeCategory();
 		this.stringWords = resultSQL.allWords;
 		this.guessWordChars = resultSQL.word.split("");
@@ -602,7 +595,6 @@ class AppGame {
 
 	stopCurrentLine() {
 		this.isNotWord = true;
-		// console.log('stopCurrentLine');
 		notWord.classList.remove("hide");
 		divOnlyWords.classList.add("curtain-only-words");
 		pOnlyWords.classList.add("curtain");
@@ -614,7 +606,6 @@ class AppGame {
 
 	startCurrentLine() {
 		this.isNotWord = false;
-		// console.log('startCurrentLin');
 		notWord.classList.add("hide");
 		divOnlyWords.classList.remove("curtain-only-words");
 		pOnlyWords.classList.remove("curtain");
@@ -702,10 +693,8 @@ class AppGame {
 		this.currentLine.forEach((el) => {
 			tempCurrentLine.push(el.innerHTML);
 		});
-		// this.guessWordChars = resultSQL.word.split("");
-		this.guessWordChars = this.oneRoundGame.word.split(""); //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+		this.guessWordChars = this.oneRoundGame.word.split("");
 		console.log(this.guessWordChars);
-
 		this.clearLine(this.currentLine);
 		for (let i = 0; i < this.level; i++) {
 			if (tempCurrentLine[i] == this.guessWordChars[i]) {
@@ -757,12 +746,10 @@ class AppGame {
 				},
 				function (dataSQL) {
 					resolve(dataSQL);
-					// console.log(dataSQL);
 				},
 				"json"
 			).fail(function (data) {
 				reject(data);
-				// console.log(data);
 			});
 		});
 	}
@@ -840,8 +827,6 @@ class AppGame {
 				this.level,
 				this.oneRoundGame.multiplierIsOnlyWord
 			);
-		// console.log(this.oneRoundGame.points);
-		// console.log(this.oneRoundGame.bonusIsCategory);
 		console.log(
 			"Punkty po rundzie  :  " +
 				this.oneRoundGame.points +
@@ -910,7 +895,6 @@ class AppGame {
 	}
 
 	changeKeyboard() {
-		// console.log('Przed zmianą klawiatury : ' + this.currentlyKeyboard[0]);
 		if (this.currentlyKeyboard == this.alphabet)
 			this.currentlyKeyboard = this.qwerty;
 		else this.currentlyKeyboard = this.alphabet;
@@ -1000,7 +984,6 @@ class AppGame {
 
 	createStartPlaceGame(level, attempts, wrapper) {
 		wrapper.innerHTML = "";
-		// for ( let i = 0; i < level + 1; i++){
 		for (let i = 0; i < attempts; i++) {
 			const divLine = document.createElement("div");
 			if (i == 0) divLine.className = "line current-round";
@@ -1179,7 +1162,6 @@ class AppGame {
 				this.oneRoundGame = new GameRound();
 				this.oneRoundGame.startParameters(resultSQL, level);
 				console.log(this.oneRoundGame);
-				// this.listGameRound.push(this.oneRoundGame);
 				this.startParameters(level, attempts, resultSQL);
 				this.createKeyboard(
 					this.currentlyKeyboard,
@@ -1201,7 +1183,6 @@ class AppGame {
 				this.oneRoundGame = new GameRound();
 				this.oneRoundGame.startParameters(resultFile, level);
 				console.log(this.oneRoundGame);
-				// this.listGameRound.push(this.oneRoundGame);
 				this.startParameters(level, attempts, resultFile);
 				this.createKeyboard(
 					this.currentlyKeyboard,
