@@ -370,7 +370,6 @@ class CharKeyboard {
 }
 
 class AppGame {
-	// listGameRound = [];
 	constructor({
 		lettersWrapper,
 		categoryWrapper,
@@ -400,10 +399,6 @@ class AppGame {
 			83, 84, 85, 86, 87, 88, 89, 90, 211, 260, 262, 280, 321, 323, 346, 377,
 			379,
 		];
-		// this.charsObject;
-		// this.alphabet;
-		// this.qwerty;
-		// --------------------------------------
 		this.charsObject = [];
 		for (let i = 0; i < this.numbersChar.length; i++) {
 			this.charsObject.push(new CharKeyboard(this.numbersChar[i], "normal"));
@@ -483,9 +478,6 @@ class AppGame {
 			this.charsObject[34],
 		];
 		this.currentlyKeyboard = this.alphabet;
-		// --------------------------------------
-		// this.currentlyKeyboard;
-		// this.currentlyKeyboard = this.alphabet;
 		this.level;
 		this.leftEmpty;
 		this.currentLine = [];
@@ -504,14 +496,11 @@ class AppGame {
 			saveScoreSection.classList.add("hide");
 			loggingDivInfo.classList.add("dropdown-active");
 			$("html, body").animate({ scrollTop: 800 }, 100);
-			// this.saveScore();
 		});
 		this.onceAgainWrapper.addEventListener("click", () => {
 			onceAgainSection.classList.add("hide");
 			saveScoreSection.classList.add("hide");
 			this.run(this.level, this.attempts);
-			// this.stratAgain();
-			// this.run(quantity, attempts);
 		});
 	}
 
