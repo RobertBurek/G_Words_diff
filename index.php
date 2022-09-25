@@ -1,12 +1,3 @@
-<?php
-// $_SESSION['logged'] = false;
-@session_start();
-if ((isset($_SESSION['logged'])) && ($_SESSION['logged'] == true)) {
-    @$namePlayer = $_SESSION['player'];
-}
-if (isset($_SESSION['errorConnect'])) unset($_SESSION['errorConnect']);
-?>
-
 <!DOCTYPE html>
 <html lang="pl">
 
@@ -15,19 +6,16 @@ if (isset($_SESSION['errorConnect'])) unset($_SESSION['errorConnect']);
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>G_Words diff</title>
-    <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"> -->
     <script src="https://kit.fontawesome.com/1085229b76.js" crossorigin="anonymous"></script>
-    <!-- <link rel="stylesheet" href="css/style.css"> -->
     <script>
         document.write('<link rel="stylesheet" href="css/style.css?ver=' + Math.floor(Math.random() * 1000) + '"\>');
     </script>
-    <!-- <script src="https://kit.fontawesome.com/1085229b76.js" crossorigin="anonymous"></script> -->
 </head>
 
 <body>
     <section id="gWords" class="g-words">
         <div id="titleGame" class="title-game">
-            <!-- <h1>JAKIE TO SŁOWO?</h1> -->
+            <h1 class="hide">JAKIE TO SŁOWO?</h1>
             <div class="title-letter half-success letter-transform-1">J</div>
             <div class="title-letter success letter-transform-2">A</div>
             <div class="title-letter not-char letter-transform-3">K</div>
@@ -49,7 +37,6 @@ if (isset($_SESSION['errorConnect'])) unset($_SESSION['errorConnect']);
             <div class="title-div half-success"></div> - litera występuje na innym miejscu,
             <div class="title-div not-char"></div> - litera nie występuje.</p>
         </div>
-        <!-- <div id="wordGame" class="word-game"></div> -->
         <div id="wordGame" class="word-game">
             <div class="line current-round">
                 <div class="one-letter current-letter"></div>
@@ -95,35 +82,12 @@ if (isset($_SESSION['errorConnect'])) unset($_SESSION['errorConnect']);
             </div>
         </div>
         <div id="resultWord"></div>
-
-        <!-- <div id="category" class="category">
-            <p></p>
-            <div class="not-word hide">
-                <p>Nie ma takiego słowa</p>
-            </div>
-        </div> -->
-
         <div id="category" class="category">
             <p>KATEGORIA: ?</p>
             <div class="not-word hide">
                 <p>Nie ma takiego słowa</p>
             </div>
         </div>
-
-        <!-- <form action="./php/category.php" method="post">
-        <div class="what-category">
-                <input class="what-category-btn" type="submit" name="selected-category" value="OSOBY">
-                <input class="what-category-btn" type="submit" name="selected-category" value="RZECZY">
-                <input class="what-category-btn" type="submit" name="selected-category" value="ROŚLINY">
-                <input class="what-category-btn" type="submit" name="selected-category" value="MIEJSCA">
-                <input class="what-category-btn" type="submit" name="selected-category" value="POJĘCIA">
-                <input class="what-category-btn" type="submit" name="selected-category" value="ZWIERZĘTA">
-                <input class="what-category-btn" type="submit" name="selected-category" value="ZJAWISKA">
-                <input class="what-category-btn" type="submit" name="selected-category" value="CZYNNOŚCI">
-        </div>
-        </form> -->
-
-
         <div class="what-category hide">
             <div class="what-category-btn" category>OSOBA</div>
             <div class="what-category-btn" category>RZECZ</div>
@@ -134,20 +98,6 @@ if (isset($_SESSION['errorConnect'])) unset($_SESSION['errorConnect']);
             <div class="what-category-btn" category>ZJAWISKA</div>
             <div class="what-category-btn" category>CZYNNOŚCI</div>
         </div>
-
-        <!-- <div id="letters" class="letters">
-            <div class="above only-words">
-                <p>Tylko istniejące słowa</p>
-            </div>
-            <div id="onceAgain" class="above once-again hide">
-                <div>Jeszcze raz?</div>
-            </div>
-            <div id="keyboard1" class="keyboard1"></div>
-            <div id="keyboard2" class="keyboard2"></div>
-            <div id="keyboard3" class="keyboard3"></div>
-            <div id="keyboard4" class="keyboard4"></div>
-        </div> -->
-
         <div id="letters" class="letters">
             <div class="above only-words">
                 <p>Tylko istniejące słowa</p>
@@ -186,11 +136,6 @@ if (isset($_SESSION['errorConnect'])) unset($_SESSION['errorConnect']);
                         <div id="7letters" class="setting-letter">7-literowe</div>
                         <div id="8letters" class="setting-letter">8-literowe</div>
                         <div id="9letters" class="setting-letter">9-literowe</div>
-                        <!-- <button class="long-word">5-literowe</button>
-                        <button class="long-word">6-literowe</button>
-                        <button class="long-word">7-literowe</button>
-                        <button class="long-word">8-literowe</button>
-                        <button class="long-word">9-literowe</button> -->
                     </div>
                 </div>
                 <div class="dropdown-box">
@@ -201,52 +146,9 @@ if (isset($_SESSION['errorConnect'])) unset($_SESSION['errorConnect']);
                     <div class="dropdown-info">
                         <div id="onlyWords" class="setting-letter">tylko istniejące słowa</div>
                         <div id="stringChars" class="setting-letter">dowolny ciąg liter</div>
-                        <!-- <button class="long-word">tylko istniejące słowa</button>
-                        <button class="long-word">dowolny ciąg znaków</button> -->
                     </div>
                 </div>
                 <div class="dropdown-box">
-                    <?php
-                    // if ((isset($_SESSION['logged'])) && ($_SESSION['logged'] == true)) {
-                    //     $namePlayer = $_SESSION['nick'];
-                    //     echo '<button id="logging" class="dropdown-btn">';
-                    //     echo '  <i class="fas fa-sign-in-alt" dropdown></i>';
-                    //     echo '  Witaj, ' . $namePlayer . ' ! <div class="dropdown-note" dropdown>(twoje wyniki)</div>';
-                    //     echo '</button>';
-                    //     echo '<div class="dropdown-info">';
-                    //     echo '  <div class="result-letter">5-literowe</div>';
-                    //     echo '  <div class="result-letter">6-literowe</div>';
-                    //     echo '  <div class="result-letter">7-literowe</div>';
-                    //     echo '  <div class="result-letter">8-literowe</div>';
-                    //     echo '  <div class="result-letter">9-literowe</div>';
-                    //     echo '  <div class="logging" logging>';
-                    //     echo '      <div id="lower">';
-                    //     echo '          <button class="normal reg-log-btn logout-btn">Wyloguj</button>';
-                    //     // echo '          <button class="normal reg-log-btn login-btn">Zaloguj</button>';
-                    //     echo '      </div>';
-                    //     echo '  </div>';
-                    //     echo '</div>';
-                    // } else {
-                    //     echo '<button id="logging" class="dropdown-btn">';
-                    //     echo '  <i class="fas fa-sign-in-alt" dropdown></i>';
-                    //     echo '  Logowanie <div class="dropdown-note" dropdown>(rejestracja)</div>';
-                    //     echo '</button>';
-                    //     echo '<div class="dropdown-info">';
-                    //     echo '  <div class="logging" logging>';
-                    //     echo '      <label class="dropdown-login" logging>Nazwa (login):';
-                    //     echo '          <input type="text" name="nick" placeholder="" logging></label>';
-                    //     echo '      <label class="dropdown-password" logging>Hasło:';
-                    //     echo '          <input type="password" name="password" placeholder="" logging></label>';
-                    //     echo '      <div id="lower">';
-                    //     echo '          <button class="normal reg-log-btn register-btn">Rejestruj</button>';
-                    //     echo '          <button class="normal reg-log-btn login-btn">Zaloguj</button>';
-                    //     echo '      </div>';
-                    //     echo '  </div>';
-                    //     echo '</div>';
-                    // }
-                    ?>
-
-
                     <button id="logging" class="dropdown-btn">
                         <i class="fas fa-sign-in-alt" dropdown></i>
                         Logowanie <div class="dropdown-note" dropdown>(rejestracja)</div>
@@ -278,28 +180,7 @@ if (isset($_SESSION['errorConnect'])) unset($_SESSION['errorConnect']);
                         </div>
 
                     </div>
-
-                    <!-- <button id='logging' class="dropdown-btn">
-                        <i class="fas fa-sign-in-alt" dropdown></i>
-                        Logowanie <div class="dropdown-note" dropdown>(rejestracja)</div>
-                    </button> -->
-
-
-                    <!-- <div class="dropdown-info">
-                        <div class="logging" logging>
-                            <label class="dropdown-login" logging>Nazwa (login):
-                                <input type="text" name="nick" placeholder="" logging></label>
-                            <label class="dropdown-password" logging>Hasło:
-                                <input type="password" name="password" placeholder="" logging></label>
-                            <div id="lower">
-                                <button class="normal reg-log-btn register-btn">Rejestruj</button>
-                                <button class="normal reg-log-btn login-btn">Zaloguj</button>
-                            </div>
-                        </div>
-                    </div> -->
-
                 </div>
-
                 <div class="dropdown-box">
                     <button class="dropdown-btn">
                         <i class="fas fa-chalkboard-teacher" dropdown></i>
@@ -320,16 +201,6 @@ if (isset($_SESSION['errorConnect'])) unset($_SESSION['errorConnect']);
                 <div class="result"></div>
             </div>
         </div>
-        <!-- <div class="settings hide">
-            <h2>Ustawienia</h2>
-            <div id="5letters" class="setting-letter">Słowo pięcioliterowe</div>
-            <div id="6letters" class="setting-letter">Słowo sześcioliterowe</div>
-            <div id="7letters" class="setting-letter">Słowo siedmioliterowe</div>
-            <div id="8letters" class="setting-letter">Słowo ośmioliterowe</div>
-            <div id="9letters" class="setting-letter" >Słowo dziewięcioliterowe</div>
-            <div id="onlyWords" class="setting-letter">Tylko istniejące słowa</div>
-            <div id="stringChars" class="setting-letter">Dowolny ciąg znaków</div>
-        </div> -->
     </section>
     <section class='implementation'>
         <p>Subiektywna implementacja gry WORDLE</p>
@@ -349,31 +220,6 @@ if (isset($_SESSION['errorConnect'])) unset($_SESSION['errorConnect']);
     <script>
         document.write('<script src="./app/dropdown.js?ver=' + Math.floor(Math.random() * 10000) + '" type="module"\><\/script>');
     </script>
-    <!-- <script>
-        document.write('<script src="./app/login.js?ver=' + Math.floor(Math.random() * 10000) + '" type="module"\><\/script>');
-    </script> -->
-    <!-- <script>
-        document.write('<script src="./app/register.js?ver=' + Math.floor(Math.random() * 10000) + '" type="module"\><\/script>');
-    </script> -->
-    <!-- <script>
-        document.write('<script src="./app/logout.js?ver=' + Math.floor(Math.random() * 10000) + '" type="module"\><\/script>');
-    </script> -->
-    <!-- <script>
-        document.write('<script src="./app/autoReading.js?ver=' + Math.floor(Math.random() * 10000) + '" type="module"\><\/script>');
-    </script> -->
-    <!-- <script>
-        const game = new Game({
-            lettersWrapper: document.getElementById("letters"),
-            categoryWrapper: document.getElementById("category"),
-            wordGameWrapper: document.getElementById("wordGame"),
-            keyboardScheme: document.getElementById("keyboardScheme"),
-            keyboard1: document.getElementById("keyboard1"),
-            keyboard2: document.getElementById("keyboard2"),
-            keyboard3: document.getElementById("keyboard3"),
-            keyboard4: document.getElementById("keyboard4"),
-        });
-        game.run(5);
-    </script> -->
 </body>
 
 </html>
