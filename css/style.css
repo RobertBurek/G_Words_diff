@@ -724,6 +724,7 @@ h2 {
   .description {
     padding: 10px;
     font-size: 1.6rem;
+    width: 90%;
   }
   .title-div {
     height: 20px;
@@ -822,6 +823,14 @@ h2 {
   }
   input {
     width: 165px;
+  }
+}
+
+@media (min-width: 600px) {
+  .description {
+    padding: 10px;
+    font-size: 1.6rem;
+    width: 80%;
   }
 }
 
