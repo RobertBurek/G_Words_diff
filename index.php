@@ -159,12 +159,13 @@
                                 <input type="text" name="nick" placeholder="" logging></label>
                             <label class="dropdown-password" logging>Hasło:
                                 <input type="password" name="password" placeholder="" logging></label>
-                            <label class="dropdown-password hide" logging>Ponów hasło :
-                                <input type="password" name="password" placeholder="" logging></label>
+                            <label id="password2" class="dropdown-password hide" logging>Ponów hasło :
+                                <input type="password" name="password2" placeholder="" logging></label>
                             <div id="lower">
-                                <button class="normal reg-log-btn register-btn">Rejestruj</button>
-                                <button class="normal reg-log-btn login-btn">Zaloguj</button>
+                                <button class="normal reg-log-btn register-btn" dropdown>Rejestruj</button>
                                 <button class="normal reg-log-btn save-btn hide">Zapisz</button>
+                                <button class="normal reg-log-btn login-btn">Zaloguj</button>
+                                <!-- <button class="normal reg-log-btn save-btn hide">Zapisz</button> -->
                             </div>
                         </div>
                         <div class="logging hide" name="results" logging>

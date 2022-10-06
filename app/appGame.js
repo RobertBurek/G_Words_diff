@@ -106,6 +106,8 @@ const resultsDiv = document.querySelector("[name='results']");
 const loginBtn = document.querySelector(".login-btn");
 const inputNick = document.querySelector("[name='nick']");
 const inputPassword = document.querySelector("[name='password']");
+const inputPassword2 = document.querySelector("[name='password2']");
+const password2 = document.getElementById("password2");
 const loggingButton = document.getElementById("logging");
 const loggingDivInfo = document.querySelector(".logging").parentNode;
 
@@ -153,13 +155,46 @@ try {
 	}
 }
 
+
+// const saveBtn = document.querySelector(".save-btn");
 const registerBtn = document.querySelector(".register-btn");
 
 try {
 	registerBtn.addEventListener("click", () => {
+		// loggingDivInfo.classList.add("dropdown-active");
+		registerBtn.classList.add("hide");
+		// loginBtn.classList.add("hide");
+		saveBtn.classList.remove("hide");
+		password2.classList.remove("hide");
+		console.log("Podaj jeszcze raz hasło !!!");
+
+		// loggingButton.innerHTML = `
+		// 	<i class="fas fa-sign-in-alt" dropdown></i>
+		// 	Logowanie <div class="dropdown-note" dropdown>(rejestracja)</div>
+		// `;
+		// $.getScript("app/register.js").done(function () {
+		// 	console.log("inicjacja register.js");
+		// });
+		// loggingDivInfo.classList.add("dropdown-active");
+	});
+	// loggingDivInfo.classList.add("dropdown-active");
+} catch (e) {
+	if (e instanceof ReferenceError) {
+		console.log("registerBtn - nie jest zdefiniowany.");
+	}
+}
+
+
+
+// const registerBtn = document.querySelector(".register-btn");
+const saveBtn = document.querySelector(".save-btn");
+
+try {
+	saveBtn.addEventListener("click", () => {
 		const dataRegister = {
 			Nick: inputNick.value,
 			Password: inputPassword.value,
+			Password2: inputPassword2.value,
 		};
 		$.post(
 			"./php/register.php",
@@ -198,12 +233,17 @@ try {
 	}
 }
 
+
+
 const logoutBtn = document.querySelector(".logout-btn");
 
 try {
 	logoutBtn.addEventListener("click", () => {
 		resultsDiv.classList.add("hide");
 		contactsDiv.classList.remove("hide");
+		registerBtn.classList.remove("hide");
+		saveBtn.classList.add("hide");
+		password2.classList.add("hide");
 		localStorage.setItem("nick/JTS", "");
 		localStorage.setItem("nameTable/JTS", "");
 		localStorage.setItem("result5/JTS", 0);
@@ -226,6 +266,8 @@ try {
 		console.log("logoutBtn - nie jest zdefiniowany.");
 	}
 }
+
+
 
 if (
 	localStorage.getItem("nick/JTS") != "" &&
