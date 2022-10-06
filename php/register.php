@@ -2,6 +2,10 @@
 
 $nick = $_POST['Nick'];
 $password = $_POST['Password'];
+$password2 = $_POST['Password2'];
+
+// $passwordHash = password_hash($password, PASSWORD_DEFAULT);
+// $password2Hash = password_hash($password2, PASSWORD_DEFAULT);
 
 require_once "connect.php";
 
@@ -15,6 +19,8 @@ if ($connection->connect_errno != 0) {
     $nameTable = str_replace(' ', '', strtolower($nick) . $userData);
     $nameTable = str_replace('-', '', $nameTable);
     $nameTable = preg_replace('/[^A-Za-z0-9\-]/', '', $nameTable);
+
+if ($password==$password2){
 
     if ($connection->query(sprintf(
         "INSERT INTO `players` (`Nick`, `Password`, `DateStart`, `DateLast`, `ResultTotal`, `NameTable`) VALUES ('%s', '%s', '%s', '%s', '%s', '%s');",
@@ -42,5 +48,10 @@ if ($connection->connect_errno != 0) {
     } else {
         echo json_encode(array("nick" => $nick, "error" => 'Istnieje już taki LOGIN !!!'));
     }
+} else {
+    echo json_encode(array("nick" => $nick, "error" => 'Hasła się różnią !!!'));
+}
+
     $connection->close();
 }
+
