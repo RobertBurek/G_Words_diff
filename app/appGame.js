@@ -600,8 +600,12 @@ class AppGame {
 		);
 	}
 
+	myConsoleLog(content){
+		if (window.location.href.split("/")[2] == "127.0.0.1") console.log(content);
+	}
+
 	startParameters(level, attempts, resultSQL) {
-		console.log(this.listGameRound.length);
+		// console.log(this.listGameRound.length);
 		console.log(this.listGameRound);
 		whatCategoryDiv.classList.add("hide");
 		document
@@ -736,7 +740,7 @@ class AppGame {
 			tempCurrentLine.push(el.innerHTML);
 		});
 		this.guessWordChars = this.oneRoundGame.word.split("");
-		console.log(this.guessWordChars);
+		// console.log(this.guessWordChars);
 		this.clearLine(this.currentLine);
 		for (let i = 0; i < this.level; i++) {
 			if (tempCurrentLine[i] == this.guessWordChars[i]) {
@@ -807,7 +811,7 @@ class AppGame {
 		});
 		if (i == this.level) {
 			this.victory = true;
-			this.onceAgain();
+			// this.onceAgain();
 			if (this.oneRoundGame.category == "?") startSelectionCategory();
 			if (
 				localStorage.getItem("nick/JTS") != "" &&
@@ -837,7 +841,9 @@ class AppGame {
 			} else {
 				this.listGameRound.push(this.oneRoundGame);
 				console.log(this.oneRoundGame);
+				// console.log(this.listGameRound.length);
 			}
+			this.onceAgain();
 		}
 	}
 
@@ -1102,9 +1108,11 @@ class AppGame {
 		divOnlyWords.classList.add("curtain-only-words");
 		pOnlyWords.classList.add("curtain");
 		pOnlyWords.classList.add("curtain-z-index");
+		console.log(this.listGameRound.length);
 		if (
 			localStorage.getItem("nick/JTS") == "" &&
-			!localStorage.getItem("nick/JTS")
+			!localStorage.getItem("nick/JTS") &&
+			this.listGameRound.length > 0
 		) {
 			saveScoreSection.classList.remove("hide");
 		}
@@ -1203,7 +1211,8 @@ class AppGame {
 			.then((resultSQL) => {
 				this.oneRoundGame = new GameRound();
 				this.oneRoundGame.startParameters(resultSQL, level);
-				console.log(this.oneRoundGame);
+				// console.log(this.oneRoundGame);
+				this.myConsoleLog(this.oneRoundGame);
 				this.startParameters(level, attempts, resultSQL);
 				this.createKeyboard(
 					this.currentlyKeyboard,
@@ -1224,7 +1233,8 @@ class AppGame {
 			.catch((resultFile) => {
 				this.oneRoundGame = new GameRound();
 				this.oneRoundGame.startParameters(resultFile, level);
-				console.log(this.oneRoundGame);
+				// console.log(this.oneRoundGame);
+				this.myConsoleLog(this.oneRoundGame);
 				this.startParameters(level, attempts, resultFile);
 				this.createKeyboard(
 					this.currentlyKeyboard,
