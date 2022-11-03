@@ -23,7 +23,7 @@ function sendInfoMail($categoryInfo, $longWordInfo, $wordInfo) {
     $message_body="Ktoś zagrał w Twoją gierkę: WORDLE\n";
     $message_body.="Kategoria słowa: ".$categoryInfo."\n";
     $message_body.="Level: ".$longWordInfo."\n";
-    $message_body.="Słowo: ".$wordInfo." s \n\n";
+    $message_body.="Słowo: ".$wordInfo."\n\n";
     $message_body.="Pozdrowionka ze stronki GryJS.";
     mail("robertburek@wp.pl","Jakie to słowo - ".$wordInfo ,$message_body ,$headers );
 }

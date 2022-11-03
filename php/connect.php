@@ -13,5 +13,5 @@
 
 	// $host="robertkierownik.mysql.db";
 	// $db_user="robertkierownik";
-	// $db_password="RobertKierownik123";
+	// $db_password="";
 	// $db_name="robertkierownik";
