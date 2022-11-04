@@ -695,7 +695,7 @@ h2 {
 .setting-letter {
 	height: 30px;
 	// width: 80%;
-	margin-left: 40%;
+	margin-left: 35%;
 	// margin: 0px;
 	font-size: 14px;
 	font-weight: 600;
@@ -929,6 +929,10 @@ h2 {
 		padding: 10px;
 		font-size: 1.6rem;
 		width: 80%;
+	}
+	.result-letter,
+	.setting-letter {
+		margin-left: 40%;
 	}
 }
 
