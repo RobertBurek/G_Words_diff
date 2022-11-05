@@ -24,7 +24,8 @@ function sendInfoMail($categoryInfo, $longWordInfo, $wordInfo) {
     $message_body.="Kategoria słowa: ".$categoryInfo."\n";
     $message_body.="Level: ".$longWordInfo."\n";
     $message_body.="Słowo: ".$wordInfo."\n\n";
-    $message_body.="Pozdrowionka ze stronki GryJS.";
+    $message_body.="Pozdrowionka ze stronki GryJS.\n";
+    $message_body.="!!! Błąd zapisu KATEGORII w bazie SQL, zapis do pliku !!!";
     mail("robertburek@wp.pl","Jakie to słowo - ".$wordInfo ,$message_body ,$headers );
 }
 

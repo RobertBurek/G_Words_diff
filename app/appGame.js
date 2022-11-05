@@ -1103,16 +1103,17 @@ class AppGame {
 
 	onceAgain() {
 		wordVictory = this.oneRoundGame.word;
-		console.log(`Odgadnięte słowo: ${wordVictory}`);
 		onceAgainSection.classList.remove("hide");
 		divOnlyWords.classList.add("curtain-only-words");
 		pOnlyWords.classList.add("curtain");
 		pOnlyWords.classList.add("curtain-z-index");
+		console.log(`Odgadnięte słowo: ${wordVictory}`);
+		console.log(localStorage.getItem("nick/JTS"));
 		console.log(this.listGameRound.length);
 		if (
-			localStorage.getItem("nick/JTS") == "" &&
-			!localStorage.getItem("nick/JTS") &&
-			this.listGameRound.length > 0
+			this.listGameRound.length > 0 &&
+			(localStorage.getItem("nick/JTS") == "" ||
+			!localStorage.getItem("nick/JTS"))
 		) {
 			saveScoreSection.classList.remove("hide");
 		}
