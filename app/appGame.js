@@ -1119,32 +1119,19 @@ class AppGame {
 			nameBase: wordVictory.length + "-letters",
 			isWord: wordVictory,
 			category: convertTextCategory(this.oneRoundGame.category),
-			player: localStorage.getItem("nick/JTS")
+			player: localStorage.getItem("nick/JTS"),
 		};
 		console.log(dataMail);
-		// new Promise((resolve, reject) => {
-			$.post(
-				"./php/sendMail.php",
-				{
-					nameBase: wordVictory.length + "-letters",
-					isWord: wordVictory,
-					category: convertTextCategory(this.oneRoundGame.category),
-					player: localStorage.getItem("nick/JTS")
-				},
-				// function (dataSQL) {
-				// 	console.log(
-				// 		"Wysłano infoMaila. Słowo: " +
-				// 			dataSQL.isWord +
-				// 			", gracz: " +
-				// 			dataSQL.player
-				// 	);
-				// },
-				"json"
-			);
-			// .fail(function () {
-			// 	console.log("Problem z wysłaniem maila !!!");
-			// });
-		// });
+		$.post(
+			"./php/sendMail.php",
+			{
+				nameBase: wordVictory.length + "-letters",
+				isWord: wordVictory,
+				category: convertTextCategory(this.oneRoundGame.category),
+				player: localStorage.getItem("nick/JTS"),
+			},
+			"json"
+		);
 	}
 
 	saveOneRoundGameWithList() {
