@@ -1119,19 +1119,15 @@ class AppGame {
 			nameBase: wordVictory.length + "-letters",
 			isWord: wordVictory,
 			category: convertTextCategory(this.oneRoundGame.category),
-			player: localStorage.getItem("nick/JTS"),
+			// player: localStorage.getItem("nick/JTS"),
+			player:
+				typeof localStorage.getItem("nick/JTS") == "undefined" ||
+				localStorage.getItem("nick/JTS") == ""
+					? "Ktoś"
+					: localStorage.getItem("nick/JTS"),
 		};
 		console.log(dataMail);
-		$.post(
-			"./php/sendMail.php",
-			{
-				nameBase: wordVictory.length + "-letters",
-				isWord: wordVictory,
-				category: convertTextCategory(this.oneRoundGame.category),
-				player: localStorage.getItem("nick/JTS"),
-			},
-			"json"
-		);
+		$.post("./php/sendMail.php", dataMail, "json");
 	}
 
 	saveOneRoundGameWithList() {
