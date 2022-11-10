@@ -1102,19 +1102,20 @@ class AppGame {
 	onceAgain() {
 		const player = localStorage.getItem("nick/JTS");
 		wordVictory = this.oneRoundGame.word;
+		const successWord = this.victory ? " - odgadnięte" : " - nie odgadnięte";
 		onceAgainSection.classList.remove("hide");
 		divOnlyWords.classList.add("curtain-only-words");
 		pOnlyWords.classList.add("curtain");
 		pOnlyWords.classList.add("curtain-z-index");
 		console.log(`Odgadnięte słowo: ${wordVictory}`);
-		console.log(player);
+		console.log(`Wygrana: ${this.victory}`);
 		console.log(this.listGameRound.length);
 		if (this.listGameRound.length > 0 && (player == "" || !player)) {
 			saveScoreSection.classList.remove("hide");
 		}
 		var dataMail = {
 			nameBase: wordVictory.length + "-letters",
-			isWord: wordVictory,
+			isWord: wordVictory + successWord,
 			category: convertTextCategory(this.oneRoundGame.category),
 			player: typeof player == "undefined" || player == "" ? "Ktoś" : player,
 		};
