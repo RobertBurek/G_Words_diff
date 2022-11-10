@@ -155,7 +155,6 @@ try {
 	}
 }
 
-
 // const saveBtn = document.querySelector(".save-btn");
 const registerBtn = document.querySelector(".register-btn");
 
@@ -183,8 +182,6 @@ try {
 		console.log("registerBtn - nie jest zdefiniowany.");
 	}
 }
-
-
 
 // const registerBtn = document.querySelector(".register-btn");
 const saveBtn = document.querySelector(".save-btn");
@@ -233,8 +230,6 @@ try {
 	}
 }
 
-
-
 const logoutBtn = document.querySelector(".logout-btn");
 
 try {
@@ -266,8 +261,6 @@ try {
 		console.log("logoutBtn - nie jest zdefiniowany.");
 	}
 }
-
-
 
 if (
 	localStorage.getItem("nick/JTS") != "" &&
@@ -323,6 +316,9 @@ const whatCategoryDiv = document.querySelector(".what-category");
 const whatCategoryElements = document.querySelectorAll("[category]");
 whatCategoryElements.forEach((element) => {
 	element.addEventListener("click", () => {
+		let player = localStorage.getItem("nick/JTS");
+		if (typeof player == "undefined" || player == "") player = "Ktoś";
+		console.log(player);
 		console.log(element);
 		disableWhatCategory();
 		element.classList.remove("what-category-disabled");
@@ -331,6 +327,7 @@ whatCategoryElements.forEach((element) => {
 			category: convertTextCategory(element.innerHTML),
 			word: wordVictory,
 			longWord: wordVictory.length,
+			player: player,
 		};
 		console.log(dataWord);
 		$.post(
@@ -339,6 +336,7 @@ whatCategoryElements.forEach((element) => {
 				nameBase: wordVictory.length + "-letters",
 				isWord: wordVictory,
 				category: convertTextCategory(element.innerHTML),
+				player: player,
 			},
 			function (dataSQL) {
 				// console.log(dataSQL);
@@ -600,7 +598,7 @@ class AppGame {
 		);
 	}
 
-	myConsoleLog(content){
+	myConsoleLog(content) {
 		if (window.location.href.split("/")[2] == "127.0.0.1") console.log(content);
 	}
 
@@ -1113,7 +1111,7 @@ class AppGame {
 		if (
 			this.listGameRound.length > 0 &&
 			(localStorage.getItem("nick/JTS") == "" ||
-			!localStorage.getItem("nick/JTS"))
+				!localStorage.getItem("nick/JTS"))
 		) {
 			saveScoreSection.classList.remove("hide");
 		}
