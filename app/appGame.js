@@ -1100,31 +1100,23 @@ class AppGame {
 	}
 
 	onceAgain() {
+		const player = localStorage.getItem("nick/JTS");
 		wordVictory = this.oneRoundGame.word;
 		onceAgainSection.classList.remove("hide");
 		divOnlyWords.classList.add("curtain-only-words");
 		pOnlyWords.classList.add("curtain");
 		pOnlyWords.classList.add("curtain-z-index");
 		console.log(`Odgadnięte słowo: ${wordVictory}`);
-		console.log(localStorage.getItem("nick/JTS"));
+		console.log(player);
 		console.log(this.listGameRound.length);
-		if (
-			this.listGameRound.length > 0 &&
-			(localStorage.getItem("nick/JTS") == "" ||
-				!localStorage.getItem("nick/JTS"))
-		) {
+		if (this.listGameRound.length > 0 && (player == "" || !player)) {
 			saveScoreSection.classList.remove("hide");
 		}
 		var dataMail = {
 			nameBase: wordVictory.length + "-letters",
 			isWord: wordVictory,
 			category: convertTextCategory(this.oneRoundGame.category),
-			// player: localStorage.getItem("nick/JTS"),
-			player:
-				typeof localStorage.getItem("nick/JTS") == "undefined" ||
-				localStorage.getItem("nick/JTS") == ""
-					? "Ktoś"
-					: localStorage.getItem("nick/JTS"),
+			player: typeof player == "undefined" || player == "" ? "Ktoś" : player,
 		};
 		console.log(dataMail);
 		$.post("./php/sendMail.php", dataMail, "json");
