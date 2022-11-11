@@ -144,8 +144,8 @@
                         Wypełnianie<div class="dropdown-note" dropdown>(tylko istniejące słowa)</div>
                     </button>
                     <div class="dropdown-info">
-                        <div id="onlyWords" class="setting-letter">tylko istniejące słowa</div>
-                        <div id="stringChars" class="setting-letter">dowolny ciąg liter</div>
+                        <div id="onlyWords" class="filling-letter">tylko istniejące słowa</div>
+                        <div id="stringChars" class="filling-letter">dowolny ciąg liter</div>
                     </div>
                 </div>
                 <div class="dropdown-box">
@@ -161,7 +161,7 @@
                                 <input type="password" name="password" placeholder="" logging></label>
                             <label id="password2" class="dropdown-password hide" logging>Ponów hasło :
                                 <input type="password" name="password2" placeholder="" logging></label>
-                            <div id="lower">
+                            <div id="lower" class="lower">
                                 <button class="normal reg-log-btn register-btn" dropdown>Rejestruj</button>
                                 <button class="normal reg-log-btn save-btn hide">Zapisz</button>
                                 <button class="normal reg-log-btn login-btn">Zaloguj</button>

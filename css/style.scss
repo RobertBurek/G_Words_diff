@@ -484,7 +484,7 @@ html {
 	height: 200px;
 	// font-family: sans-serif;
 	// background-color: $red-pastel-color;
-	width: 450px;
+	width: 385px;
 	max-width: 90%;
 }
 
@@ -608,6 +608,10 @@ html {
 // 	content: " ";
 // }
 
+.lower {
+	margin-top: 5px;
+}
+
 input {
 	content: "";
 	outline: none;
@@ -691,15 +695,20 @@ h2 {
 	border-radius: 2px;
 }
 
-.result-letter,
 .setting-letter {
-	height: 30px;
+	text-align: center;
+}
+
+.result-letter,
+.filling-letter,
+.setting-letter {
+	height: 25px;
 	// width: 80%;
-	margin-left: 35%;
+	margin-left: 30%;
 	// margin: 0px;
-	font-size: 14px;
+	font-size: 11px;
 	font-weight: 600;
-	line-height: 30px;
+	line-height: 20px;
 	letter-spacing: 1px;
 }
 
@@ -854,13 +863,33 @@ h2 {
 	input {
 		width: 145px;
 	}
+	.result-letter {
+		margin-left: 42%;
+		line-height: 18px;
+	}
+	.setting-letter {
+		margin-left: 45%;
+		line-height: 18px;
+	}
+	.filling-letter {
+		margin-left: 50%;
+	}
 	// .logging {
 	// 	margin-right: 20px;
 	// }
 }
 
+@media (min-width: 450px) {
+	.setting-letter,
+	.filling-letter,
+	.result-letter {
+		font-size: 13px;
+	}
+}
+
 @media (min-width: 500px) {
 	.letters {
+		width: 450px;
 		button {
 			height: 28px;
 			width: 28px;
@@ -908,6 +937,9 @@ h2 {
 		padding-top: 270px;
 		font-size: 1.6rem;
 	}
+	.dropdown {
+		width: 400px;
+	}
 	.dropdown-info p {
 		margin-bottom: 1.2rem;
 		font-size: 1.6rem;
@@ -918,6 +950,12 @@ h2 {
 	}
 	input {
 		width: 165px;
+	}
+	.result-letter,
+	.filling-letter,
+	.setting-letter {
+		height: 30px;
+		font-size: 14px;
 	}
 	// .logging {
 	// 	margin-right: 45px;
@@ -930,15 +968,11 @@ h2 {
 		font-size: 1.6rem;
 		width: 80%;
 	}
-	.result-letter,
-	.setting-letter {
-		margin-left: 40%;
-	}
 }
 
 @media (min-width: 768px) {
 	.letters {
-		width: 450px;
+		width: 500px;
 	}
 	.description {
 		max-width: 100%;
