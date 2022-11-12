@@ -881,6 +881,22 @@ class AppGame {
 		);
 	}
 
+	effectClickLetter(oneChar, activeLetter) {
+		var echo = document.createElement("DIV");
+		echo.className = "echo-letter";
+		// frame.appendChild(this.area);
+		document.body.appendChild(echo);
+		var x = activeLetter.offsetLeft;
+		var y = activeLetter.offsetTop;
+		echo.style.position = "absolute";
+		echo.style.top = (y-2*h) + "px";
+		echo.style.left = (x-w/2) + "px";
+		// echo.style.innerHTML = oneChar;
+		console.log(echo);
+		console.log(oneChar);
+		console.log(activeLetter);
+	}
+
 	writeLetter(oneChar, resultSQL) {
 		const activeLetter = document.querySelector("div.current-letter");
 		if (activeLetter) {
@@ -963,9 +979,10 @@ class AppGame {
 			button.className = lettersCheme[i].getStateChar();
 			button.innerHTML = String.fromCharCode(lettersCheme[i].numberChar);
 			if (lettersCheme[i].getStateChar() != "not-char")
-				button.addEventListener("click", () =>
-					this.writeLetter(lettersCheme[i], resultSQL)
-				);
+				button.addEventListener("click", () => {
+					this.writeLetter(lettersCheme[i], resultSQL);
+					this.effectClickLetter(button.innerHTML, button);
+				});
 			keyboard1.appendChild(button);
 		}
 		for (let i = 10; i < 19; i++) {
@@ -973,9 +990,10 @@ class AppGame {
 			button.className = lettersCheme[i].getStateChar();
 			button.innerHTML = String.fromCharCode(lettersCheme[i].numberChar);
 			if (lettersCheme[i].getStateChar() != "not-char")
-				button.addEventListener("click", () =>
-					this.writeLetter(lettersCheme[i], resultSQL)
-				);
+				button.addEventListener("click", () => {
+					this.writeLetter(lettersCheme[i], resultSQL);
+					this.effectClickLetter(button.innerHTML, button);
+				});
 			keyboard2.appendChild(button);
 		}
 		const divKeyboard = document.createElement("div");
@@ -999,9 +1017,10 @@ class AppGame {
 			button.className = lettersCheme[i].getStateChar();
 			button.innerHTML = String.fromCharCode(lettersCheme[i].numberChar);
 			if (lettersCheme[i].getStateChar() != "not-char")
-				button.addEventListener("click", () =>
-					this.writeLetter(lettersCheme[i], resultSQL)
-				);
+				button.addEventListener("click", () => {
+					this.writeLetter(lettersCheme[i], resultSQL);
+					this.effectClickLetter(button.innerHTML, button);
+				});
 			keyboard3.appendChild(button);
 		}
 		const divBackspace = document.createElement("div");
@@ -1014,9 +1033,10 @@ class AppGame {
 			button.className = lettersCheme[i].getStateChar();
 			button.innerHTML = String.fromCharCode(lettersCheme[i].numberChar);
 			if (lettersCheme[i].getStateChar() != "not-char")
-				button.addEventListener("click", () =>
-					this.writeLetter(lettersCheme[i], resultSQL)
-				);
+				button.addEventListener("click", () => {
+					this.writeLetter(lettersCheme[i], resultSQL);
+					this.effectClickLetter(button.innerHTML, button);
+				});
 			keyboard4.appendChild(button);
 		}
 	}
