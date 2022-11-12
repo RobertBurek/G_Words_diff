@@ -883,22 +883,24 @@ class AppGame {
 
 	effectClickLetter(oneChar, activeLetter) {
 		var echo = document.createElement("DIV");
-		echo.className = "echo-letter";
-		document.body.appendChild(echo);
 		var x = activeLetter.offsetLeft;
 		var y = activeLetter.offsetTop;
 		var h = activeLetter.offsetHeight;
 		var w = activeLetter.offsetWidth;
+		echo.className = "echo-letter";
+		document.body.appendChild(echo);
 		echo.style.position = "absolute";
-		echo.style.top = (y-2*h) + "px";
-		echo.style.left = (x-w/2) + "px";
-		echo.style.height = 2*h + "px";
-		echo.style.width = 2*w + "px";
+		echo.style.top = y - 2 * h + "px";
+		echo.style.left = x - w / 2 + "px";
+		echo.style.height = 2 * h + "px";
+		echo.style.width = 2 * w + "px";
 		echo.innerHTML = oneChar;
 		console.log(echo);
 		console.log(oneChar);
 		console.log(activeLetter);
-		setTimeout(() => {  echo.remove(); }, 120);
+		setTimeout(() => {
+			echo.remove();
+		}, 120);
 	}
 
 	writeLetter(oneChar, resultSQL) {
