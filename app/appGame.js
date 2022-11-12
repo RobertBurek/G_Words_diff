@@ -986,8 +986,8 @@ class AppGame {
 			button.innerHTML = String.fromCharCode(lettersCheme[i].numberChar);
 			if (lettersCheme[i].getStateChar() != "not-char")
 				button.addEventListener("click", () => {
-					this.writeLetter(lettersCheme[i], resultSQL);
 					this.effectClickLetter(button.innerHTML, button);
+					this.writeLetter(lettersCheme[i], resultSQL);
 				});
 			keyboard1.appendChild(button);
 		}
@@ -997,8 +997,8 @@ class AppGame {
 			button.innerHTML = String.fromCharCode(lettersCheme[i].numberChar);
 			if (lettersCheme[i].getStateChar() != "not-char")
 				button.addEventListener("click", () => {
-					this.writeLetter(lettersCheme[i], resultSQL);
 					this.effectClickLetter(button.innerHTML, button);
+					this.writeLetter(lettersCheme[i], resultSQL);
 				});
 			keyboard2.appendChild(button);
 		}
@@ -1024,8 +1024,8 @@ class AppGame {
 			button.innerHTML = String.fromCharCode(lettersCheme[i].numberChar);
 			if (lettersCheme[i].getStateChar() != "not-char")
 				button.addEventListener("click", () => {
-					this.writeLetter(lettersCheme[i], resultSQL);
 					this.effectClickLetter(button.innerHTML, button);
+					this.writeLetter(lettersCheme[i], resultSQL);
 				});
 			keyboard3.appendChild(button);
 		}
@@ -1040,8 +1040,8 @@ class AppGame {
 			button.innerHTML = String.fromCharCode(lettersCheme[i].numberChar);
 			if (lettersCheme[i].getStateChar() != "not-char")
 				button.addEventListener("click", () => {
-					this.writeLetter(lettersCheme[i], resultSQL);
 					this.effectClickLetter(button.innerHTML, button);
+					this.writeLetter(lettersCheme[i], resultSQL);
 				});
 			keyboard4.appendChild(button);
 		}
