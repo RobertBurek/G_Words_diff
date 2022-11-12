@@ -900,6 +900,7 @@ class AppGame {
 		console.log(echo);
 		console.log(oneChar);
 		console.log(activeLetter);
+		setTimeout(() => {  echo.remove(); }, 100);
 	}
 
 	writeLetter(oneChar, resultSQL) {
