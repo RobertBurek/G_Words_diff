@@ -733,6 +733,9 @@ h2 {
     height: 22px;
     z-index: 200;
   }
+  .echo-letter {
+    font-size: 38px;
+  }
   .settings {
     font-size: 17px;
   }
