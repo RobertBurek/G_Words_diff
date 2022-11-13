@@ -555,14 +555,13 @@ class AppGame {
       Wypełnianie <div class="dropdown-note" dropdown>${titleButtonFilling}</div>`;
 		this.onlyWords = param;
 		this.oneRoundGame.chengeIsOnlyWord(param);
-		// this.oneRoundGame.points = this.oneRoundGame.countPoints(10, this.level);
 		console.log(this.oneRoundGame.isOnlyWord);
 		if (this.onlyWords)
 			document.querySelector(".above.only-words p").innerHTML =
 				"Tylko istniejące słowa";
 		else
 			document.querySelector(".above.only-words p").innerHTML =
-				"Dowolny ciąg znaków";
+				"Dowolny ciąg liter";
 	}
 
 	writeCategory() {
