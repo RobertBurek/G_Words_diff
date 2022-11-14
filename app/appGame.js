@@ -113,8 +113,6 @@ const loggingDivInfo = document.querySelector(".logging").parentNode;
 
 try {
 	loginBtn.addEventListener("click", () => {
-		// resultsDiv.classList.remove('hide');
-		// loggingDivInfo.classList.add("dropdown-active");
 		const dataLogin = { Nick: inputNick.value, Password: inputPassword.value };
 		$.post(
 			"./php/login.php",
@@ -137,9 +135,7 @@ try {
 							)}   - readScores.js`
 						);
 					});
-					// loggingDivInfo.classList.add("dropdown-active");
 				} else {
-					// loggingDivInfo.classList.add("dropdown-active");
 					loggingButton.innerHTML = `<i class="fas fa-sign-in-alt" dropdown></i>
                     Logowanie <div class="dropdown-note" dropdown style="color:red;"> (${data.error})</div>`;
 				}
@@ -155,35 +151,21 @@ try {
 	}
 }
 
-// const saveBtn = document.querySelector(".save-btn");
 const registerBtn = document.querySelector(".register-btn");
 
 try {
 	registerBtn.addEventListener("click", () => {
-		// loggingDivInfo.classList.add("dropdown-active");
 		registerBtn.classList.add("hide");
-		// loginBtn.classList.add("hide");
 		saveBtn.classList.remove("hide");
 		password2.classList.remove("hide");
 		console.log("Podaj jeszcze raz hasło !!!");
-
-		// loggingButton.innerHTML = `
-		// 	<i class="fas fa-sign-in-alt" dropdown></i>
-		// 	Logowanie <div class="dropdown-note" dropdown>(rejestracja)</div>
-		// `;
-		// $.getScript("app/register.js").done(function () {
-		// 	console.log("inicjacja register.js");
-		// });
-		// loggingDivInfo.classList.add("dropdown-active");
 	});
-	// loggingDivInfo.classList.add("dropdown-active");
 } catch (e) {
 	if (e instanceof ReferenceError) {
 		console.log("registerBtn - nie jest zdefiniowany.");
 	}
 }
 
-// const registerBtn = document.querySelector(".register-btn");
 const saveBtn = document.querySelector(".save-btn");
 
 try {
@@ -339,7 +321,6 @@ whatCategoryElements.forEach((element) => {
 				player: player,
 			},
 			function (dataSQL) {
-				// console.log(dataSQL);
 				console.log(
 					"Zapis kategorii w bazie SQL !!!  W tabeli: " + dataSQL.nameTable
 				);
@@ -352,7 +333,6 @@ whatCategoryElements.forEach((element) => {
 		whatCategoryDiv.classList.add("hide");
 		document.querySelector("#category p").innerHTML =
 			"KATEGORIA:  " + convertTextCategory(element.innerHTML);
-		// this.categoryWrapper.innerHTML = 'KATEGORIA:  ' + convertTextCategory(element.innerHTML);
 		document.querySelector("#category").style.cursor = "pointer";
 		document
 			.querySelector("#category")
@@ -363,7 +343,6 @@ whatCategoryElements.forEach((element) => {
 const changeCategoryStyle = function changeCategoryStyle() {
 	whatCategoryDiv.classList.remove("hide");
 	document.querySelector("#category").style.cursor = "default";
-	// console.log('Zmiana kursora na kategorii.');
 };
 
 function disableWhatCategory() {
